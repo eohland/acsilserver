@@ -1,0 +1,4 @@
+acsil_server_app:
+    resource: "@AcsilServerAppBundle/Resources/config/routing.yml"
+    prefix:   /
+

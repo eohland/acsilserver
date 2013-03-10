@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+	{% if userRole == 'ROLE_SUPER_ADMIN' %}
+		<a href="{{ path('_register', {'userRole': 'admin'}) }}">{{ 'create.admin'|trans }}</a> <br />
+		<a href="{{ path('_register', {'userRole': 'superAdmin'}) }}">{{ 'create.superAdmin'|trans }}</a><br />
+	{% endif %}
+	
+	<a href="{{ path('_logout') }}">{{ 'logout'|trans }}</a> <br />
+	
+	Firstname : {{ user.firstname }}<br />
+	Lastname : {{ user.lastname }}<br />
+	Email : {{ user.email }}<br />
+{% endblock %}
