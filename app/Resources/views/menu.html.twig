@@ -1,0 +1,20 @@
+{% block menu %}
+	<div class="span4 offset8">
+		<ul class="nav nav-pills">
+			<li><a href="{{ path('_acsil') }}">{{ 'home'|trans }}</a></li>
+			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+				{% if app.user.roles.0 == 'ROLE_SUPER_ADMIN' %}
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ 'admins.control'|trans }}<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ path('_acsiladmins') }}">{{ 'list.admins'|trans }}</a></li>
+							<li><a href="{{ path('_register', {'userRole': 'admin'}) }}">{{ 'create.admin'|trans }}</a></li>
+							<li><a href="{{ path('_register', {'userRole': 'superAdmin'}) }}">{{ 'create.superAdmin'|trans }}</a></li>
+						</ul>
+					</li>
+				{% endif %}
+				<li><a href="{{ path('_logout') }}">{{ 'logout'|trans }}</a></li>
+			{% endif %}
+		</ul>
+	</div><!-- span4 -->
+{% endblock %}

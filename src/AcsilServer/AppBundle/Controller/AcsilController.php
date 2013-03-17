@@ -17,4 +17,18 @@ class AcsilController extends Controller
 				'userRole' => $userRole[0],
 			));
     }
+	
+	public function adminsAction() {
+		$em = $this->getDoctrine()->getManager();
+		$superAdmin = json_encode(array('ROLE_SUPER_ADMIN'));
+		$admin = json_encode(array('ROLE_ADMIN'));
+		
+		$listadmins = $em
+			->getRepository('AcsilServerAppBundle:User')
+			->findBy(array('roles' => array($superAdmin, $admin)));
+		return $this->render('AcsilServerAppBundle:Acsil:admins.html.twig',
+			array(
+				'listadmins' =>$listadmins,
+			));
+	}
 }

@@ -25,3 +25,12 @@ _request:
 _acsil:
     pattern:  /acsil/
     defaults: { _controller: AcsilServerAppBundle:Acsil:index }
+
+_acsiladmins:
+    pattern:  /acsil/admins/
+    defaults: { _controller: AcsilServerAppBundle:Acsil:admins }
+
+_deleteaccount:
+    pattern:  /acsil/admin/delete/{id}
+    defaults: { _controller: AcsilServerAppBundle:Security:delete, id: '' }
+    

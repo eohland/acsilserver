@@ -78,4 +78,15 @@ class SecurityController extends Controller
 	        	
 			));
     }
+	
+	public function deleteAction($id) {
+		$em = $this->getDoctrine()->getManager();
+		$adminToDelete = $em
+			->getRepository('AcsilServerAppBundle:User')
+			->findOneBy(array('id' => $id));
+		$em->remove($adminToDelete);
+		$em->flush();
+		
+		return $this->redirect($this->generateUrl('_acsiladmins'));
+	}
 }

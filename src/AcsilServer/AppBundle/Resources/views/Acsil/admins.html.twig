@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+	<div id="superAdmins">
+		<h2>{{ 'super.admins'|trans }}</h2>
+		<table class="span10 offset1">
+			<tr>
+				<td class="span6">{{ 'firstname'|trans }} {{ 'name'|trans }}</td>
+				<td class="span2">{{ 'creationdate'|trans }}</td>
+				<td class="span2">{{ 'delete'|trans }}</td>
+			</tr>
+		{% for superAdmin in listadmins %}
+			{% if superAdmin.roles.0 == "ROLE_SUPER_ADMIN" %}
+				<tr>
+					<td>{{ superAdmin.firstname }} {{ superAdmin.lastname }}</td>
+					<td>{{ superAdmin.creationdate|date }}</td>
+					<td>
+						{% if app.user.username != superAdmin.username %}
+							<a href="{{ path('_deleteaccount', {'id': superAdmin.id}) }}">{{ 'deleteAdmin'|trans }}</a>
+						{% endif %}
+					</td>
+				</tr>
+			{% endif %}
+		{% endfor %}
+		</table>
+	</div><!-- superAdmins -->
+	
+	<div id="admins">
+		<h2>{{ 'admins'|trans }}</h2>
+		<table class="span10 offset1">
+			<tr>
+				<td class="span6">{{ 'firstname'|trans }} {{ 'name'|trans }}</td>
+				<td class="span2">{{ 'creationdate'|trans }}</td>
+				<td class="span2">{{ 'delete'|trans }}</td>
+			</tr>
+		{% for admin in listadmins %}
+			{% if admin.roles.0 == "ROLE_ADMIN" %}
+				<tr>
+					<td>{{ admin.firstname }} {{ admin.lastname }}</td>
+					<td>{{ admin.creationdate|date }}</td>
+					<td><a href="{{ path('_deleteaccount', {'id': admin.id}) }}">{{ 'deleteAdmin'|trans }}</a></td>
+				</tr>
+			{% endif %}
+		{% endfor %}
+		</table>
+	</div><!-- admins -->
+{% endblock %}

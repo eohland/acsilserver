@@ -1,0 +1,12 @@
+{% block ent %}
+	<div id="logo">
+		<h1>AcsilServer</h1>
+	</div><!-- logo -->
+	<div id="user">
+		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}                                                    
+			{{ app.user.firstname }} {{ app.user.lastname }} ({{ app.user.email }})
+		{% else %}
+			
+		{% endif %}
+	</div>
+{% endblock %}
