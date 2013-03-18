@@ -34,3 +34,14 @@ _deleteaccount:
     pattern:  /acsil/admin/delete/{id}
     defaults: { _controller: AcsilServerAppBundle:Security:delete, id: '' }
     
+_upload:
+    pattern:  /acsil/upload
+    defaults: { _controller: AcsilServerAppBundle:Upload:upload }
+
+_managefile:
+    pattern:  /acsil/myfile
+    defaults: { _controller: AcsilServerAppBundle:Upload:manage }
+
+_deletefile:
+    pattern:  /acsil/myfile/delete/{id}
+    defaults: { _controller: AcsilServerAppBundle:Upload:delete, id: '' }
