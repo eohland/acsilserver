@@ -17,10 +17,26 @@
 					<td>{{ myfile.size }} Ko</td>
                     <td>{{ myfile.uploaddate|date }}</td>
 					<td>
-					<a href="{{app.request.basepath}}/{{ myfile.getWebPath() }}">{{ 'DDL'|trans }}</a>
+					{% if is_granted('VIEW', myfile) %}
+                    	<a href="{{app.request.basepath}}/{{ myfile.getWebPath() }}">{{ 'DDL'|trans }}</a>
+					{% endif %}
 					</td>
 					<td>
+					{% if is_granted('DELETE', myfile) %}
 					<a href="{{ path('_deletefile', {'id': myfile.id}) }}">{{ 'delete'|trans }}</a>
+					{% endif %}
+					</td>
+					<td>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ 'manage access'|trans }}<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+						   {% for user in listusers %}
+						   {% if user != app.user.email %}
+                            <li><a href="{{ path('_manage_access',{'id': myfile.id, 'friendName': user}) }}">{{ user | trans }}</a></li>
+						   {% endif %}
+						   {% endfor %}
+							</ul>
+					</li>
 					</td>
 				</tr>
 		{% endfor %}
