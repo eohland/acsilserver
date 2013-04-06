@@ -24,6 +24,11 @@ class Document
      */
 	 private $size;
 	 
+	 /**
+     * @ORM\Column(type="integer")
+     */
+	 private $isProfilePicture;
+	 
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -114,6 +119,19 @@ class Document
         return $this;
     }
 	
+			    /**
+     * Set isProfilePicture
+     *
+     * @param integer $IsProfilePicture
+     * @return Document
+     */
+    public function setIsProfilePicture($isProfilePicture)
+    {
+        $this->isProfilePicture = $isProfilePicture;
+    
+        return $this;
+    }
+	
 	 public function getId()
     {
         return $this->id;
@@ -122,6 +140,11 @@ class Document
 	public function getSize()
     {
         return $this->size;
+    }
+	
+	public function getIsProfilePicture()
+    {
+        return $this->isProfilePicture;
     }
 	
 	 public function getName()
@@ -186,10 +209,8 @@ class Document
     public function preUpload()
     {
         if (null !== $this->file) {
-            // faites ce que vous voulez pour générer un nom unique
             $this->setPath(sha1(uniqid(mt_rand(), true)).'.'.$this->file->guessExtension());
 			$this->setSize($this->file->getClientSize());
-        //$this->setOwner($this->getUser());
  }
     }
 
@@ -203,10 +224,6 @@ class Document
             return;
         }
 
-        // s'il y a une erreur lors du déplacement du fichier, une exception
-        // va automatiquement être lancée par la méthode move(). Cela va empêcher
-        // proprement l'entité d'être persistée dans la base de données si
-        // erreur il y a
         $this->file->move($this->getUploadRootDir(), $this->getPath());
 
         unset($this->file);
@@ -240,9 +257,14 @@ class Document
 
     protected function getUploadDir()
     {
-        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
-        // le document/image dans la vue.
+		if ($this->getIsProfilePicture() == 0)
+		{
         return 'uploads/documents';
-    }
+        }
+		else
+		{
+		  return 'uploads/picture';
+		}
+	}
 	
 }

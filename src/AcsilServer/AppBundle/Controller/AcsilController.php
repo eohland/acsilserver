@@ -8,6 +8,7 @@ class AcsilController extends Controller
 {
     public function indexAction()
     {
+		//die(var_dump($this->getUser()));
     	$user = $this->get('security.context')->getToken()->getUser();
 		$userRole = $user->getRoles();
     	//die(var_dump($user = $this->get('security.context')->getToken()->getUser()));

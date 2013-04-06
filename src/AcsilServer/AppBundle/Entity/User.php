@@ -64,6 +64,11 @@ class User implements AdvancedUserInterface
      */
     private $creationDate;
 
+	  /**
+     * @ORM\Column(type="string", length=255)
+     */
+	private $pictureAccount;
+	
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
@@ -94,6 +99,19 @@ class User implements AdvancedUserInterface
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
+    
+        return $this;
+    }
+
+	   /**
+     * Set pictureAccount
+     *
+     * @param string $pictureAccount
+     * @return User
+     */
+    public function setPictureAccount($pictureAccount)
+    {
+        $this->pictureAccount = $pictureAccount;
     
         return $this;
     }
@@ -129,6 +147,16 @@ class User implements AdvancedUserInterface
     public function getLastname()
     {
         return $this->lastname;
+    }
+
+    /**
+     * Get pictureAccount
+     *
+     * @return string 
+     */
+    public function getPictureAccount()
+    {
+        return $this->pictureAccount;
     }
 
     /**
