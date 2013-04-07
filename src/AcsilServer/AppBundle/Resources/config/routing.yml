@@ -3,10 +3,8 @@ _home:
     defaults: { _controller: AcsilServerAppBundle:Default:index }
 
 _register:
-    pattern:  /register/{userRole}/
-    defaults: { _controller: AcsilServerAppBundle:Security:register, userRole: '' }
-    requirements:
-      userRole: admin|superAdmin
+    pattern:  /register/
+    defaults: { _controller: AcsilServerAppBundle:Security:register }
 
 _login:
     pattern:  /login/

@@ -10,9 +10,28 @@ use AcsilServer\AppBundle\Form;
 
 class SecurityController extends Controller
 {
-	public function registerAction(Request $request, $userRole) 
+    public function loginAction(Request $request)
+    {
+		$session = $request->getSession();
+		
+		// get the login error if there is one
+		if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+			$error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
+		} else {
+			$error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
+			$session->remove(SecurityContext::AUTHENTICATION_ERROR);
+		}
+		
+		return $this->render('AcsilServerAppBundle:Security:login.html.twig', 
+			array(
+				// last username entered by the user
+				'last_username' => $session->get(SecurityContext::LAST_USERNAME),
+				'error'         => $error,
+			));
+    }
+
+	public function registerAction(Request $request) 
 	{
-		$userRole == 'superAdmin' ? $role = 'ROLE_SUPER_ADMIN' : $role = 'ROLE_ADMIN';
 		$em = $this->getDoctrine()->getManager();
 		$session = $this->get('session');
     	$factory = $this->get('security.encoder_factory');
@@ -47,30 +66,9 @@ class SecurityController extends Controller
 		return $this->render('AcsilServerAppBundle:Security:register.html.twig',
 			array(
 				'form' => $form->createView(),
-				'userRole' => $userRole,
 			));
 	}
 	
-    public function loginAction(Request $request)
-    {
-		$session = $request->getSession();
-		
-		// get the login error if there is one
-		if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
-			$error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
-		} else {
-			$error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
-			$session->remove(SecurityContext::AUTHENTICATION_ERROR);
-		}
-		
-		return $this->render('AcsilServerAppBundle:Security:login.html.twig', 
-			array(
-				// last username entered by the user
-				'last_username' => $session->get(SecurityContext::LAST_USERNAME),
-				'error'         => $error,
-			));
-    }
-
     public function requestAction()
     {
         return $this->render('AcsilServerAppBundle:Security:request.html.twig', 

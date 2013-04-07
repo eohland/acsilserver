@@ -19,3 +19,47 @@ body {
 #ent {
 	height: 80px;
 }
+
+#user {
+	text-align: right;
+	margin: 10px 15px 0 0;
+	padding: 0
+}
+
+#userList {
+	padding: 0;
+	margin: 0;
+}
+
+.adminusertile, .usertile {
+	margin: 10px 0;
+}
+
+.adminusertile {
+	background-color: #C09853;
+}
+
+.usertile {
+	background-color: #339BB9;
+}
+
+.adminusertile img, .usertile img {
+	width: 100%;
+	min-height: 100px;
+	background-color: #FFFFFF;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	list-style-type: none;
+	margin: 5px;
+}
+
+.adminusertile a, .usertile a {
+	float: right;
+	margin: 5px;
+}
