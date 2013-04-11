@@ -25,13 +25,18 @@
 		</div><!-- updateFile -->
 		
 		<div id="deleteFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<h2>{{ 'file.delete'|trans }}</h2>
+			<p>
+				{{ 'file.confirm.delete'|trans }} <span class="filename"></span>
+				<a class="confirm btn btn-danger" href="">{{ 'yes'|trans }}</a>
+				<a class="noconfirm btn btn-primary" href="{{ path('_managefile') }}">{{ 'no'|trans }}</a>
+			</p>
 		</div><!-- deleteFile -->
 		
 		<div class="row-fluid">
 			<div class="span2">
 				<ul>
 					<li><a href="#addFile" data-toggle="modal"><i class="icon-plus"></i> {{ 'new.file' }} </a></li>
-					<li><a href="#createFolder" data-toggle="modal"><i class="icon-plus"></i> {{ 'new.folder' }} </a></li>
 				</ul>
 				<p>
 					{{ 'filezone.description'|trans }}
@@ -39,57 +44,37 @@
 			</div><!-- span3 -->
 			
 			<div id="itemList" class="span9 offset1">
-				{% for myfile in listfiles %}
+				{% for file in listfiles %}
 					<div class="userRow row-fluid">
 						<div class="fileInfos span9">
 							<div class="fileName span8">
-								{{ myfile.name }}
+								{{ file.name }}
 							</div><!-- fileName -->
 							<div class="fileSize span2">
-								{{ myfile.size }} Ko
+								{{ file.size }} Ko
 							</div>
 							<div class="fileUploadDate span2">
-								{{ myfile.uploaddate|date }}
+								{{ file.uploaddate|date }}
 							</div><!-- file upload date -->
 						</div><!-- fileInfos -->
 						
 						<div class="fileOptions span3">
 							
-							<a class="btn btn-primary" href="#shareFile" data-toggle="modal"><i class="icon-file icon-white"></i> {{ 'file.share'|trans }}</a>
+							<a class="btn btn-primary" href="#shareFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal"><i class="icon-file icon-white"></i> {{ 'file.share'|trans }}</a>
 							
 							<div class="btn-group">
 								<a class="btn btn-primary" href="#"><i class="icon-edit icon-white"></i> {{ 'edit'|trans }}</a>
 								<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									{% if is_granted('VIEW', myfile) %}
-										<li><a href="#downloadFile" data-toggle="modal"><i class="icon-download-alt"></i> {{ 'download.file'|trans }} </a></li>
+									{% if is_granted('VIEW', file) %}
+										<li><a href="#downloadFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal"><i class="icon-download-alt"></i> {{ 'download.file'|trans }} </a></li>
 									{% endif %}
-									<li><a href="#updateFile" data-toggle="modal"><i class="icon-upload"></i> {{ 'update.file'|trans }} </a></li>
-									{% if is_granted('DELETE', myfile) %}
-										<li><a href="#deleteFile" data-toggle="modal"><i class="icon-trash"></i> {{ 'delete.file'|trans }} </a></li>
+									<li><a href="#updateFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal"><i class="icon-upload"></i> {{ 'update.file'|trans }} </a></li>
+									{% if is_granted('DELETE', file) %}
+										<li><a href="#deleteFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal"><i class="icon-trash"></i> {{ 'delete.file'|trans }} </a></li>
 									{% endif %}
 								</ul>
 							</div><!-- btn group -->
-							{#
-							{% if is_granted('VIEW', myfile) %}
-		                    	<a href="{{app.request.basepath}}/{{ myfile.getWebPath() }}">{{ 'DDL'|trans }}</a>
-							{% endif %}
-							
-							{% if is_granted('DELETE', myfile) %}
-							<a href="{{ path('_deletefile', {'id': myfile.id}) }}">{{ 'delete'|trans }}</a>
-							{% endif %}
-							
-							<li class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ 'manage access'|trans }}<b class="caret"></b></a>
-								<ul class="dropdown-menu">
-								   {% for user in listusers %}
-								   {% if user != app.user.email %}
-		                            <li><a href="{{ path('_manage_access',{'id': myfile.id, 'friendName': user}) }}">{{ user | trans }}</a></li>
-								   {% endif %}
-								   {% endfor %}
-								</ul>
-							</li>
-							#}
 						</div><!-- file options -->
 					</div><!-- userRow -->
 				{% endfor %}

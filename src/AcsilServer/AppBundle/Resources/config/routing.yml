@@ -43,6 +43,8 @@ _managefile:
 _deletefile:
     pattern:  /acsil/myfile/delete/{id}
     defaults: { _controller: AcsilServerAppBundle:Upload:delete, id: '' }
+    options:
+        expose: true
 
 _manage_access:
     pattern:  /acsil/myfile/access/{id}/{friendName}

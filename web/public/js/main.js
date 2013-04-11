@@ -20,4 +20,17 @@ $(document).ready(function() {
 		$('#userSettings form select.role').val(role);
 		console.log(role);
 	});
+	
+	/**
+	 * File management
+	 */
+	$('.fileOptions a').click(function() {
+		//console.log($(this).attr('fileid'))
+		var fileid = $(this).attr('fileid');
+		var filename = $(this).attr('filename');
+		
+		// Delete file
+		var link = Routing.generate('_deletefile', { id: fileid })
+		$('#deleteFile a.confirm').attr('href', link);
+	})
 })

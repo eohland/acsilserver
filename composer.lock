@@ -1,5 +1,5 @@
 {
-    "hash": "68b01048805fca5c68d0c6090b64b930",
+    "hash": "7c3c9e7a3fb3ee1eb3c16451cbc04793",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -586,6 +586,60 @@
                 "orm"
             ],
             "time": "2013-03-24 20:43:58"
+        },
+        {
+            "name": "friendsofsymfony/jsrouting-bundle",
+            "version": "1.1.5",
+            "target-dir": "FOS/JsRoutingBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/FOSJsRoutingBundle.git",
+                "reference": "1.1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSJsRoutingBundle/zipball/1.1.5",
+                "reference": "1.1.5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/console": ">=2.0,<3.0",
+                "symfony/framework-bundle": ">=2.0,<3.0",
+                "symfony/serializer": ">=2.0,<3.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "FOS\\JsRoutingBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com",
+                    "homepage": "http://www.willdurand.fr"
+                },
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/friendsofsymfony/FOSJsRoutingBundle/contributors"
+                }
+            ],
+            "description": "Symfony FOSJsRoutingBundle",
+            "homepage": "http://friendsofsymfony.github.com",
+            "keywords": [
+                "Js Routing"
+            ],
+            "time": "2013-04-05 20:13:12"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1307,16 +1361,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v4.3.0",
+            "version": "v4.3.1",
             "source": {
                 "type": "git",
-                "url": "git://github.com/swiftmailer/swiftmailer.git",
-                "reference": "v4.3.0"
+                "url": "https://github.com/swiftmailer/swiftmailer.git",
+                "reference": "v4.3.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/swiftmailer/swiftmailer/archive/v4.3.0.zip",
-                "reference": "v4.3.0",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/v4.3.1",
+                "reference": "v4.3.1",
                 "shasum": ""
             },
             "require": {
@@ -1352,7 +1406,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2013-01-08 15:50:34"
+            "time": "2013-04-11 10:22:09"
         },
         {
             "name": "symfony/assetic-bundle",

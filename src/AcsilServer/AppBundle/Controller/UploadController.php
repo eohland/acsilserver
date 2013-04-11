@@ -13,6 +13,68 @@ use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Routing\Route;
 
 class UploadController extends Controller {
+	
+	public function manageAction() {
+		$em = $this -> getDoctrine() -> getManager();
+		$document = new Document();
+		$form = $this -> createFormBuilder($document) -> add('file') -> getForm();
+		$listAllfiles = $em 
+			-> getRepository('AcsilServerAppBundle:Document') 
+			-> findBy(array('isProfilePicture' => 0));
+		$listusers = $em 
+			-> getRepository('AcsilServerAppBundle:User') 
+			-> findAll();
+		$securityContext = $this -> get('security.context');
+		$listfiles = null;
+		foreach ($listAllfiles as $file) {
+			if (true === $securityContext -> isGranted('DELETE', $file) 
+				|| true === $securityContext -> isGranted('EDIT', $file) 
+				|| true === $securityContext -> isGranted('VIEW', $file)) {
+				$listfiles[] = $file;
+			}
+
+		}
+
+		return $this -> render('AcsilServerAppBundle:Acsil:files.html.twig', 
+			array(
+				'listfiles' => $listfiles, 
+				'listusers' => $listusers, 
+				'form' => $form->createView(),
+			));
+	}
+
+	public function manageaccessAction($id, $friendName) {
+
+		$em = $this -> getDoctrine() -> getManager();
+		$friend = $em -> getRepository('AcsilServerAppBundle:User') -> findOneByEmail($friendName);
+
+		if (!$friend) {
+			throw $this -> createNotFoundException('No user found for name ' . $friendName);
+		}
+
+		$document = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneById($id);
+
+		if (!$document) {
+			throw $this -> createNotFoundException('No document found for id ' . $id);
+		}
+
+		$builder = new MaskBuilder();
+		$builder -> add('view') -> add('edit') -> add('delete');
+
+		$mask = $builder -> get();
+		$aclProvider = $this -> container -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($document);
+		$acl = $aclProvider -> findAcl($objectIdentity);
+
+		$securityContext = $this -> container -> get('security.context');
+		$securityIdentity = UserSecurityIdentity::fromAccount($friend);
+
+		var_dump($builder -> get());
+		$acl -> insertObjectAce($securityIdentity, $mask);
+		$aclProvider -> updateAcl($acl);
+		return $this -> redirect($this -> generateUrl('_managefile'));
+	}
+
 	/**
 	 * @Template()
 	 */
@@ -45,7 +107,7 @@ class UploadController extends Controller {
 
 				$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
 				$aclProvider -> updateAcl($acl);
-				return $this -> redirect($this -> generateUrl('_acsil'));
+				return $this -> redirect($this -> generateUrl('_managefile'));
 			}
 		}
 
@@ -115,35 +177,6 @@ class UploadController extends Controller {
 		return array('form' => $form -> createView());
 	}
 
-	public function manageAction() {
-		$em = $this -> getDoctrine() -> getManager();
-		$document = new Document();
-		$form = $this -> createFormBuilder($document) -> add('file') -> getForm();
-		$listAllfiles = $em 
-			-> createQuery('SELECT d FROM AcsilServerAppBundle:Document d WHERE d.isProfilePicture = 0')
-			-> getResult();
-		$listusers = $em 
-			-> getRepository('AcsilServerAppBundle:User') 
-			-> findAll();
-		$securityContext = $this -> get('security.context');
-		$listfiles = null;
-		foreach ($listAllfiles as $file) {
-			if (true === $securityContext -> isGranted('DELETE', $file) 
-				|| true === $securityContext -> isGranted('EDIT', $file) 
-				|| true === $securityContext -> isGranted('VIEW', $file)) {
-				$listfiles[] = $file;
-			}
-
-		}
-
-		return $this -> render('AcsilServerAppBundle:Acsil:files.html.twig', 
-			array(
-				'listfiles' => $listfiles, 
-				'listusers' => $listusers, 
-				'form' => $form->createView(),
-			));
-	}
-
 	public function deleteAction($id) {
 		$securityContext = $this -> get('security.context');
 		$em = $this -> getDoctrine() -> getManager();
@@ -154,38 +187,6 @@ class UploadController extends Controller {
 		$em -> remove($fileToDelete);
 		$em -> flush();
 
-		return $this -> redirect($this -> generateUrl('_managefile'));
-	}
-
-	public function manageaccessAction($id, $friendName) {
-
-		$em = $this -> getDoctrine() -> getManager();
-		$friend = $em -> getRepository('AcsilServerAppBundle:User') -> findOneByEmail($friendName);
-
-		if (!$friend) {
-			throw $this -> createNotFoundException('No user found for name ' . $friendName);
-		}
-
-		$document = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneById($id);
-
-		if (!$document) {
-			throw $this -> createNotFoundException('No document found for id ' . $id);
-		}
-
-		$builder = new MaskBuilder();
-		$builder -> add('view') -> add('edit') -> add('delete');
-
-		$mask = $builder -> get();
-		$aclProvider = $this -> container -> get('security.acl.provider');
-		$objectIdentity = ObjectIdentity::fromDomainObject($document);
-		$acl = $aclProvider -> findAcl($objectIdentity);
-
-		$securityContext = $this -> container -> get('security.context');
-		$securityIdentity = UserSecurityIdentity::fromAccount($friend);
-
-		var_dump($builder -> get());
-		$acl -> insertObjectAce($securityIdentity, $mask);
-		$aclProvider -> updateAcl($acl);
 		return $this -> redirect($this -> generateUrl('_managefile'));
 	}
 
