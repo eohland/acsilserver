@@ -7,7 +7,7 @@
 					{% if app.user.roles.0 == 'ROLE_SUPER_ADMIN' %}
 						<li class="dropdown"><a href="{{ path('_acsiladmins') }}">{{ 'admins.control'|trans }}</a></li>
 					{% endif %}
-				    <li class="dropdown"><a href="{{ path('_managefile') }}">{{ 'file management'|trans }}</b></a></li>
+				    <li class="dropdown"><a href="{{ path('_managefile') }}">{{ 'file.management'|trans }}</b></a></li>
 				{% endif %}
 			</ul>
 		{% endblock %}

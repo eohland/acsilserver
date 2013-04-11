@@ -1,0 +1,27 @@
+<form action="{{ path('_sharefile') }}" method="post" {{ form_enctype(shareForm) }}>
+    {# {{ form_widget(shareForm) }} #}
+    
+	<div class="row-fluid">
+	
+		<div class="row-fluid">
+			<div class="control-group span8">
+			    {{ form_label(shareForm.userMail, shareForm.userMail.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+			    <div class="controls">
+				    {{ form_errors(shareForm.userMail) }}
+				    {{ form_widget(shareForm.userMail, {'attr': {'class': 'span12 typeaheadUserMail', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }}
+				</div><!-- controls -->
+			</div><!-- control group -->
+			
+			<div class="control-group span4">
+			    {{ form_label(shareForm.rights, shareForm.rights.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+			    <div class="controls">
+				    {{ form_errors(shareForm.rights) }}
+				    {{ form_widget(shareForm.rights, {'attr': {'class': 'span12'}}) }}
+				</div><!-- controls -->
+			</div><!-- control group -->
+		</div><!-- row fluid -->
+	
+	</div><!-- row fluid -->
+
+    <input type="submit" value="{{ 'share'|trans }}" />
+</form>

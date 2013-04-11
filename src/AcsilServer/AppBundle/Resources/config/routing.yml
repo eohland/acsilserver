@@ -40,6 +40,10 @@ _managefile:
     pattern:  /acsil/myfile
     defaults: { _controller: AcsilServerAppBundle:Upload:manage }
 
+_sharefile:
+    pattern:  /acsil/sharefile
+    defaults: { _controller: AcsilServerAppBundle:Upload:share }
+
 _deletefile:
     pattern:  /acsil/myfile/delete/{id}
     defaults: { _controller: AcsilServerAppBundle:Upload:delete, id: '' }

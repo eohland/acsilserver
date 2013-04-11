@@ -4,6 +4,8 @@ namespace AcsilServer\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AcsilServer\AppBundle\Entity\Document;
+use AcsilServer\AppBundle\Entity\ShareFile;
+use AcsilServer\AppBundle\Form\ShareFileType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -18,6 +20,7 @@ class UploadController extends Controller {
 		$em = $this -> getDoctrine() -> getManager();
 		$document = new Document();
 		$form = $this -> createFormBuilder($document) -> add('file') -> getForm();
+		$shareForm = $this->createForm(new ShareFileType(), new ShareFile());
 		$listAllfiles = $em 
 			-> getRepository('AcsilServerAppBundle:Document') 
 			-> findBy(array('isProfilePicture' => 0));
@@ -40,6 +43,7 @@ class UploadController extends Controller {
 				'listfiles' => $listfiles, 
 				'listusers' => $listusers, 
 				'form' => $form->createView(),
+				'shareForm' => $shareForm->createView(),
 			));
 	}
 
@@ -112,6 +116,11 @@ class UploadController extends Controller {
 		}
 
 		return array('form' => $form -> createView());
+	}
+
+	public function shareAction() {
+		
+		return $this->redirect($this->generateUrl('_managefile'));
 	}
 
 	/**

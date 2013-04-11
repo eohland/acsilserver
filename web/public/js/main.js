@@ -24,13 +24,34 @@ $(document).ready(function() {
 	/**
 	 * File management
 	 */
-	$('.fileOptions a').click(function() {
+	
+	// Delete file
+	$('.fileOptions a.deletefile').click(function() {
 		//console.log($(this).attr('fileid'))
 		var fileid = $(this).attr('fileid');
 		var filename = $(this).attr('filename');
 		
-		// Delete file
 		var link = Routing.generate('_deletefile', { id: fileid })
 		$('#deleteFile a.confirm').attr('href', link);
 	})
+
+	// Share file
+	$('.fileOptions a.sharefile').click(function() {
+		//console.log($(this).attr('fileid'))
+		var fileid = $(this).attr('fileid');
+		var filename = $(this).attr('filename');
+		
+		var link = Routing.generate('_deletefile', { id: fileid })
+		$('#deleteFile a.confirm').attr('href', link);
+	})
+	
+	//console.log($.parseJSON( $('.usersList').text() ));
+	
+	$('.typeaheadUserMail').typeahead({
+		//name: 'userMail',
+		//local: $('.usersList').text(),
+		source: $.parseJSON( $('.usersList').text() ),
+		limit: 10
+	})
+
 })

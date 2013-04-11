@@ -11,18 +11,19 @@
 		
 		<div id="shareFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<h2>{{ 'file.share'|trans }}</h2>
-			{% for user in listusers %}
-			   {% if user != app.user.email %}
-					<li>{{ [user.firstname,user.lastname]|join(' ') }}</li>
-				{% endif %}
-			{% endfor %}
+			<div class="usersList">
+				{% set totalUser = listusers|length - 1 %}
+				[
+					{% for key, user in listusers %}
+					   {% if user.getEmail != app.user.email %}
+							"{{ user.email }}"
+							{% if key != totalUser %},{% endif %}
+						{% endif %}
+					{% endfor %}
+				]
+			</div><!-- users -->
+			{% include 'AcsilServerAppBundle:Upload:ShareFile.html.twig' %}
 		</div><!-- shareFile -->
-		
-		<div id="downloadFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		</div><!-- downloadFile -->
-		
-		<div id="updateFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		</div><!-- updateFile -->
 		
 		<div id="deleteFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<h2>{{ 'file.delete'|trans }}</h2>
@@ -60,18 +61,17 @@
 						
 						<div class="fileOptions span3">
 							
-							<a class="btn btn-primary" href="#shareFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal"><i class="icon-file icon-white"></i> {{ 'file.share'|trans }}</a>
+							<a class="sharefile btn btn-primary" href="#shareFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal"><i class="icon-file icon-white"></i> {{ 'file.share'|trans }}</a>
 							
 							<div class="btn-group">
 								<a class="btn btn-primary" href="#"><i class="icon-edit icon-white"></i> {{ 'edit'|trans }}</a>
 								<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									{% if is_granted('VIEW', file) %}
-										<li><a href="#downloadFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal"><i class="icon-download-alt"></i> {{ 'download.file'|trans }} </a></li>
+										<li><a href="#"><i class="icon-download-alt"></i> {{ 'download.file'|trans }} </a></li>
 									{% endif %}
-									<li><a href="#updateFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal"><i class="icon-upload"></i> {{ 'update.file'|trans }} </a></li>
 									{% if is_granted('DELETE', file) %}
-										<li><a href="#deleteFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal"><i class="icon-trash"></i> {{ 'delete.file'|trans }} </a></li>
+										<li><a class="deletefile" href="#deleteFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal"><i class="icon-trash"></i> {{ 'delete.file'|trans }} </a></li>
 									{% endif %}
 								</ul>
 							</div><!-- btn group -->

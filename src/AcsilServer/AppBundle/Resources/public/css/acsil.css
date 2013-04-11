@@ -53,3 +53,11 @@ span.role {
 #changeRole {
 	padding: 20px;
 }
+
+/**
+ * 	Files
+ */
+
+.usersList {
+	display: none;
+}
