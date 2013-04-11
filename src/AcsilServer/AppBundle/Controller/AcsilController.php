@@ -3,6 +3,7 @@
 namespace AcsilServer\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Request;
 use AcsilServer\AppBundle\Entity;
 use AcsilServer\AppBundle\Form;
@@ -26,11 +27,10 @@ class AcsilController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$superAdmin = json_encode(array('ROLE_SUPER_ADMIN'));
 		$admin = json_encode(array('ROLE_ADMIN'));
-		$editForm = $this->createForm(new Form\UserType($this->getUser()), new Entity\User());
-		
-		if ($request->isMethod('POST')) {
-			
-		}
+		$user = new Entity\User();
+    	$factory = $this->get('security.encoder_factory');
+		$encoder = $factory->getEncoder($user);
+		$newUserForm = $this->createForm(new Form\UserType(), $user);
 		
 		$listadmins = $em
 			->getRepository('AcsilServerAppBundle:User')
@@ -39,7 +39,7 @@ class AcsilController extends Controller
 		return $this->render('AcsilServerAppBundle:Acsil:admins.html.twig',
 			array(
 				'listadmins' =>$listadmins,
-				'editForm' => $editForm->createView(),
+				'newUserForm' => $newUserForm->createView(),
 			));
 	}
 }

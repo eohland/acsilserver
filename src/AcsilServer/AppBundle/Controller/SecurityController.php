@@ -43,16 +43,19 @@ class SecurityController extends Controller
 			$form->bind($request);
 			
 			if ($form->isValid()) {
-				$data = $form->getData();
-				$password = $encoder->encodePassword($data->getPassword(), $user->getSalt());
+				$password = $encoder->encodePassword($form->getData()->getPassword(), $user->getSalt());
 				// die(var_dump($form->getData()));
 				
-				$user->setFirstname($data->getFirstname());
-				$user->setLastname($data->getLastname());
-				$user->setUsername($data->getFirstname().$data->getLastname().rand(1, 9999999));
-				$user->setEmail($data->getEmail());
+			echo '<pre>';
+			die( var_dump( $form->getData(), $form->getData()->getFirstname(), $form->getData()->getRoles() ) );
+			echo '</pre>';
+			
+								$user->setFirstname($form->getData()->getFirstname());
+				$user->setLastname($form->getData()->getLastname());
+				$user->setUsername($form->getData()->getFirstname().$form->getData()->getLastname().rand(1, 9999999));
+				$user->setEmail($form->getData()->getEmail());
 				$user->setPassword($password);
-				$user->setRoles(json_encode(array($role)));
+				$user->setRoles(json_encode(array($form->getData()->getRoles())));
 				$user->setCreationDate(new \Datetime());
 				
 				$em->persist($user);
@@ -65,7 +68,7 @@ class SecurityController extends Controller
 		
 		return $this->render('AcsilServerAppBundle:Security:register.html.twig',
 			array(
-				'form' => $form->createView(),
+				'newUserForm' => $form->createView(),
 			));
 	}
 	

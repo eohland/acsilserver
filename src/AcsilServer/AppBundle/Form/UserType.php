@@ -13,12 +13,12 @@ class UserType extends AbstractType
 	private $email;
 	private $roles;
 	
-	public function __construct($user) {
-		$this->firstname = $user->getFirstname() ? $user->getFirstname() : '';
-		$this->lastname = $user->getLastname() ? $user->getLastname() : '';
-		$this->email = $user->getEmail() ? $user->getEmail() : '';
-		$roles = $user->getRoles();
-		$this->roles = $roles[0] ? $roles[0] : '';
+	public function __construct($user = NULL) {
+		$this->firstname = $user ? $user->getFirstname() : '';
+		$this->lastname = $user ? $user->getLastname() : '';
+		$this->email = $user ? $user->getEmail() : '';
+		$roles = $user ? $user->getRoles() : '';
+		$this->roles = $roles ? $roles[0] : '';
 	}
 	
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -27,16 +27,17 @@ class UserType extends AbstractType
             ->add('firstname', 'text', array('data' => $this->firstname))
             ->add('lastname', 'text', array('data' => $this->lastname))
             ->add('email', 'email', array('data' => $this->email))
-            ->add('password', 'password', array())
+            ->add('password', 'password', array('required' => FALSE))
             ->add('confirm_password', 'password', array())
 			->add('roles', 'choice', 
 				array(
 					'choices' => array(
-						'ROLE_SUPER_ADMIN' => 'Admin',
 						'ROLE_ADMIN' => 'User',
+						'ROLE_SUPER_ADMIN' => 'Admin',
 					),
-					'preferred_choices' => array($this->roles),
+					'preferred_choices' => array($this->roles ? $this->roles : 'ROLE_ADMIN'),
 				))
+			->add('pictureAccount', 'file', array('required' => FALSE))
         ;
     }
 

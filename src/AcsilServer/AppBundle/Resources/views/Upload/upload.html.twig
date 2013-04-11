@@ -1,13 +1,5 @@
-{% extends '::base.html.twig' %}
-
-{% block body %}
-
-<h1>Uploader fichier</h1>
-
 <form action="#" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
 
     <input type="submit" value="Uploader Document" />
 </form>
-
-{% endblock %}

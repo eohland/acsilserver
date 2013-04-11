@@ -4,94 +4,65 @@
 	<div id="userList" class="row-fluid">
 		<h2>{{ 'users'|trans }}</h2>
 		
-		<div id="userSettings" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<h2>{{ 'usersettings'|trans }}</h2>
-			
-			<div class="row-fluid">
-				<div class="span4">
-					{{ 'userpicture'|trans }}
-				</div><!-- span4 -->
-				
-				<form action="{{ path('_acsiladmins') }}" method="post" {{ form_enctype(editForm) }}>
-					<div class="span8">
-						<div class="profileInfo">
-							<span class="profileLabel">{{ 'firstname'|trans }}</span><!-- label -->
-							<span class="data"></span><!-- hard -->
-							<span class="edit">
-								
-							</span><!-- edit -->
-						</div><!-- profileInfo -->
-						<div class="profileInfo">
-							<span class="profileLabel">{{ 'lastname'|trans }}</span><!-- label -->
-							<span class="data"></span><!-- hard -->
-							<span class="edit">
-								
-							</span><!-- edit -->
-						</div><!-- profileInfo -->
-						<div class="profileInfo">
-							<span class="profileLabel">{{ 'email'|trans }}</span><!-- label -->
-							<span class="data"></span><!-- hard -->
-							<span class="edit">
-								
-							</span><!-- edit -->
-						</div><!-- profileInfo -->
-						<div class="profileInfo">
-							<span class="profileLabel">{{ 'password'|trans }}</span><!-- label -->
-							<span class="data"></span><!-- hard -->
-							<span class="edit">
-								
-							</span><!-- edit -->
-						</div><!-- profileInfo -->
-						<div class="profileInfo">
-							<span class="profileLabel">{{ 'userrole'|trans }}</span><!-- label -->
-							<span class="data"></span><!-- hard -->
-							<span class="edit">
-								
-							</span><!-- edit -->
-						</div><!-- profileInfo -->
-					</div><!-- span8 -->
-				</form>
-			</div><!-- row-fluid -->
-			
-		</div><!-- userSettings -->
+		<div id="newUser" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			{% include 'AcsilServerAppBundle:Security:register.html.twig' %}
+		</div><!-- newUser -->
+		
+		<div id="resetPassword" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		</div><!-- resetPassword -->
+		
+		<div id="deleteAccount" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		</div><!-- deleteAccount -->
+		
+		<div id="changeRole" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		</div><!-- changeRole -->
 		
 		<div class="row-fluid">
-			{% for admin in listadmins %}
-				{% if admin.roles.0 == "ROLE_SUPER_ADMIN" %}
-					<div class="adminusertile span3">
-						<div class="row-fluid">
-							<div class="span5">
-								<img src="" alt="" />
-							</div><!-- span5 -->
-							<div class="span7">
-								<ul>
-									<li>{{ admin.firstname }}</li>
-									<li>{{ admin.lastname }}</li>
+			<div class="span2">
+				<ul>
+					<li><a href="#newUser" data-toggle="modal"><i class="icon-plus"></i> {{ 'new.user' }} </a></li>
+					<li><a href="#newGuest" data-toggle="modal"><i class="icon-plus"></i> {{ 'new.guest' }} </a></li>
+				</ul>
+				<p>
+					{{ 'adminzone.description'|trans }}
+				</p>
+			</div><!-- span3 -->
+			
+			<div id="itemList" class="span9 offset1">
+				{% for key, admin in listadmins %}
+					<div class="userRow row-fluid {{ admin.roles.0 == "ROLE_SUPER_ADMIN" ? "admin" : "user" }}">
+					
+						<div class="userInfos span10">
+							<img src="" alt="" height="60" width="100" /> {{ admin.firstname }} {{ admin.lastname }}
+							<!-- hidden values -->
+							<span class="userId">{{ admin.id }}</span>
+							<span class="userPicture">{{ admin.pictureAccount }}</span>
+							<span class="email">{{ admin.email }}</span>
+							<span class="role">{{ admin.roles.0 }}</span>
+						</div><!-- userInfos -->
+						
+						<div class="userOptions span2">
+							<div class="btn-group">
+								<a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i></a>
+								<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									{# <li><a href="#"><i class="icon-eye-open"></i> {{ 'view'|trans }} </a></li> #}
+									<li><a href="#resetPassword" data-toggle="modal"><i class="icon-refresh"></i> {{ 'reset.password'|trans }}</a></li>
+									<li><a href="#deleteAccount" data-toggle="modal"><i class="icon-trash"></i> {{ 'delete.account'|trans }} </a></li>
+									<li class="divider"></li>
+									{% if admin.roles.0 == "ROLE_SUPER_ADMIN" %}
+										<li><a href="#changeRole" data-toggle="modal"><i class="icon-thumbs-down"></i> {{ 'make.user'|trans }} </a></li>
+									{% else %}
+										<li><a href="#changeRole" data-toggle="modal"><i class="icon-thumbs-up"></i> {{ 'make.admin'|trans }} </a></li>
+									{% endif %}
 								</ul>
-								<a href="#userSettings" role="button" class="btn btn-primary" data-toggle="modal">{{ 'edit'|trans }}</a>
-							</div><!-- span7 -->
-						</div><!-- row fluid -->
-					</div><!-- usertile -->
-				{% endif %}
-			{% endfor %}
-			{% for admin in listadmins %}
-				{% if admin.roles.0 == "ROLE_ADMIN" %}
-					<div class="usertile span3">
-						<div class="row-fluid">
-							<div class="span5">
-								<img src="" alt="" />
-							</div><!-- span5 -->
-							<div class="span7">
-								<ul>
-									<li>{{ admin.firstname }}</li>
-									<li>{{ admin.lastname }}</li>
-								</ul>
-								<a href="#userSettings" role="button" class="btn btn-primary" data-toggle="modal">{{ 'edit'|trans }}</a>
-							</div><!-- span7 -->
-						</div><!-- row fluid -->
-					</div><!-- usertile -->
-				{% endif %}
-			{% endfor %}
+							</div><!-- btn group -->
+						</div><!-- userOptions -->
+					
+					</div><!-- userRow -->
+				{% endfor %}
+				
+			</div><!-- itemList -->
 		</div><!-- row fluid -->
 	</div><!-- userList -->
 {% endblock %}

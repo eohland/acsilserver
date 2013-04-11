@@ -1,3 +1,14 @@
-#userSettings {
+#editUser {
 	padding: 10px;
+}
+
+span.userPicture, 
+span.userId, 
+span.email, 
+span.role {
+	display: none;
+}
+
+.itemList {
+	border-left: 1px solid #CCCCCC;
 }

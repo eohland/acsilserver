@@ -1,48 +1,19 @@
 {% block ent %}
-
-	<div id="logo" class="span4">
-		<h1>AcsilServer</h1>
-	</div><!-- logo -->
-	
-	<div class="span8">
-		<div class="row-fluid">
-			<div id="user">
-				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}                                                    
-					{{ app.user.firstname }} {{ app.user.lastname }} ({{ app.user.email }})
-				{% else %}
-					
-				{% endif %}
-			</div>
-		</div><!-- row fluid -->
+	<div id="ent">
+		<div id="logo" class="span4">
+			<h1>AcsilServer</h1>
+		</div><!-- logo -->
 		
-		<div class="row-fluid">
-			<div id="menu">
-				{% block menu %}
-					<ul class="nav nav-pills pull-right">
-						<li><a href="{{ path('_acsil') }}">{{ 'home'|trans }}</a></li>
-						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-							{% if app.user.roles.0 == 'ROLE_SUPER_ADMIN' %}
-								<li class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ 'admins.control'|trans }}<b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li><a href="{{ path('_acsiladmins') }}">{{ 'list.admins'|trans }}</a></li>
-										<li><a href="{{ path('_register', {'userRole': 'admin'}) }}">{{ 'create.admin'|trans }}</a></li>
-										<li><a href="{{ path('_register', {'userRole': 'superAdmin'}) }}">{{ 'create.superAdmin'|trans }}</a></li>
-									</ul>
-								</li>
-							{% endif %}
-							    <li class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ 'file management'|trans }}<b class="caret"></b></a>
-									<ul class="dropdown-menu">
-							            <li><a href="{{ path('_upload') }}">{{ 'upload file'|trans }}</a></li>
-										<li><a href="{{ path('_managefile') }}">{{ 'my files'|trans }}</a></li>
-										</ul>
-								</li>
-							<li><a href="{{ path('_logout') }}">{{ 'logout'|trans }}</a></li>
-						{% endif %}
-					</ul>
-				{% endblock %}
-			</div><!-- menu -->
-		</div><!-- row fluid -->
-	</div><!-- span8 -->
+		<div class="span8">
+			<div class="row-fluid">
+				<div id="user">
+					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}                                                    
+						{{ app.user.firstname }} {{ app.user.lastname }} ({{ app.user.email }}) <a href="{{ path('_logout') }}">{{ 'logout'|trans }}</a>
+					{% else %}
+						
+					{% endif %}
+				</div>
+			</div><!-- row fluid -->
+		</div><!-- span8 -->
+	</div><!-- ent -->
 {% endblock %}

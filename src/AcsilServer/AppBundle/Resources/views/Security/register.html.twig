@@ -1,10 +1,71 @@
-{% extends '::base.html.twig' %}
-
-
-{% block body %}
-	<form action="{{ path('_register', {'userRole': userRole}) }}" method="post" {{ form_enctype(form) }}>
-	    {{ form_widget(form) }}
+<h2>{{ 'new.user'|trans }}</h2>
+<form action="{{ path('_register') }}" method="post" {{ form_enctype(newUserForm) }}>
+    {# {{ form_widget(newUserForm) }} #}
+    
+	{{ form_errors(newUserForm) }}
+		
+		<div class="row-fluid">
+			<div class="control-group span6">
+			    {{ form_label(newUserForm.firstname, newUserForm.firstname.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+			    <div class="controls">
+				    {{ form_errors(newUserForm.firstname) }}
+				    {{ form_widget(newUserForm.firstname, {'attr': {'class': 'span12'}}) }}
+				</div><!-- controls -->
+			</div><!-- control group -->
+			<div class="control-group span6">
+			    {{ form_label(newUserForm.lastname, newUserForm.lastname.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+			    <div class="controls">
+				    {{ form_errors(newUserForm.lastname) }}
+				    {{ form_widget(newUserForm.lastname, {'attr': {'class': 'span12'}}) }}
+				</div><!-- controls -->
+			</div><!-- control group -->
+		</div><!-- row fluid -->
 	
-	    <input type="submit" />
-	</form>	
-{% endblock %}
+		<div class="row-fluid">
+			<div class="control-group span12">
+			    {{ form_label(newUserForm.email, newUserForm.email.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+			    <div class="controls">
+				    {{ form_errors(newUserForm.email) }}
+				    {{ form_widget(newUserForm.email, {'attr': {'class': 'span12'}}) }}
+				</div><!-- controls -->
+			</div><!-- control group -->
+		</div><!-- row fluid -->
+	
+		<div class="row-fluid">
+			<div class="control-group span6">
+			    {{ form_label(newUserForm.password, newUserForm.password.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+			    <div class="controls">
+				    {{ form_errors(newUserForm.password) }}
+				    {{ form_widget(newUserForm.password, {'attr': {'class': 'span12'}}) }}
+				</div><!-- controls -->
+			</div><!-- control group -->
+			<div class="control-group span6">
+			    {{ form_label(newUserForm.confirm_password, newUserForm.confirm_password.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+			    <div class="controls">
+				    {{ form_errors(newUserForm.confirm_password) }}
+				    {{ form_widget(newUserForm.confirm_password, {'attr': {'class': 'span12'}}) }}
+				</div><!-- controls -->
+			</div><!-- control group -->
+		</div><!-- row fluid -->
+	
+		<div class="row-fluid">
+			<div class="control-group span6">
+			    {{ form_label(newUserForm.roles, newUserForm.roles.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+			    <div class="controls">
+				    {{ form_errors(newUserForm.roles) }}
+				    {{ form_widget(newUserForm.roles, {'attr': {'class': 'span12'}}) }}
+				</div><!-- controls -->
+			</div><!-- control group -->
+			<div class="control-group span6">
+			    {{ form_label(newUserForm.pictureAccount, newUserForm.pictureAccount.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+			    <div class="controls">
+				    {{ form_errors(newUserForm.pictureAccount) }}
+				    {{ form_widget(newUserForm.pictureAccount, {'attr': {'class': 'span12'}}) }}
+				</div><!-- controls -->
+			</div><!-- control group -->
+		</div><!-- row fluid -->
+	
+	{{ form_rest(newUserForm) }}
+	
+    <input class="btn" type="submit" value="{{ 'submit'|trans }}" />
+</form>	
