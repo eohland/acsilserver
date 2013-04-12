@@ -118,7 +118,7 @@ class UploadController extends Controller {
 		return array('form' => $form -> createView());
 	}
 
-	public function shareAction() {
+	public function shareAction($id) {
 		
 		return $this->redirect($this->generateUrl('_managefile'));
 	}
