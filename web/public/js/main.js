@@ -41,8 +41,12 @@ $(document).ready(function() {
 		var fileid = $(this).attr('fileid');
 		var filename = $(this).attr('filename');
 		
-		var link = Routing.generate('_deletefile', { id: fileid })
+		var link = Routing.generate('_deletefile', { id: fileid });
 		$('#deleteFile a.confirm').attr('href', link);
+		
+		// En fait c'est plus simple que ce que je pensais
+		var formPath = Routing.generate('_sharefile', { id: fileid });
+		$('#shareFileForm').attr('action', formPath);
 	})
 	
 	//console.log($.parseJSON( $('.usersList').text() ));
