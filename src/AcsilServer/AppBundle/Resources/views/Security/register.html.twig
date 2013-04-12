@@ -50,10 +50,10 @@
 	
 		<div class="row-fluid">
 			<div class="control-group span6">
-			    {{ form_label(newUserForm.roles, newUserForm.roles.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+			    {{ form_label(newUserForm.usertype, newUserForm.usertype.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
 			    <div class="controls">
-				    {{ form_errors(newUserForm.roles) }}
-				    {{ form_widget(newUserForm.roles, {'attr': {'class': 'span12'}}) }}
+				    {{ form_errors(newUserForm.usertype) }}
+				    {{ form_widget(newUserForm.usertype, {'attr': {'class': 'span12'}}) }}
 				</div><!-- controls -->
 			</div><!-- control group -->
 			<div class="control-group span6">

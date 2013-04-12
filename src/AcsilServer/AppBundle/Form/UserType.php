@@ -29,11 +29,11 @@ class UserType extends AbstractType
             ->add('email', 'email', array('data' => $this->email))
             ->add('password', 'password', array('required' => FALSE))
             ->add('confirm_password', 'password', array())
-			->add('roles', 'choice', 
+			->add('usertype', 'choice', 
 				array(
 					'choices' => array(
-						'ROLE_ADMIN' => 'User',
-						'ROLE_SUPER_ADMIN' => 'Admin',
+						'user' => 'User',
+						'admin' => 'Admin',
 					),
 					'preferred_choices' => array($this->roles ? $this->roles : 'ROLE_ADMIN'),
 				))

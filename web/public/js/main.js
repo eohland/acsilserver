@@ -48,8 +48,6 @@ $(document).ready(function() {
 	//console.log($.parseJSON( $('.usersList').text() ));
 	
 	$('.typeaheadUserMail').typeahead({
-		//name: 'userMail',
-		//local: $('.usersList').text(),
 		source: $.parseJSON( $('.usersList').text() ),
 		limit: 10
 	})

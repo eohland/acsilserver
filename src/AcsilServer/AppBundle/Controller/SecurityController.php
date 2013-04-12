@@ -33,6 +33,8 @@ class SecurityController extends Controller
 	public function registerAction(Request $request) 
 	{
 		$em = $this->getDoctrine()->getManager();
+		$superAdmin = json_encode(array('ROLE_SUPER_ADMIN'));
+		$admin = json_encode(array('ROLE_ADMIN'));
 		$session = $this->get('session');
     	$factory = $this->get('security.encoder_factory');
     	$user = new Entity\User();
@@ -44,25 +46,21 @@ class SecurityController extends Controller
 			
 			if ($form->isValid()) {
 				$password = $encoder->encodePassword($form->getData()->getPassword(), $user->getSalt());
-				// die(var_dump($form->getData()));
+				$form->getData()->getUsertype() == 'user' ? $role = $admin : $role = $superAdmin;
 				
-			echo '<pre>';
-			die( var_dump( $form->getData(), $form->getData()->getFirstname(), $form->getData()->getRoles() ) );
-			echo '</pre>';
-			
-								$user->setFirstname($form->getData()->getFirstname());
+				$user->setFirstname($form->getData()->getFirstname());
 				$user->setLastname($form->getData()->getLastname());
 				$user->setUsername($form->getData()->getFirstname().$form->getData()->getLastname().rand(1, 9999999));
 				$user->setEmail($form->getData()->getEmail());
 				$user->setPassword($password);
-				$user->setRoles(json_encode(array($form->getData()->getRoles())));
+				$user->setRoles($role);
 				$user->setCreationDate(new \Datetime());
 				
 				$em->persist($user);
 				$em->flush();
 				
 				$session->setFlash('notice', $this->get('translator')->trans('created.user'));
-				return $this->redirect($this->generateUrl('_acsil'));
+				return $this->redirect($this->generateUrl('_acsiladmins'));
 			}
 		}
 		

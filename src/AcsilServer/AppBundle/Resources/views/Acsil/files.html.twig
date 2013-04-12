@@ -61,7 +61,9 @@
 						
 						<div class="fileOptions span3">
 							
-							<a class="sharefile btn btn-primary" href="#shareFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal"><i class="icon-file icon-white"></i> {{ 'file.share'|trans }}</a>
+							<a class="sharefile btn btn-primary" href="#shareFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal">
+								<i class="icon-file icon-white"></i> {{ 'file.share'|trans }}
+							</a>
 							
 							<div class="btn-group">
 								<a class="btn btn-primary" href="#"><i class="icon-edit icon-white"></i> {{ 'edit'|trans }}</a>
@@ -71,7 +73,11 @@
 										<li><a href="#"><i class="icon-download-alt"></i> {{ 'download.file'|trans }} </a></li>
 									{% endif %}
 									{% if is_granted('DELETE', file) %}
-										<li><a class="deletefile" href="#deleteFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal"><i class="icon-trash"></i> {{ 'delete.file'|trans }} </a></li>
+										<li>
+											<a class="deletefile" href="#deleteFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal">
+												<i class="icon-trash"></i> {{ 'delete.file'|trans }} 
+											</a>
+										</li>
 									{% endif %}
 								</ul>
 							</div><!-- btn group -->

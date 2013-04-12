@@ -57,6 +57,11 @@ class User implements AdvancedUserInterface
     /**
      * @ORM\Column(type="string", length=60)
      */
+    private $usertype;
+
+    /**
+     * @ORM\Column(type="string", length=60)
+     */
     private $roles;
 
     /**
@@ -255,6 +260,27 @@ class User implements AdvancedUserInterface
     public function getConfirmPassword()
     {
         return $this->confirm_password;
+    }
+
+    /**
+     * Set usertype
+     *
+     * @param string $roles
+     * @return User
+     */
+    public function setUsertype($usertype)
+    {
+        $this->usertype = $usertype;
+    
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getUsertype()
+    {
+        return $this->usertype;
     }
 
     /**
