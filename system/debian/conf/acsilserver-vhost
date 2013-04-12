@@ -1,0 +1,21 @@
+Alias /acs /usr/share/acsilserver/web
+<Directory /usr/share/acsilserver/web>
+    Order Allow,Deny
+    Allow From All
+
+    Options FollowSymLinks
+    DirectoryIndex app.php
+
+    <IfModule mod_php5.c>
+        AddType application/x-httpd-php .php
+
+        php_flag magic_quotes_gpc Off
+        php_flag track_vars On
+        php_flag register_globals Off
+        php_value include_path .
+    </IfModule>
+</Directory>
+<VirtualHost *:80>
+    ServerName acsilserver
+    DocumentRoot /usr/share/acsilserver/web
+</VirtualHost>

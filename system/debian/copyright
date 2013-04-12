@@ -1,0 +1,46 @@
+This work was packaged for Debian by:
+
+    Emmanuel OHLAND <ohland_e@acsilserver.com> on Tue, 26 Mar 2013 18:15:49 -0400
+
+It was downloaded from:
+
+    http://acsilserver.com/
+
+Upstream Author(s):
+
+    Guillaume CAUSSE <causse_g@acsilserver.com>
+    Marc CHARTON <charto_m@acsilserver.com>
+    Salim DRAME <drame_s@acsilserver.com>
+    Emmanuel OHLAND <ohland_e@acsilserver.com>
+
+Copyright:
+
+    Copyright (C) 2012-2013 Acsilserver Team
+    Copyright (C) 2004-2013 Fabien Potencier
+
+License:
+    
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is furnished
+    to do so, subject to the following conditions:
+    
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+    
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+The Debian packaging is:
+
+    Copyright (C) 2013 Emmanuel OHLAND <ohland_e@acsilserver.com>
+
+and is licensed under the GPL version 3,
+see "/usr/share/common-licenses/GPL-3".
