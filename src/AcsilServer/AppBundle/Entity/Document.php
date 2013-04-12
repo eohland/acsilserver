@@ -259,7 +259,7 @@ class Document
     {
 		if ($this->getIsProfilePicture() == 0)
 		{
-        return 'uploads/documents';
+        return 'uploads/'.$this->getOwner();
         }
 		else
 		{

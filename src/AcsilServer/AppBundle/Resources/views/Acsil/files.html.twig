@@ -60,17 +60,17 @@
 						</div><!-- fileInfos -->
 						
 						<div class="fileOptions span3">
-							
+							{% if is_granted('OWNER', file) %}
 							<a class="sharefile btn btn-primary" href="#shareFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal">
 								<i class="icon-file icon-white"></i> {{ 'file.share'|trans }}
 							</a>
-							
+							{% endif %}
 							<div class="btn-group">
 								<a class="btn btn-primary" href="#"><i class="icon-edit icon-white"></i> {{ 'edit'|trans }}</a>
 								<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									{% if is_granted('VIEW', file) %}
-										<li><a href="#"><i class="icon-download-alt"></i> {{ 'download.file'|trans }} </a></li>
+										<li><a href="{{app.request.basepath}}/{{ file.getWebPath() }}"><i class="icon-download-alt"></i> {{ 'download.file'|trans }} </a></li>
 									{% endif %}
 									{% if is_granted('DELETE', file) %}
 										<li>

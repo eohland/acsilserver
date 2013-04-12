@@ -52,10 +52,6 @@ _deletefile:
     options:
         expose: true
 
-_manage_access:
-    pattern:  /acsil/myfile/access/{id}/{friendName}
-    defaults: { _controller: AcsilServerAppBundle:Upload:manageaccess, id: '', friendName: '' }
-
 _upload_picture:
     pattern:  /acsil/acount-picture
     defaults: { _controller: AcsilServerAppBundle:Upload:picture }

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AcsilServer\AppBundle\Entity\Document;
 use AcsilServer\AppBundle\Entity\ShareFile;
 use AcsilServer\AppBundle\Form\ShareFileType;
+use AcsilServer\AppBundle\Form\DocumentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -13,14 +14,20 @@ use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Routing\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class UploadController extends Controller {
 	
 	public function manageAction() {
 		$em = $this -> getDoctrine() -> getManager();
 		$document = new Document();
-		$form = $this -> createFormBuilder($document) -> add('file') -> getForm();
 		$shareForm = $this->createForm(new ShareFileType(), new ShareFile());
+		//$form = $this->createForm(new DocumentType(), new Document());
+		$form = $this -> createFormBuilder($document)
+		->add('name')
+		->add('file')
+		-> getForm();
+
 		$listAllfiles = $em 
 			-> getRepository('AcsilServerAppBundle:Document') 
 			-> findBy(array('isProfilePicture' => 0));
@@ -47,9 +54,90 @@ class UploadController extends Controller {
 			));
 	}
 
-	public function manageaccessAction($id, $friendName) {
-
+	/**
+	 * @Template()
+	 */
+	public function uploadAction() {
 		$em = $this -> getDoctrine() -> getManager();
+//		$emm = $this -> getDoctrine() -> getManager();
+
+		$document = new Document();
+//		$form = $this->createForm(new DocumentType(), new Document());
+
+		$form = $this -> createFormBuilder($document)
+		->add('name')
+		->add('file')
+		-> getForm();
+
+		if ($this -> getRequest() -> isMethod('POST')) {
+			$form -> bind($this -> getRequest());
+			if ($form -> isValid()) {
+				$document -> setIsProfilePicture(0);
+				if ($document -> getFile() == null) {
+					return $this -> redirect($this -> generateUrl('_upload'));
+				}
+				if ($document->getName() == null)
+				{
+				$document -> setName($document -> getFile() -> getClientOriginalName());
+				}
+				$document -> setOwner($this -> getUser() -> getEmail());
+				$document -> setuploadDate(new \DateTime());				
+				
+				
+				
+	/*						$listAllfiles = $emm 
+			-> getRepository('AcsilServerAppBundle:Document') 
+			-> findBy(array('isProfilePicture' => 0));
+			$listfiles = null;
+		foreach ($listAllfiles as $file) {
+			if (true === $securityContext -> isGranted('EDIT', $file) && $file.getName() == $document -> getName()) {
+				$listfiles[] = $file;
+			}
+			}
+*/
+				
+				
+				$em -> persist($document);
+				$em -> flush();
+
+				
+				
+				
+				
+				$aclProvider = $this -> get('security.acl.provider');
+				$objectIdentity = ObjectIdentity::fromDomainObject($document);
+				$acl = $aclProvider -> createAcl($objectIdentity);
+
+				$securityContext = $this -> get('security.context');
+				$user = $securityContext -> getToken() -> getUser();
+				$securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+				$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+				$aclProvider -> updateAcl($acl);
+				
+		/*		if ($listfiles != null)
+				{
+				return $this -> redirect($this -> generateUrl('_acsil'));
+				}*/
+					
+				return $this -> redirect($this -> generateUrl('_managefile'));
+			}
+		}
+			//return $this -> redirect($this -> generateUrl('_managefile'));
+    return $this->render('AcsilServerAppBundle:Upload:upload.html.twig', array(
+            'form' => $form->createView(),
+			));
+	}
+
+public function shareAction(Request $request, $id) {
+		$parameters = $request->request->get('acsilserver_appbundle_sharefiletype');
+		$friendName = $parameters['userMail'];
+		$right = $parameters['rights'];
+		if ($friendName == NULL)
+		{
+		return $this -> redirect($this -> generateUrl('_managefile'));
+		}
+				$em = $this -> getDoctrine() -> getManager();
 		$friend = $em -> getRepository('AcsilServerAppBundle:User') -> findOneByEmail($friendName);
 
 		if (!$friend) {
@@ -63,8 +151,14 @@ class UploadController extends Controller {
 		}
 
 		$builder = new MaskBuilder();
-		$builder -> add('view') -> add('edit') -> add('delete');
-
+		if ($right == "EDIT")
+		{
+		  $builder -> add('view') -> add('edit') -> add('delete');
+		}
+		else
+		{
+		 $builder -> add('view');
+		}
 		$mask = $builder -> get();
 		$aclProvider = $this -> container -> get('security.acl.provider');
 		$objectIdentity = ObjectIdentity::fromDomainObject($document);
@@ -77,50 +171,6 @@ class UploadController extends Controller {
 		$acl -> insertObjectAce($securityIdentity, $mask);
 		$aclProvider -> updateAcl($acl);
 		return $this -> redirect($this -> generateUrl('_managefile'));
-	}
-
-	/**
-	 * @Template()
-	 */
-	public function uploadAction() {
-		$em = $this -> getDoctrine() -> getManager();
-		$document = new Document();
-		$form = $this -> createFormBuilder($document) -> add('file') -> getForm();
-
-		if ($this -> getRequest() -> isMethod('POST')) {
-			$form -> bind($this -> getRequest());
-			if ($form -> isValid()) {
-				$document -> setIsProfilePicture(0);
-				if ($document -> getFile() == null) {
-					return $this -> redirect($this -> generateUrl('_upload'));
-				}
-				$document -> setName($document -> getFile() -> getClientOriginalName());
-				$document -> setOwner($this -> getUser() -> getEmail());
-				$document -> setuploadDate(new \DateTime());
-				
-				$em -> persist($document);
-				$em -> flush();
-
-				$aclProvider = $this -> get('security.acl.provider');
-				$objectIdentity = ObjectIdentity::fromDomainObject($document);
-				$acl = $aclProvider -> createAcl($objectIdentity);
-
-				$securityContext = $this -> get('security.context');
-				$user = $securityContext -> getToken() -> getUser();
-				$securityIdentity = UserSecurityIdentity::fromAccount($user);
-
-				$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
-				$aclProvider -> updateAcl($acl);
-				return $this -> redirect($this -> generateUrl('_managefile'));
-			}
-		}
-
-		return array('form' => $form -> createView());
-	}
-
-	public function shareAction($id) {
-		
-		return $this->redirect($this->generateUrl('_managefile'));
 	}
 
 	/**
