@@ -101,14 +101,40 @@ class SecurityController extends Controller
 			));
     }
 	
+	public function changeRoleAction($id, $role) {
+		if ($this->getUser()->getId() == $id)
+			return $this->redirect($this->generateUrl('_acsiladmins'));
+		
+		$em = $this->getDoctrine()->getManager();
+		$superAdmin = json_encode(array('ROLE_SUPER_ADMIN'));
+		$admin = json_encode(array('ROLE_ADMIN'));
+		if ($role == 'admin')
+			$setRole = $superAdmin;
+		else if ($role == 'user')
+			$setRole = $admin;
+		$userToUpdate = $em
+			->getRepository('AcsilServerAppBundle:User')
+			->findOneBy(array('id' => $id));
+		
+		if ($userToUpdate) {
+			$userToUpdate->setRoles($setRole);
+			$em->flush();
+		}
+		
+		return $this->redirect($this->generateUrl('_acsiladmins'));
+	}
+	
 	public function deleteAction($id) {
+		if ($this->getUser()->getId() == $id)
+			return $this->redirect($this->generateUrl('_acsiladmins'));
+		
 		$em = $this->getDoctrine()->getManager();
 		$adminToDelete = $em
 			->getRepository('AcsilServerAppBundle:User')
 			->findOneBy(array('id' => $id));
+		
 		$em->remove($adminToDelete);
 		$em->flush();
-		
 		return $this->redirect($this->generateUrl('_acsiladmins'));
 	}
 }

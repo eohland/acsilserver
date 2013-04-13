@@ -22,6 +22,18 @@ $(document).ready(function() {
 	});
 	
 	/**
+	 * Account management
+	 */
+	
+	//Delete account
+	$('.userOptions a.deleteaccount').click(function() {
+		var accountid = $(this).attr('accountid');
+		
+		var link = Routing.generate('_deleteaccount', { id: accountid })
+		$('#deleteAccount a.confirm').attr('href', link);
+	})
+	
+	/**
 	 * File management
 	 */
 	

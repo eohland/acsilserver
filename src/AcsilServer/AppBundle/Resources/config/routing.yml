@@ -43,7 +43,13 @@ _acsiladmins:
 
 _deleteaccount:
     pattern:  /acsil/admin/delete/{id}
-    defaults: { _controller: AcsilServerAppBundle:Security:delete, id: '' }
+    defaults: { _controller: AcsilServerAppBundle:Security:delete }
+    options:
+        expose: true
+
+_changerole:
+    pattern:  /acsil/admin/changeUserRole/{id}/{role}
+    defaults: { _controller: AcsilServerAppBundle:Security:changeRole }
     
 #####################################################################################
 #                                 File management                                   #
