@@ -72,11 +72,13 @@ class UploadController extends Controller {
 				$document -> setName($document -> getFile() -> getClientOriginalName());
 				}
 				$document -> setOwner($this -> getUser() -> getEmail());
-				$document -> setuploadDate(new \DateTime());								
+				$document -> setuploadDate(new \DateTime());				
+				$document -> setPseudoOwner($this -> getUser() -> getUsername());
+				
 				
 				$em -> persist($document);
 				$em -> flush();
-				
+
 				$aclProvider = $this -> get('security.acl.provider');
 				$objectIdentity = ObjectIdentity::fromDomainObject($document);
 				$acl = $aclProvider -> createAcl($objectIdentity);

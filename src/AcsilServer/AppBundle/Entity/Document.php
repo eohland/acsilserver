@@ -48,6 +48,11 @@ class Document
      * @ORM\Column(type="string", length=255)
      */
     private $owner;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $pseudoOwner;
 	
 	    /**
      * @ORM\Column(type="datetime")
@@ -67,6 +72,20 @@ class Document
         return $this;
     }
 
+		    /**
+     * Set pseudoOwner
+     *
+     * @param string $pseudoOwner
+     * @return Document
+     */
+    public function setPseudoOwner($pseudoOwner)
+    {
+        $this->pseudoOwner = $pseudoOwner;
+    
+        return $this;
+    }
+
+	
 	    /**
      * Set path
      *
@@ -167,6 +186,11 @@ class Document
         return $this->owner;
     }
 
+		public function getPseudoOwner()
+    {
+        return $this->pseudoOwner;
+    }
+
 	    /**
      * Set uploadDate
      *
@@ -259,7 +283,7 @@ class Document
     {
 		if ($this->getIsProfilePicture() == 0)
 		{
-        return 'uploads/'.$this->getOwner();
+        return 'uploads/'.$this->getPseudoOwner();
         }
 		else
 		{
