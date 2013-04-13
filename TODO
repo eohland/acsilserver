@@ -14,11 +14,12 @@ Envoyer des notifications push
 Connexion à la domotique (Camera / tondeuse / frigo / store / chauffage / Lumiere / ...)
 Zipper les fichiers avec des extentions inconnues
 Serveur mail
-Dossier synchro
-Annuaire
+Dossier synchro (Dans les deux sens)
+Annuaire (LDAP / VCF)
 Proposer la securité en option (ssl / mode payant)
 Créer des dossiers et des groupes
 Créer un filtre et un champ de recherche pour chaque rubrique
+Definir le repertoire de stockage des documents
 
 Etudier les alternatives à Raspberry
  -> https://www.olimex.com/Products/OLinuXino/A13/A13-OLinuXino/
