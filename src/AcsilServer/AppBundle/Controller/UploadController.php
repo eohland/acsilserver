@@ -22,11 +22,7 @@ class UploadController extends Controller {
 		$em = $this -> getDoctrine() -> getManager();
 		$document = new Document();
 		$shareForm = $this->createForm(new ShareFileType(), new ShareFile());
-		//$form = $this->createForm(new DocumentType(), new Document());
-		$form = $this -> createFormBuilder($document)
-		->add('name')
-		->add('file')
-		-> getForm();
+		$form = $this->createForm(new DocumentType(), new Document());
 
 		$listAllfiles = $em 
 			-> getRepository('AcsilServerAppBundle:Document') 
@@ -59,20 +55,15 @@ class UploadController extends Controller {
 	 */
 	public function uploadAction() {
 		$em = $this -> getDoctrine() -> getManager();
-//		$emm = $this -> getDoctrine() -> getManager();
 
 		$document = new Document();
-//		$form = $this->createForm(new DocumentType(), new Document());
-
-		$form = $this -> createFormBuilder($document)
-		->add('name')
-		->add('file')
-		-> getForm();
-
-		if ($this -> getRequest() -> isMethod('POST')) {
-			$form -> bind($this -> getRequest());
-			if ($form -> isValid()) {
-				$document -> setIsProfilePicture(0);
+		$request = $this->getRequest();
+        $uploadedFile = $request->files->get('acsilserver_appbundle_documenttype');
+        $parameters = $request->request->get('acsilserver_appbundle_documenttype');
+	    $document->setFile($uploadedFile['file']);
+		$filename = $parameters['name'];
+		$document->setName($filename);
+	    $document -> setIsProfilePicture(0);
 				if ($document -> getFile() == null) {
 					return $this -> redirect($this -> generateUrl('_upload'));
 				}
@@ -81,28 +72,10 @@ class UploadController extends Controller {
 				$document -> setName($document -> getFile() -> getClientOriginalName());
 				}
 				$document -> setOwner($this -> getUser() -> getEmail());
-				$document -> setuploadDate(new \DateTime());				
-				
-				
-				
-	/*						$listAllfiles = $emm 
-			-> getRepository('AcsilServerAppBundle:Document') 
-			-> findBy(array('isProfilePicture' => 0));
-			$listfiles = null;
-		foreach ($listAllfiles as $file) {
-			if (true === $securityContext -> isGranted('EDIT', $file) && $file.getName() == $document -> getName()) {
-				$listfiles[] = $file;
-			}
-			}
-*/
-				
+				$document -> setuploadDate(new \DateTime());								
 				
 				$em -> persist($document);
 				$em -> flush();
-
-				
-				
-				
 				
 				$aclProvider = $this -> get('security.acl.provider');
 				$objectIdentity = ObjectIdentity::fromDomainObject($document);
@@ -115,19 +88,8 @@ class UploadController extends Controller {
 				$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
 				$aclProvider -> updateAcl($acl);
 				
-		/*		if ($listfiles != null)
-				{
-				return $this -> redirect($this -> generateUrl('_acsil'));
-				}*/
-					
 				return $this -> redirect($this -> generateUrl('_managefile'));
-			}
 		}
-			//return $this -> redirect($this -> generateUrl('_managefile'));
-    return $this->render('AcsilServerAppBundle:Upload:upload.html.twig', array(
-            'form' => $form->createView(),
-			));
-	}
 
 public function shareAction(Request $request, $id) {
 		$parameters = $request->request->get('acsilserver_appbundle_sharefiletype');
