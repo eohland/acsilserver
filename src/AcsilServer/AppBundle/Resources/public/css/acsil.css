@@ -47,10 +47,8 @@ span.role {
 	text-align: left;
 }
 
-#newUser,
-#resetPassword,
-#deleteAccount,
-#changeRole {
+#newUser, #resetPassword, #deleteAccount, #changeRole,
+#addFile, #shareFile, #deleteFile {
 	padding: 20px;
 }
 
@@ -60,4 +58,8 @@ span.role {
 
 .usersList {
 	display: none;
+}
+
+.fileInfos {
+	padding-left: 10px;
 }

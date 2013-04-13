@@ -56,11 +56,11 @@ _changerole:
 #####################################################################################
 
 _upload:
-    pattern:  /acsil/upload
+    pattern:  /acsil/upload/
     defaults: { _controller: AcsilServerAppBundle:Upload:upload }
 
 _managefile:
-    pattern:  /acsil/myfile
+    pattern:  /acsil/myfile/
     defaults: { _controller: AcsilServerAppBundle:Upload:manage }
 
 _sharefile:
@@ -76,5 +76,5 @@ _deletefile:
         expose: true
 
 _upload_picture:
-    pattern:  /acsil/acount-picture
+    pattern:  /acsil/acount-picture/
     defaults: { _controller: AcsilServerAppBundle:Upload:picture }
