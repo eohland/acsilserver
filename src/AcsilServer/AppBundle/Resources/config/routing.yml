@@ -1,10 +1,10 @@
-_home:
-    pattern:  /
-    defaults: { _controller: AcsilServerAppBundle:Default:index }
+#####################################################################################
+#                                       Access                                      #
+#####################################################################################
 
 _register:
-    pattern:  /register/
-    defaults: { _controller: AcsilServerAppBundle:Security:register }
+    pattern:  /register/{registerAdmin}
+    defaults: { _controller: AcsilServerAppBundle:Security:register, registerAdmin:'' }
 
 _login:
     pattern:  /login/
@@ -20,9 +20,22 @@ _request:
     pattern:  /request/
     defaults: { _controller: AcsilServerAppBundle:Security:request }
 
+
+#####################################################################################
+#                                        Home                                       #
+#####################################################################################
+
+_home:
+    pattern:  /
+    defaults: { _controller: AcsilServerAppBundle:Default:index }
+
 _acsil:
     pattern:  /acsil/
     defaults: { _controller: AcsilServerAppBundle:Acsil:index }
+
+#####################################################################################
+#                                     User admin                                    #
+#####################################################################################
 
 _acsiladmins:
     pattern:  /acsil/admins/
@@ -32,6 +45,10 @@ _deleteaccount:
     pattern:  /acsil/admin/delete/{id}
     defaults: { _controller: AcsilServerAppBundle:Security:delete, id: '' }
     
+#####################################################################################
+#                                 File management                                   #
+#####################################################################################
+
 _upload:
     pattern:  /acsil/upload
     defaults: { _controller: AcsilServerAppBundle:Upload:upload }

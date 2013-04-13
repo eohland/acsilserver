@@ -14,12 +14,30 @@ class SecurityController extends Controller
     {
 		$session = $request->getSession();
 		
+    	$user = new Entity\User();
+    	$factory = $this->get('security.encoder_factory');
+		$encoder = $factory->getEncoder($user);
+		$form = $this->createForm(new Form\UserType(FALSE, TRUE), $user);
+		$em = $this -> getDoctrine() -> getManager();
+		$superAdmin = json_encode(array('ROLE_SUPER_ADMIN'));
+		
+		$isSuperAdmin = $em 
+			-> getRepository('AcsilServerAppBundle:User') 
+			-> findOneBy(array('roles' => $superAdmin));
+		
 		// get the login error if there is one
 		if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
 			$error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
 		} else {
 			$error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
 			$session->remove(SecurityContext::AUTHENTICATION_ERROR);
+		}
+		
+		if ( ! $isSuperAdmin) {
+			return $this->render('AcsilServerAppBundle:Security:registerAdmin.html.twig',
+				array(
+					'newUserForm' => $form->createView(),
+				));
 		}
 		
 		return $this->render('AcsilServerAppBundle:Security:login.html.twig', 
@@ -30,7 +48,7 @@ class SecurityController extends Controller
 			));
     }
 
-	public function registerAction(Request $request) 
+	public function registerAction(Request $request, $registerAdmin)
 	{
 		$em = $this->getDoctrine()->getManager();
 		$superAdmin = json_encode(array('ROLE_SUPER_ADMIN'));
@@ -38,6 +56,8 @@ class SecurityController extends Controller
 		$session = $this->get('session');
     	$factory = $this->get('security.encoder_factory');
     	$user = new Entity\User();
+		if ($registerAdmin)
+			$user->setUsertype('admin');
 		$encoder = $factory->getEncoder($user);
 		$form = $this->createForm(new Form\UserType(), $user);
 		
@@ -54,12 +74,15 @@ class SecurityController extends Controller
 				$user->setEmail($form->getData()->getEmail());
 				$user->setPassword($password);
 				$user->setRoles($role);
+				$user->setUsertype($role);
 				$user->setCreationDate(new \Datetime());
 				
 				$em->persist($user);
 				$em->flush();
 				
 				$session->setFlash('notice', $this->get('translator')->trans('created.user'));
+				if ($registerAdmin)
+					return $this -> redirect($this->generateUrl('_home'));
 				return $this->redirect($this->generateUrl('_acsiladmins'));
 			}
 		}

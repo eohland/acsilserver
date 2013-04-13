@@ -12,33 +12,46 @@ class UserType extends AbstractType
 	private $lastname;
 	private $email;
 	private $roles;
+	private $admin;
 	
-	public function __construct($user = NULL) {
+	public function __construct($user = NULL, $admin = NULL) {
 		$this->firstname = $user ? $user->getFirstname() : '';
 		$this->lastname = $user ? $user->getLastname() : '';
 		$this->email = $user ? $user->getEmail() : '';
 		$roles = $user ? $user->getRoles() : '';
 		$this->roles = $roles ? $roles[0] : '';
+		$this->admin = $admin;
 	}
 	
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('firstname', 'text', array('data' => $this->firstname))
-            ->add('lastname', 'text', array('data' => $this->lastname))
-            ->add('email', 'email', array('data' => $this->email))
-            ->add('password', 'password', array('required' => FALSE))
-            ->add('confirm_password', 'password', array())
-			->add('usertype', 'choice', 
-				array(
-					'choices' => array(
-						'user' => 'User',
-						'admin' => 'Admin',
-					),
-					'preferred_choices' => array($this->roles ? $this->roles : 'ROLE_ADMIN'),
-				))
-			->add('pictureAccount', 'file', array('required' => FALSE))
-        ;
+    	if ($this->admin) {
+	        $builder
+	            ->add('firstname', 'text', array('data' => $this->firstname))
+	            ->add('lastname', 'text', array('data' => $this->lastname))
+	            ->add('email', 'email', array('data' => $this->email))
+	            ->add('password', 'password', array('required' => FALSE))
+	            ->add('confirm_password', 'password', array())
+				->add('pictureAccount', 'file', array('required' => FALSE))
+	        ;
+		} else {
+	        $builder
+	            ->add('firstname', 'text', array('data' => $this->firstname))
+	            ->add('lastname', 'text', array('data' => $this->lastname))
+	            ->add('email', 'email', array('data' => $this->email))
+	            ->add('password', 'password', array('required' => FALSE))
+	            ->add('confirm_password', 'password', array())
+				->add('usertype', 'choice', 
+					array(
+						'choices' => array(
+							'user' => 'User',
+							'admin' => 'Admin',
+						),
+						'preferred_choices' => array($this->roles ? $this->roles : 'ROLE_ADMIN'),
+					))
+				->add('pictureAccount', 'file', array('required' => FALSE))
+	        ;
+		}
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

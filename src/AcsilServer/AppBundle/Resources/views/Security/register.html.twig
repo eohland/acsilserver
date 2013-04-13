@@ -1,4 +1,9 @@
-<h2>{{ 'new.user'|trans }}</h2>
+{% if app.request.get('_route') == '_login' %}
+	<h2>{{ 'welcome.admin'|trans }}</h2>
+{% else %}
+	<h2>{{ 'new.user'|trans }}</h2>
+{% endif %}
+
 <form action="{{ path('_register') }}" method="post" {{ form_enctype(newUserForm) }}>
     {# {{ form_widget(newUserForm) }} #}
     
@@ -49,13 +54,15 @@
 		</div><!-- row fluid -->
 	
 		<div class="row-fluid">
-			<div class="control-group span6">
-			    {{ form_label(newUserForm.usertype, newUserForm.usertype.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
-			    <div class="controls">
-				    {{ form_errors(newUserForm.usertype) }}
-				    {{ form_widget(newUserForm.usertype, {'attr': {'class': 'span12'}}) }}
-				</div><!-- controls -->
-			</div><!-- control group -->
+			{% if app.request.get('_route') != '_login' %}
+				<div class="control-group span6">
+				    {{ form_label(newUserForm.usertype, newUserForm.usertype.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+				    <div class="controls">
+					    {{ form_errors(newUserForm.usertype) }}
+					    {{ form_widget(newUserForm.usertype, {'attr': {'class': 'span12'}}) }}
+					</div><!-- controls -->
+				</div><!-- control group -->
+			{% endif %}
 			<div class="control-group span6">
 			    {{ form_label(newUserForm.pictureAccount, newUserForm.pictureAccount.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
 			    <div class="controls">
