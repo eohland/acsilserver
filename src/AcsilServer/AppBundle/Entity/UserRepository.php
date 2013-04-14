@@ -24,18 +24,20 @@ class UserRepository extends EntityRepository implements UserProviderInterface
             ->where('u.username = :username OR u.email = :email')
             ->setParameter('username', $username)
             ->setParameter('email', $username)
-            ->getQuery();
-
-        try {
+            ->getQuery()
+			->getSingleResult();
+		
+		return $q;
+/*        try {
             // La méthode Query::getSingleResult() lance une exception
             // s'il n'y a pas d'entrée correspondante aux critères
             $user = $q->getSingleResult();
         } catch (NoResultException $e) {
             throw new UsernameNotFoundException(sprintf('Unable to find an active admin AcsilServerAppBundle:User object identified by "%s".', $username), null, 0, $e);
         }
-
         return $user;
-    }
+*/
+	}
 
     public function refreshUser(UserInterface $user)
     {

@@ -62,28 +62,29 @@ $(document).ready(function() {
 		
 		var sharedWith = $.parseJSON($(this).parent().find('.sharedWith').text());
 		var lSharedWith = sharedWith.length;
-		for (var i = 0; i < lSharedWith; i++) {
-			var switchRights = sharedWith[i].rights == 'VIEW' ? 'EDIT' : 'VIEW';
-//			var deleteRights = 'DELETE';'
-			var form = 
-				"<form action="+ shareFormPath +" method='post' {{ form_enctype(shareForm) }}>"
-				+"<div class='row-fluid'>"
-				+	"<div class='span7'>"
-				+		sharedWith[i].email	+ " can " + sharedWith[i].rights + " file"
-				+	"</div><!-- span8 -->"
-				+	"<div class='span2'>"
-				+		"<a href=" + Routing.generate('_updateuserrights', { fileId: fileid, userId: sharedWith[i].id, newRights: switchRights }) + "> allow " + switchRights + "</a>"
-				+	"</div><!-- span2 -->"
-				+	"<div class='span2'>"
-				+		"<a href=" + Routing.generate('_updateuserrights', { fileId: fileid, userId: sharedWith[i].id, newRights: 'DELETE' }) + "> or DELETE </a>"
-				+	"</div><!-- span2 -->"
-				+"</div><!-- row fluid -->"
-				+ "</form>";
-			$('#sharedWith').append(form);
+		if (lSharedWith == 0) {
+			var list = 
+				"<div class='row-fluid'>"
+				+ "No user yet"
+				+"</div><!-- row fluid -->";
+			$('#sharedWith').append(list);
+		} else {
+			for (var i = 0; i < lSharedWith; i++) {
+				var switchRights = sharedWith[i].rights == 'VIEW' ? 'EDIT' : 'VIEW';
+				var list = 
+					"<div class='row-fluid'>"
+					+	"<div class='span7'>" + sharedWith[i].email	+ " can " + sharedWith[i].rights + " file </div><!-- span8 -->"
+					+	"<div class='span2'>"
+					+		"<a href=" + Routing.generate('_updateuserrights', { fileId: fileid, userId: sharedWith[i].id, newRights: switchRights }) + "> allow " + switchRights + "</a>"
+					+	"</div><!-- span2 -->"
+					+	"<div class='span2'>"
+					+		"<a href=" + Routing.generate('_updateuserrights', { fileId: fileid, userId: sharedWith[i].id, newRights: 'DELETE' }) + "> or DELETE </a>"
+					+	"</div><!-- span2 -->"
+					+"</div><!-- row fluid -->";
+				$('#sharedWith').append(list);
+			}
 		}
 	})
-	
-	//console.log($.parseJSON( $('.usersList').text() ));
 	
 	$('.typeaheadUserMail').typeahead({
 		source: $.parseJSON( $('.usersList').text() ),
