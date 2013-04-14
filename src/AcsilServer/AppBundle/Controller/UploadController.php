@@ -93,7 +93,7 @@ class UploadController extends Controller {
 				return $this -> redirect($this -> generateUrl('_managefile'));
 		}
 
-public function shareAction(Request $request, $id) {
+    public function shareAction(Request $request, $id) {
 		$parameters = $request->request->get('acsilserver_appbundle_sharefiletype');
 		$friendName = $parameters['userMail'];
 		$right = $parameters['rights'];
@@ -113,28 +113,43 @@ public function shareAction(Request $request, $id) {
 		if (!$document) {
 			throw $this -> createNotFoundException('No document found for id ' . $id);
 		}
-
+		//$right = "DENIED";
+		
 		$builder = new MaskBuilder();
 		if ($right == "EDIT")
 		{
 		  $builder -> add('view') -> add('edit') -> add('delete');
 		}
-		else
+		if ($right == "VIEW")
 		{
-		 $builder -> add('view');
+		 $builder -> add('view') -> remove('edit');
 		}
-		$mask = $builder -> get();
+
+
+
 		$aclProvider = $this -> container -> get('security.acl.provider');
 		$objectIdentity = ObjectIdentity::fromDomainObject($document);
-		$acl = $aclProvider -> findAcl($objectIdentity);
-
+		$acl = $aclProvider -> findAcl($objectIdentity);		
 		$securityContext = $this -> container -> get('security.context');
 		$securityIdentity = UserSecurityIdentity::fromAccount($friend);
-
+		$aces = $acl->getObjectAces();
+		
+		foreach($aces as $index=>$ace)
+        {
+        if($ace->getSecurityIdentity() == $securityIdentity)
+        {
+        $acl->deleteObjectAce($index);
+		break;
+        }
+        }
+		if ($right != "DENIED")
+		{
+				$mask = $builder -> get();
 		var_dump($builder -> get());
 		$acl -> insertObjectAce($securityIdentity, $mask);
-		$aclProvider -> updateAcl($acl);
-		return $this -> redirect($this -> generateUrl('_managefile'));
+		}
+        $aclProvider->updateAcl($acl);	
+	    return $this -> redirect($this -> generateUrl('_managefile'));
 	}
 
 	/**
@@ -207,9 +222,13 @@ public function shareAction(Request $request, $id) {
 		if (false === $securityContext -> isGranted('DELETE', $fileToDelete)) {
 			throw new AccessDeniedException();
 		}
+		
+		$aclProvider = $this -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($fileToDelete);
+        $aclProvider->deleteAcl($objectIdentity);
 		$em -> remove($fileToDelete);
 		$em -> flush();
-
+		
 		return $this -> redirect($this -> generateUrl('_managefile'));
 	}
 
