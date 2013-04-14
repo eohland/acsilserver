@@ -146,14 +146,13 @@ class UploadController extends Controller {
 		if (!$document) {
 			throw $this -> createNotFoundException('No document found for id ' . $id);
 		}
-		//$right = "DENIED";
 
 		$builder = new MaskBuilder();
 		if ($right == "EDIT") {
 			$builder -> add('view') -> add('edit') -> add('delete');
 		}
 		if ($right == "VIEW") {
-			$builder -> add('view') -> remove('edit');
+			$builder -> add('view');
 		}
 
 		$aclProvider = $this -> container -> get('security.acl.provider');
@@ -169,7 +168,7 @@ class UploadController extends Controller {
 				break;
 			}
 		}
-		if ($right != "DENIED") {
+		if ($right != "DELETE") {
 			$mask = $builder -> get();
 			var_dump($builder -> get());
 			$acl -> insertObjectAce($securityIdentity, $mask);
@@ -239,14 +238,52 @@ class UploadController extends Controller {
 		return array('form' => $form -> createView());
 	}
 
-	public function updateRights($fileId, $userId, $newRights) {
-		if ($newRights == "DELETE") {
-			
-		} elseif ($newRights == "VIEW") {
-			
-		} elseif ($newRights == "EDIT") {
-			
+	public function updateRightsAction($fileId, $userId, $newRights) {
+		
+		$em = $this -> getDoctrine() -> getManager();
+		$friend = $em -> getRepository('AcsilServerAppBundle:User') -> findOneById($userId);
+
+		if (!$friend) {
+			throw $this -> createNotFoundException('No user found for id ' . $userId);
 		}
+
+		$document = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneById($fileId);
+
+		if (!$document) {
+			throw $this -> createNotFoundException('No document found for id ' . $fileId);
+		}
+
+		$builder = new MaskBuilder();
+		if ($newRights == "EDIT") {
+			$builder -> add('view') -> add('edit') -> add('delete');
+		}
+		if ($newRights == "VIEW") {
+			$builder -> add('view');
+		}
+
+		$aclProvider = $this -> container -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($document);
+		$acl = $aclProvider -> findAcl($objectIdentity);
+		$securityContext = $this -> container -> get('security.context');
+		$securityIdentity = UserSecurityIdentity::fromAccount($friend);
+		$aces = $acl -> getObjectAces();
+
+		foreach ($aces as $index => $ace) {
+			if ($ace -> getSecurityIdentity() == $securityIdentity) {
+				$acl -> deleteObjectAce($index);
+				break;
+			}
+		}
+		if ($newRights != "DELETE") {
+			$mask = $builder -> get();
+			var_dump($builder -> get());
+			$acl -> insertObjectAce($securityIdentity, $mask);
+		}
+		$aclProvider -> updateAcl($acl);
+		return $this -> redirect($this -> generateUrl('_managefile'));
+		
+		
+		
 		return $this -> redirect($this -> generareUrl('_managefile'));
 	}
 
