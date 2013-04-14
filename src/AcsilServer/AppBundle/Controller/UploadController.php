@@ -17,70 +17,72 @@ use Symfony\Component\Routing\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 class UploadController extends Controller {
-	
+
 	public function manageAction() {
 		$em = $this -> getDoctrine() -> getManager();
 		$document = new Document();
-		$shareForm = $this->createForm(new ShareFileType(), new ShareFile());
-		$form = $this->createForm(new DocumentType(), new Document());
+		$shareForm = $this -> createForm(new ShareFileType(), new ShareFile());
+		$form = $this -> createForm(new DocumentType(), new Document());
+		$securityContext = $this -> get('security.context');
 
 		$listAllfiles = $em 
 			-> getRepository('AcsilServerAppBundle:Document') 
 			-> findBy(array('isProfilePicture' => 0));
+		
 		$listusers = $em 
 			-> getRepository('AcsilServerAppBundle:User') 
 			-> findAll();
-		$securityContext = $this -> get('security.context');
-		$listfiles = null;
+		
+		$listfiles = array();
 		$shareinfos = array();
 		foreach ($listAllfiles as $file) {
-		if (true === $securityContext -> isGranted('EDIT', $file) 
-				|| true === $securityContext -> isGranted('VIEW', $file)) {
-				$listfiles[] = $file;
+			if ($securityContext -> isGranted('EDIT', $file) === TRUE 
+				|| $securityContext -> isGranted('VIEW', $file) === TRUE) {
+				
+				$listUserFileInfos = array();
+				$sharedFileUserInfos = array();
+				if ($securityContext -> isGranted('OWNER', $file) === TRUE) {
+					foreach ($listusers as $user) {
+						$aclProvider = $this -> container -> get('security.acl.provider');
+						$objectIdentity = ObjectIdentity::fromDomainObject($file);
+						$acl = $aclProvider -> findAcl($objectIdentity);
+						$securityContext = $this -> container -> get('security.context');
+						$securityIdentity = UserSecurityIdentity::fromAccount($user);
+						$aces = $acl -> getObjectAces();
+						
+						if ($user != $this -> getUser()) {
+							$rights = NULL;
+							foreach ($aces as $ace) {
+								if ($ace -> getMask() == MaskBuilder::MASK_VIEW) {
+									$rights = "VIEW";
+								}
+								if ($ace -> getMask() == MaskBuilder::MASK_EDIT) {
+									$rights = "EDIT";
+								}
+							}
+							if ($rights != NULL)
+								array_push($sharedFileUserInfos, array("user" => $user, "rights" => $rights));
+						}
+					}
 				}
-			if (true === $securityContext -> isGranted('OWNER', $file)) {
-		$infoUsers = null;
-		foreach ($listusers as $users) {
-        $aclProvider = $this -> container -> get('security.acl.provider');
-		$objectIdentity = ObjectIdentity::fromDomainObject($file);
-		$acl = $aclProvider -> findAcl($objectIdentity);		
-		$securityContext = $this -> container -> get('security.context');
-		$securityIdentity = UserSecurityIdentity::fromAccount($users);
-		$aces = $acl->getObjectAces();
-		if ($users != $this->getUser())
-		{
-        $rights = null;
-		foreach($aces as $index=>$ace)
-        {
-		if ($ace->getMask() == MaskBuilder::MASK_VIEW)
-		{
-        $rights[] = array("VIEW");		
-		}
-		if ($ace->getMask() == MaskBuilder::MASK_EDIT)
-		{
-        $rights[] = array("EDIT");		
-		}
-
-		}
-		if ($rights != null)
-			$infoUsers[] = array("user" => $users,"rights" => $rights);
-
-		}
-        }
-		if ($infoUsers != null)
-			$shareinfos[] = array("file" => $file, "shared" => $infoUsers);
+				if (count($sharedFileUserInfos) > 0)
+					$listUserFileInfos = array("info" => $file, "sharedFileUserInfos" => $sharedFileUserInfos);
+				else 
+					$listUserFileInfos = array("info" => $file, "sharedFileUserInfos" => '');
+				array_push($listfiles, $listUserFileInfos);
 			}
-
 		}
-//print_r(var_dump($shareinfos[0]['shared']['0']));
-//print_r(var_dump($shareinfos));
+		
+//		echo '<pre>';
+//		die(print_r($listfiles));
+//		echo '</pre>';
+		
 		return $this -> render('AcsilServerAppBundle:Acsil:files.html.twig', 
 			array(
-			    'shareinfos' => $shareinfos,
 				'listfiles' => $listfiles, 
 				'listusers' => $listusers, 
-				'form' => $form->createView(),
-				'shareForm' => $shareForm->createView(),
+				'form' => $form -> createView(), 
+				'shareForm' => $shareForm -> createView(), 
 			));
 	}
 
@@ -91,51 +93,48 @@ class UploadController extends Controller {
 		$em = $this -> getDoctrine() -> getManager();
 
 		$document = new Document();
-		$request = $this->getRequest();
-        $uploadedFile = $request->files->get('acsilserver_appbundle_documenttype');
-        $parameters = $request->request->get('acsilserver_appbundle_documenttype');
-	    $document->setFile($uploadedFile['file']);
+		$request = $this -> getRequest();
+		$uploadedFile = $request -> files -> get('acsilserver_appbundle_documenttype');
+		$parameters = $request -> request -> get('acsilserver_appbundle_documenttype');
+		$document -> setFile($uploadedFile['file']);
 		$filename = $parameters['name'];
-		$document->setName($filename);
-	    $document -> setIsProfilePicture(0);
-				if ($document -> getFile() == null) {
-					return $this -> redirect($this -> generateUrl('_upload'));
-				}
-				if ($document->getName() == null)
-				{
-				$document -> setName($document -> getFile() -> getClientOriginalName());
-				}
-				$document -> setOwner($this -> getUser() -> getEmail());
-				$document -> setuploadDate(new \DateTime());				
-				$document -> setPseudoOwner($this -> getUser() -> getUsername());
-				
-				
-				$em -> persist($document);
-				$em -> flush();
-
-				$aclProvider = $this -> get('security.acl.provider');
-				$objectIdentity = ObjectIdentity::fromDomainObject($document);
-				$acl = $aclProvider -> createAcl($objectIdentity);
-
-				$securityContext = $this -> get('security.context');
-				$user = $securityContext -> getToken() -> getUser();
-				$securityIdentity = UserSecurityIdentity::fromAccount($user);
-
-				$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
-				$aclProvider -> updateAcl($acl);
-				
-				return $this -> redirect($this -> generateUrl('_managefile'));
+		$document -> setName($filename);
+		$document -> setIsProfilePicture(0);
+		if ($document -> getFile() == null) {
+			return $this -> redirect($this -> generateUrl('_upload'));
 		}
+		if ($document -> getName() == null) {
+			$document -> setName($document -> getFile() -> getClientOriginalName());
+		}
+		$document -> setOwner($this -> getUser() -> getEmail());
+		$document -> setuploadDate(new \DateTime());
+		$document -> setPseudoOwner($this -> getUser() -> getUsername());
 
-    public function shareAction(Request $request, $id) {
-		$parameters = $request->request->get('acsilserver_appbundle_sharefiletype');
+		$em -> persist($document);
+		$em -> flush();
+
+		$aclProvider = $this -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($document);
+		$acl = $aclProvider -> createAcl($objectIdentity);
+
+		$securityContext = $this -> get('security.context');
+		$user = $securityContext -> getToken() -> getUser();
+		$securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+		$aclProvider -> updateAcl($acl);
+
+		return $this -> redirect($this -> generateUrl('_managefile'));
+	}
+
+	public function shareAction(Request $request, $id) {
+		$parameters = $request -> request -> get('acsilserver_appbundle_sharefiletype');
 		$friendName = $parameters['userMail'];
 		$right = $parameters['rights'];
-		if ($friendName == NULL)
-		{
-		return $this -> redirect($this -> generateUrl('_managefile'));
+		if ($friendName == NULL) {
+			return $this -> redirect($this -> generateUrl('_managefile'));
 		}
-				$em = $this -> getDoctrine() -> getManager();
+		$em = $this -> getDoctrine() -> getManager();
 		$friend = $em -> getRepository('AcsilServerAppBundle:User') -> findOneByEmail($friendName);
 
 		if (!$friend) {
@@ -148,42 +147,35 @@ class UploadController extends Controller {
 			throw $this -> createNotFoundException('No document found for id ' . $id);
 		}
 		//$right = "DENIED";
-		
+
 		$builder = new MaskBuilder();
-		if ($right == "EDIT")
-		{
-		  $builder -> add('view') -> add('edit') -> add('delete');
+		if ($right == "EDIT") {
+			$builder -> add('view') -> add('edit') -> add('delete');
 		}
-		if ($right == "VIEW")
-		{
-		 $builder -> add('view') -> remove('edit');
+		if ($right == "VIEW") {
+			$builder -> add('view') -> remove('edit');
 		}
-
-
 
 		$aclProvider = $this -> container -> get('security.acl.provider');
 		$objectIdentity = ObjectIdentity::fromDomainObject($document);
-		$acl = $aclProvider -> findAcl($objectIdentity);		
+		$acl = $aclProvider -> findAcl($objectIdentity);
 		$securityContext = $this -> container -> get('security.context');
 		$securityIdentity = UserSecurityIdentity::fromAccount($friend);
-		$aces = $acl->getObjectAces();
-		
-		foreach($aces as $index=>$ace)
-        {
-        if($ace->getSecurityIdentity() == $securityIdentity)
-        {
-        $acl->deleteObjectAce($index);
-		break;
-        }
-        }
-		if ($right != "DENIED")
-		{
-				$mask = $builder -> get();
-		var_dump($builder -> get());
-		$acl -> insertObjectAce($securityIdentity, $mask);
+		$aces = $acl -> getObjectAces();
+
+		foreach ($aces as $index => $ace) {
+			if ($ace -> getSecurityIdentity() == $securityIdentity) {
+				$acl -> deleteObjectAce($index);
+				break;
+			}
 		}
-        $aclProvider->updateAcl($acl);	
-	    return $this -> redirect($this -> generateUrl('_managefile'));
+		if ($right != "DENIED") {
+			$mask = $builder -> get();
+			var_dump($builder -> get());
+			$acl -> insertObjectAce($securityIdentity, $mask);
+		}
+		$aclProvider -> updateAcl($acl);
+		return $this -> redirect($this -> generateUrl('_managefile'));
 	}
 
 	/**
@@ -202,9 +194,7 @@ class UploadController extends Controller {
 				}
 				$picturePath = $this -> getUser() -> getPictureAccount();
 				if (!empty($picturePath)) {
-					$query = $em 
-						-> createQuery('SELECT d FROM AcsilServerAppBundle:Document d WHERE d.name = :docName AND d.isProfilePicture = 1') 
-						-> setParameter('docName', 'avatar-' . $this -> getUser() -> getEmail());
+					$query = $em -> createQuery('SELECT d FROM AcsilServerAppBundle:Document d WHERE d.name = :docName AND d.isProfilePicture = 1') -> setParameter('docName', 'avatar-' . $this -> getUser() -> getEmail());
 					$fileToDelete = $query -> getSingleResult();
 					$em -> remove($fileToDelete);
 				}
@@ -249,6 +239,17 @@ class UploadController extends Controller {
 		return array('form' => $form -> createView());
 	}
 
+	public function updateRights($fileId, $userId, $newRights) {
+		if ($newRights == "DELETE") {
+			
+		} elseif ($newRights == "VIEW") {
+			
+		} elseif ($newRights == "EDIT") {
+			
+		}
+		return $this -> redirect($this -> generareUrl('_managefile'));
+	}
+
 	public function deleteAction($id) {
 		$securityContext = $this -> get('security.context');
 		$em = $this -> getDoctrine() -> getManager();
@@ -256,13 +257,13 @@ class UploadController extends Controller {
 		if (false === $securityContext -> isGranted('DELETE', $fileToDelete)) {
 			throw new AccessDeniedException();
 		}
-		
+
 		$aclProvider = $this -> get('security.acl.provider');
 		$objectIdentity = ObjectIdentity::fromDomainObject($fileToDelete);
-        $aclProvider->deleteAcl($objectIdentity);
+		$aclProvider -> deleteAcl($objectIdentity);
 		$em -> remove($fileToDelete);
 		$em -> flush();
-		
+
 		return $this -> redirect($this -> generateUrl('_managefile'));
 	}
 

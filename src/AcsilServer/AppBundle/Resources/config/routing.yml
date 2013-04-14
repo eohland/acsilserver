@@ -69,6 +69,12 @@ _sharefile:
     options:
         expose: true
 
+_updateuserrights:
+    pattern:  /acsil/updateUserRights/{fileId}/{userId}/{newRights}
+    defaults: { _controller: AcsilServerAppBundle:Upload:updateRights }
+    options:
+        expose: true
+
 _deletefile:
     pattern:  /acsil/myfile/delete/{id}
     defaults: { _controller: AcsilServerAppBundle:Upload:delete, id: '' }

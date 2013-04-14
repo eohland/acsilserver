@@ -39,11 +39,11 @@ span.role {
 	border-left: 10px solid #3A87AD;
 }
 
-.userOptions {
+.userOptions, .fileOptions {
 	text-align: center;
 }
 
-.userOptions ul {
+.userOptions ul, .fileOptions ul {
 	text-align: left;
 }
 
@@ -56,7 +56,7 @@ span.role {
  * 	Files
  */
 
-.usersList {
+.usersList, .sharedWith {
 	display: none;
 }
 

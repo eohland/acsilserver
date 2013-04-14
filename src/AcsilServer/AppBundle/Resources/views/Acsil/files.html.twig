@@ -6,12 +6,12 @@
 		<h2>{{ 'my.files'|trans }}</h2>
 		
 		<div id="addFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<h2>{{ 'file.add'|trans }}</h2>
+			<h2>{{ 'document.info.add'|trans }}</h2>
 			{% include 'AcsilServerAppBundle:Upload:upload.html.twig' %}
 		</div><!-- addFile -->
 		
 		<div id="shareFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<h2>{{ 'file.share'|trans }}</h2>
+			<h2>{{ 'document.info.share'|trans }}</h2>
 			<div class="usersList">
 				{% set totalUser = listusers|length - 1 %}
 				[
@@ -22,14 +22,17 @@
 						{% endif %}
 					{% endfor %}
 				]
-			</div><!-- users -->
+			</div><!-- userlist -->
+			
+			<div id="sharedWith"></div><!-- sharedWith -->
+			
 			{% include 'AcsilServerAppBundle:Upload:ShareFile.html.twig' %}
 		</div><!-- shareFile -->
 		
 		<div id="deleteFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<h2>{{ 'file.delete'|trans }}</h2>
+			<h2>{{ 'document.info.delete'|trans }}</h2>
 			<p>
-				{{ 'file.confirm.delete'|trans }} <span class="filename"></span>
+				{{ 'document.info.confirm.delete'|trans }} <span class="filename"></span>
 				<a class="confirm btn btn-danger" href="">{{ 'yes'|trans }}</a>
 				<a class="noconfirm btn btn-primary" href="{{ path('_managefile') }}">{{ 'no'|trans }}</a>
 			</p>
@@ -46,36 +49,46 @@
 			</div><!-- span3 -->
 			
 			<div id="itemList" class="span9 offset1">
-				{% for file in listfiles %}
+				{% for document in listfiles %}
 					<div class="userRow row-fluid">
 						<div class="fileInfos span9">
 							<div class="fileName span8">
-								{{ file.name }}
+								{{ document.info.name }}
 							</div><!-- fileName -->
 							<div class="fileSize span2">
-								{{ file.size }} Ko
+								{{ document.info.size }} Ko
 							</div>
 							<div class="fileUploadDate span2">
-								{{ file.uploaddate|date }}
+								{{ document.info.uploaddate|date }}
 							</div><!-- file upload date -->
 						</div><!-- fileInfos -->
 						
 						<div class="fileOptions span3">
-							{% if is_granted('OWNER', file) %}
-							<a class="sharefile btn btn-primary" href="#shareFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal">
+							{% if is_granted('OWNER', document.info) %}
+							<a class="sharefile btn btn-primary" href="#shareFile" filename="{{ document.info.name }}" fileid="{{ document.info.id }}" data-toggle="modal">
 								<i class="icon-file icon-white"></i> {{ 'file.share'|trans }}
 							</a>
+							<div class="sharedWith">
+								{% set totalUsers = document.sharedFileUserInfos|length %}
+								{% if totalUsers > 0 %}
+									[{% for key, sharedwith in document.sharedFileUserInfos %}
+										{"id": "{{ sharedwith.user.id }}","email": "{{ sharedwith.user.email }}","rights": "{{ sharedwith.rights }}"} {% if totalUsers > key + 1 %},{% endif %}
+									{% endfor %}]
+								{% endif %}
+							</div><!-- sharedWith -->
 							{% endif %}
 							<div class="btn-group">
 								<a class="btn btn-primary" href="#"><i class="icon-edit icon-white"></i> {{ 'edit'|trans }}</a>
 								<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									{% if is_granted('VIEW', file) %}
-										<li><a href="{{app.request.basepath}}/{{ file.getWebPath() }}"><i class="icon-download-alt"></i> {{ 'download.file'|trans }} </a></li>
+									{% if is_granted('VIEW', document.info) %}
+										<li><a href="{{app.request.basepath}}/{{ document.info.getWebPath() }}" target="_blank">
+											<i class="icon-download-alt"></i> {{ 'download.file'|trans }} </a>
+										</li>
 									{% endif %}
-									{% if is_granted('DELETE', file) %}
+									{% if is_granted('DELETE', document.info) %}
 										<li>
-											<a class="deletefile" href="#deleteFile" filename="{{ file.name }}" fileid="{{ file.id }}" data-toggle="modal">
+											<a class="deletefile" href="#deleteFile" filename="{{ document.info.name }}" fileid="{{ document.info.id }}" data-toggle="modal">
 												<i class="icon-trash"></i> {{ 'delete.file'|trans }} 
 											</a>
 										</li>

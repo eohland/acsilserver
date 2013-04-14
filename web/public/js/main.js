@@ -46,9 +46,10 @@ $(document).ready(function() {
 		var link = Routing.generate('_deletefile', { id: fileid })
 		$('#deleteFile a.confirm').attr('href', link);
 	})
-
+	
 	// Share file
 	$('.fileOptions a.sharefile').click(function() {
+		$('#sharedWith').text('');
 		//console.log($(this).attr('fileid'))
 		var fileid = $(this).attr('fileid');
 		var filename = $(this).attr('filename');
@@ -56,9 +57,30 @@ $(document).ready(function() {
 		var link = Routing.generate('_deletefile', { id: fileid });
 		$('#deleteFile a.confirm').attr('href', link);
 		
-		// En fait c'est plus simple que ce que je pensais
-		var formPath = Routing.generate('_sharefile', { id: fileid });
-		$('#shareFileForm').attr('action', formPath);
+		var shareFormPath = Routing.generate('_sharefile', { id: fileid });
+		$('#shareFileForm').attr('action', shareFormPath);
+		
+		var sharedWith = $.parseJSON($(this).parent().find('.sharedWith').text());
+		var lSharedWith = sharedWith.length;
+		for (var i = 0; i < lSharedWith; i++) {
+			var switchRights = sharedWith[i].rights == 'VIEW' ? 'EDIT' : 'VIEW';
+//			var deleteRights = 'DELETE';'
+			var form = 
+				"<form action="+ shareFormPath +" method='post' {{ form_enctype(shareForm) }}>"
+				+"<div class='row-fluid'>"
+				+	"<div class='span7'>"
+				+		sharedWith[i].email	+ " can " + sharedWith[i].rights + " file"
+				+	"</div><!-- span8 -->"
+				+	"<div class='span2'>"
+				+		"<a href=" + Routing.generate('_updateuserrights', { fileId: fileid, userId: sharedWith[i].id, newRights: switchRights }) + "> allow " + switchRights + "</a>"
+				+	"</div><!-- span2 -->"
+				+	"<div class='span2'>"
+				+		"<a href=" + Routing.generate('_updateuserrights', { fileId: fileid, userId: sharedWith[i].id, newRights: 'DELETE' }) + "> or DELETE </a>"
+				+	"</div><!-- span2 -->"
+				+"</div><!-- row fluid -->"
+				+ "</form>";
+			$('#sharedWith').append(form);
+		}
 	})
 	
 	//console.log($.parseJSON( $('.usersList').text() ));
