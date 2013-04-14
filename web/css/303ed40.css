@@ -56,7 +56,7 @@ span.role {
  * 	Files
  */
 
-.usersList {
+.usersList, .sharedWith {
 	display: none;
 }
 

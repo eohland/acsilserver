@@ -8,7 +8,7 @@
 			<div class="row-fluid">
 				<div id="user">
 					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}                                                    
-						{{ app.user.firstname }} {{ app.user.lastname }} ({{ app.user.email }}) <a href="{{ path('_logout') }}">{{ 'logout'|trans }}</a>
+						{{ app.user.firstname }} {{ app.user.lastname }} ({{ app.user.email }}) <a href="{{ path('_logout') }}">{{ 'Logout'|trans }}</a>
 					{% else %}
 						
 					{% endif %}

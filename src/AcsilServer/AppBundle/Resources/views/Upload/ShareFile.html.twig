@@ -4,7 +4,8 @@
 	<div class="row-fluid">
 	
 		<div class="control-group span8">
-		    {{ form_label(shareForm.userMail, shareForm.userMail.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+		    {#{{ form_label(shareForm.userMail, shareForm.userMail.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}#}
+		    Email
 		    <div class="controls">
 			    {{ form_errors(shareForm.userMail) }}
 			    {{ form_widget(shareForm.userMail, {'attr': {'class': 'span12 typeaheadUserMail', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }}
@@ -12,7 +13,8 @@
 		</div><!-- control group -->
 		
 		<div class="control-group span4">
-		    {{ form_label(shareForm.rights, shareForm.rights.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+		    {#{{ form_label(shareForm.rights, shareForm.rights.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}#}
+		    Choose rights
 		    <div class="controls">
 			    {{ form_errors(shareForm.rights) }}
 			    {{ form_widget(shareForm.rights, {'attr': {'class': 'span12'}}) }}

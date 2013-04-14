@@ -3,7 +3,8 @@
 	
 	<div class="row-fluid">
 		<div class="control-group span6">
-		    {{ form_label(form.name, form.name.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+		    {#{{ form_label(form.name, form.name.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}#}
+		    Document name
 		    <div class="controls">
 			    {{ form_errors(form.name) }}
 			    {{ form_widget(form.name, {'attr': {'class': 'span12 typeaheadUserMail', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }}
@@ -11,7 +12,8 @@
 		</div><!-- control group -->
 		
 		<div class="control-group span6">
-		    {{ form_label(form.file, form.file.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}
+		    {#{{ form_label(form.file, form.file.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}#}
+		    File
 		    <div class="controls">
 			    {{ form_errors(form.file) }}
 			    {{ form_widget(form.file, {'attr': {'class': 'span12 typeaheadUserMail', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }}

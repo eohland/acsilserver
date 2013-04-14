@@ -2,7 +2,7 @@
 
 {% block body %}
 	<div id="userList" class="row-fluid">
-		<h2>{{ 'users'|trans }}</h2>
+		<h2>{{ 'Manage users'|trans }}</h2>
 		
 		<div id="newUser" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			{% include 'AcsilServerAppBundle:Security:register.html.twig' %}
@@ -12,11 +12,11 @@
 		</div><!-- resetPassword -->
 		
 		<div id="deleteAccount" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<h2>{{ 'account.delete'|trans }}</h2>
+			<h2>{{ 'Delete account'|trans }}</h2>
 			<p>
 				{{ 'account.confirm.delete'|trans }} <span class="filename"></span>
-				<a class="confirm btn btn-danger" href="">{{ 'yes'|trans }}</a>
-				<a class="noconfirm btn btn-primary" href="{{ path('_acsiladmins') }}">{{ 'no'|trans }}</a>
+				<a class="confirm btn btn-danger" href="">{{ 'Yes'|trans }}</a>
+				<a class="noconfirm btn btn-primary" href="{{ path('_acsiladmins') }}">{{ 'No'|trans }}</a>
 			</p>
 		</div><!-- deleteAccount -->
 		
@@ -26,11 +26,16 @@
 		<div class="row-fluid">
 			<div class="span2">
 				<ul>
-					<li><a href="#newUser" data-toggle="modal"><i class="icon-plus"></i> {{ 'new.user' }} </a></li>
+					<li><a href="#newUser" data-toggle="modal"><i class="icon-plus"></i> {{ 'Create new user' }} </a></li>
 					{#<li><a href="#newGuest" data-toggle="modal"><i class="icon-plus"></i> {{ 'new.guest' }} </a></li>#}
 				</ul>
 				<p>
-					{{ 'adminzone.description'|trans }}
+					{#{{ 'adminzone.description'|trans }}#}
+					Create and manage as many user as you want.<br />
+					<ul>
+						<li><span style="color: #FBB450;">These are Admins</span></li>
+						<li><span style="color: #3A87AD;">These are Users</span></li>
+					</ul>
 				</p>
 			</div><!-- span3 -->
 			
@@ -58,17 +63,17 @@
 											<i class="icon-refresh"></i> {{ 'reset.password'|trans }}</a>
 										</li>#}
 										<li><a class="deleteaccount" href="#deleteAccount" accountid="{{ admin.id }}" data-toggle="modal">
-											<i class="icon-trash"></i> {{ 'delete.account'|trans }} </a>
+											<i class="icon-trash"></i> {{ 'Delete account'|trans }} </a>
 										</li>
 										{% if app.user.roles.0 == 'ROLE_SUPER_ADMIN' %}
 											<li class="divider"></li>
 											{% if admin.roles.0 == "ROLE_SUPER_ADMIN" %}
 												<li><a href="{{ path('_changerole', {'id': admin.id, 'role': 'user'}) }}" data-toggle="modal">
-													<i class="icon-thumbs-down"></i> {{ 'make.user'|trans }} </a>
+													<i class="icon-thumbs-down"></i> {{ 'Set as user'|trans }} </a>
 												</li>
 											{% else %}
 												<li><a href="{{ path('_changerole', {'id': admin.id, 'role': 'admin'}) }}" data-toggle="modal">
-													<i class="icon-thumbs-up"></i> {{ 'make.admin'|trans }} </a>
+													<i class="icon-thumbs-up"></i> {{ 'Set as admin'|trans }} </a>
 												</li>
 											{% endif %}
 										{% endif %}
