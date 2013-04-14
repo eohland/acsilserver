@@ -32,17 +32,51 @@ class UploadController extends Controller {
 			-> findAll();
 		$securityContext = $this -> get('security.context');
 		$listfiles = null;
+		$shareinfos = array();
 		foreach ($listAllfiles as $file) {
-			if (true === $securityContext -> isGranted('DELETE', $file) 
-				|| true === $securityContext -> isGranted('EDIT', $file) 
+		if (true === $securityContext -> isGranted('EDIT', $file) 
 				|| true === $securityContext -> isGranted('VIEW', $file)) {
 				$listfiles[] = $file;
+				}
+			if (true === $securityContext -> isGranted('OWNER', $file)) {
+		$infoUsers = null;
+		foreach ($listusers as $users) {
+        $aclProvider = $this -> container -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($file);
+		$acl = $aclProvider -> findAcl($objectIdentity);		
+		$securityContext = $this -> container -> get('security.context');
+		$securityIdentity = UserSecurityIdentity::fromAccount($users);
+		$aces = $acl->getObjectAces();
+		if ($users != $this->getUser())
+		{
+        $rights = null;
+		foreach($aces as $index=>$ace)
+        {
+		if ($ace->getMask() == MaskBuilder::MASK_VIEW)
+		{
+        $rights[] = array("VIEW");		
+		}
+		if ($ace->getMask() == MaskBuilder::MASK_EDIT)
+		{
+        $rights[] = array("EDIT");		
+		}
+
+		}
+		if ($rights != null)
+			$infoUsers[] = array("user" => $users,"rights" => $rights);
+
+		}
+        }
+		if ($infoUsers != null)
+			$shareinfos[] = array("file" => $file, "shared" => $infoUsers);
 			}
 
 		}
-
+//print_r(var_dump($shareinfos[0]['shared']['0']));
+//print_r(var_dump($shareinfos));
 		return $this -> render('AcsilServerAppBundle:Acsil:files.html.twig', 
 			array(
+			    'shareinfos' => $shareinfos,
 				'listfiles' => $listfiles, 
 				'listusers' => $listusers, 
 				'form' => $form->createView(),
