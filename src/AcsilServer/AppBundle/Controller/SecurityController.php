@@ -8,8 +8,14 @@ use Symfony\Component\HttpFoundation\Request;
 use AcsilServer\AppBundle\Entity;
 use AcsilServer\AppBundle\Form;
 
+/**
+ * This controller contains all functions about security
+ */
 class SecurityController extends Controller
 {
+/**
+ * This is the function for the authentification
+ */
     public function loginAction(Request $request)
     {
 		$session = $request->getSession();
@@ -25,14 +31,18 @@ class SecurityController extends Controller
 			-> getRepository('AcsilServerAppBundle:User') 
 			-> findOneBy(array('roles' => $superAdmin));
 		
-		// get the login error if there is one
+		/**
+		 * get the login error if there is one
+         */		 
 		if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
 			$error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
 		} else {
 			$error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
 			$session->remove(SecurityContext::AUTHENTICATION_ERROR);
 		}
-		
+		/**
+		 * Verifiy the role of the user
+		 */
 		if ( ! $isSuperAdmin) {
 			return $this->render('AcsilServerAppBundle:Security:registerAdmin.html.twig',
 				array(
@@ -42,12 +52,17 @@ class SecurityController extends Controller
 		
 		return $this->render('AcsilServerAppBundle:Security:login.html.twig', 
 			array(
-				// last username entered by the user
+				/**
+				 * last username entered by the user
+				 */
 				'last_username' => $session->get(SecurityContext::LAST_USERNAME),
 				'error'         => $error,
 			));
     }
 
+/**
+ * Create a new user
+ */
 	public function registerAction(Request $request, $registerAdmin)
 	{
 		$em = $this->getDoctrine()->getManager();
@@ -100,7 +115,10 @@ class SecurityController extends Controller
 	        	
 			));
     }
-	
+
+/**
+ * Change the role (Admin or User)
+ */
 	public function changeRoleAction($id, $role) {
 		if ($this->getUser()->getId() == $id)
 			return $this->redirect($this->generateUrl('_acsiladmins'));
@@ -123,7 +141,10 @@ class SecurityController extends Controller
 		
 		return $this->redirect($this->generateUrl('_acsiladmins'));
 	}
-	
+
+/**
+ * Delete a user
+ */
 	public function deleteAction($id) {
 		if ($this->getUser()->getId() == $id)
 			return $this->redirect($this->generateUrl('_acsiladmins'));

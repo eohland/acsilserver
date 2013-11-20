@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ *  This class aims to configure the form creating users
+ */
 class UserType extends AbstractType
 {
 	private $firstname;

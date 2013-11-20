@@ -10,6 +10,9 @@ use AcsilServer\AppBundle\Form;
 
 class AcsilController extends Controller
 {
+/**
+ * Return the main page of the account
+ */
     public function indexAction() {
 		//die(var_dump($this->getUser()));
     	$user = $this->get('security.context')->getToken()->getUser();
@@ -22,7 +25,10 @@ class AcsilController extends Controller
 				'userRole' => $userRole[0],
 			));
     }
-	
+
+/**
+ * Return the main page of User Management
+ */ 
 	public function adminsAction(Request $request) {
 		$em = $this->getDoctrine()->getManager();
 		$superAdmin = json_encode(array('ROLE_SUPER_ADMIN'));

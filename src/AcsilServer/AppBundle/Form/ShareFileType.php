@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * This class aims to configure the form about sharing a file
+ */
 class ShareFileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)

@@ -16,7 +16,15 @@ use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * This controller contains all the functions in touch with upload
+ */
+
 class UploadController extends Controller {
+
+/**
+ * function in touch with the main page of the FileManagement part 
+ */ 
 
 	public function manageAction() {
 		$em = $this -> getDoctrine() -> getManager();
@@ -32,7 +40,9 @@ class UploadController extends Controller {
 		$listusers = $em 
 			-> getRepository('AcsilServerAppBundle:User') 
 			-> findAll();
-		
+     /**
+      * Get informations about files
+      */	
 		$listfiles = array();
 		$shareinfos = array();
 		foreach ($listAllfiles as $file) {
@@ -73,9 +83,9 @@ class UploadController extends Controller {
 			}
 		}
 		
-//		echo '<pre>';
-//		die(print_r($listfiles));
-//		echo '</pre>';
+        //		echo '<pre>';
+        //		die(print_r($listfiles));
+        //		echo '</pre>';
 		
 		return $this -> render('AcsilServerAppBundle:Acsil:files.html.twig', 
 			array(
@@ -86,12 +96,18 @@ class UploadController extends Controller {
 			));
 	}
 
+/**
+ * Function to upload a new file
+ */	
+	
 	/**
 	 * @Template()
 	 */
 	public function uploadAction() {
 		$em = $this -> getDoctrine() -> getManager();
-
+    /**
+     * Create and fill a new document object
+    */
 		$document = new Document();
 		$request = $this -> getRequest();
 		$uploadedFile = $request -> files -> get('acsilserver_appbundle_documenttype');
@@ -112,7 +128,9 @@ class UploadController extends Controller {
 
 		$em -> persist($document);
 		$em -> flush();
-
+    /**
+    * Set the rights
+    */
 		$aclProvider = $this -> get('security.acl.provider');
 		$objectIdentity = ObjectIdentity::fromDomainObject($document);
 		$acl = $aclProvider -> createAcl($objectIdentity);
@@ -127,10 +145,15 @@ class UploadController extends Controller {
 		return $this -> redirect($this -> generateUrl('_managefile'));
 	}
 
+/**
+ * Share a file
+ */
+
 	public function shareAction(Request $request, $id) {
 		$parameters = $request -> request -> get('acsilserver_appbundle_sharefiletype');
 		$friendName = $parameters['userMail'];
 		$right = $parameters['rights'];
+		
 		if ($friendName == NULL) {
 			return $this -> redirect($this -> generateUrl('_managefile'));
 		}
@@ -154,7 +177,9 @@ class UploadController extends Controller {
 		if ($right == "VIEW") {
 			$builder -> add('view');
 		}
-
+        /**
+		 * Set the rights for the other user 
+		*/
 		$aclProvider = $this -> container -> get('security.acl.provider');
 		$objectIdentity = ObjectIdentity::fromDomainObject($document);
 		$acl = $aclProvider -> findAcl($objectIdentity);
@@ -177,6 +202,9 @@ class UploadController extends Controller {
 		return $this -> redirect($this -> generateUrl('_managefile'));
 	}
 
+/**
+ * Upload a picture for the account
+*/
 	/**
 	 * @Template()
 	 */
@@ -184,7 +212,9 @@ class UploadController extends Controller {
 		$em = $this -> getDoctrine() -> getManager();
 		$document = new Document();
 		$form = $this -> createFormBuilder($document) -> add('file') -> getForm();
-
+        /**
+		 * Create and fill a new document object
+		*/ 
 		if ($this -> getRequest() -> isMethod('POST')) {
 			$form -> bind($this -> getRequest());
 			if ($form -> isValid()) {
@@ -214,7 +244,9 @@ class UploadController extends Controller {
 				$securityContext = $this -> get('security.context');
 				$user = $securityContext -> getToken() -> getUser();
 				$user -> setPictureAccount($document -> getWebPath());
-
+        /**
+         * Resize picture
+        */		 
 				$link = $document -> getAbsolutePath();
 				$ImageNews = $_FILES['form']['name'];
 				$ImageNews = getimagesize($link);
@@ -238,6 +270,10 @@ class UploadController extends Controller {
 		return array('form' => $form -> createView());
 	}
 
+/**
+ * Change the rights which have a user on a file
+*/ 
+	
 	public function updateRightsAction($fileId, $userId, $newRights) {
 		
 		$em = $this -> getDoctrine() -> getManager();
@@ -267,13 +303,18 @@ class UploadController extends Controller {
 		$securityContext = $this -> container -> get('security.context');
 		$securityIdentity = UserSecurityIdentity::fromAccount($friend);
 		$aces = $acl -> getObjectAces();
-
+    /**
+	 * Delete old rights
+	*/
 		foreach ($aces as $index => $ace) {
 			if ($ace -> getSecurityIdentity() == $securityIdentity) {
 				$acl -> deleteObjectAce($index);
 				break;
 			}
 		}
+	/**
+	 * Insert the new rights
+	*/
 		if ($newRights != "DELETE") {
 			$mask = $builder -> get();
 			var_dump($builder -> get());
@@ -287,6 +328,9 @@ class UploadController extends Controller {
 		return $this -> redirect($this -> generareUrl('_managefile'));
 	}
 
+/**
+ * Delete a file
+*/
 	public function deleteAction($id) {
 		$securityContext = $this -> get('security.context');
 		$em = $this -> getDoctrine() -> getManager();
