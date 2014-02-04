@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new AcsilServer\AppBundle\AcsilServerAppBundle(),
+            new AcsilServer\APIBundle\APIBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
