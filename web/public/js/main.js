@@ -58,6 +58,7 @@ $(document).ready(function() {
 		$('#deleteFile a.confirm').attr('href', link);
 		
 		var shareFormPath = Routing.generate('_sharefile', { id: fileid });
+		console.log(shareFormPath);
 		$('#shareFileForm').attr('action', shareFormPath);
 		
 		var sharedWith = $.parseJSON($(this).parent().find('.sharedWith').text());

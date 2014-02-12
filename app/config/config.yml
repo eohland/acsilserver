@@ -18,8 +18,11 @@ framework:
     default_locale:  "%locale%"
     trusted_proxies: ~
     session:         ~
+    #session:
+    #    handler_id: session.handler.native_file
+    #    save_path: "%kernel.root_dir%/sessions"
     fragments:       ~
-
+    
 # Twig Configuration
 twig:
     debug:            %kernel.debug%

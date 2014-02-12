@@ -1,4 +1,5 @@
 api:
+    #type: rest
     resource: "@APIBundle/Resources/config/routing.yml"
     prefix:   /
 

@@ -30,6 +30,7 @@ security:
             logout:
                 path:   _logout
                 target: /
+                invalidate_session: false
             http_basic: ~
             anonymous: ~
             switch_user: true

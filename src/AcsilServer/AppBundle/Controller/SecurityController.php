@@ -95,7 +95,10 @@ class SecurityController extends Controller
 				$em->persist($user);
 				$em->flush();
 				
-				$session->setFlash('notice', $this->get('translator')->trans('created.user'));
+                // deleted from symphony 2.4
+				//$session->setFlash('notice', $this->get('translator')->trans('created.user'));
+				$session->getFlashBag()->add('notice', $this->get('translator')->trans('created.user'));
+				
 				if ($registerAdmin)
 					return $this -> redirect($this->generateUrl('_home'));
 				return $this->redirect($this->generateUrl('_acsiladmins'));

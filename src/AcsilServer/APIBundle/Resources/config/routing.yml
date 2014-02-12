@@ -1,3 +1,8 @@
 api_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: APIBundle:Default:index }
+
+#acsilserver_api_File:
+#    prefix: /v1
+#    resource: "AcsilServer\APIBundle\Controller\FileController"
+#    name_prefix:  api_1_ # naming collision
