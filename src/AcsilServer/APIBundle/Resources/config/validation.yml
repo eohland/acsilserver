@@ -1,7 +1,0 @@
-# src/Acme/DemoBundle/Resources/config/validation.yml
-AcsilServer\AppBundle\Entity\Document:
-    properties:
-        name:
-            - NotBlank: ~
-        id:
-            - NotBlank: ~
