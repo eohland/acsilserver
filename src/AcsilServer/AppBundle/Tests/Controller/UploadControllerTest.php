@@ -5,7 +5,7 @@ namespace AcsilServer\AppBundle\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class UploadControllerTest extends WebTestCase
+class SecurityControllerTest extends WebTestCase
 {
     protected $file;
     protected $image;
