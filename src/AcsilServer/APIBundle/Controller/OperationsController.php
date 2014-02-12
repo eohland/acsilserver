@@ -22,7 +22,8 @@ class OperationsController extends Controller
         $copy = new Copy();
 
         $form = $this->createForm(new CopyType(), $copy);
-        $form->bind($request);
+        //$form->bind($request);
+        $form->handleRequest($this->getRequest());
 
         if ($form->isValid()) {
             $response = new Response();

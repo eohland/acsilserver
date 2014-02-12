@@ -1,7 +1,7 @@
 <?php
 
 // src/Acsilserver/APIBundle/Form/Type/CopyType.php
-namespace Acsilserver\APIBundle\Form\Type;
+namespace AcsilServer\APIBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -11,8 +11,8 @@ class CopyType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('from_id', 'integer');
-        $builder->add('to_path', 'text');
+        $builder->add('fromId', 'integer');
+        $builder->add('toPath', 'text');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
