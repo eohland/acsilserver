@@ -2,7 +2,20 @@ api_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: APIBundle:Default:index }
 
-#acsilserver_api_File:
-#    prefix: /v1
-#    resource: "AcsilServer\APIBundle\Controller\FileController"
-#    name_prefix:  api_1_ # naming collision
+copy:
+    pattern: /service/1/op/copy
+    defaults: { _controller: APIBundle:Operations:copy }
+    requirements:
+        _method: POST
+
+move:
+    pattern: /service/1/op/move
+    defaults: { _controller: APIBundle:Operations:move }
+    requirements:
+        _method: POST
+
+delete:
+    pattern: /service/1/op/delete
+    defaults: { _controller: APIBundle:Operations:delete }
+    requirements:
+        _method: POST

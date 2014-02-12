@@ -1,0 +1,8 @@
+# src/Acsilserver/APIBundle/Resources/config/validation.yml
+Acsilserver\APIBundle\Entity\Copy:
+    properties:
+        fromId:
+            - NotBlank: ~
+            - Min: { limit: 1 }
+        toPath:
+            - NotBlank: ~
