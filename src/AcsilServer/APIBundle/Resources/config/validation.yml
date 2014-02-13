@@ -7,3 +7,19 @@ AcsilServer\APIBundle\Entity\Copy:
                 value: 0
         toPath:
             - NotBlank: ~
+            
+AcsilServer\APIBundle\Entity\Rename:
+    properties:
+        fromId:
+            - NotBlank: ~
+            - GreaterThan:
+                value: 0
+        toName:
+            - NotBlank: ~
+
+AcsilServer\APIBundle\Entity\Delete:
+    properties:
+        deleteId:
+            - NotBlank: ~
+            - GreaterThan:
+                value: 0

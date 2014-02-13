@@ -8,12 +8,18 @@ copy:
     requirements:
         _method: POST
 
+rename:
+    pattern: /service/1/op/rename
+    defaults: { _controller: APIBundle:Operations:rename }
+    requirements:
+        _method: POST
+
 move:
     pattern: /service/1/op/move
     defaults: { _controller: APIBundle:Operations:move }
     requirements:
         _method: POST
-
+        
 delete:
     pattern: /service/1/op/delete
     defaults: { _controller: APIBundle:Operations:delete }
