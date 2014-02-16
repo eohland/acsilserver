@@ -4,9 +4,11 @@ namespace AcsilServer\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AcsilServer\AppBundle\Entity\Document;
+use AcsilServer\AppBundle\Entity\Folder;
 use AcsilServer\AppBundle\Entity\ShareFile;
 use AcsilServer\AppBundle\Form\ShareFileType;
 use AcsilServer\AppBundle\Form\DocumentType;
+use AcsilServer\AppBundle\Form\FolderType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -26,20 +28,26 @@ class UploadController extends Controller {
  * function in touch with the main page of the FileManagement part 
  */ 
 
-	public function manageAction() {
+	public function manageAction($folderId) {
 		$em = $this -> getDoctrine() -> getManager();
 		$document = new Document();
 		$shareForm = $this -> createForm(new ShareFileType(), new ShareFile());
 		$form = $this -> createForm(new DocumentType(), new Document());
+		$folderForm = $this -> createForm(new FolderType(), new Folder());
 		$securityContext = $this -> get('security.context');
 
 		$listAllfiles = $em 
 			-> getRepository('AcsilServerAppBundle:Document') 
-			-> findBy(array('isProfilePicture' => 0));
-		
+			-> findBy(array('folder' => $folderId, 'isProfilePicture' => 0));
+
 		$listusers = $em 
 			-> getRepository('AcsilServerAppBundle:User') 
 			-> findAll();
+		
+		$listfolders = $em
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findBy(array('parentFolder' => $folderId, 'owner' => $this->getUser()->getEmail()));
+
      /**
       * Get informations about files
       */	
@@ -90,9 +98,12 @@ class UploadController extends Controller {
 		return $this -> render('AcsilServerAppBundle:Acsil:files.html.twig', 
 			array(
 				'listfiles' => $listfiles, 
-				'listusers' => $listusers, 
+				'listusers' => $listusers,
+				'folderId' => $folderId,
+				'listfolders' => $listfolders,
 				'form' => $form -> createView(), 
-				'shareForm' => $shareForm -> createView(), 
+				'shareForm' => $shareForm -> createView(),
+				'folderform' => $folderForm -> createView(),
 			));
 	}
 
@@ -103,7 +114,7 @@ class UploadController extends Controller {
 	/**
 	 * @Template()
 	 */
-	public function uploadAction() {
+	public function uploadAction($folderId) {
 		$em = $this -> getDoctrine() -> getManager();
     /**
      * Create and fill a new document object
@@ -117,7 +128,9 @@ class UploadController extends Controller {
 		$document -> setName($filename);
 		$document -> setIsProfilePicture(0);
 		if ($document -> getFile() == null) {
-			return $this -> redirect($this -> generateUrl('_upload'));
+			return $this -> redirect($this -> generateUrl('_upload', array(
+            'folderId' => $folderId,
+        )));
 		}
 		if ($document -> getName() == null) {
 			$document -> setName($document -> getFile() -> getClientOriginalName());
@@ -125,7 +138,24 @@ class UploadController extends Controller {
 		$document -> setOwner($this -> getUser() -> getEmail());
 		$document -> setuploadDate(new \DateTime());
 		$document -> setPseudoOwner($this -> getUser() -> getUsername());
-
+		$document -> setFolder($folderId);
+		
+		
+		$tempId = $folderId;
+		$totalPath = "";
+		while ($tempId != 0) {
+		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
+		   if (!$parent) {
+        throw $this->createNotFoundException(
+            'No parent found for id : '.$id
+        );
+		}
+		$totalPath = $parent->getPath().'/'.$totalPath;
+		$tempId = $parent->getParentFolder();
+		}
+		
+		$document -> setRealPath($totalPath);
+		
 		$em -> persist($document);
 		$em -> flush();
     /**
@@ -142,7 +172,9 @@ class UploadController extends Controller {
 		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
 		$aclProvider -> updateAcl($acl);
 
-		return $this -> redirect($this -> generateUrl('_managefile'));
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
 	}
 
 /**
@@ -155,7 +187,9 @@ class UploadController extends Controller {
 		$right = $parameters['rights'];
 		
 		if ($friendName == NULL) {
-			return $this -> redirect($this -> generateUrl('_managefile'));
+			return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => 0,
+        )));
 		}
 		$em = $this -> getDoctrine() -> getManager();
 		$friend = $em -> getRepository('AcsilServerAppBundle:User') -> findOneByEmail($friendName);
@@ -165,7 +199,7 @@ class UploadController extends Controller {
 		}
 
 		$document = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneById($id);
-
+        $folderId = $document->getFolder();
 		if (!$document) {
 			throw $this -> createNotFoundException('No document found for id ' . $id);
 		}
@@ -199,7 +233,9 @@ class UploadController extends Controller {
 			$acl -> insertObjectAce($securityIdentity, $mask);
 		}
 		$aclProvider -> updateAcl($acl);
-		return $this -> redirect($this -> generateUrl('_managefile'));
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
 	}
 
 /**
@@ -288,7 +324,7 @@ class UploadController extends Controller {
 		if (!$document) {
 			throw $this -> createNotFoundException('No document found for id ' . $fileId);
 		}
-
+		$folderId = $document->getFolder();
 		$builder = new MaskBuilder();
 		if ($newRights == "EDIT") {
 			$builder -> add('view') -> add('edit') -> add('delete');
@@ -321,11 +357,9 @@ class UploadController extends Controller {
 			$acl -> insertObjectAce($securityIdentity, $mask);
 		}
 		$aclProvider -> updateAcl($acl);
-		return $this -> redirect($this -> generateUrl('_managefile'));
-		
-		
-		
-		return $this -> redirect($this -> generareUrl('_managefile'));
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
 	}
 
 /**
@@ -335,6 +369,10 @@ class UploadController extends Controller {
 		$securityContext = $this -> get('security.context');
 		$em = $this -> getDoctrine() -> getManager();
 		$fileToDelete = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneBy(array('id' => $id));
+		if (!$fileToDelete) {
+			throw $this -> createNotFoundException('No document found for id ' . $id);
+		}
+		$folderId = $fileToDelete->getFolder();
 		if (false === $securityContext -> isGranted('DELETE', $fileToDelete)) {
 			throw new AccessDeniedException();
 		}
@@ -345,7 +383,70 @@ class UploadController extends Controller {
 		$em -> remove($fileToDelete);
 		$em -> flush();
 
-		return $this -> redirect($this -> generateUrl('_managefile'));
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
+	}
+
+	/**
+ * Function to create a new folder
+ */	
+	
+	/**
+	 * @Template()
+	 */
+	public function folderAction($folderId) {
+		$em = $this -> getDoctrine() -> getManager();
+    /**
+     * Create and fill a new folder object
+    */
+	print_r($folderId);
+		$folder = new Folder();
+		$request = $this -> getRequest();
+		$parameters = $request -> request -> get('acsilserver_appbundle_foldertype');
+		$foldername = $parameters['name'];
+		$folder -> setName($foldername);
+		$folder -> setOwner($this -> getUser() -> getEmail());
+		$folder -> setuploadDate(new \DateTime());
+		$folder -> setPseudoOwner($this -> getUser() -> getUsername());
+		$folder -> setParentFolder($folderId);
+
+		
+		$tempId = $folderId;
+		$totalPath = "";
+		while ($tempId != 0) {
+		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
+		   if (!$parent) {
+        throw $this->createNotFoundException(
+            'No parent found for id : '.$tempId
+        );
+		}
+		$totalPath = $parent->getPath().'/'.$totalPath;
+		$tempId = $parent->getParentFolder();
+		}
+		
+		$folder-> setRealPath($totalPath);
+		
+		
+		$em -> persist($folder);
+		$em -> flush();
+    /**
+    * Set the rights
+    */
+		$aclProvider = $this -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($folder);
+		$acl = $aclProvider -> createAcl($objectIdentity);
+
+		$securityContext = $this -> get('security.context');
+		$user = $securityContext -> getToken() -> getUser();
+		$securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+		$aclProvider -> updateAcl($acl);
+
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
 	}
 
 }

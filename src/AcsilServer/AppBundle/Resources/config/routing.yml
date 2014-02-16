@@ -56,12 +56,12 @@ _changerole:
 #####################################################################################
 
 _upload:
-    pattern:  /acsil/upload/
-    defaults: { _controller: AcsilServerAppBundle:Upload:upload }
+    pattern:  /acsil/upload/{folderId}
+    defaults: { _controller: AcsilServerAppBundle:Upload:upload, folderId: 0 }
 
 _managefile:
-    pattern:  /acsil/myfile/
-    defaults: { _controller: AcsilServerAppBundle:Upload:manage }
+    pattern:  /acsil/myfile/{folderId}
+    defaults: { _controller: AcsilServerAppBundle:Upload:manage, folderId: 0 }
 
 _sharefile:
     pattern:  /acsil/sharefile/{id}
@@ -84,3 +84,11 @@ _deletefile:
 _upload_picture:
     pattern:  /acsil/acount-picture/
     defaults: { _controller: AcsilServerAppBundle:Upload:picture }
+
+#####################################################################################
+#                               Folder management                                   #
+#####################################################################################
+
+_folder:
+    pattern:  /acsil/folder/{folderId}
+    defaults: { _controller: AcsilServerAppBundle:Upload:folder, folderId: 0 }

@@ -13,25 +13,25 @@ use AcsilServer\AppBundle\Model\Data;
  */
 class Folder extends Data
 {
-    /**
-     * @ORM\Column(type="string", length=255)
+ 	 /**
+     * @ORM\Column(type="integer")
      */
-    public $folder;
+    private $parentFolder;
 
-	     /* Set folder
+	     /* Set parentFolder
      *
-     * @param string $folder
+     * @param integer $parentFolder
      * @return Folder
      */
-    public function setFolder($folder)
+    public function setParentFolder($parentFolder)
     {
-        $this->folder = $folder;
-        return $folder;
+        $this->parentFolder = $parentFolder;
+        return $this;
     }
 
-	public function getFolder()
+	public function getParentFolder()
     {
-        return $this->folder;
+        return $this->parentFolder;
     }
 
 	/**
@@ -40,11 +40,11 @@ class Folder extends Data
      */
     public function preUpload()
     {
-        if (null !== $this->file) {
-            $this->setPath(sha1(uniqid(mt_rand(), true)));
-//			$this->setSize($this->file->getClientSize());
+        $this->setSize(0);
+		$tempPath = sha1(uniqid(mt_rand(), true));
+        $this->setPath(substr($tempPath, -6));
  }
-    }
+    
 
     /**
      * @ORM\PostPersist()
@@ -52,8 +52,10 @@ class Folder extends Data
      */
     public function upload()
     {
-	    mkdir($this->getPath());
-        //$this->file->move($this->getUploadRootDir(), $this->getPath());
+	if ($this->realPath)
+	    mkdir($this->getUploadRootDir().'/'.$this->realPath.'/'.$this->path);
+	else
+		mkdir($this->getUploadRootDir().'/'.$this->path);
     }
 
     /**
@@ -65,12 +67,19 @@ class Folder extends Data
 	
 	public function getAbsolutePath()
     {
-        return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->path;
-    }
+	if ($this->realPath)
+        return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->realPath.'/'.$this->path;
+    else
+	    return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->path;
+ 
+	}
 
     public function getWebPath()
     {
-        return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
+	if ($this->realPath)
+        return null === $this->path ? null : $this->getUploadDir().'/'.$this->realPath.'/'.$this->path;
+	else
+		return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
     }
 
     protected function getUploadRootDir()

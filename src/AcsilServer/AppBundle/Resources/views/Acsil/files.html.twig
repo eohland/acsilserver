@@ -12,6 +12,11 @@
 			<h2>{{ 'Upload new document'|trans }}</h2>
 			{% include 'AcsilServerAppBundle:Upload:upload.html.twig' %}
 		</div><!-- addFile -->
+
+		<div id="addFolder" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<h2>{{ 'Create new folder'|trans }}</h2>
+			{% include 'AcsilServerAppBundle:Upload:folder.html.twig' %}
+		</div><!-- addFolder -->
 		
 		<div id="shareFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<h2>{{ 'Share this document'|trans }}</h2>
@@ -39,7 +44,7 @@
 			<p>
 				{{ 'Are you sure you want to delete this file?'|trans }} <span class="filename"></span>
 				<a class="confirm btn btn-danger" href="">{{ 'yes'|trans }}</a>
-				<a class="noconfirm btn btn-primary" href="{{ path('_managefile') }}">{{ 'no'|trans }}</a>
+				<a class="noconfirm btn btn-primary" href="{{ path('_managefile', {'folderId': folderId|default(0)}) }}">{{ 'no'|trans }}</a>
 			</p>
 		</div><!-- deleteFile -->
 		
@@ -52,9 +57,61 @@
 					{#{{ 'filezone.description'|trans }}#}
 					You can add and manage as many files as you want as long as you have the correct rights to. You can also share files with users within your network.
 				</p>
-			</div><!-- span3 -->
+				</div><!-- span3 -->
+			<div class="span2">
+				<ul>
+					<li><a href="#addFolder" data-toggle="modal"><i class="icon-plus"></i> {{ 'Create folder'|trans }} </a></li>
+				</ul>
+				</div><!-- span3 -->
 			
 			<div id="itemList" class="span9 offset1">
+				
+				
+				{% for folder in listfolders %}
+					<div class="userRow row-fluid">
+						<div class="fileInfos span9">
+							<div class="fileName span8">
+								<a href="{{ path('_managefile', {'folderId': folder.id|default(0)}) }}">{{ folder.name|trans }}</b></a>
+							</div><!-- fileName -->
+							<div class="fileSize span2">
+								{{ folder.size }} file(s)
+							</div>
+							<div class="fileUploadDate span2">
+								{{ folder.uploaddate|date }}
+							</div><!-- file upload date -->
+						</div><!-- fileInfos -->
+						
+						<div class="fileOptions span3">
+						{#	{% if is_granted('OWNER', folder) %}
+							<a class="sharefile btn btn-primary" href="#shareFile" filename="{{ folder.name }}" fileid="{{ folder.id }}" data-toggle="modal">
+								<i class="icon-file icon-white"></i> {{ 'Share'|trans }}
+							</a>
+							<div class="sharedWith">
+							</div><!-- sharedWith -->
+							{% endif %}
+							<div class="btn-group">
+								<a class="btn btn-primary" href="#"><i class="icon-edit icon-white"></i> {{ 'Edit'|trans }}</a>
+								<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									{% if is_granted('VIEW', folder) %}
+										<li><a href="{{app.request.basepath}}/{{ folder.getWebPath() }}" target="_blank">
+											<i class="icon-download-alt"></i> {{ 'Download'|trans }} </a>
+										</li>
+									{% endif %}
+									{% if is_granted('DELETE', folder) %} 
+										<li>
+											<a class="deletefile" href="#deleteFile" filename="{{ folder.name }}" fileid="{{ folder.id }}" data-toggle="modal">
+												<i class="icon-trash"></i> {{ 'Delete'|trans }} 
+											</a>
+										</li>
+									{% endif %} #}
+								</ul>
+							</div><!-- btn group -->
+						</div><!-- file options -->
+					</div><!-- userRow -->
+				{% endfor %}
+				
+				
 				{% for document in listfiles %}
 					<div class="userRow row-fluid">
 						<div class="fileInfos span9">
@@ -105,6 +162,7 @@
 					</div><!-- userRow -->
 				{% endfor %}
 			</div><!-- itemList -->
+			
 		</div><!-- row fluid -->
 		
 	</div><!-- fileList -->

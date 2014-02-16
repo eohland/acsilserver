@@ -14,7 +14,7 @@ use AcsilServer\AppBundle\Model\Data;
 class Document extends Data
 {
 
-	 
+
 	 /**
      * @ORM\Column(type="integer")
      */
@@ -26,6 +26,26 @@ class Document extends Data
     private $file;
  
 
+  	 /**
+     * @ORM\Column(type="integer")
+     */
+    private $folder;
+
+	     /* Set folder
+     *
+     * @param integer $folder
+     * @return Document
+     */
+    public function setFolder($folder)
+    {
+        $this->folder = $folder;
+        return $this;
+    }
+
+	public function getFolder()
+    {
+        return $this->folder;
+    }
 	
 			    /**
      * Set isProfilePicture
@@ -33,7 +53,7 @@ class Document extends Data
      * @param integer $IsProfilePicture
      * @return Document
      */
-    public function setIsProfilePicture($isProfilePicture)
+	 public function setIsProfilePicture($isProfilePicture)
     {
         $this->isProfilePicture = $isProfilePicture;
     
@@ -70,7 +90,8 @@ class Document extends Data
     public function preUpload()
     {
         if (null !== $this->file) {
-            $this->setPath(sha1(uniqid(mt_rand(), true)).'.'.$this->file->guessExtension());
+            $tempPath = sha1(uniqid(mt_rand(), true));
+			$this->setPath(substr($tempPath, -6).'.'.$this->file->guessExtension());
 			$this->setSize($this->file->getClientSize());
  }
     }
@@ -84,9 +105,10 @@ class Document extends Data
         if (null === $this->file) {
             return;
         }
-
-        $this->file->move($this->getUploadRootDir(), $this->getPath());
-
+		if ($this->realPath)
+			$this->file->move($this->getUploadRootDir().'/'.$this->realPath, $this->getPath());
+		else
+			$this->file->move($this->getUploadRootDir(), $this->getPath());
         unset($this->file);
     }
 
@@ -102,12 +124,19 @@ class Document extends Data
 	
 	public function getAbsolutePath()
     {
-        return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->path;
-    }
+	if ($this->realPath)
+        return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->realPath.'/'.$this->path;
+    else
+	    return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->path;
+ 
+	}
 
     public function getWebPath()
     {
-        return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
+	if ($this->realPath)
+        return null === $this->path ? null : $this->getUploadDir().'/'.$this->realPath.'/'.$this->path;
+	else
+		return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
     }
 
     protected function getUploadRootDir()
@@ -126,4 +155,5 @@ class Document extends Data
 		  return 'uploads/picture';
 		}
 	}
+
 }

@@ -11,6 +11,7 @@
 	padding: 10px;
 }
 
+
 span.userPicture, 
 span.userId, 
 span.email, 
@@ -48,7 +49,7 @@ span.role {
 }
 
 #newUser, #resetPassword, #deleteAccount, #changeRole,
-#addFile, #shareFile, #deleteFile {
+#addFile, #shareFile, #deleteFile, #addFolder {
 	padding: 20px;
 }
 

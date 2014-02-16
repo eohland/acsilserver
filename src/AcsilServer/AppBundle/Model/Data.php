@@ -18,7 +18,10 @@ abstract class Data
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
+	/**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $realPath; 
 	/**
      * @ORM\Column(type="integer")
      */
@@ -53,7 +56,7 @@ abstract class Data
      * Set owner
      *
      * @param string $owner
-     * @return Document
+     * @return Data
      */
     public function setOwner($owner)
     {
@@ -66,7 +69,7 @@ abstract class Data
      * Set pseudoOwner
      *
      * @param string $pseudoOwner
-     * @return Document
+     * @return Data
      */
     public function setPseudoOwner($pseudoOwner)
     {
@@ -80,7 +83,7 @@ abstract class Data
      * Set path
      *
      * @param string $path
-     * @return Document
+     * @return Data
      */
     public function setPath($path)
     {
@@ -93,7 +96,7 @@ abstract class Data
      * Set name
      *
      * @param string $name
-     * @return Document
+     * @return Data
      */
     public function setName($name)
     {
@@ -106,7 +109,7 @@ abstract class Data
      * Set id
      *
      * @param integer $id
-     * @return Document
+     * @return Data
      */
     public function setId($id)
     {
@@ -119,7 +122,7 @@ abstract class Data
      * Set size
      *
      * @param integer $size
-     * @return Document
+     * @return Data
      */
     public function setSize($size)
     {
@@ -132,7 +135,7 @@ abstract class Data
      * Set isProfilePicture
      *
      * @param integer $IsProfilePicture
-     * @return Document
+     * @return Data
      */
 	
 	 public function getId()
@@ -169,7 +172,7 @@ abstract class Data
      * Set uploadDate
      *
      * @param \DateTime $uploadDate
-     * @return Document
+     * @return Data
      */
     public function setUploadDate(\DateTime $uploadDate = NULL)
     {
@@ -186,5 +189,22 @@ abstract class Data
     public function getUploadDate()
     {
         return $this->uploadDate;
+    }
+			    /**
+     * Set realPath
+     *
+     * @param string $realPath
+     * @return Data
+     */
+    public function setRealPath($realPath)
+    {
+        $this->realPath = $realPath;
+    
+        return $this;
+    }
+	
+	public function getRealPath()
+    {
+        return $this->realPath;
     }
 }
