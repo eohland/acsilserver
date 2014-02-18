@@ -122,7 +122,10 @@
 					<div class="userRow row-fluid">
 						<div class="fileInfos span9">
 							<div class="fileName span8">
-								{{ document.info.name }}
+										<a href="{{app.request.basepath}}/{{ document.info.getWebPath() }}" target="_blank">
+											{{ document.info.name|trans }} </a>
+
+							
 							</div><!-- fileName -->
 							<div class="fileSize span2">
 								{{ document.info.size }} Ko
@@ -151,7 +154,9 @@
 								<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									{% if is_granted('VIEW', document.info) %}
-										<li><a href="{{app.request.basepath}}/{{ document.info.getWebPath() }}" target="_blank">
+										<li><a href="{{ path('_download', {'id': document.info.id}) }}" target="_blank">
+									
+								{#		<li><a href="{{app.request.basepath}}/{{ document.info.getWebPath() }}" target="_blank"> #}
 											<i class="icon-download-alt"></i> {{ 'Download'|trans }} </a>
 										</li>
 									{% endif %}

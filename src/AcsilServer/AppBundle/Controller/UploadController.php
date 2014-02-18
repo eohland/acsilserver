@@ -458,5 +458,27 @@ class UploadController extends Controller {
             'folderId' => $folderId,
         )));
 	}
-
+	/**
+	 * @Template()
+	 */
+	public function downloadAction($id) {
+	$em = $this -> getDoctrine() -> getManager();
+	$document = $em 
+			-> getRepository('AcsilServerAppBundle:Document') 
+			-> findOneBy(array('id' => $id, 'isProfilePicture' => 0));
+	$response = new Response();
+	$response->headers->set('Content-type', 'application/octet-stream');
+	//$file = new File();
+	
+	//$response->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', $document->getName().'.'.$document->getFile()->guessExtension()));
+	//$ext = pathinfo($path, PATHINFO_EXTENSION);
+	if ($document->getRealPath())
+	    $path = $document->getUploadRootDir().'/'.$document->getRealPath().'/'.$document->getPath();
+	else
+	    $path = $document->getUploadRootDir().'/'.$document->getPath();
+	$response->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', $document->getName().'.'.pathinfo($path, PATHINFO_EXTENSION)));
+	
+	$response->setContent(file_get_contents($path));
+	return $response;
+	}
 }
