@@ -52,6 +52,9 @@ class Folder extends Data
      */
     public function upload()
     {
+	$tempPath = $this->getUploadRootDir();
+	if (file_exists($tempPath) == false)
+		mkdir ($tempPath);
 	if ($this->realPath)
 	    mkdir($this->getUploadRootDir().'/'.$this->realPath.'/'.$this->path);
 	else
@@ -82,12 +85,12 @@ class Folder extends Data
 		return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
     }
 
-    protected function getUploadRootDir()
+    public function getUploadRootDir()
     {
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }
 
-    protected function getUploadDir()
+    public function getUploadDir()
     {
         return 'uploads/'.$this->getPseudoOwner();
     }

@@ -33,16 +33,16 @@ class UserType extends AbstractType
 	            ->add('firstname', 'text', array('data' => $this->firstname))
 	            ->add('lastname', 'text', array('data' => $this->lastname))
 	            ->add('email', 'email', array('data' => $this->email))
-	            ->add('password', 'password', array('required' => FALSE))
+	            ->add('password', 'password', array('required' => TRUE))
 	            ->add('confirm_password', 'password', array())
-				->add('pictureAccount', 'file', array('required' => FALSE))
+				->add('pictureAccount', 'file', array('required' => TRUE))
 	        ;
 		} else {
 	        $builder
 	            ->add('firstname', 'text', array('data' => $this->firstname))
 	            ->add('lastname', 'text', array('data' => $this->lastname))
 	            ->add('email', 'email', array('data' => $this->email))
-	            ->add('password', 'password', array('required' => FALSE))
+	            ->add('password', 'password', array('required' => TRUE))
 	            ->add('confirm_password', 'password', array())
 				->add('usertype', 'choice', 
 					array(
@@ -52,7 +52,7 @@ class UserType extends AbstractType
 						),
 						'preferred_choices' => array($this->roles ? $this->roles : 'ROLE_ADMIN'),
 					))
-				->add('pictureAccount', 'file', array('required' => FALSE))
+				->add('pictureAccount', 'file', array('required' => TRUE))
 	        ;
 		}
     }

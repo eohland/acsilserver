@@ -139,12 +139,12 @@ class Document extends Data
 		return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
     }
 
-    protected function getUploadRootDir()
+    public function getUploadRootDir()
     {
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }
 
-    protected function getUploadDir()
+    public function getUploadDir()
     {
 		if ($this->getIsProfilePicture() == 0)
 		{

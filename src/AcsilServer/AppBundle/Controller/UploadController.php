@@ -47,7 +47,17 @@ class UploadController extends Controller {
 		$listfolders = $em
 			-> getRepository('AcsilServerAppBundle:Folder') 
 			-> findBy(array('parentFolder' => $folderId, 'owner' => $this->getUser()->getEmail()));
-
+		if ($folderId == 0)
+		{
+		$parentId = 0;
+		}
+		else
+		{
+		$currentFolder = $em
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('id' => $folderId, 'owner' => $this->getUser()->getEmail()));
+		$parentId = $currentFolder->getParentFolder();
+		}
      /**
       * Get informations about files
       */	
@@ -101,6 +111,7 @@ class UploadController extends Controller {
 				'listusers' => $listusers,
 				'folderId' => $folderId,
 				'listfolders' => $listfolders,
+				'parentId' => $parentId,
 				'form' => $form -> createView(), 
 				'shareForm' => $shareForm -> createView(),
 				'folderform' => $folderForm -> createView(),
@@ -400,7 +411,6 @@ class UploadController extends Controller {
     /**
      * Create and fill a new folder object
     */
-	print_r($folderId);
 		$folder = new Folder();
 		$request = $this -> getRequest();
 		$parameters = $request -> request -> get('acsilserver_appbundle_foldertype');

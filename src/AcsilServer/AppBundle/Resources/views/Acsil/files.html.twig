@@ -63,7 +63,13 @@
 					<li><a href="#addFolder" data-toggle="modal"><i class="icon-plus"></i> {{ 'Create folder'|trans }} </a></li>
 				</ul>
 				</div><!-- span3 -->
-			
+
+			<div class="span2">
+				<ul>
+						<li class="dropdown"><a href="{{ path('_managefile', {'folderId': parentId|default(0)}) }}">{{ 'Back'|trans }}</b></a></li>
+				</ul>
+				</div><!-- span3 -->
+				
 			<div id="itemList" class="span9 offset1">
 				
 				
