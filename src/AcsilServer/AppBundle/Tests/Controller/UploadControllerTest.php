@@ -28,10 +28,10 @@ class SecurityControllerTest extends WebTestCase
 		
 		/* Upload file */
 		
-		$crawler = $client->request('GET', '/acsil/myfile/');
+		$crawler = $client->request('GET', '/acsil/myfile/0');
 		$this->assertTrue($client->getResponse()->isSuccessful());
 		
-		$crawler = $client->request('GET', '/acsil/myfile/#addFile');
+		$crawler = $client->request('GET', '/acsil/myfile/0#addFile');
 		$form = $crawler->selectButton('upload')->form();
 		$this->file = tempnam(sys_get_temp_dir(), 'upl');
         imagepng(imagecreatetruecolor(10, 10), $this->file);
@@ -42,7 +42,8 @@ class SecurityControllerTest extends WebTestCase
 		$form['acsilserver_appbundle_documenttype[name]'] = 'uploadTestAcsil';
 		$form['acsilserver_appbundle_documenttype[file]'] = $this->image;
 		$crawler = $client->submit($form);
-		$crawler = $client->followRedirect();
+		//$crawler = $client->followRedirect();
+		$crawler = $client->request('GET', '/acsil/myfile/0');
 		$this->assertTrue($crawler->filter('html:contains("uploadTestAcsil")')->count() > 0);
 	    print "\nFile uploaded.\n";
 		

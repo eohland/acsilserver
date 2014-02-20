@@ -88,29 +88,15 @@
 						</div><!-- fileInfos -->
 						
 						<div class="fileOptions span3">
-						{#	{% if is_granted('OWNER', folder) %}
-							<a class="sharefile btn btn-primary" href="#shareFile" filename="{{ folder.name }}" fileid="{{ folder.id }}" data-toggle="modal">
-								<i class="icon-file icon-white"></i> {{ 'Share'|trans }}
-							</a>
-							<div class="sharedWith">
-							</div><!-- sharedWith -->
-							{% endif %}
 							<div class="btn-group">
 								<a class="btn btn-primary" href="#"><i class="icon-edit icon-white"></i> {{ 'Edit'|trans }}</a>
 								<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									{% if is_granted('VIEW', folder) %}
-										<li><a href="{{app.request.basepath}}/{{ folder.getWebPath() }}" target="_blank">
+										<li><a href="{{ path('_download_folder', {'id': folder.id}) }}" target="_blank">
 											<i class="icon-download-alt"></i> {{ 'Download'|trans }} </a>
 										</li>
 									{% endif %}
-									{% if is_granted('DELETE', folder) %} 
-										<li>
-											<a class="deletefile" href="#deleteFile" filename="{{ folder.name }}" fileid="{{ folder.id }}" data-toggle="modal">
-												<i class="icon-trash"></i> {{ 'Delete'|trans }} 
-											</a>
-										</li>
-									{% endif %} #}
 								</ul>
 							</div><!-- btn group -->
 						</div><!-- file options -->
@@ -124,8 +110,6 @@
 							<div class="fileName span8">
 										<a href="{{app.request.basepath}}/{{ document.info.getWebPath() }}" target="_blank">
 											{{ document.info.name|trans }} </a>
-
-							
 							</div><!-- fileName -->
 							<div class="fileSize span2">
 								{{ document.info.size }} Ko

@@ -97,3 +97,7 @@ _download:
 _folder:
     pattern:  /acsil/folder/{folderId}
     defaults: { _controller: AcsilServerAppBundle:Upload:folder, folderId: 0 }
+
+_download_folder:
+    pattern:  /acsil/folder/download/{id}
+    defaults: { _controller: AcsilServerAppBundle:Upload:downloadFolder, id: '' }

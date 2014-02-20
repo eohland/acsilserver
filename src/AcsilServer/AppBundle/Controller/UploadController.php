@@ -17,7 +17,8 @@ use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\HttpFoundation\Request;
-
+use \ZipArchive;
+use \RecursiveIteratorIterator;
 /**
  * This controller contains all the functions in touch with upload
  */
@@ -468,10 +469,6 @@ class UploadController extends Controller {
 			-> findOneBy(array('id' => $id, 'isProfilePicture' => 0));
 	$response = new Response();
 	$response->headers->set('Content-type', 'application/octet-stream');
-	//$file = new File();
-	
-	//$response->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', $document->getName().'.'.$document->getFile()->guessExtension()));
-	//$ext = pathinfo($path, PATHINFO_EXTENSION);
 	if ($document->getRealPath())
 	    $path = $document->getUploadRootDir().'/'.$document->getRealPath().'/'.$document->getPath();
 	else
@@ -479,6 +476,26 @@ class UploadController extends Controller {
 	$response->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', $document->getName().'.'.pathinfo($path, PATHINFO_EXTENSION)));
 	
 	$response->setContent(file_get_contents($path));
+	return $response;
+	}
+
+
+	/**
+	 * @Template()
+	 */	
+	public function downloadFolderAction($id) {
+	$em = $this -> getDoctrine() -> getManager();
+	$folder = $em 
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('id' => $id));
+	$response = new Response();
+	$response->headers->set('Content-type', 'application/octet-stream');
+	if ($folder->getRealPath())
+	    $source = $folder->getUploadRootDir().'/'.$folder->getRealPath().'/'.$folder->getPath();
+	else
+	    $source = $folder->getUploadRootDir().'/'.$folder->getPath();
+	$destination = $source.'.zip';
+	
 	return $response;
 	}
 }
