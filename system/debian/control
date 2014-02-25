@@ -14,8 +14,9 @@ Depends: libapache2-mod-php5 | php5-cgi | php5,
     php5-mysql | php5-mysqli,
     php5-intl, php-apc,
     apache2 | lighttpd | httpd,
-    mysql-client,
+    mysql-client, mysql-server,
     dbconfig-common,
+    ucf (>= 0.28),
     ${misc:Depends}
 Recommends: mysql-client
 Description: Web based file sharing system

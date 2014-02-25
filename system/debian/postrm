@@ -31,11 +31,13 @@ case "$1" in
 	rm -fr /etc/acsilserver/ /usr/share/acsilserver
      	if which ucf >/dev/null 2>&1; then
      		ucf --purge /etc/acsilserver/acsilserver-vhost
+            ucf --debconf-ok --purge /etc/acsilserver/parameters.yml
      	fi
     ;;
     remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
 	webserver="apache2"
 	a2dissite acsilserver 2>/dev/null || true
+	service $webserver reload
         if [ -d /etc/$webserver/sites-available ] && [ -L /etc/$webserver/sites-available/acsilserver ]; then
                 rm -f /etc/$webserver/sites-available/acsilserver
         fi

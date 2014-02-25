@@ -29,36 +29,45 @@ dbc_go acsilserver $@
 
 case "$1" in
     configure)
-	# Apache config
-	webserver="apache2"
-        if [ -d /etc/$webserver/sites-available ] && [ ! -e /etc/$webserver/sites-available/acsilserver ]; then
-                ln -s /etc/acsilserver/acsilserver-vhost /etc/$webserver/sites-available/acsilserver
-        fi
-	a2ensite acsilserver
+		# Apache config
+		webserver="apache2"
+		if [ -d /etc/$webserver/sites-available ] && [ ! -e /etc/$webserver/sites-available/acsilserver ]; then
+			ln -s /etc/acsilserver/acsilserver-vhost /etc/$webserver/sites-available/acsilserver
+		fi
+		a2ensite acsilserver > /dev/null || true
+		service apache2 reload
 
-	# Setting permissions for www-data...
-	mkdir -p /usr/share/acsilserver/app/cache
-	chown -R www-data /usr/share/acsilserver/app/cache
-	mkdir -p /usr/share/acsilserver/app/logs
-	chown -R www-data /usr/share/acsilserver/app/logs
+		if [ ! -f /etc/acsilserver/parameters.yml ]; then
+			touch /etc/acsilserver/parameters.yml
+			chown root:www-data /etc/acsilserver/parameters.yml
+			chmod 0640 /etc/acsilserver/parameters.yml
+		fi
+		if [ ! -e /usr/share/acsilserver/app/config/parameters.yml ]; then
+			ln -s /etc/acsilserver/parameters.yml /usr/share/acsilserver/app/config/parameters.yml
+		fi
 
-	if [ ! -f /etc/acsilserver/parameters.yml ]; then
-		touch /etc/acsilserver/parameters.yml
-		chown root:www-data /etc/acsilserver/parameters.yml
-		chmod 0640 /etc/acsilserver/parameters.yml
-	fi
-	if [ ! -e /usr/share/acsilserver/app/config/parameters.yml ]; then
-		ln -s /etc/acsilserver/parameters.yml /usr/share/acsilserver/app/config/parameters.yml
-	fi
-    ;;
+		# Build assets & clean cache
+		sconsole=/usr/share/acsilserver/app/console
+		php $sconsole assets:install /usr/share/acsilserver/web
+		php $sconsole assetic:dump --env=prod --no-debug
+		php $sconsole cache:clear --env=prod
 
-    abort-upgrade|abort-remove|abort-deconfigure)
-    ;;
+		# Setting permissions for www-data...
+		mkdir -p /usr/share/acsilserver/app/cache
+		chown -R www-data /usr/share/acsilserver/app/cache
+		mkdir -p /usr/share/acsilserver/app/logs
+		chown -R www-data /usr/share/acsilserver/app/logs
+		mkdir -p /usr/share/acsilserver/web/uploads
+		chown -R www-data /usr/share/acsilserver/web/uploads
+	;;
 
-    *)
-        echo "postinst called with unknown argument \`$1'" >&2
-        exit 1
-    ;;
+	abort-upgrade|abort-remove|abort-deconfigure)
+	;;
+
+	*)
+		echo "postinst called with unknown argument \`$1'" >&2
+		exit 1
+	;;
 esac
 
 # dh_installdeb will replace this with shell code automatically
