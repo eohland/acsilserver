@@ -6,7 +6,7 @@
 ## Login   <ohland_e@epitech.net>
 ## 
 ## Started on  Fri Feb 21 16:04:50 2014 emmanuel ohland
-## Last update Tue Feb 25 15:06:07 2014 emmanuel ohland
+## Last update Tue Feb 25 16:11:39 2014 emmanuel ohland
 ##
 
 PKGNAME='acsilserver'
@@ -29,6 +29,15 @@ build() {
   rm -fr $PKGDIR/web/uploads
 }
 
+package() {
+  cd $PKGDIR
+  debuild -uc -us -i -b
+}
+
 build
+if which debuild >/dev/null 2>&1
+then
+  package
+fi
 
 # vim:set ts=2 sw=2 et:
