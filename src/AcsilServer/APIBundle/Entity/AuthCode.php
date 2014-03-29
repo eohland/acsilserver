@@ -1,7 +1,7 @@
 <?php
 // src/Acsilserver/APIBundle/Entity/AuthCode.php
 
-namespace Acsilserver\APIBundle\Entity;
+namespace AcsilServer\APIBundle\Entity;
 
 use FOS\OAuthServerBundle\Entity\AuthCode as BaseAuthCode;
 use Doctrine\ORM\Mapping as ORM;
@@ -25,7 +25,7 @@ class AuthCode extends BaseAuthCode
     protected $client;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Acsilserver\AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="AcsilServer\AppBundle\Entity\User")
      */
     protected $user;
 }

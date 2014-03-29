@@ -1,7 +1,7 @@
 <?php
 // src/Acsilserver/APIBundle/Entity/RefreshToken.php
 
-namespace Acsilserver\APIBundle\Entity;
+namespace AcsilServer\APIBundle\Entity;
 
 use FOS\OAuthServerBundle\Entity\RefreshToken as BaseRefreshToken;
 use Doctrine\ORM\Mapping as ORM;
@@ -25,7 +25,7 @@ class RefreshToken extends BaseRefreshToken
     protected $client;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Acsilserver\AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="AcsilServer\AppBundle\Entity\User")
      */
     protected $user;
 }

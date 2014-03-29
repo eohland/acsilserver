@@ -1,7 +1,7 @@
 <?php
 // src/Acsilserver/APIBundle/Entity/AccessToken.php
 
-namespace Acsilserver\APIBundle\Entity;
+namespace AcsilServer\APIBundle\Entity;
 
 use FOS\OAuthServerBundle\Entity\AccessToken as BaseAccessToken;
 use Doctrine\ORM\Mapping as ORM;

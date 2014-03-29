@@ -70,10 +70,10 @@ swiftmailer:
 # FOSOAuthServerBundle Configuration
 fos_oauth_server:
     db_driver: orm
-    client_class:        Acsilserver\APIBundle\Entity\Client
-    access_token_class:  Acsilserver\APIBundle\Entity\AccessToken
-    refresh_token_class: Acsilserver\APIBundle\Entity\RefreshToken
-    auth_code_class:     Acsilserver\APIBundle\Entity\AuthCode
+    client_class:        AcsilServer\APIBundle\Entity\Client
+    access_token_class:  AcsilServer\APIBundle\Entity\AccessToken
+    refresh_token_class: AcsilServer\APIBundle\Entity\RefreshToken
+    auth_code_class:     AcsilServer\APIBundle\Entity\AuthCode
 
 # FOSRestBundle Configuration
 fos_rest:
