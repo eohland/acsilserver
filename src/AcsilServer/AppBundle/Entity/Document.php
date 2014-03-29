@@ -121,7 +121,7 @@ class Document extends Data
             unlink($file);
         }
     }
-	
+    
 	public function getAbsolutePath()
     {
 	if ($this->realPath)

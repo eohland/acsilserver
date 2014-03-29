@@ -17,6 +17,15 @@ AcsilServer\APIBundle\Entity\Rename:
         toName:
             - NotBlank: ~
 
+AcsilServer\APIBundle\Entity\Move:
+    properties:
+        fromId:
+            - NotBlank: ~
+            - GreaterThan:
+                value: 0
+        toPath:
+            - NotBlank: ~
+
 AcsilServer\APIBundle\Entity\Delete:
     properties:
         deleteId:
