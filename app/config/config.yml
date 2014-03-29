@@ -67,6 +67,14 @@ swiftmailer:
     password:  %mailer_password%
     spool:     { type: memory }
 
+# FOSOAuthServerBundle Configuration
+fos_oauth_server:
+    db_driver: orm
+    client_class:        Acme\APIBundle\Entity\Client
+    access_token_class:  Acme\APIBundle\Entity\AccessToken
+    refresh_token_class: Acme\APIBundle\Entity\RefreshToken
+    auth_code_class:     Acme\APIBundle\Entity\AuthCode
+
 # FOSRestBundle Configuration
 fos_rest:
     view:
