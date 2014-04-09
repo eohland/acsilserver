@@ -161,7 +161,12 @@ class UploadController extends Controller {
 		$totalPath = $parent->getPath().'/'.$totalPath;
 		$tempId = $parent->getParentFolder();
 		}
-		
+		if ($folderId != 0)
+		{
+		$folder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($folderId);
+		$folder->setSize($folder->getSize() + 1);
+		$em -> persist($folder);
+		}
 		$document -> setRealPath($totalPath);
 		
 		$em -> persist($document);
@@ -388,6 +393,12 @@ class UploadController extends Controller {
 		$aclProvider = $this -> get('security.acl.provider');
 		$objectIdentity = ObjectIdentity::fromDomainObject($fileToDelete);
 		$aclProvider -> deleteAcl($objectIdentity);
+		if ($folderId != 0)
+		{
+		$folder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($folderId);
+		$folder->setSize($folder->getSize() - 1);
+		$em -> persist($folder);
+		}
 		$em -> remove($fileToDelete);
 		$em -> flush();
 
@@ -417,7 +428,7 @@ class UploadController extends Controller {
 		$folder -> setuploadDate(new \DateTime());
 		$folder -> setPseudoOwner($this -> getUser() -> getUsername());
 		$folder -> setParentFolder($folderId);
-
+		$folder -> setSize(0);
 		
 		$tempId = $folderId;
 		$totalPath = "";
