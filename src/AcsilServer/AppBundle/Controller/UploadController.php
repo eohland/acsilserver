@@ -65,8 +65,9 @@ class UploadController extends Controller {
 		$listfiles = array();
 		$shareinfos = array();
 		foreach ($listAllfiles as $file) {
-			if ($securityContext -> isGranted('EDIT', $file) === TRUE 
+		if ($securityContext -> isGranted('EDIT', $file) === TRUE 
 				|| $securityContext -> isGranted('VIEW', $file) === TRUE) {
+		
 				
 				$listUserFileInfos = array();
 				$sharedFileUserInfos = array();
@@ -78,16 +79,15 @@ class UploadController extends Controller {
 						$securityContext = $this -> container -> get('security.context');
 						$securityIdentity = UserSecurityIdentity::fromAccount($user);
 						$aces = $acl -> getObjectAces();
-						
 						if ($user != $this -> getUser()) {
 							$rights = NULL;
 							foreach ($aces as $ace) {
 								if ($ace -> getMask() == MaskBuilder::MASK_VIEW) {
 									$rights = "VIEW";
 								}
-								if ($ace -> getMask() == MaskBuilder::MASK_EDIT) {
+									if ($ace -> getMask() == 13) {
 									$rights = "EDIT";
-								}
+									}
 							}
 							if ($rights != NULL)
 								array_push($sharedFileUserInfos, array("user" => $user, "rights" => $rights));
@@ -101,10 +101,6 @@ class UploadController extends Controller {
 				array_push($listfiles, $listUserFileInfos);
 			}
 		}
-		
-        //		echo '<pre>';
-        //		die(print_r($listfiles));
-        //		echo '</pre>';
 		
 		return $this -> render('AcsilServerAppBundle:Acsil:files.html.twig', 
 			array(
@@ -194,11 +190,11 @@ class UploadController extends Controller {
  */
 
 	public function shareAction(Request $request, $id) {
-		$parameters = $request -> request -> get('acsilserver_appbundle_sharefiletype');
+		$parameters = $_GET['acsilserver_appbundle_sharefiletype'];
 		$friendName = $parameters['userMail'];
 		$right = $parameters['rights'];
-		
-		if ($friendName == NULL) {
+		if ($friendName == NULL || $right == NULL) {
+			throw $this -> createNotFoundException('Invalid data.');
 			return $this -> redirect($this -> generateUrl('_managefile', array(
             'folderId' => 0,
         )));
@@ -219,7 +215,7 @@ class UploadController extends Controller {
 		$builder = new MaskBuilder();
 		if ($right == "EDIT") {
 			$builder -> add('view') -> add('edit') -> add('delete');
-		}
+			}
 		if ($right == "VIEW") {
 			$builder -> add('view');
 		}
