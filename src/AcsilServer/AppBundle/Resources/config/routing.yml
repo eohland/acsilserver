@@ -81,6 +81,12 @@ _deletefile:
     options:
         expose: true
 
+_renamefile:
+    pattern:  /acsil/myfile/rename/{id}
+    defaults: { _controller: AcsilServerAppBundle:Upload:rename, id: '' }
+    options:
+        expose: true
+
 _upload_picture:
     pattern:  /acsil/acount-picture/
     defaults: { _controller: AcsilServerAppBundle:Upload:picture }

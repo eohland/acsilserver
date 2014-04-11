@@ -36,6 +36,19 @@ $(document).ready(function() {
 	/**
 	 * File management
 	 */
+
+	 // Rename file
+	$('.fileOptions a.renamefile').click(function() {
+		//console.log($(this).attr('fileid'))
+		var fileid = $(this).attr('fileid');
+		var filename = $(this).attr('filename');
+		
+		//var link = Routing.generate('_renamefile', { id: fileid })
+//		$('#deleteFile a.confirm').attr('href', link);
+		var renameFormPath = Routing.generate('_renamefile', { id: fileid });
+		console.log(renameFormPath);
+		$('#renameFileForm').attr('action', renameFormPath);
+	})
 	
 	// Delete file
 	$('.fileOptions a.deletefile').click(function() {
@@ -45,6 +58,7 @@ $(document).ready(function() {
 		
 		var link = Routing.generate('_deletefile', { id: fileid })
 		$('#deleteFile a.confirm').attr('href', link);
+
 	})
 	
 	// Share file

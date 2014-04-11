@@ -40,7 +40,6 @@ class Folder extends Data
      */
     public function preUpload()
     {
-        $this->setSize(0);
 		$tempPath = sha1(uniqid(mt_rand(), true));
         $this->setPath(substr($tempPath, -6));
  }

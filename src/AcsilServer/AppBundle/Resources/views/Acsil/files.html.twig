@@ -39,6 +39,13 @@
 			{% include 'AcsilServerAppBundle:Upload:ShareFile.html.twig' %}
 		</div><!-- shareFile -->
 		
+				<div id="renameFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<h2>{{ 'Rename this document'|trans }}</h2>
+						
+			<h3>Rename a file</h3>
+			{% include 'AcsilServerAppBundle:Upload:RenameFile.html.twig' %}
+		</div><!-- shareFile -->
+		
 		<div id="deleteFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<h2>{{ 'Delete file'|trans }}</h2>
 			<p>
@@ -80,7 +87,7 @@
 								<a href="{{ path('_managefile', {'folderId': folder.id|default(0)}) }}">{{ folder.name|trans }}</b></a>
 							</div><!-- fileName -->
 							<div class="fileSize span2">
-								{{ folder.size }} file(s)
+								{{ folder.size}} file(s)
 							</div>
 							<div class="fileUploadDate span2">
 								{{ folder.uploaddate|date }}
@@ -142,6 +149,13 @@
 									
 								{#		<li><a href="{{app.request.basepath}}/{{ document.info.getWebPath() }}" target="_blank"> #}
 											<i class="icon-download-alt"></i> {{ 'Download'|trans }} </a>
+										</li>
+									{% endif %}
+									{% if is_granted('EDIT', document.info) %}
+										<li>
+											<a class="renamefile" href="#renameFile" filename="{{ document.info.name }}" fileid="{{ document.info.id }}" data-toggle="modal">
+												<i class="icon-download"></i> {{ 'Rename'|trans }} 
+											</a>
 										</li>
 									{% endif %}
 									{% if is_granted('DELETE', document.info) %}

@@ -6,7 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AcsilServer\AppBundle\Entity\Document;
 use AcsilServer\AppBundle\Entity\Folder;
 use AcsilServer\AppBundle\Entity\ShareFile;
+use AcsilServer\AppBundle\Entity\RenameFile;
 use AcsilServer\AppBundle\Form\ShareFileType;
+use AcsilServer\AppBundle\Form\RenameFileType;
 use AcsilServer\AppBundle\Form\DocumentType;
 use AcsilServer\AppBundle\Form\FolderType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -33,6 +35,7 @@ class UploadController extends Controller {
 		$em = $this -> getDoctrine() -> getManager();
 		$document = new Document();
 		$shareForm = $this -> createForm(new ShareFileType(), new ShareFile());
+		$renameForm = $this -> createForm(new RenameFileType(), new RenameFile());
 		$form = $this -> createForm(new DocumentType(), new Document());
 		$folderForm = $this -> createForm(new FolderType(), new Folder());
 		$securityContext = $this -> get('security.context');
@@ -112,6 +115,7 @@ class UploadController extends Controller {
 				'form' => $form -> createView(), 
 				'shareForm' => $shareForm -> createView(),
 				'folderform' => $folderForm -> createView(),
+				'renameForm' => $renameForm -> createView(),
 			));
 	}
 
@@ -406,7 +410,30 @@ class UploadController extends Controller {
             'folderId' => $folderId,
         )));
 	}
-
+/**
+ * Rename a file
+*/
+	public function renameAction($id) {
+		$em = $this -> getDoctrine() -> getManager();
+		$securityContext = $this -> get('security.context');
+		$parameters = $_GET['acsilserver_appbundle_renamefiletype'];
+		$name = $parameters['name'];
+		$fileToRename = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneBy(array('id' => $id));
+		if (!$fileToRename) {
+			throw $this -> createNotFoundException('No document found for id ' . $id);
+		}
+		$folderId = $fileToRename->getFolder();
+		if (false === $securityContext -> isGranted('EDIT', $fileToRename)) {
+			throw new AccessDeniedException();
+		}
+		$fileToRename->setName($name);
+		$em -> persist($fileToRename);
+		$em -> flush();
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
+	}
+	
 	/**
  * Function to create a new folder
  */	
