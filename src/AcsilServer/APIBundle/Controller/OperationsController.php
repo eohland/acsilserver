@@ -210,5 +210,63 @@ class OperationsController extends Controller {
         $em -> flush();
         return (">>>>" . $realPath . "+" . $id);
     }
-
+	
+ public function listFilesAction($folderId) {
+		$em = $this -> getDoctrine() -> getManager();
+		$securityContext = $this -> get('security.context');
+		$listAllfiles = $em 
+			-> getRepository('AcsilServerAppBundle:Document') 
+			-> findBy(array('folder' => $folderId, 'isProfilePicture' => 0));
+		$listusers = $em 
+			-> getRepository('AcsilServerAppBundle:User') 
+			-> findAll();
+     /**
+      * Get informations about folders
+      */			
+		$listfolders = $em
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findBy(array('parentFolder' => $folderId, 'owner' => $this->getUser()->getEmail()));
+     /**
+      * Get informations about files
+      */	
+		$listfiles = array();
+		$shareinfos = array();
+		foreach ($listAllfiles as $file) {
+		if ($securityContext -> isGranted('EDIT', $file) === TRUE 
+				|| $securityContext -> isGranted('VIEW', $file) === TRUE) {				
+				$listUserFileInfos = array();
+				$sharedFileUserInfos = array();
+				if ($securityContext -> isGranted('OWNER', $file) === TRUE) {
+					foreach ($listusers as $user) {
+						$aclProvider = $this -> container -> get('security.acl.provider');
+						$objectIdentity = ObjectIdentity::fromDomainObject($file);
+						$acl = $aclProvider -> findAcl($objectIdentity);
+						$securityContext = $this -> container -> get('security.context');
+						$securityIdentity = UserSecurityIdentity::fromAccount($user);
+						$aces = $acl -> getObjectAces();
+						if ($user != $this -> getUser()) {
+							$rights = NULL;
+							foreach ($aces as $ace) {
+								if ($ace -> getMask() == MaskBuilder::MASK_VIEW) {
+									$rights = "VIEW";
+								}
+									if ($ace -> getMask() == 13) {
+									$rights = "EDIT";
+									}
+							}
+							if ($rights != NULL)
+								array_push($sharedFileUserInfos, array("user" => $user, "rights" => $rights));
+						}
+					}
+				}
+				if (count($sharedFileUserInfos) > 0)
+					$listUserFileInfos = array("info" => $file, "sharedFileUserInfos" => $sharedFileUserInfos);
+				else 
+					$listUserFileInfos = array("info" => $file, "sharedFileUserInfos" => '');
+				array_push($listfiles, $listUserFileInfos);
+			}
+		}
+	$list = array("file" => $listfiles, "folders" => $listfolders);	
+	return ($list);
+	}
 }
