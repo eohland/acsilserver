@@ -1,9 +1,17 @@
-/web/bundles/
-/app/bootstrap.php.cache
-/app/cache/*
-/app/logs/*
-/build/
-/vendor/
-/bin/
-/composer.phar
-/web/uploads/*
+# Symfony dirs
+/webapp/app/acsilserver.db
+/webapp/app/bootstrap.php.cache
+/webapp/app/cache/*
+/webapp/app/logs/*
+/webapp/bin/
+/webapp/build/
+/webapp/vendor/
+/webapp/composer.phar
+/webapp/web/uploads/*
+/webapp/web/bundles/
+
+# Backup files
+*.orig
+*.bak
+*.swp
+*~
