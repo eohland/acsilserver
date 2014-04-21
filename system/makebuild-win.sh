@@ -6,7 +6,7 @@
 ## Login   <ohland_e@epitech.net>
 ## 
 ## Started on  Sat Mar 01 01:07:27 2014 emmanuel ohland
-## Last update Sun Mar 02 01:02:03 2014 emmanuel ohland
+## Last update Mon Apr 21 22:15:30 2014 emmanuel ohland
 ##
 
 BUILDNAME='acsilserver_win'
@@ -15,34 +15,51 @@ BUILDDIR="build-win/$BUILDNAME.$BUILDVER"
 BUILDAPPDIR="$BUILDDIR/acsilserver-master"
 
 build() {
+  log "Copying base files..."
   mkdir -p "$BUILDAPPDIR"
+  mkdir "$BUILDDIR/tmp"
   unzip win/LightTPD.zip -d "$BUILDDIR"
   unzip win/PHP -d "$BUILDDIR"
-  cp -r ../{app,bin,src,vendor,web,README.md,TODO} "$BUILDAPPDIR"
+  cp -r ../webapp/{app,bin,src,vendor,web} "$BUILDAPPDIR"
 
+  log "Cleaning unwanted files..."
   #TODO: don't copy insead remvoing
   rm -f  $BUILDAPPDIR/app/config/parameters.yml
-  rm -fr $BUILDAPPDIR/app/cache
-  rm -fr $BUILDAPPDIR/app/logs
-  rm -fr $BUILDAPPDIR/web/uploads
+  rm -f  $BUILDAPPDIR/app/acsilserver.db
+  rm -fr $BUILDAPPDIR/app/cache/*
+  rm -fr $BUILDAPPDIR/app/logs/*
+  rm -fr $BUILDAPPDIR/web/uploads/*
 
+  log "Creating configuration..."
   cp -r win/config/* $BUILDDIR
   sed -i 's/# \(path:\s*%database_path%\)/\1/' \
     "$BUILDAPPDIR/app/config/config.yml"
 
   cd $BUILDAPPDIR
+  log "Creating database..."
   SCONSOLE='php app/console'
-  $SCONSOLE doctrine:database:create
-  $SCONSOLE doctrine:schema:create
-  #$SCONSOLE assets:install --env=prod
-  #$SCONSOLE assetic:dump --env=prod --no-debug
-  #$SCONSOLE cache:clear --env=prod
+  $SCONSOLE doctrine:database:create -e prod
+  $SCONSOLE doctrine:schema:create -e prod
+  #$SCONSOLE assets:install -e prod
+  #$SCONSOLE assetic:dump -e prod --no-debug
+  #$SCONSOLE cache:clear -e prod
+
+  log "Cleaning cache and logs..."
+  rm -fr app/cache/*
+  rm -fr app/logs/*
   cd -
 
+  log "Creating archive file..."
   cd "$BUILDDIR"
   zip -r -9 "../$BUILDNAME.$BUILDVER.zip" .
   cd -
-  #rm -fr "$BUILDDIR"
+  #log "Removing build directory..."
+  rm -fr "$BUILDDIR"
+  log "Done."
+}
+
+log() {
+  echo -e "\033[1m$1\033[0m"
 }
 
 build
