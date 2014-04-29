@@ -22,7 +22,7 @@
         </trans-unit>
         <trans-unit id="Resx/AppBarButtonRefresh" translate="yes" xml:space="preserve">
           <source>Rafraichir</source>
-          <target state="new">Rafraichir</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Refresh</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarMenuItemText" translate="yes" xml:space="preserve">
           <source>Élément de menu</source>

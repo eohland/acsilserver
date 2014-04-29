@@ -86,7 +86,9 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton x:Name="AppBarRefresh" IconUri="/Assets/AppBar/refresh.png" Text="Refresh" Click="AppBarRefresh_Click"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/upload.png" Text="Upload"/>
+            <shell:ApplicationBarIconButton x:Name="AppBarUpload" IconUri="/Assets/AppBar/upload.png" Text="Upload"/>
+            <shell:ApplicationBarIconButton x:Name="AppBarSettings" IconUri="/Assets/AppBar/feature.settings.png" Text="Upload"/>
+
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
                 <shell:ApplicationBarMenuItem Text="MenuItem 2"/>

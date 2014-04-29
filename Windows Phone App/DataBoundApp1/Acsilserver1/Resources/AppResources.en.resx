@@ -136,4 +136,4 @@
     <value>Connection</value>
     <comment>Titre de la page de connection</comment>
   </data>
-</root>
+<data name="AppBarButtonRefresh" xml:space="preserve"><value>Refresh</value></data></root>
