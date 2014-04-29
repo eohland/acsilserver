@@ -20,9 +20,9 @@
           <source>MON APPLICATION</source>
           <target state="new">MON APPLICATION</target>
         </trans-unit>
-        <trans-unit id="Resx/AppBarButtonText" translate="yes" xml:space="preserve">
-          <source>ajouter</source>
-          <target state="new">ajouter</target>
+        <trans-unit id="Resx/AppBarButtonRefresh" translate="yes" xml:space="preserve">
+          <source>Rafraichir</source>
+          <target state="new">Rafraichir</target>
         </trans-unit>
         <trans-unit id="Resx/AppBarMenuItemText" translate="yes" xml:space="preserve">
           <source>Élément de menu</source>

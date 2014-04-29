@@ -16,9 +16,7 @@
                             shell:SystemTray.IsVisible="True"
                             >
 
-    <phone:PhoneApplicationPage.DataContext>
-        <local:Contexte/>
-    </phone:PhoneApplicationPage.DataContext>
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
 		Background="Transparent">
@@ -72,6 +70,7 @@
             <MediaElement x:Name="Media" Margin="10" Source="{Binding URL}" Volume="100" Tap="Media_Tap"/>
 
         </Grid>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="372,101,0,0" VerticalAlignment="Top" Width="108" Click="Button_Click"/>
 
     </Grid>
 

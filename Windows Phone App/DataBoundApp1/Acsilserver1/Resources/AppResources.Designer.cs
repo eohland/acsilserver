@@ -61,11 +61,11 @@ namespace Acsilserver1.Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à ajouter.
+        ///   Recherche une chaîne localisée semblable à Rafraichir.
         /// </summary>
-        public static string AppBarButtonText {
+        public static string AppBarButtonRefresh {
             get {
-                return ResourceManager.GetString("AppBarButtonText", resourceCulture);
+                return ResourceManager.GetString("AppBarButtonRefresh", resourceCulture);
             }
         }
         

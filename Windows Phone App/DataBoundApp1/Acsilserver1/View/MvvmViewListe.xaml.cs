@@ -14,6 +14,7 @@ namespace Acsilserver1
 {
     public partial class MvvmView1 : PhoneApplicationPage
     {
+        private string folderID = "";
         // Constructor
         public MvvmView1()
         {
@@ -21,19 +22,29 @@ namespace Acsilserver1
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+
             DataContext = App.ViewModel;
 
             // Exemple de code pour la localisation d'ApplicationBar
-            BuildLocalizedApplicationBar();
+            //BuildLocalizedApplicationBar();
         }
 
         // Charger les données pour les éléments ViewModel
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (!App.ViewModel.IsDataLoaded)
+            string folder = "";
+            if (NavigationContext.QueryString.TryGetValue("folder", out folder))
             {
-                App.ViewModel.LoadData("0");
+                folderID = folder;
             }
+            else
+            {
+                folderID = "0";
+            }
+
+            //TODO -> si le click vient de la list et que c'est pour un dossier -> faire le load
+            if (!App.ViewModel.IsDataLoaded) 
+                App.ViewModel.LoadData(folderID);
         }
 
         // Gérer la sélection modifiée sur LongListSelector
@@ -44,8 +55,10 @@ namespace Acsilserver1
                 return;
 
             // Naviguer vers la nouvelle page
-            NavigationService.Navigate(new Uri("/View/MvvmViewFile.xaml?Name=" + (MainLongListSelector.SelectedItem as ItemViewModel).Name + "&URL=" + (MainLongListSelector.SelectedItem as ItemViewModel).URL, UriKind.Relative));
-
+            if ((MainLongListSelector.SelectedItem as ItemViewModel).Type == "/Assets/Icon/folder.png")
+                NavigationService.Navigate(new Uri("/View/MvvmViewListe.xaml?folder=" + (MainLongListSelector.SelectedItem as ItemViewModel).URL, UriKind.Relative));
+            else
+                NavigationService.Navigate(new Uri("/View/MvvmViewFile.xaml?selectedItem=" + (MainLongListSelector.SelectedItem as ItemViewModel).ID, UriKind.Relative));
 
             // Réinitialiser l'élément sélectionné sur Null (pas de sélection)
             MainLongListSelector.SelectedItem = null;
@@ -59,12 +72,20 @@ namespace Acsilserver1
 
            // Create a new button and set the text value to the localized string from AppResources.
             ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-            appBarButton.Text = AppResources.AppBarButtonText;
+            appBarButton.Text = AppResources.AppBarButtonRefresh;
+    
             ApplicationBar.Buttons.Add(appBarButton);
 
             // Create a new menu item with the localized string from AppResources.
             ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
             ApplicationBar.MenuItems.Add(appBarMenuItem);
+        }
+
+        private void AppBarRefresh_Click(object sender, EventArgs e)
+        {
+
+            App.ViewModel.LoadData(folderID);
+            
         }
     }
 }

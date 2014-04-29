@@ -128,8 +128,8 @@
   <data name="ApplicationTitle" xml:space="preserve">
     <value>MON APPLICATION</value>
   </data>
-  <data name="AppBarButtonText" xml:space="preserve">
-    <value>ajouter</value>
+  <data name="AppBarButtonRefresh" xml:space="preserve">
+    <value>Rafraichir</value>
   </data>
   <data name="AppBarMenuItemText" xml:space="preserve">
     <value>Élément de menu</value>

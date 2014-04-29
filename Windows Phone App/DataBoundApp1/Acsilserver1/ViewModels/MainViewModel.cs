@@ -60,6 +60,8 @@ namespace Acsilserver1.ViewModels
         /// </summary>
         public void LoadData(string IdFolder)
         {
+            this.IsDataLoaded = false;
+            this.Items.Clear();
             // Exemple de données ; remplacer par des données réelles
           /*  this.Items.Add(new ItemViewModel() { ID = "0", LineOne = "runtime one", LineTwo = "Maecenas praesent accumsan bibendum", LineThree = "Facilisi faucibus habitant inceptos interdum lobortis nascetur pharetra placerat pulvinar sagittis senectus sociosqu" });
             this.Items.Add(new ItemViewModel() { ID = "1", LineOne = "runtime two", LineTwo = "Dictumst eleifend facilisi faucibus", LineThree = "Suscipit torquent ultrices vehicula volutpat maecenas praesent accumsan bibendum dictumst eleifend facilisi faucibus" });
@@ -78,7 +80,9 @@ namespace Acsilserver1.ViewModels
             this.Items.Add(new ItemViewModel() { ID = "14", LineOne = "runtime fifteen", LineTwo = "Habitant inceptos interdum lobortis", LineThree = "Accumsan bibendum dictumst eleifend facilisi faucibus habitant inceptos interdum lobortis nascetur pharetra placerat" });
             this.Items.Add(new ItemViewModel() { ID = "15", LineOne = "runtime sixteen", LineTwo = "Nascetur pharetra placerat pulvinar", LineThree = "Pulvinar sagittis senectus sociosqu suscipit torquent ultrices vehicula volutpat maecenas praesent accumsan bibendum" });
             */
-            this.Items.Add(new ItemViewModel() { ID = 0, Type = ObtientImage("pictures"), Name = "Vacances.jpg", Date = "18/04/2014", URL = "http://www.hd-wallpaper.images-fonds.com/modules/mg3/albums/Paysages_(landscapes)_Wallpaper_HD/Paysages/Paysage_(landscape)_wallpaper_HD_0025.jpg" });
+            if (IdFolder != "25")
+                this.Items.Add(new ItemViewModel() { ID = 0, Type = ObtientImage("folder"), Name = "folder", Date = "18/04/2014", URL = "25" });
+            
             this.Items.Add(new ItemViewModel() { ID = 1, Type = ObtientImage("pictures"), Name = "Alcazar.mp3", Date = "18/04/2014", URL = "http://localhost:8080/alcazar.mp3" });
             this.Items.Add(new ItemViewModel() { ID = 2, Type = "http://acsilserver.com/wp-content/uploads/2013/08/eip.png", Name = "Epitech.jpg", Date = "18/04/2014", URL = "http://acsilserver.com/wp-content/uploads/2013/08/eip.png" });
             this.Items.Add(new ItemViewModel() { ID = 3, Type = ObtientImage("pictures"), Name = "Titre 01.avi", Date = "18/04/2014", URL = "http://localhost:8080/Titre%2001.avi" });
@@ -91,7 +95,7 @@ namespace Acsilserver1.ViewModels
         private string ObtientImage(string type)
         {
             if (type == "folder")
-                return "/Assets/Icon/fodler.png";
+                return "/Assets/Icon/folder.png";
             else if (type == "pictures")
                 return "/Assets/Icon/camera.png";
             return "/Assets/Icon/erreur.png";
