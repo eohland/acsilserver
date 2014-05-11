@@ -213,7 +213,7 @@ class OperationsController extends Controller {
 	
  public function listFilesAction($folderId) {
 		$em = $this -> getDoctrine() -> getManager();
-		$securityContext = $this -> get('security.context');
+		//$securityContext = $this -> get('security.context');
 		$listAllfiles = $em 
 			-> getRepository('AcsilServerAppBundle:Document') 
 			-> findBy(array('folder' => $folderId, 'isProfilePicture' => 0));
@@ -229,7 +229,7 @@ class OperationsController extends Controller {
      /**
       * Get informations about files
       */	
-		$listfiles = array();
+		/*$listfiles = array();
 		$shareinfos = array();
 		foreach ($listAllfiles as $file) {
 		if ($securityContext -> isGranted('EDIT', $file) === TRUE 
@@ -265,8 +265,9 @@ class OperationsController extends Controller {
 					$listUserFileInfos = array("info" => $file, "sharedFileUserInfos" => '');
 				array_push($listfiles, $listUserFileInfos);
 			}
-		}
-	$list = array("file" => $listfiles, "folders" => $listfolders);	
+		}*/
+	//$list = array("file" => $listfiles, "folders" => $listfolders);
+$list = array("file" => $listAllfiles, "folders" => $listfolders);		
 	return ($list);
 	}
 }
