@@ -63,9 +63,24 @@ namespace Acsilserver1.View
             base.OnBackKeyPress(e);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AppBarDelete_Click(object sender, EventArgs e)
         {
-            App.ViewModel.Items[index].Name = "toto";
+
+            if (MessageBox.Show("Voulez vous supprimer ce fichier?", "Attention", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+            {
+
+            }
+            else
+            {
+                App.ViewModel.Items.RemoveAt(index);
+                NavigationService.GoBack();
+            }
+
+        }
+
+        private void AppBarDetails_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/MvvmViewDetails.xaml?selectedItem=" + index, UriKind.Relative));
         }
        
     }

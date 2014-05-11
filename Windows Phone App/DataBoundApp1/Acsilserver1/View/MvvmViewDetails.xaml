@@ -1,4 +1,4 @@
-﻿<phone:PhoneApplicationPage x:Class="Acsilserver1.MvvmView1"
+﻿<phone:PhoneApplicationPage x:Class="Acsilserver1.View.MvvmViewDetails"
                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -6,7 +6,6 @@
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:ignore="http://www.ignore.com"
-                            xmlns:viewmodel="clr-namespace:Acsilserver1.ViewModels"
                             mc:Ignorable="d ignore"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -16,7 +15,6 @@
                             shell:SystemTray.IsVisible="True"
                             >
 
-    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="Transparent">
@@ -46,32 +44,30 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel"
-                    Grid.Row="0"
-                    Margin="12,17,0,28">
+			Grid.Row="0"
+			Margin="12,17,0,28">
             <TextBlock Text="Acsilserver"
-                       Style="{StaticResource PhoneTextNormalStyle}"
-                       Margin="12,0" />
-            <TextBlock Text="Liste de vos fichiers"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" FontSize="48" />
+				Style="{StaticResource PhoneTextNormalStyle}"
+				Margin="12,0" />
+            <TextBlock x:Name="FileName" Text="{Binding Name}"
+				Margin="9,-7,0,0"
+				Style="{StaticResource PhoneTextTitle1Style}" FontSize="48"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,12,0">
+            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Nom:" VerticalAlignment="Top"/>
+            <TextBox x:Name="TextBoxName" HorizontalAlignment="Left" Height="72" Margin="-10,42,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="456"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,145,0,0" TextWrapping="Wrap" Text="Date de création:" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,189,0,0" TextWrapping="Wrap" Text="{Binding Date}" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,256,0,0" TextWrapping="Wrap" Text="URL d'accès:" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,315,0,0" TextWrapping="Wrap" Text="{Binding URL}" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,379,0,0" TextWrapping="Wrap" Text="Partage:" VerticalAlignment="Top"/>
 
-            <phone:LongListSelector x:Name="MainLongListSelector" Margin="0,0,-12,0" ItemsSource="{Binding Items}" SelectionChanged="MainLongListSelector_SelectionChanged">
-                <phone:LongListSelector.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="0,0,0,17">
-                            <Image Height="40" Width="40" Source="{Binding Type}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                            <TextBlock Text="{Binding Date}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </phone:LongListSelector.ItemTemplate>
-            </phone:LongListSelector>
+
+
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
@@ -82,17 +78,11 @@
             Before shipping remove this XAML and the image itself.-->
         <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
     </Grid>
-    
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="AppBarRefresh" IconUri="/Assets/AppBar/refresh.png" Text="Refresh" Click="AppBarRefresh_Click"/>
-            <shell:ApplicationBarIconButton x:Name="AppBarUpload" IconUri="/Assets/AppBar/upload.png" Text="Upload"/>
-            <shell:ApplicationBarIconButton x:Name="AppBarSettings" IconUri="/Assets/AppBar/feature.settings.png" Text="Settings"/>
+            <shell:ApplicationBarIconButton x:Name="AppBarEdit" IconUri="/Assets/AppBar/edit.png" Text="Details" Click="AppBarEdit_Click"/>
+            <shell:ApplicationBarIconButton x:Name="AppBarSave" IconUri="/Assets/AppBar/save.png" Text="Supprimer" Click="AppBarSave_Click" />
 
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

@@ -61,6 +61,7 @@ namespace Acsilserver1
                 NavigationService.Navigate(new Uri("/View/MvvmViewListe.xaml?folder=" + (MainLongListSelector.SelectedItem as ItemViewModel).URL, UriKind.Relative));
             else
                 NavigationService.Navigate(new Uri("/View/MvvmViewFile.xaml?selectedItem=" + (MainLongListSelector.SelectedItem as ItemViewModel).ID, UriKind.Relative));
+            //(MainLongListSelector.SelectedItem as ItemViewModel).ID
 
             // Réinitialiser l'élément sélectionné sur Null (pas de sélection)
             MainLongListSelector.SelectedItem = null;

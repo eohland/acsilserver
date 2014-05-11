@@ -70,8 +70,13 @@
             <MediaElement x:Name="Media" Margin="10" Source="{Binding URL}" Volume="100" Tap="Media_Tap"/>
 
         </Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="372,101,0,0" VerticalAlignment="Top" Width="108" Click="Button_Click"/>
 
     </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="AppBarDetails" IconUri="/Assets/AppBar/feature.settings.png" Text="Details" Click="AppBarDetails_Click"/>
+            <shell:ApplicationBarIconButton x:Name="AppBarSupp" IconUri="/Assets/AppBar/delete.png" Text="Supprimer" Click="AppBarDelete_Click" />
 
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

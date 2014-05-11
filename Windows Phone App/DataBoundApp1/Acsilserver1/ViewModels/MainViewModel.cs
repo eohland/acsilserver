@@ -80,14 +80,21 @@ namespace Acsilserver1.ViewModels
             this.Items.Add(new ItemViewModel() { ID = "14", LineOne = "runtime fifteen", LineTwo = "Habitant inceptos interdum lobortis", LineThree = "Accumsan bibendum dictumst eleifend facilisi faucibus habitant inceptos interdum lobortis nascetur pharetra placerat" });
             this.Items.Add(new ItemViewModel() { ID = "15", LineOne = "runtime sixteen", LineTwo = "Nascetur pharetra placerat pulvinar", LineThree = "Pulvinar sagittis senectus sociosqu suscipit torquent ultrices vehicula volutpat maecenas praesent accumsan bibendum" });
             */
-            if (IdFolder != "25")
+            if (IdFolder == "25")
+            {
+                this.Items.Add(new ItemViewModel() { ID = 0, Type = ObtientImage("pictures"), Name = "photo1.jpg", Date = "28/04/2014", URL = "http://www.suchablog.com/wp-content/uploads/2012/07/national-geographic-traveler-photo-contest-2012_01.jpg" });
+                this.Items.Add(new ItemViewModel() { ID = 1, Type = ObtientImage("pictures"), Name = "photo2.jpg", Date = "28/04/2014", URL = "https://lh4.googleusercontent.com/-j0kpqmCa7GE/UTodb7w2VyI/AAAAAAAADbQ/hS01hwvocIE/w1276-h1268/Joconde%2BHD.jpg" });
+                
+            }
+            else
+            {
                 this.Items.Add(new ItemViewModel() { ID = 0, Type = ObtientImage("folder"), Name = "folder", Date = "18/04/2014", URL = "25" });
-            
-            this.Items.Add(new ItemViewModel() { ID = 1, Type = ObtientImage("pictures"), Name = "Alcazar.mp3", Date = "18/04/2014", URL = "http://localhost:8080/alcazar.mp3" });
-            this.Items.Add(new ItemViewModel() { ID = 2, Type = "http://acsilserver.com/wp-content/uploads/2013/08/eip.png", Name = "Epitech.jpg", Date = "18/04/2014", URL = "http://acsilserver.com/wp-content/uploads/2013/08/eip.png" });
-            this.Items.Add(new ItemViewModel() { ID = 3, Type = ObtientImage("pictures"), Name = "Titre 01.avi", Date = "18/04/2014", URL = "http://localhost:8080/Titre%2001.avi" });
-            this.Items.Add(new ItemViewModel() { ID = 4, Type = "http://cinedhec.com/wp-content/uploads/2013/02/12603880-drapeau-suede-sur-la-plaie-en-bois-vieux.jpg", Name = "nomdeOuf.jpg", Date = "18/04/2014", URL = "http://cinedhec.com/wp-content/uploads/2013/02/12603880-drapeau-suede-sur-la-plaie-en-bois-vieux.jpg" });
 
+                this.Items.Add(new ItemViewModel() { ID = 1, Type = ObtientImage("pictures"), Name = "Alcazar.mp3", Date = "18/04/2014", URL = "http://localhost:8080/alcazar.mp3" });
+                this.Items.Add(new ItemViewModel() { ID = 2, Type = "http://acsilserver.com/wp-content/uploads/2013/08/eip.png", Name = "Epitech.jpg", Date = "18/04/2014", URL = "http://acsilserver.com/wp-content/uploads/2013/08/eip.png" });
+                this.Items.Add(new ItemViewModel() { ID = 3, Type = ObtientImage("pictures"), Name = "Titre 01.avi", Date = "18/04/2014", URL = "http://localhost:8080/Titre%2001.avi" });
+                this.Items.Add(new ItemViewModel() { ID = 4, Type = "http://cinedhec.com/wp-content/uploads/2013/02/12603880-drapeau-suede-sur-la-plaie-en-bois-vieux.jpg", Name = "nomdeOuf.jpg", Date = "18/04/2014", URL = "http://cinedhec.com/wp-content/uploads/2013/02/12603880-drapeau-suede-sur-la-plaie-en-bois-vieux.jpg" });
+            }
 
             this.IsDataLoaded = true;
         }
