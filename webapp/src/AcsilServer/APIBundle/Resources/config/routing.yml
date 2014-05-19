@@ -37,3 +37,9 @@ upload:
     defaults: { _controller: APIBundle:Operations:upload, folderId: '' }
     requirements:
         _method: POST
+
+download:
+    pattern: /service/1/op/download
+    defaults: { _controller: APIBundle:Operations:download, id: '' }
+    requirements:
+        _method: POST

@@ -1,7 +1,7 @@
 <?php
 
 namespace AcsilServer\APIBundle\Controller;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -352,4 +352,23 @@ $list = array("file" => $listAllfiles, "folders" => $listfolders);
 		return View::create($form, 400);
 	}
 	
+	/**
+	 * @Template()
+	 */
+	public function downloadAction($id) {
+	$em = $this -> getDoctrine() -> getManager();
+	$document = $em 
+			-> getRepository('AcsilServerAppBundle:Document') 
+			-> findOneBy(array('id' => $id, 'isProfilePicture' => 0));
+	$response = new Response();
+	$response->headers->set('Content-type', 'application/octet-stream');
+	if ($document->getRealPath())
+	    $path = $document->getUploadRootDir().'/'.$document->getRealPath().'/'.$document->getPath();
+	else
+	    $path = $document->getUploadRootDir().'/'.$document->getPath();
+	$response->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', $document->getName().'.'.pathinfo($path, PATHINFO_EXTENSION)));
+	
+	$response->setContent(file_get_contents($path));
+	return $response;
+	}
 }
