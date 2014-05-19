@@ -27,6 +27,9 @@ use AcsilServer\APIBundle\Form\Type\DeleteType;
 use AcsilServer\APIBundle\Entity\Delete;
 
 use AcsilServer\AppBundle\Entity\Document;
+use AcsilServer\AppBundle\Form\DocumentType;
+use AcsilServer\AppBundle\Entity\Folder;
+use AcsilServer\AppBundle\Form\FolderType;
 
 class OperationsController extends Controller {
     /**
@@ -270,4 +273,83 @@ class OperationsController extends Controller {
 $list = array("file" => $listAllfiles, "folders" => $listfolders);		
 	return ($list);
 	}
+
+
+	/**
+	 * @Template()
+	 */
+	public function uploadAction(Request $request, $folderId) {
+    /**
+     * Create and fill a new document object
+    */
+	$document = new Document();
+	$form = $this -> createForm(new DocumentType(), $document);
+        //$form->bind($request);
+        $form -> handleRequest($this -> getRequest());
+
+        if ($form -> isValid()) {
+		$em = $this -> getDoctrine() -> getManager();
+		$uploadedFile = $form -> get('file') -> getData();
+		$filename = $form -> get('name') -> getData();
+		$document -> setFile($uploadedFile);
+		$document -> setName($filename);
+		$document -> setIsProfilePicture(0);
+		if ($document -> getFile() == null) {
+       throw $this->createNotFoundException(
+            'No file found'
+        );		
+		}
+		if ($document -> getName() == null) {
+			$document -> setName($document -> getFile() -> getClientOriginalName());
+		}
+		$document -> setOwner($this -> getUser() -> getEmail());
+		$document -> setuploadDate(new \DateTime());
+		$document -> setPseudoOwner($this -> getUser() -> getUsername());
+		$document -> setFolder($folderId);
+		
+		
+		$tempId = $folderId;
+		$totalPath = "";
+		while ($tempId != 0) {
+		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
+		   if (!$parent) {
+        throw $this->createNotFoundException(
+            'No parent found for id : '.$id
+        );
+		}
+		$totalPath = $parent->getPath().'/'.$totalPath;
+		$tempId = $parent->getParentFolder();
+		}
+		if ($folderId != 0)
+		{
+		$folder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($folderId);
+		$folder->setSize($folder->getSize() + 1);
+		$em -> persist($folder);
+		}
+		$document -> setRealPath($totalPath);
+		
+		$em -> persist($document);
+		$em -> flush();
+    /**
+    * Set the rights
+    */
+/*		$aclProvider = $this -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($document);
+		$acl = $aclProvider -> createAcl($objectIdentity);
+
+		$securityContext = $this -> get('security.context');
+		$user = $securityContext -> getToken() -> getUser();
+		$securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+		$aclProvider -> updateAcl($acl);
+*/
+		$response = new Response();
+        $response -> setContent($folderId);
+        $response -> setStatusCode(201);
+        return $response; 
+	}
+		return View::create($form, 400);
+	}
+	
 }
