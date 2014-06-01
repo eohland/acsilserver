@@ -371,4 +371,58 @@ $list = array("file" => $listAllfiles, "folders" => $listfolders);
 	$response->setContent(file_get_contents($path));
 	return $response;
 	}
+	
+	/**
+	* @Template()
+	*/
+	public function folderAction(Request $request, $folderId) {
+	$folder = new Folder();
+	$form = $this -> createForm(new FolderType(), $folder);
+        //$form->bind($request);
+        $form -> handleRequest($this -> getRequest());
+        if ($form -> isValid()) {
+		$em = $this -> getDoctrine() -> getManager();
+		$foldername = $form -> get('name') -> getData();
+		$folder -> setName($foldername);
+		$folder -> setOwner($this -> getUser() -> getEmail());
+		$folder -> setuploadDate(new \DateTime());
+		$folder -> setPseudoOwner($this -> getUser() -> getUsername());
+		$folder -> setParentFolder($folderId);
+		$folder -> setSize(0);
+		
+		$tempId = $folderId;
+		$totalPath = "";
+		while ($tempId != 0) {
+		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
+		   if (!$parent) {
+        throw $this->createNotFoundException(
+            'No parent folder found for id : '.$tempId
+        );
+		}
+		$totalPath = $parent->getPath().'/'.$totalPath;
+		$tempId = $parent->getParentFolder();
+		}
+		$folder-> setRealPath($totalPath);	
+		$em -> persist($folder);
+		$em -> flush();
+    /**
+    * Set the rights
+    */
+/*		$aclProvider = $this -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($folder);
+		$acl = $aclProvider -> createAcl($objectIdentity);
+
+		$securityContext = $this -> get('security.context');
+		$user = $securityContext -> getToken() -> getUser();
+		$securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+		$aclProvider -> updateAcl($acl);
+*/
+		$response = new Response();
+        $response -> setContent($folderId);
+        $response -> setStatusCode(201);
+        return $response;
+		}
+	}
 }
