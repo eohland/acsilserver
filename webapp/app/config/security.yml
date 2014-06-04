@@ -26,12 +26,6 @@ security:
             pattern:    ^/oauth/v2/token
             security:   false
 
-        oauth_authorize:
-            pattern:    ^/oauth/v2/auth
-            form_login:
-                login_path: /oauth/v2/auth_login
-                check_path: /oauth/v2/auth_login_check
-
         api:
             pattern:    ^/service
             fos_oauth:  true
@@ -52,6 +46,12 @@ security:
             switch_user: true
             #http_basic:
             #    realm: "Secured Demo Area"
+
+        oauth_authorize:
+            pattern:    ^/oauth/v2/auth
+            form_login:
+                login_path: /oauth/v2/auth_login
+                check_path: /oauth/v2/auth_login_check
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
