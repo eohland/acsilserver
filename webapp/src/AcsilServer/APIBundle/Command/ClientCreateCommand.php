@@ -48,9 +48,11 @@ class ClientCreateCommand extends ContainerAwareCommand
     $clientManager->updateClient($client);
     $output->writeln(
       sprintf(
-        'Added a new client with name <info>%s</info> and public id <info>%s</info>.',
+        'Added a new client <info>%s</info> with public id <info>%s</info> '.
+        'and secret <info>%s</info>',
         $client->getName(),
-        $client->getPublicId()
+        $client->getPublicId(),
+        $client->getSecret()
       )
     );
   }
