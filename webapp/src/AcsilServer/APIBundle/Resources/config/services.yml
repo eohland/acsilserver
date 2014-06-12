@@ -1,6 +1,6 @@
 parameters:
-    platform.entity.user.class: Acsilserver\AppBundle\Entity\User
-    platform.user.provider.class: Acsilserver\APIBundle\Provider\UserProvider
+    platform.entity.user.class: AcsilServer\AppBundle\Entity\User
+    platform.user.provider.class: AcsilServer\APIBundle\Provider\UserProvider
 
 services:
 #    api.example:
