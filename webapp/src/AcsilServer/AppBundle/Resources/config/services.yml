@@ -1,7 +1,0 @@
-parameters:
-#    acsil_server_app.example.class: AcsilServer\AppBundle\Example
-
-services:
-#    acsil_server_app.example:
-#        class: %acsil_server_app.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
