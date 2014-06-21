@@ -9,6 +9,20 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Acsilserver1.Resources;
 using Acsilserver1.ViewModels;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
+using System.Threading.Tasks;
+
+using Windows.Storage;
+using Windows.Storage.FileProperties;
+using Windows.Storage.Pickers;
+using Windows.UI.ViewManagement;
+
 
 namespace Acsilserver1
 {
@@ -90,5 +104,15 @@ namespace Acsilserver1
             App.ViewModel.LoadData(folderID);
             
         }
+
+        private async void StartSingleFileUpload(FileOpenPicker picker)
+        {
+            StorageFile file = await picker.PickSingleFileAsync();
+        }
+
+        private void AppBarUpload_Click(object sender, EventArgs e)
+        {
+
+            }
     }
 }
