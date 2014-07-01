@@ -589,4 +589,28 @@ $sharedFiles = $query->getResult();
             'folderId' => $folderId,
         )));
 	}
+		/**
+	 * @Template()
+	 */		
+	public function pasteAction($folderId) {
+	$em = $this -> getDoctrine() -> getManager();
+		$filesToPaste = $em 
+			-> getRepository('AcsilServerAppBundle:MoveFile') 
+			-> findAll();
+			foreach ($filesToPaste as $move) {
+			if ($move->getAction() == 0) {
+			//copy
+			
+			}
+			else 
+			{
+			//cut
+			
+			}
+			}
+			
+			return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
+	}
 }
