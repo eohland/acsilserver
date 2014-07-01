@@ -7,6 +7,7 @@ use AcsilServer\AppBundle\Entity\Document;
 use AcsilServer\AppBundle\Entity\Folder;
 use AcsilServer\AppBundle\Entity\ShareFile;
 use AcsilServer\AppBundle\Entity\RenameFile;
+use AcsilServer\AppBundle\Entity\MoveFile;
 use AcsilServer\AppBundle\Form\ShareFileType;
 use AcsilServer\AppBundle\Form\RenameFileType;
 use AcsilServer\AppBundle\Form\DocumentType;
@@ -557,5 +558,35 @@ $sharedFiles = $query->getResult();
 	$destination = $source.'.zip';
 	
 	return $response;
+	}
+
+	/**
+	 * @Template()
+	 */		
+	public function moveAction($id, $action) {
+	$em = $this -> getDoctrine() -> getManager();
+		$fileToMove = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneBy(array('id' => $id));
+		if (!$fileToMove) {
+			throw $this -> createNotFoundException('No document found for id ' . $id);
+		}
+		if ($action != 0 && $action != 1) {
+			throw $this -> createNotFoundException('Unknown action: ' . $action);
+		}
+	$isExist = $em -> getRepository('AcsilServerAppBundle:MoveFile') -> findOneBy(array('fileId' => $id));
+	if ($isExist)
+	{
+	$em -> remove($isExist);
+	}
+	$move = new MoveFile();
+	$move-> setName($fileToMove->getName());
+	$move-> setAction($action);
+	$move-> setFileId($id);
+	$move-> setPath($fileToMove->getAbsolutePath());
+	$folderId = $fileToMove->getFolder();
+	$em -> persist($move);
+	$em -> flush();
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
 	}
 }

@@ -54,7 +54,6 @@
 				<a class="noconfirm btn btn-primary" href="{{ path('_managefile', {'folderId': folderId|default(0)}) }}">{{ 'no'|trans }}</a>
 			</p>
 		</div><!-- deleteFile -->
-		
 		<div class="row-fluid">
 			<div class="span2">
 				<ul>
@@ -119,7 +118,7 @@
 											{{ document.info.name|trans }} </a>
 							</div><!-- fileName -->
 							<div class="fileSize span2">
-								{{ document.info.size }} Ko
+								{{ document.info.size }} Bytes
 							</div>
 							<div class="fileUploadDate span2">
 								{{ document.info.uploaddate|date }}
@@ -156,6 +155,16 @@
 											<a class="renamefile" href="#renameFile" filename="{{ document.info.name }}" fileid="{{ document.info.id }}" data-toggle="modal">
 												<i class="icon-download"></i> {{ 'Rename'|trans }} 
 											</a>
+										</li>
+										<li><a href="{{ path('_movefile', {'id': document.info.id, 'action':0}) }}">
+									
+											<i class="icon-download-alt"></i> {{ 'Copy'|trans }} </a>
+																	
+										</li>
+										<li><a href="{{ path('_movefile', {'id': document.info.id, 'action':1}) }}">
+									
+											<i class="icon-download-alt"></i> {{ 'Cut'|trans }} </a>
+																	
 										</li>
 									{% endif %}
 									{% if is_granted('DELETE', document.info) %}
