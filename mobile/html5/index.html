@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" ng-app="restaurantApp">
+<html lang="en" ng-app="clientApp">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,6 +20,7 @@
 
     <script src="js/angular.min.js"></script>
     <script src="js/angular-route.min.js"></script>
+    <script src="js/angular-resource.min.js"></script>
     <script src="js/angular-sanitize.min.js"></script>
     <script src="js/ui-bootstrap-tpls-0.11.0.js"></script>
     <script src="js/API.js"></script>
@@ -31,10 +32,15 @@
       console.log(utils.readCookie("session"));
     </script>
   </head>
-  <body>
+  <body ng-controller="AppCtrl">
     <!-- Begin page content -->
-
-    <div ng-view></div>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+	<a class="navbar-brand" href="#/properties" ng-if="signIn() == true"><span class="glyphicon glyphicon-cog">{{signIn}}</span></a>
+	<a class="navbar-brand" ng-click="back()" ng-if="signIn() == false"><span class="glyphicon glyphicon-chevron-left">{{signIn}}</span></a>
+      </div>
+    </nav>
+    <div ng-view class="container"></div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
