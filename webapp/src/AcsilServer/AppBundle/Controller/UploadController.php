@@ -7,6 +7,7 @@ use AcsilServer\AppBundle\Entity\Document;
 use AcsilServer\AppBundle\Entity\Folder;
 use AcsilServer\AppBundle\Entity\ShareFile;
 use AcsilServer\AppBundle\Entity\RenameFile;
+use AcsilServer\AppBundle\Entity\MoveFile;
 use AcsilServer\AppBundle\Form\ShareFileType;
 use AcsilServer\AppBundle\Form\RenameFileType;
 use AcsilServer\AppBundle\Form\DocumentType;
@@ -44,6 +45,7 @@ class UploadController extends Controller {
 			-> getRepository('AcsilServerAppBundle:Document') 
 			-> findBy(array('folder' => $folderId, 'isProfilePicture' => 0));
 
+
 		$listusers = $em 
 			-> getRepository('AcsilServerAppBundle:User') 
 			-> findAll();
@@ -54,6 +56,14 @@ class UploadController extends Controller {
 		if ($folderId == 0)
 		{
 		$parentId = 0;
+			$query = $em->createQuery(
+    'SELECT d
+    FROM AcsilServerAppBundle:Document d
+    WHERE d.folder > :folder AND d.isShared = 1'
+)->setParameter('folder', 0);
+
+$sharedFiles = $query->getResult();
+		$listAllfiles = array_merge($listAllfiles, $sharedFiles);
 		}
 		else
 		{
@@ -139,6 +149,7 @@ class UploadController extends Controller {
 		$filename = $parameters['name'];
 		$document -> setName($filename);
 		$document -> setIsProfilePicture(0);
+		$document -> setIsShared(0);
 		if ($document -> getFile() == null) {
 			return $this -> redirect($this -> generateUrl('_upload', array(
             'folderId' => $folderId,
@@ -224,9 +235,11 @@ class UploadController extends Controller {
 		$builder = new MaskBuilder();
 		if ($right == "EDIT") {
 			$builder -> add('view') -> add('edit') -> add('delete');
+			$document->setIsShared(1);
 			}
 		if ($right == "VIEW") {
 			$builder -> add('view');
+			$document->setIsShared(1);
 		}
         /**
 		 * Set the rights for the other user 
@@ -249,7 +262,13 @@ class UploadController extends Controller {
 			var_dump($builder -> get());
 			$acl -> insertObjectAce($securityIdentity, $mask);
 		}
+	else
+	{
+			$document->setIsShared(0);
+	}
 		$aclProvider -> updateAcl($acl);
+		$em -> persist($document);
+		$em -> flush();
 		return $this -> redirect($this -> generateUrl('_managefile', array(
             'folderId' => $folderId,
         )));
@@ -345,9 +364,11 @@ class UploadController extends Controller {
 		$builder = new MaskBuilder();
 		if ($newRights == "EDIT") {
 			$builder -> add('view') -> add('edit') -> add('delete');
+			$document->setIsShared(1);
 		}
 		if ($newRights == "VIEW") {
 			$builder -> add('view');
+			$document->setIsShared(1);
 		}
 
 		$aclProvider = $this -> container -> get('security.acl.provider');
@@ -372,8 +393,14 @@ class UploadController extends Controller {
 			$mask = $builder -> get();
 			var_dump($builder -> get());
 			$acl -> insertObjectAce($securityIdentity, $mask);
-		}
+			}
+			else
+			{
+			$document->setIsShared(0);			
+			}
 		$aclProvider -> updateAcl($acl);
+		$em -> persist($document);
+		$em -> flush();
 		return $this -> redirect($this -> generateUrl('_managefile', array(
             'folderId' => $folderId,
         )));
@@ -531,5 +558,59 @@ class UploadController extends Controller {
 	$destination = $source.'.zip';
 	
 	return $response;
+	}
+
+	/**
+	 * @Template()
+	 */		
+	public function moveAction($id, $action) {
+	$em = $this -> getDoctrine() -> getManager();
+		$fileToMove = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneBy(array('id' => $id));
+		if (!$fileToMove) {
+			throw $this -> createNotFoundException('No document found for id ' . $id);
+		}
+		if ($action != 0 && $action != 1) {
+			throw $this -> createNotFoundException('Unknown action: ' . $action);
+		}
+	$isExist = $em -> getRepository('AcsilServerAppBundle:MoveFile') -> findOneBy(array('fileId' => $id));
+	if ($isExist)
+	{
+	$em -> remove($isExist);
+	}
+	$move = new MoveFile();
+	$move-> setName($fileToMove->getName());
+	$move-> setAction($action);
+	$move-> setFileId($id);
+	$move-> setPath($fileToMove->getAbsolutePath());
+	$folderId = $fileToMove->getFolder();
+	$em -> persist($move);
+	$em -> flush();
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
+	}
+		/**
+	 * @Template()
+	 */		
+	public function pasteAction($folderId) {
+	$em = $this -> getDoctrine() -> getManager();
+		$filesToPaste = $em 
+			-> getRepository('AcsilServerAppBundle:MoveFile') 
+			-> findAll();
+			foreach ($filesToPaste as $move) {
+			if ($move->getAction() == 0) {
+			//copy
+			
+			}
+			else 
+			{
+			//cut
+			
+			}
+			}
+			
+			return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
 	}
 }

@@ -95,7 +95,13 @@ _download:
     pattern:  /acsil/download/{id}
     defaults: { _controller: AcsilServerAppBundle:Upload:download, id: '' }
 
+_movefile:
+    pattern:  /acsil/myfile/move/{id}/{action}
+    defaults: { _controller: AcsilServerAppBundle:Upload:move, id: '' }
 
+_pastefile:
+    pattern:  /acsil/myfile/paste/{folderId}/
+    defaults: { _controller: AcsilServerAppBundle:Upload:paste, folderId: '' }
 #####################################################################################
 #                               Folder management                                   #
 #####################################################################################

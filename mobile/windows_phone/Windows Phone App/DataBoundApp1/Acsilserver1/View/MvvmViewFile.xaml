@@ -66,9 +66,12 @@
         <Grid x:Name="ContentPanel"
 			Grid.Row="1"
 			Margin="12,0,12,0">
-            <Image x:Name="FileImage" RenderTransformOrigin="0.5,0.5" Source="{Binding URL}" Margin="0,0,10,10"/>
-            <MediaElement x:Name="Media" Margin="10" Source="{Binding URL}" Volume="100" Tap="Media_Tap"/>
+            <Image x:Name="FileImage" RenderTransformOrigin="0.5,0.5" Source="{Binding URL}" Margin="0,0,10,47"/>
+            <MediaElement x:Name="Media" Margin="10,10,10,47" Source="{Binding URL}" Volume="100" Tap="Media_Tap"/>
+            <ProgressBar Minimum="0" Value="{Binding ElementName=MediaElement, Path=Position.Ticks}" Maximum="{Binding ElementName=MediaElement, Path=NaturalDuration.TimeSpan.Ticks}" Margin="0,525,0,0"></ProgressBar>
 
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Text="{Binding ElementName=MediaElement, Path=Position.Ticks}" Margin="375,567,0,0"></TextBlock>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Text="{Binding ElementName=MediaElement, Path=NaturalDuration}" Margin="0,525,387,0"></TextBlock>
         </Grid>
 
     </Grid>

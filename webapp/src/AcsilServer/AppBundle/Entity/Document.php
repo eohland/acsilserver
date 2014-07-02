@@ -19,7 +19,11 @@ class Document extends Data
      * @ORM\Column(type="integer")
      */
 	 private $isProfilePicture;
-	     
+	
+ /**
+     * @ORM\Column(type="integer")
+     */
+	 private $isShared;	
 	/**
      * @Assert\File(maxSize="6000000")
      */
@@ -59,10 +63,28 @@ class Document extends Data
     
         return $this;
     }
-		
+
+			    /**
+     * Set isShared
+     *
+     * @param integer $IsShared
+     * @return Document
+     */
+	 public function setIsShared($isShared)
+    {
+        $this->isShared = $isShared;
+    
+        return $this;
+    }
+	
 	public function getIsProfilePicture()
     {
         return $this->isProfilePicture;
+    }
+
+	public function getIsShared()
+    {
+        return $this->isShared;
     }
 	
 	public function getFile()
