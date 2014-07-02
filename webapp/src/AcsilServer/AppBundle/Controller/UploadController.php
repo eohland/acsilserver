@@ -20,6 +20,7 @@ use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use \ZipArchive;
 use \RecursiveIteratorIterator;
 /**
@@ -597,17 +598,80 @@ $sharedFiles = $query->getResult();
 		$filesToPaste = $em 
 			-> getRepository('AcsilServerAppBundle:MoveFile') 
 			-> findAll();
+			$currentFolder = $em 
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('id' => $folderId));
 			foreach ($filesToPaste as $move) {
-			if ($move->getAction() == 0) {
-			//copy
-			
+
+			$newDoc = new Document();
+			$newDoc -> setName($move->getName());
+			$newDoc -> setIsProfilePicture(0);
+			$newDoc -> setIsShared(0);
+			$newDoc -> setOwner($this -> getUser() -> getEmail());
+			$newDoc -> setuploadDate(new \DateTime());
+			$newDoc -> setPseudoOwner($this -> getUser() -> getUsername());
+			$newDoc -> setFolder($folderId);
+			$origin = $em 
+			-> getRepository('AcsilServerAppBundle:Document') 
+			-> findOneBy(array('id' => $move->getFileId()));
+			$newDoc->setSize($origin->getSize());
+			$file = $origin->getFile();
+			$newDoc->setFile($origin->getFile());
+			$tempPath = sha1(uniqid(mt_rand(), true));
+			//$endName = $origin->getFile()->guessExtension();
+			$endName = "jpeg";
+			$newDoc->setPath(substr($tempPath, -6).'.'.$endName);
+			$tempId = $folderId;
+			$totalPath = "";
+			while ($tempId != 0) {
+			$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
+			if (!$parent) {
+			throw $this->createNotFoundException(
+				'No parent found for id : '.$id
+			);
 			}
-			else 
+			$totalPath = $parent->getPath().'/'.$totalPath;
+			$tempId = $parent->getParentFolder();
+			}
+			if ($folderId != 0)
 			{
-			//cut
-			
-			}
-			}
+			$currentFolder->setSize($currentFolder->getSize() + 1);
+		$em -> persist($currentFolder);
+		}
+		$newDoc -> setRealPath($totalPath);
+
+		
+
+	
+		copy($origin->getAbsolutePath(), $newDoc->getAbsolutePath());
+		//cut
+		
+			if ($move->getAction() == 1) {
+			if ($origin->getFolder() != 0)
+			{
+			$oldFolder = $em 
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('id' => $origin->getFolder()));
+			$oldFolder->setSize($oldFolder->getSize() - 1);
+		$em -> persist($oldFolder);
+		}
+		$em -> remove($origin);
+		}
+		$em -> persist($newDoc);
+		$em -> remove($move);
+		$em -> flush();
+		$aclProvider = $this -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($newDoc);
+		$acl = $aclProvider -> createAcl($objectIdentity);
+
+		$securityContext = $this -> get('security.context');
+		$user = $securityContext -> getToken() -> getUser();
+		$securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+		$aclProvider -> updateAcl($acl);
+
+		}
 			
 			return $this -> redirect($this -> generateUrl('_managefile', array(
             'folderId' => $folderId,
