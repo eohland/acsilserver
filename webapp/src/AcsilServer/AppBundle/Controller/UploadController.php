@@ -618,9 +618,9 @@ $sharedFiles = $query->getResult();
 			$file = $origin->getFile();
 			$newDoc->setFile($origin->getFile());
 			$tempPath = sha1(uniqid(mt_rand(), true));
-			//$endName = $origin->getFile()->guessExtension();
-			$endName = "jpeg";
-			$newDoc->setPath(substr($tempPath, -6).'.'.$endName);
+			//$endName = "jpeg";
+			$endName = strstr($origin->getPath(), '.');
+			$newDoc->setPath(substr($tempPath, -6).$endName);
 			$tempId = $folderId;
 			$totalPath = "";
 			while ($tempId != 0) {
