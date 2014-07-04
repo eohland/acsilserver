@@ -115,7 +115,8 @@ $sharedFiles = $query->getResult();
 				array_push($listfiles, $listUserFileInfos);
 			}
 		}
-		
+		//die(print_r($listfiles));
+		//die(print_r($listUserFileInfos));	
 		return $this -> render('AcsilServerAppBundle:Acsil:files.html.twig', 
 			array(
 				'listfiles' => $listfiles, 
@@ -184,7 +185,6 @@ $sharedFiles = $query->getResult();
 		$em -> persist($folder);
 		}
 		$document -> setRealPath($totalPath);
-		
 		$em -> persist($document);
 		$em -> flush();
     /**
@@ -536,7 +536,6 @@ $sharedFiles = $query->getResult();
 	else
 	    $path = $document->getUploadRootDir().'/'.$document->getPath();
 	$response->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', $document->getName().'.'.pathinfo($path, PATHINFO_EXTENSION)));
-	
 	$response->setContent(file_get_contents($path));
 	return $response;
 	}
@@ -550,14 +549,35 @@ $sharedFiles = $query->getResult();
 	$folder = $em 
 			-> getRepository('AcsilServerAppBundle:Folder') 
 			-> findOneBy(array('id' => $id));
-	$response = new Response();
-	$response->headers->set('Content-type', 'application/octet-stream');
-	if ($folder->getRealPath())
-	    $source = $folder->getUploadRootDir().'/'.$folder->getRealPath().'/'.$folder->getPath();
-	else
-	    $source = $folder->getUploadRootDir().'/'.$folder->getPath();
-	$destination = $source.'.zip';
+
+			/**            $zip->addFromString(basename($f),  file_get_contents($f)); 
+ 	$response->headers->set('Content-Length: ' . filesize($zipName));
+	readfile($zipName);
+*/
 	
+$source_dir = $folder->getAbsolutePath();
+$zip_file =  basename($source_dir.".zip");
+$file_list = $folder->listDirectory($folder->getAbsolutePath());
+$zip = new \ZipArchive();
+if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
+  foreach ($file_list as $file) {
+    if ($file !== $zip_file) {
+	print_r($file);
+	echo('<td>' . "\n");
+	if (is_readable($file))
+      $zip->addFile($file, substr($file, strlen($source_dir)));
+    }
+	else
+die(print_r("Don't exist."));	
+  }
+  if ($zip->close() == false)
+die(print_r("Not created."));
+  
+  }
+	$response = new Response();
+	$response->headers->set('Content-type', 'application/zip');
+	$response->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', $zip_file));
+	$response->setContent(file_get_contents($zip_file));
 	return $response;
 	}
 
