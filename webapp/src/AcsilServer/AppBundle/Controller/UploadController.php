@@ -577,7 +577,7 @@ die(print_r("Not created."));
 	$response = new Response();
 	$response->headers->set('Content-type', 'application/zip');
 	$response->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', $zip_file));
-	$response->setContent(file_get_contents($zip_file));
+	//$response->setContent(file_get_contents($zip_file));
 	return $response;
 	}
 
