@@ -16,6 +16,9 @@ security:
     providers:
         user_db:
           entity: { class: AcsilServerAppBundle:User }
+        user_provider:
+          id: platform.user.provider
+
 
     firewalls:
         dev:
