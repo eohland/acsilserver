@@ -124,12 +124,12 @@ class OperationsController extends Controller {
 
             $id = $form -> get('deleteId') -> getData();
 
-            //$securityContext = $this -> get('security.context');
+            $securityContext = $this -> get('security.context');
             $em = $this -> getDoctrine() -> getManager();
             $fileToDelete = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneBy(array('id' => $id));
-            /*if (false === $securityContext -> isGranted('DELETE', $fileToDelete)) {
+            if (false === $securityContext -> isGranted('DELETE', $fileToDelete)) {
              throw new AccessDeniedException();
-             }*/
+             }
 
             $aclProvider = $this -> get('security.acl.provider');
             $objectIdentity = ObjectIdentity::fromDomainObject($fileToDelete);
@@ -197,8 +197,8 @@ class OperationsController extends Controller {
             /**
              * Set the rights
              */
-            /*           $aclProvider = $this -> get('security.acl.provider');
-             $objectIdentity = ObjectIdentity::fromDomainObject($document);
+                       $aclProvider = $this -> get('security.acl.provider');
+             $objectIdentity = ObjectIdentity::fromDomainObject($newDocument);
              $acl = $aclProvider -> createAcl($objectIdentity);
 
              $securityContext = $this -> get('security.context');
@@ -207,7 +207,7 @@ class OperationsController extends Controller {
 
              $acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
              $aclProvider -> updateAcl($acl);
-             */
+             
 
         }
         $em -> flush();
@@ -216,27 +216,49 @@ class OperationsController extends Controller {
 	
  public function listFilesAction($folderId) {
 		$em = $this -> getDoctrine() -> getManager();
-		//$securityContext = $this -> get('security.context');
+		$securityContext = $this -> get('security.context');
+
 		$listAllfiles = $em 
 			-> getRepository('AcsilServerAppBundle:Document') 
 			-> findBy(array('folder' => $folderId, 'isProfilePicture' => 0));
+
+
 		$listusers = $em 
 			-> getRepository('AcsilServerAppBundle:User') 
 			-> findAll();
-     /**
-      * Get informations about folders
-      */			
+		
 		$listfolders = $em
 			-> getRepository('AcsilServerAppBundle:Folder') 
 			-> findBy(array('parentFolder' => $folderId, 'owner' => $this->getUser()->getEmail()));
+		if ($folderId == 0)
+		{
+		$parentId = 0;
+			$query = $em->createQuery(
+    'SELECT d
+    FROM AcsilServerAppBundle:Document d
+    WHERE d.folder > :folder AND d.isShared = 1'
+)->setParameter('folder', 0);
+
+$sharedFiles = $query->getResult();
+		$listAllfiles = array_merge($listAllfiles, $sharedFiles);
+		}
+		else
+		{
+		$currentFolder = $em
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('id' => $folderId, 'owner' => $this->getUser()->getEmail()));
+		$parentId = $currentFolder->getParentFolder();
+		}
      /**
       * Get informations about files
       */	
-		/*$listfiles = array();
+		$listfiles = array();
 		$shareinfos = array();
 		foreach ($listAllfiles as $file) {
 		if ($securityContext -> isGranted('EDIT', $file) === TRUE 
-				|| $securityContext -> isGranted('VIEW', $file) === TRUE) {				
+				|| $securityContext -> isGranted('VIEW', $file) === TRUE) {
+		
+				
 				$listUserFileInfos = array();
 				$sharedFileUserInfos = array();
 				if ($securityContext -> isGranted('OWNER', $file) === TRUE) {
@@ -268,9 +290,8 @@ class OperationsController extends Controller {
 					$listUserFileInfos = array("info" => $file, "sharedFileUserInfos" => '');
 				array_push($listfiles, $listUserFileInfos);
 			}
-		}*/
-	//$list = array("file" => $listfiles, "folders" => $listfolders);
-$list = array("file" => $listAllfiles, "folders" => $listfolders);		
+		}	
+$list = array("files" => $listfiles, "folders" => $listfolders, "users" => $listusers);		
 	return ($list);
 	}
 
@@ -333,7 +354,7 @@ $list = array("file" => $listAllfiles, "folders" => $listfolders);
     /**
     * Set the rights
     */
-/*		$aclProvider = $this -> get('security.acl.provider');
+		$aclProvider = $this -> get('security.acl.provider');
 		$objectIdentity = ObjectIdentity::fromDomainObject($document);
 		$acl = $aclProvider -> createAcl($objectIdentity);
 
@@ -343,7 +364,7 @@ $list = array("file" => $listAllfiles, "folders" => $listfolders);
 
 		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
 		$aclProvider -> updateAcl($acl);
-*/
+
 		$response = new Response();
         $response -> setContent($folderId);
         $response -> setStatusCode(201);
@@ -408,7 +429,7 @@ $list = array("file" => $listAllfiles, "folders" => $listfolders);
     /**
     * Set the rights
     */
-/*		$aclProvider = $this -> get('security.acl.provider');
+		$aclProvider = $this -> get('security.acl.provider');
 		$objectIdentity = ObjectIdentity::fromDomainObject($folder);
 		$acl = $aclProvider -> createAcl($objectIdentity);
 
@@ -418,7 +439,7 @@ $list = array("file" => $listAllfiles, "folders" => $listfolders);
 
 		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
 		$aclProvider -> updateAcl($acl);
-*/
+
 		$response = new Response();
         $response -> setContent($folderId);
         $response -> setStatusCode(201);
