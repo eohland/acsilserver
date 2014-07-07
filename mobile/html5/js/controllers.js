@@ -10,15 +10,16 @@ signinCtrl.controller('signinCtrl', ['$scope', '$http', function($scope, $http) 
     $scope.signIn = function (login, password) {
 	console.log(login+"|"+password);
 	myData = $.param({grant_type: "password",
-			username: login,
-			password: password,
-			client_id: "631fdiz4xdkwgo0wgc0k4g8ccgog0cg84k808gsgw4s8okosso"});
+			  username: login,
+			  password: password,
+			  client_id: "1_27mi5mierc008884gswkkcsosowco84s4c4k88swwkw84ccgs4",
+			  client_secret: "57ac67c1x1wckk8s0sgsogs0os0s0g0k88k8k0co0g08kgw4o8"});
 	console.log(myData);
 	//myData = decodeURIComponent(myData);
 	//console.log(myData);
 	$http({
 	    method: 'POST',
-	    url: "http://localhost/acs/oauth/v2/token",
+	    url: "http://localhost/acs/app_dev.php/oauth/v2/token",
 	    data: myData,
 	    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 	}).success(function(data) {
