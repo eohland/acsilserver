@@ -40,8 +40,11 @@ class Folder extends Data
      */
     public function preUpload()
     {
-		$tempPath = sha1(uniqid(mt_rand(), true));
-        $this->setPath(substr($tempPath, -6));
+if ($this->getPath() == null)
+{	
+	$tempPath = sha1(uniqid(mt_rand(), true));
+        $this->setPath('d'.substr($tempPath, -6));
+ }
  }
     
 
@@ -55,10 +58,16 @@ class Folder extends Data
 	if (file_exists($tempPath) == false)
 		mkdir ($tempPath);
 	if ($this->realPath)
-	    mkdir($this->getUploadRootDir().'/'.$this->realPath.'/'.$this->path);
+	    {
+	if (file_exists($this->getUploadRootDir().'/'.$this->realPath.'/'.$this->path) == false)
+		mkdir($this->getUploadRootDir().'/'.$this->realPath.'/'.$this->path);
+		}
 	else
+		{
+		if (file_exists($this->getUploadRootDir().'/'.$this->path) == false)
 		mkdir($this->getUploadRootDir().'/'.$this->path);
-    }
+		}
+	}
 
     /**
      * @ORM\PostRemove()
@@ -83,7 +92,7 @@ class Folder extends Data
 	else
 		return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
     }
-
+	
     public function getUploadRootDir()
     {
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
@@ -92,5 +101,46 @@ class Folder extends Data
     public function getUploadDir()
     {
         return 'uploads/'.$this->getPseudoOwner();
+    }	
+
+	public function listDirectory($dir)
+	{
+	$result = array();
+//	die(print_r($dir));
+	$root = array();
+	if (is_dir($dir))
+{
+	$root = scandir($dir);
+//die(print_r($root));
+	}
+	foreach($root as $value) {
+      if($value === '.' || $value === '..') {
+        continue;
+      }
+	  
+/*      if(is_file("$dir$value")) {
+        $result[] = "$dir$value";
+        continue;
+      }
+	if (@opendir("$dir$value"))
+	die(print_r("YEAAAHHH"));
+      if(is_dir("$dir$value")) {
+	  die(print_r(var_dump(is_dir("$dir$value"))));
+        $result[] = "$dir$value/";
+      }*/
+if ($value[0] == 'f')
+{
+ $result[] = "$dir$value";
+} 
+if ($value[0] == 'd')
+{
+ $result[] = "$dir/$value/";
+} 
+ foreach(self::listDirectory("$dir/$value/") as $value)
+      {
+        $result[] = $value;
+      }
     }
+	return $result;
+	}
 }

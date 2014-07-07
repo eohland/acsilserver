@@ -31,212 +31,255 @@ use AcsilServer\AppBundle\Form\DocumentType;
 use AcsilServer\AppBundle\Entity\Folder;
 use AcsilServer\AppBundle\Form\FolderType;
 
+
+//!  File operations API class. 
+/*!
+  Class of the API. Perform the operations on the files
+*/
 class OperationsController extends Controller {
-    /**
-     * @Rest\View()
-     */
-    public function copyAction(Request $request) {
-        $copy = new Copy();
+  /**
+   * @Rest\View()
+   */
 
-        $form = $this -> createForm(new CopyType(), $copy);
-        //$form->bind($request);
-        $form -> handleRequest($this -> getRequest());
+  //! Copy a file.
+  /*!
+    \param $request the request containing the data sent to the API.
+    \return The HTTP status code
+    \sa moveAction(Request $request) and copyFile($is, $path, $action, $reponse)
+  */
+  public function copyAction(Request $request) {
+    $copy = new Copy();	//!< the data model for the form.
 
-        if ($form -> isValid()) {
-            $response = new Response();
-            $id = $form -> get('fromId') -> getData();
-            $path = $form -> get('toPath') -> getData();
-            //$document= $this->container->get('doctrine.entity_manager')->getRepository('Document')->find($id);
+    $form = $this -> createForm(new CopyType(), $copy);
+    $form -> handleRequest($this -> getRequest());
 
-            $ret = $this -> copyFile($id, $path, "copy", $response);
-
-            /*$document->setName($name);
-             $em -> persist($document);
-             $em -> flush();*/
-            $response -> setContent($ret);
-            $response -> setStatusCode(201);
-            return $response;
-        }
-        return View::create($form, 400);
+    if ($form -> isValid()) {
+      $response = new Response(); 	//!< the response to the request.
+      $id = $form -> get('fromId') -> getData();	//!< the id of the file to copy.
+      $path = $form -> get('toPath') -> getData();	//!< the file's destination path.
+      $ret = $this -> copyFile($id, $path, "copy", $response); //!< the content of the response to the request
+      $response -> setContent($ret);
+      $response -> setStatusCode(201);
+      return $response;
     }
+    return View::create($form, 400);
+  }
 
-    public function renameAction(Request $request) {
-        $rename = new Rename();
+  //! Rename a file.
+  /*!
+    \param $request the request containing the data sent to the API.
+    \return The HTTP status code
+    \sa moveAction(Request $request)
+  */
+  public function renameAction(Request $request) {
+    $rename = new Rename();	//!< the data model for the form.
 
-        $form = $this -> createForm(new RenameType(), $rename);
-        //$form->bind($request);
-        $form -> handleRequest($this -> getRequest());
+    $form = $this -> createForm(new RenameType(), $rename);
+    $form -> handleRequest($this -> getRequest());
 
-        if ($form -> isValid()) {
-            $response = new Response();
-            //TODO: Perform copy action
-            $id = $form -> get('fromId') -> getData();
-            $name = $form -> get('toName') -> getData();
-            //$document= $this->container->get('doctrine.entity_manager')->getRepository('Document')->find($id);
-            $em = $this -> getDoctrine() -> getManager();
-            $document = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneById($id);
-            $document -> setName($name);
-            $em -> persist($document);
-            $em -> flush();
-            $response -> setContent($name . "+" . $id);
-            $response -> setStatusCode(201);
-            return $response;
-        }
-        return View::create($form, 400);
+    if ($form -> isValid()) {
+      $response = new Response(); 	//!< the response to the request.
+      $id = $form -> get('fromId') -> getData();	//!< the id of the file to rename.
+      $name = $form -> get('toName') -> getData();	//!< the file's new name.
+      $em = $this -> getDoctrine() -> getManager();
+      $document = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneById($id);
+      $document -> setName($name);
+      $em -> persist($document);
+      $em -> flush();
+      $response -> setContent($name . "+" . $id);
+      $response -> setStatusCode(201);
+      return $response;
     }
+    return View::create($form, 400);
+  }
 
-    public function moveAction() {
-        $move = new Move();
+  //! Move a file.
+  /*!
+    \return The HTTP status code
+    \sa renameAction(Request $request) and copyFile($is, $path, $action, $reponse)
+  */
+  public function moveAction() {
+    $move = new Move();	//!< the data model for the form.
 
-        $form = $this -> createForm(new MoveType(), $move);
-        //$form->bind($request);
-        $form -> handleRequest($this -> getRequest());
+    $form = $this -> createForm(new MoveType(), $move);
+    $form -> handleRequest($this -> getRequest());
 
-        if ($form -> isValid()) {
-            $response = new Response();
-            //TODO: Perform copy action
-            $id = $form -> get('fromId') -> getData();
-            $path = $form -> get('toPath') -> getData();
-            //$document= $this->container->get('doctrine.entity_manager')->getRepository('Document')->find($id);
-
-            $ret = $this -> copyFile($id, $path, "move", $response);
-
-            /*$document->setName($name);
-             $em -> persist($document);
-             $em -> flush();*/
-            $response -> setContent($ret);
-            $response -> setStatusCode(201);
-            return $response;
-        }
-        return View::create($form, 400);
+    if ($form -> isValid()) {
+      $response = new Response(); 	//!< the response to the request.
+      $id = $form -> get('fromId') -> getData();	//!< the id of the file to move.
+      $path = $form -> get('toPath') -> getData();	//!< the file's destination path.
+      $ret = $this -> copyFile($id, $path, "move", $response); //!< the content of the response to the request
+      $response -> setContent($ret);
+      $response -> setStatusCode(201);
+      return $response;
     }
+    return View::create($form, 400);
+  }
 
-    public function deleteAction() {
-        $delete = new Delete();
+  //! Delete a file.
+  /*!
+    \return The HTTP status code
+  */
+  public function deleteAction() {
+    $delete = new Delete();	//!< the data model for the form.
 
-        $form = $this -> createForm(new DeleteType(), $delete);
-        //$form->bind($request);
-        $form -> handleRequest($this -> getRequest());
+    $form = $this -> createForm(new DeleteType(), $delete);
+    $form -> handleRequest($this -> getRequest());
 
-        if ($form -> isValid()) {
-            $response = new Response();
-            //TODO: Perform copy action
+    if ($form -> isValid()) {
+      $response = new Response(); 	//!< the response to the request.
+      $id = $form -> get('deleteId') -> getData(); 	//!< the id of the file to delete.
 
-            $id = $form -> get('deleteId') -> getData();
+      //$securityContext = $this -> get('security.context');
+      $em = $this -> getDoctrine() -> getManager();
+      $fileToDelete = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneBy(array('id' => $id));
+      /*if (false === $securityContext -> isGranted('DELETE', $fileToDelete)) {
+	throw new AccessDeniedException();
+	}*/
 
-            //$securityContext = $this -> get('security.context');
-            $em = $this -> getDoctrine() -> getManager();
-            $fileToDelete = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneBy(array('id' => $id));
-            /*if (false === $securityContext -> isGranted('DELETE', $fileToDelete)) {
-             throw new AccessDeniedException();
-             }*/
+      $aclProvider = $this -> get('security.acl.provider');	//!< the file's acl rights.
+      $objectIdentity = ObjectIdentity::fromDomainObject($fileToDelete);
+      $aclProvider -> deleteAcl($objectIdentity);
+      $em -> remove($fileToDelete);
+      $em -> flush();
 
-            $aclProvider = $this -> get('security.acl.provider');
-            $objectIdentity = ObjectIdentity::fromDomainObject($fileToDelete);
-            $aclProvider -> deleteAcl($objectIdentity);
-            $em -> remove($fileToDelete);
-            $em -> flush();
-
-            $response -> setContent($id);
-            $response -> setStatusCode(201);
-            return $response;
-        }
-        return View::create($form, 400);
+      $response -> setContent($id);
+      $response -> setStatusCode(201);
+      return $response;
     }
+    return View::create($form, 400);
+  }
 
-    private function copyFile($id, $toPath, $action, $response) {
-        $i = 1;
-        $realPath = "";
-        $parentFolder = 0;
+  //! Perform the action on a file.
+  /*!
+    \param $id the id of the file to act on.
+    \param $toPath the destination path.
+    \param $action the action to perform.
+    \param $response the reponse to set.
+    \return $response set to the correct HTTP status code
+    \sa moveAction(Request $request), renameAction(Request $request) and copyAction(Request $request).
+  */
+  private function copyFile($id, $toPath, $action, $response) {
+    $i = 1;	//!< an index to parse the path
+    $realPath = ""; 	//!< a sting to store the real path on hard drive.
+    $parentFolder = 0;	//!< an integer to store the parent folder when browsing the hard drive.
 
-        $em = $this -> getDoctrine() -> getManager();
-        $document = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneById($id);
-        if ($toPath != "/") {
-            $tabName = explode('/', $toPath);
-            while ($i < count($tabName)) {
-                $folder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneBy(array("parentFolder" => $parentFolder, "name" => $tabName[$i]));
-                if ($folder == NULL) {
-                    $response -> setStatusCode(400);
-                    return $response;
-                }
-                $realPath .= $folder -> getPath() . "/";
-                $parentFolder = $folder -> getId();
-                $i++;
-            }
-            $newPath = $folder -> getAbsolutePath();
-        } else {
+    $em = $this -> getDoctrine() -> getManager();
+    $document = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneById($id); 	//!< the file to copy/move.
+    if ($toPath != "/") {
+      $tabName = explode('/', $toPath);
+      while ($i < count($tabName)) {
+	$folder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneBy(array("parentFolder" => $parentFolder, "name" => $tabName[$i]));
+	if ($folder == NULL) {
+	  $response -> setStatusCode(400);
+	  return $response;
+	}
+	$realPath .= $folder -> getPath() . "/";
+	$parentFolder = $folder -> getId();
+	$i++;
+      }
+      $newPath = $folder -> getAbsolutePath();	//!< the new location's absolute path.
+    } else {
 
-            $newPath = $document -> getAbsolutePath();
-            $newPath = substr($newPath, 0, strpos($newPath, $document -> getRealPath()));
-        }
-        if (copy($document -> getAbsolutePath(), $newPath . "/" . $document -> getPath()) == FALSE)
-            return "FALSE";
-
-        if ($action == "move") {
-            $oldFilename = $document -> getAbsolutePath();
-            if ($parentFolder != 0)
-                $document -> setFolder(TRUE);
-            $document -> setRealPath($realPath);
-            $em -> persist($document);
-            unlink($oldFilename);
-        } else {
-            $newDocument = new Document();
-            if ($parentFolder != 0)
-                $newDocument -> setFolder(TRUE);
-            $newDocument -> setRealPath($realPath);
-            $newDocument -> setPath($document -> getPath());
-            $newDocument -> setIsProfilePicture($document -> getIsProfilePicture());
-            $newDocument -> setSize($document -> getSize());
-            $newDocument -> setName($document -> getname());
-            $newDocument -> setOwner($document -> getOwner());
-            $newDocument -> setuploadDate($document -> getUploadDate());
-            $newDocument -> setPseudoOwner($document -> getPseudoOwner());
-
-            $em -> persist($newDocument);
-
-            /**
-             * Set the rights
-             */
-            /*           $aclProvider = $this -> get('security.acl.provider');
-             $objectIdentity = ObjectIdentity::fromDomainObject($document);
-             $acl = $aclProvider -> createAcl($objectIdentity);
-
-             $securityContext = $this -> get('security.context');
-             $user = $securityContext -> getToken() -> getUser();
-             $securityIdentity = UserSecurityIdentity::fromAccount($user);
-
-             $acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
-             $aclProvider -> updateAcl($acl);
-             */
-
-        }
-        $em -> flush();
-        return (">>>>" . $realPath . "+" . $id);
+      $newPath = $document -> getAbsolutePath();	//!< the new location's absolute path.
+      $newPath = substr($newPath, 0, strpos($newPath, $document -> getRealPath()));
     }
-	
+    if (copy($document -> getAbsolutePath(), $newPath . "/" . $document -> getPath()) == FALSE)
+      return "FALSE";
+
+    if ($action == "move") {
+      $oldFilename = $document -> getAbsolutePath();
+      if ($parentFolder != 0)
+	$document -> setFolder(TRUE);
+      $document -> setRealPath($realPath);
+      $em -> persist($document);
+      unlink($oldFilename);
+    } else {
+      $newDocument = new Document();
+      if ($parentFolder != 0)
+	$newDocument -> setFolder(TRUE);
+      $newDocument -> setRealPath($realPath);
+      $newDocument -> setPath($document -> getPath());
+      $newDocument -> setIsProfilePicture($document -> getIsProfilePicture());
+      $newDocument -> setSize($document -> getSize());
+      $newDocument -> setName($document -> getname());
+      $newDocument -> setOwner($document -> getOwner());
+      $newDocument -> setuploadDate($document -> getUploadDate());
+      $newDocument -> setPseudoOwner($document -> getPseudoOwner());
+
+      $em -> persist($newDocument);
+
+      /**
+       * Set the rights
+       */
+      /*           $aclProvider = $this -> get('security.acl.provider');
+		   $objectIdentity = ObjectIdentity::fromDomainObject($document);
+		   $acl = $aclProvider -> createAcl($objectIdentity);
+
+		   $securityContext = $this -> get('security.context');
+		   $user = $securityContext -> getToken() -> getUser();
+		   $securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+		   $acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+		   $aclProvider -> updateAcl($acl);
+      */
+
+    }
+    $em -> flush();
+    return (">>>>" . $realPath . "+" . $id);
+  }
+
+  //! List a folder.
+  /*!
+    \param $folderId.
+    \return The HTTP status code
+    \sa 
+  */
  public function listFilesAction($folderId) {
 		$em = $this -> getDoctrine() -> getManager();
-		//$securityContext = $this -> get('security.context');
+		$securityContext = $this -> get('security.context');
+
 		$listAllfiles = $em 
 			-> getRepository('AcsilServerAppBundle:Document') 
 			-> findBy(array('folder' => $folderId, 'isProfilePicture' => 0));
+
+
 		$listusers = $em 
 			-> getRepository('AcsilServerAppBundle:User') 
 			-> findAll();
-     /**
-      * Get informations about folders
-      */			
+		
 		$listfolders = $em
 			-> getRepository('AcsilServerAppBundle:Folder') 
 			-> findBy(array('parentFolder' => $folderId, 'owner' => $this->getUser()->getEmail()));
+		if ($folderId == 0)
+		{
+		$parentId = 0;
+			$query = $em->createQuery(
+    'SELECT d
+    FROM AcsilServerAppBundle:Document d
+    WHERE d.folder > :folder AND d.isShared = 1'
+)->setParameter('folder', 0);
+
+$sharedFiles = $query->getResult();
+		$listAllfiles = array_merge($listAllfiles, $sharedFiles);
+		}
+		else
+		{
+		$currentFolder = $em
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('id' => $folderId, 'owner' => $this->getUser()->getEmail()));
+		$parentId = $currentFolder->getParentFolder();
+		}
      /**
       * Get informations about files
       */	
-		/*$listfiles = array();
+		$listfiles = array();
 		$shareinfos = array();
 		foreach ($listAllfiles as $file) {
 		if ($securityContext -> isGranted('EDIT', $file) === TRUE 
-				|| $securityContext -> isGranted('VIEW', $file) === TRUE) {				
+				|| $securityContext -> isGranted('VIEW', $file) === TRUE) {
+		
+				
 				$listUserFileInfos = array();
 				$sharedFileUserInfos = array();
 				if ($securityContext -> isGranted('OWNER', $file) === TRUE) {
@@ -268,9 +311,8 @@ class OperationsController extends Controller {
 					$listUserFileInfos = array("info" => $file, "sharedFileUserInfos" => '');
 				array_push($listfiles, $listUserFileInfos);
 			}
-		}*/
-	//$list = array("file" => $listfiles, "folders" => $listfolders);
-$list = array("file" => $listAllfiles, "folders" => $listfolders);		
+		}	
+$list = array("files" => $listfiles, "folders" => $listfolders, "users" => $listusers);		
 	return ($list);
 	}
 
@@ -333,7 +375,7 @@ $list = array("file" => $listAllfiles, "folders" => $listfolders);
     /**
     * Set the rights
     */
-/*		$aclProvider = $this -> get('security.acl.provider');
+		$aclProvider = $this -> get('security.acl.provider');
 		$objectIdentity = ObjectIdentity::fromDomainObject($document);
 		$acl = $aclProvider -> createAcl($objectIdentity);
 
@@ -343,7 +385,7 @@ $list = array("file" => $listAllfiles, "folders" => $listfolders);
 
 		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
 		$aclProvider -> updateAcl($acl);
-*/
+
 		$response = new Response();
         $response -> setContent($folderId);
         $response -> setStatusCode(201);
@@ -408,7 +450,7 @@ $list = array("file" => $listAllfiles, "folders" => $listfolders);
     /**
     * Set the rights
     */
-/*		$aclProvider = $this -> get('security.acl.provider');
+		$aclProvider = $this -> get('security.acl.provider');
 		$objectIdentity = ObjectIdentity::fromDomainObject($folder);
 		$acl = $aclProvider -> createAcl($objectIdentity);
 
@@ -418,7 +460,7 @@ $list = array("file" => $listAllfiles, "folders" => $listfolders);
 
 		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
 		$aclProvider -> updateAcl($acl);
-*/
+
 		$response = new Response();
         $response -> setContent($folderId);
         $response -> setStatusCode(201);
