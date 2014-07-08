@@ -74,6 +74,11 @@ fos_oauth_server:
     access_token_class:  AcsilServer\APIBundle\Entity\AccessToken
     refresh_token_class: AcsilServer\APIBundle\Entity\RefreshToken
     auth_code_class:     AcsilServer\APIBundle\Entity\AuthCode
+    service:
+      user_provider: platform.user.provider
+      options:
+        supported_scopes: user
+
 
 # FOSRestBundle Configuration
 fos_rest:

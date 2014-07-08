@@ -17,7 +17,7 @@ services:
     platform.user.repository:
         class: AcsilServer\AppBundle\Entity\UserRepository
         factory_service: platform.user.manager
-        factory_method: getRespository
+        factory_method: getRepository
         arguments: 
             - "%platform.entity.user.class%"
 
