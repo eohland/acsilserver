@@ -5,19 +5,23 @@ parameters:
 services:
 #    api.example:
 #        class: %api.example.class%
-#        arguments: [@service_id, "plain_value",
+#        arguments: [@service_id, "plain_value"]
+
     platform.user.manager:
         class: Doctrine\ORM\EntityManager
-        factory-service: doctrine
-        factory-method: getManagerForClass
-        arguments: [%platform.entity.user.class%]
+        factory_service: doctrine
+        factory_method: getManagerForClass
+        arguments: 
+            - "%platform.entity.user.class%"
 
     platform.user.repository:
         class: AcsilServer\AppBundle\Entity\UserRepository
-        factory-service: platform.user.manager
-        factory-method: getRespository
-        arguments: [%platform.entity.user.class%]
+        factory_service: platform.user.manager
+        factory_method: getRespository
+        arguments: 
+            - "%platform.entity.user.class%"
 
     platform.user.provider:
-        class: %platform.user.provider.class%
-        arguments: [%platform.entity.user.class%]
+        class: "%platform.user.provider.class%"
+        arguments: 
+            - "@platform.user.repository"
