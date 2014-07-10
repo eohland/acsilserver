@@ -49,7 +49,7 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <TextBox x:Name="URL" HorizontalAlignment="Left" Height="72" Margin="0,55,0,0" TextWrapping="Wrap" Text="http://dev.acsilserver.com/" VerticalAlignment="Top" Width="456"/>
             <TextBox x:Name="Login" HorizontalAlignment="Left" Height="72" Margin="0,176,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="456"/>
-            
+
             <TextBlock HorizontalAlignment="Left" Margin="10,23,0,0" TextWrapping="Wrap" Text="URL de votre Acsilserver:" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,144,0,0" TextWrapping="Wrap" Text="Identifiant:" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,253,0,0" TextWrapping="Wrap" Text="Mot de passe:" VerticalAlignment="Top"/>
@@ -57,6 +57,9 @@
             <CheckBox x:Name="Save" Content="Se souvenir de mes identifiants" HorizontalAlignment="Left" Margin="10,349,0,0" VerticalAlignment="Top" />
             <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="0,285,0,0" VerticalAlignment="Top" Width="456"/>
             <TextBlock x:Name="Erreur" HorizontalAlignment="Left" Margin="22,421,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="251" Height="99" Visibility="Collapsed" Foreground="Red"/>
+            <phone:WebBrowser Name="web1" HorizontalAlignment="Left" Margin="22,421,0,0" VerticalAlignment="Top" Height="176" Width="251" Navigated="web1_Navigated" Visibility="Collapsed" />
+            <Button  Content="Button" HorizontalAlignment="Left" Margin="278,476,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.378,-0.363" Click="Button_Click_1" Visibility="Collapsed"/>
+            <Button  Content="Button" HorizontalAlignment="Left" Margin="278,525,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.093,0.123" Click="Button_Click_2" Visibility="Collapsed"/>
         </Grid>
 
         <!--Supprimez les commentaires pour voir une grille d'alignement qui vous aidera à vous assurer que vos contrôles sont

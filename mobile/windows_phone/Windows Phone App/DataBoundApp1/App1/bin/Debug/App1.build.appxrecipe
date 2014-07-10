@@ -1,0 +1,981 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>PORTABLE-HP</Machine>
+    <WindowsUser>Edouard</WindowsUser>
+    <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>f11d5acd-8ce9-438f-b7ea-066431fe0d03</PackageIdentityName>
+    <IntermediateOutputPath>C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\bld\Debug\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\css\bootstrap-theme.css">
+      <PackagePath>css\bootstrap-theme.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\css\bootstrap-theme.min.css">
+      <PackagePath>css\bootstrap-theme.min.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\css\bootstrap.css">
+      <PackagePath>css\bootstrap.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\css\bootstrap.min.css">
+      <PackagePath>css\bootstrap.min.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\css\signin.css">
+      <PackagePath>css\signin.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\css\sticky-footer-navbar.css">
+      <PackagePath>css\sticky-footer-navbar.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-csp.css">
+      <PackagePath>js\angular-csp.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\css\default.css">
+      <PackagePath>css\default.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\css\ui-themed.css">
+      <PackagePath>css\ui-themed.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\css\ui-themed.theme-dark.css">
+      <PackagePath>css\ui-themed.theme-dark.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\css\ui-themed.theme-light.css">
+      <PackagePath>css\ui-themed.theme-light.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\css\bootstrap-theme.css.map">
+      <PackagePath>css\bootstrap-theme.css.map</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\css\bootstrap.css.map">
+      <PackagePath>css\bootstrap.css.map</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-animate.min.js.map">
+      <PackagePath>js\angular-animate.min.js.map</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-cookies.min.js.map">
+      <PackagePath>js\angular-cookies.min.js.map</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-loader.min.js.map">
+      <PackagePath>js\angular-loader.min.js.map</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-resource.min.js.map">
+      <PackagePath>js\angular-resource.min.js.map</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-route.min.js.map">
+      <PackagePath>js\angular-route.min.js.map</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-sanitize.min.js.map">
+      <PackagePath>js\angular-sanitize.min.js.map</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-touch.min.js.map">
+      <PackagePath>js\angular-touch.min.js.map</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular.min.js.map">
+      <PackagePath>js\angular.min.js.map</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\css\jquery-2.1.1.min.js">
+      <PackagePath>css\jquery-2.1.1.min.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-animate.js">
+      <PackagePath>js\angular-animate.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-animate.min.js">
+      <PackagePath>js\angular-animate.min.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-cookies.js">
+      <PackagePath>js\angular-cookies.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-cookies.min.js">
+      <PackagePath>js\angular-cookies.min.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-loader.js">
+      <PackagePath>js\angular-loader.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-loader.min.js">
+      <PackagePath>js\angular-loader.min.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-mocks.js">
+      <PackagePath>js\angular-mocks.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-resource.js">
+      <PackagePath>js\angular-resource.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-resource.min.js">
+      <PackagePath>js\angular-resource.min.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-route.js">
+      <PackagePath>js\angular-route.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-route.min.js">
+      <PackagePath>js\angular-route.min.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-sanitize.js">
+      <PackagePath>js\angular-sanitize.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-sanitize.min.js">
+      <PackagePath>js\angular-sanitize.min.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-scenario.js">
+      <PackagePath>js\angular-scenario.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-touch.js">
+      <PackagePath>js\angular-touch.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular-touch.min.js">
+      <PackagePath>js\angular-touch.min.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular.js">
+      <PackagePath>js\angular.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\angular.min.js">
+      <PackagePath>js\angular.min.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\API.js">
+      <PackagePath>js\API.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\app.js">
+      <PackagePath>js\app.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\bootstrap.js">
+      <PackagePath>js\bootstrap.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\bootstrap.min.js">
+      <PackagePath>js\bootstrap.min.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\controllers.js">
+      <PackagePath>js\controllers.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\default.js">
+      <PackagePath>js\default.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\docs.min.js">
+      <PackagePath>js\docs.min.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\holder.js">
+      <PackagePath>js\holder.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_af-na.js">
+      <PackagePath>js\i18n\angular-locale_af-na.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_af-za.js">
+      <PackagePath>js\i18n\angular-locale_af-za.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_af.js">
+      <PackagePath>js\i18n\angular-locale_af.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_am-et.js">
+      <PackagePath>js\i18n\angular-locale_am-et.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_am.js">
+      <PackagePath>js\i18n\angular-locale_am.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-001.js">
+      <PackagePath>js\i18n\angular-locale_ar-001.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-ae.js">
+      <PackagePath>js\i18n\angular-locale_ar-ae.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-bh.js">
+      <PackagePath>js\i18n\angular-locale_ar-bh.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-dz.js">
+      <PackagePath>js\i18n\angular-locale_ar-dz.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-eg.js">
+      <PackagePath>js\i18n\angular-locale_ar-eg.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-iq.js">
+      <PackagePath>js\i18n\angular-locale_ar-iq.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-jo.js">
+      <PackagePath>js\i18n\angular-locale_ar-jo.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-kw.js">
+      <PackagePath>js\i18n\angular-locale_ar-kw.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-lb.js">
+      <PackagePath>js\i18n\angular-locale_ar-lb.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-ly.js">
+      <PackagePath>js\i18n\angular-locale_ar-ly.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-ma.js">
+      <PackagePath>js\i18n\angular-locale_ar-ma.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-om.js">
+      <PackagePath>js\i18n\angular-locale_ar-om.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-qa.js">
+      <PackagePath>js\i18n\angular-locale_ar-qa.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-sa.js">
+      <PackagePath>js\i18n\angular-locale_ar-sa.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-sd.js">
+      <PackagePath>js\i18n\angular-locale_ar-sd.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-sy.js">
+      <PackagePath>js\i18n\angular-locale_ar-sy.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-tn.js">
+      <PackagePath>js\i18n\angular-locale_ar-tn.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar-ye.js">
+      <PackagePath>js\i18n\angular-locale_ar-ye.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ar.js">
+      <PackagePath>js\i18n\angular-locale_ar.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_bg-bg.js">
+      <PackagePath>js\i18n\angular-locale_bg-bg.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_bg.js">
+      <PackagePath>js\i18n\angular-locale_bg.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_bn-bd.js">
+      <PackagePath>js\i18n\angular-locale_bn-bd.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_bn-in.js">
+      <PackagePath>js\i18n\angular-locale_bn-in.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_bn.js">
+      <PackagePath>js\i18n\angular-locale_bn.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ca-ad.js">
+      <PackagePath>js\i18n\angular-locale_ca-ad.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ca-es.js">
+      <PackagePath>js\i18n\angular-locale_ca-es.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ca.js">
+      <PackagePath>js\i18n\angular-locale_ca.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_cs-cz.js">
+      <PackagePath>js\i18n\angular-locale_cs-cz.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_cs.js">
+      <PackagePath>js\i18n\angular-locale_cs.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_da-dk.js">
+      <PackagePath>js\i18n\angular-locale_da-dk.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_da.js">
+      <PackagePath>js\i18n\angular-locale_da.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_de-at.js">
+      <PackagePath>js\i18n\angular-locale_de-at.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_de-be.js">
+      <PackagePath>js\i18n\angular-locale_de-be.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_de-ch.js">
+      <PackagePath>js\i18n\angular-locale_de-ch.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_de-de.js">
+      <PackagePath>js\i18n\angular-locale_de-de.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_de-li.js">
+      <PackagePath>js\i18n\angular-locale_de-li.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_de-lu.js">
+      <PackagePath>js\i18n\angular-locale_de-lu.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_de.js">
+      <PackagePath>js\i18n\angular-locale_de.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_el-cy.js">
+      <PackagePath>js\i18n\angular-locale_el-cy.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_el-gr.js">
+      <PackagePath>js\i18n\angular-locale_el-gr.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_el.js">
+      <PackagePath>js\i18n\angular-locale_el.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-as.js">
+      <PackagePath>js\i18n\angular-locale_en-as.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-au.js">
+      <PackagePath>js\i18n\angular-locale_en-au.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-bb.js">
+      <PackagePath>js\i18n\angular-locale_en-bb.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-be.js">
+      <PackagePath>js\i18n\angular-locale_en-be.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-bm.js">
+      <PackagePath>js\i18n\angular-locale_en-bm.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-bw.js">
+      <PackagePath>js\i18n\angular-locale_en-bw.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-bz.js">
+      <PackagePath>js\i18n\angular-locale_en-bz.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-ca.js">
+      <PackagePath>js\i18n\angular-locale_en-ca.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-dsrt-us.js">
+      <PackagePath>js\i18n\angular-locale_en-dsrt-us.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-dsrt.js">
+      <PackagePath>js\i18n\angular-locale_en-dsrt.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-fm.js">
+      <PackagePath>js\i18n\angular-locale_en-fm.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-gb.js">
+      <PackagePath>js\i18n\angular-locale_en-gb.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-gu.js">
+      <PackagePath>js\i18n\angular-locale_en-gu.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-gy.js">
+      <PackagePath>js\i18n\angular-locale_en-gy.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-hk.js">
+      <PackagePath>js\i18n\angular-locale_en-hk.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-ie.js">
+      <PackagePath>js\i18n\angular-locale_en-ie.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-in.js">
+      <PackagePath>js\i18n\angular-locale_en-in.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-iso.js">
+      <PackagePath>js\i18n\angular-locale_en-iso.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-jm.js">
+      <PackagePath>js\i18n\angular-locale_en-jm.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-mh.js">
+      <PackagePath>js\i18n\angular-locale_en-mh.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-mp.js">
+      <PackagePath>js\i18n\angular-locale_en-mp.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-mt.js">
+      <PackagePath>js\i18n\angular-locale_en-mt.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-mu.js">
+      <PackagePath>js\i18n\angular-locale_en-mu.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-na.js">
+      <PackagePath>js\i18n\angular-locale_en-na.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-nz.js">
+      <PackagePath>js\i18n\angular-locale_en-nz.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-ph.js">
+      <PackagePath>js\i18n\angular-locale_en-ph.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-pk.js">
+      <PackagePath>js\i18n\angular-locale_en-pk.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-pr.js">
+      <PackagePath>js\i18n\angular-locale_en-pr.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-pw.js">
+      <PackagePath>js\i18n\angular-locale_en-pw.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-sg.js">
+      <PackagePath>js\i18n\angular-locale_en-sg.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-tc.js">
+      <PackagePath>js\i18n\angular-locale_en-tc.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-tt.js">
+      <PackagePath>js\i18n\angular-locale_en-tt.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-um.js">
+      <PackagePath>js\i18n\angular-locale_en-um.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-us.js">
+      <PackagePath>js\i18n\angular-locale_en-us.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-vg.js">
+      <PackagePath>js\i18n\angular-locale_en-vg.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-vi.js">
+      <PackagePath>js\i18n\angular-locale_en-vi.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-za.js">
+      <PackagePath>js\i18n\angular-locale_en-za.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en-zw.js">
+      <PackagePath>js\i18n\angular-locale_en-zw.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_en.js">
+      <PackagePath>js\i18n\angular-locale_en.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-419.js">
+      <PackagePath>js\i18n\angular-locale_es-419.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-ar.js">
+      <PackagePath>js\i18n\angular-locale_es-ar.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-bo.js">
+      <PackagePath>js\i18n\angular-locale_es-bo.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-cl.js">
+      <PackagePath>js\i18n\angular-locale_es-cl.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-co.js">
+      <PackagePath>js\i18n\angular-locale_es-co.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-cr.js">
+      <PackagePath>js\i18n\angular-locale_es-cr.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-do.js">
+      <PackagePath>js\i18n\angular-locale_es-do.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-ea.js">
+      <PackagePath>js\i18n\angular-locale_es-ea.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-ec.js">
+      <PackagePath>js\i18n\angular-locale_es-ec.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-es.js">
+      <PackagePath>js\i18n\angular-locale_es-es.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-gq.js">
+      <PackagePath>js\i18n\angular-locale_es-gq.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-gt.js">
+      <PackagePath>js\i18n\angular-locale_es-gt.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-hn.js">
+      <PackagePath>js\i18n\angular-locale_es-hn.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-ic.js">
+      <PackagePath>js\i18n\angular-locale_es-ic.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-mx.js">
+      <PackagePath>js\i18n\angular-locale_es-mx.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-ni.js">
+      <PackagePath>js\i18n\angular-locale_es-ni.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-pa.js">
+      <PackagePath>js\i18n\angular-locale_es-pa.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-pe.js">
+      <PackagePath>js\i18n\angular-locale_es-pe.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-pr.js">
+      <PackagePath>js\i18n\angular-locale_es-pr.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-py.js">
+      <PackagePath>js\i18n\angular-locale_es-py.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-sv.js">
+      <PackagePath>js\i18n\angular-locale_es-sv.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-us.js">
+      <PackagePath>js\i18n\angular-locale_es-us.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-uy.js">
+      <PackagePath>js\i18n\angular-locale_es-uy.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es-ve.js">
+      <PackagePath>js\i18n\angular-locale_es-ve.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_es.js">
+      <PackagePath>js\i18n\angular-locale_es.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_et-ee.js">
+      <PackagePath>js\i18n\angular-locale_et-ee.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_et.js">
+      <PackagePath>js\i18n\angular-locale_et.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_eu-es.js">
+      <PackagePath>js\i18n\angular-locale_eu-es.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_eu.js">
+      <PackagePath>js\i18n\angular-locale_eu.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fa-af.js">
+      <PackagePath>js\i18n\angular-locale_fa-af.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fa-ir.js">
+      <PackagePath>js\i18n\angular-locale_fa-ir.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fa.js">
+      <PackagePath>js\i18n\angular-locale_fa.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fi-fi.js">
+      <PackagePath>js\i18n\angular-locale_fi-fi.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fi.js">
+      <PackagePath>js\i18n\angular-locale_fi.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fil-ph.js">
+      <PackagePath>js\i18n\angular-locale_fil-ph.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fil.js">
+      <PackagePath>js\i18n\angular-locale_fil.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-be.js">
+      <PackagePath>js\i18n\angular-locale_fr-be.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-bf.js">
+      <PackagePath>js\i18n\angular-locale_fr-bf.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-bi.js">
+      <PackagePath>js\i18n\angular-locale_fr-bi.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-bj.js">
+      <PackagePath>js\i18n\angular-locale_fr-bj.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-bl.js">
+      <PackagePath>js\i18n\angular-locale_fr-bl.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-ca.js">
+      <PackagePath>js\i18n\angular-locale_fr-ca.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-cd.js">
+      <PackagePath>js\i18n\angular-locale_fr-cd.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-cf.js">
+      <PackagePath>js\i18n\angular-locale_fr-cf.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-cg.js">
+      <PackagePath>js\i18n\angular-locale_fr-cg.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-ch.js">
+      <PackagePath>js\i18n\angular-locale_fr-ch.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-ci.js">
+      <PackagePath>js\i18n\angular-locale_fr-ci.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-cm.js">
+      <PackagePath>js\i18n\angular-locale_fr-cm.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-dj.js">
+      <PackagePath>js\i18n\angular-locale_fr-dj.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-fr.js">
+      <PackagePath>js\i18n\angular-locale_fr-fr.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-ga.js">
+      <PackagePath>js\i18n\angular-locale_fr-ga.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-gf.js">
+      <PackagePath>js\i18n\angular-locale_fr-gf.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-gn.js">
+      <PackagePath>js\i18n\angular-locale_fr-gn.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-gp.js">
+      <PackagePath>js\i18n\angular-locale_fr-gp.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-gq.js">
+      <PackagePath>js\i18n\angular-locale_fr-gq.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-km.js">
+      <PackagePath>js\i18n\angular-locale_fr-km.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-lu.js">
+      <PackagePath>js\i18n\angular-locale_fr-lu.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-mc.js">
+      <PackagePath>js\i18n\angular-locale_fr-mc.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-mf.js">
+      <PackagePath>js\i18n\angular-locale_fr-mf.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-mg.js">
+      <PackagePath>js\i18n\angular-locale_fr-mg.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-ml.js">
+      <PackagePath>js\i18n\angular-locale_fr-ml.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-mq.js">
+      <PackagePath>js\i18n\angular-locale_fr-mq.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-ne.js">
+      <PackagePath>js\i18n\angular-locale_fr-ne.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-re.js">
+      <PackagePath>js\i18n\angular-locale_fr-re.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr-yt.js">
+      <PackagePath>js\i18n\angular-locale_fr-yt.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_fr.js">
+      <PackagePath>js\i18n\angular-locale_fr.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_gl-es.js">
+      <PackagePath>js\i18n\angular-locale_gl-es.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_gl.js">
+      <PackagePath>js\i18n\angular-locale_gl.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_gsw-ch.js">
+      <PackagePath>js\i18n\angular-locale_gsw-ch.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_gsw.js">
+      <PackagePath>js\i18n\angular-locale_gsw.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_gu-in.js">
+      <PackagePath>js\i18n\angular-locale_gu-in.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_gu.js">
+      <PackagePath>js\i18n\angular-locale_gu.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_he-il.js">
+      <PackagePath>js\i18n\angular-locale_he-il.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_he.js">
+      <PackagePath>js\i18n\angular-locale_he.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_hi-in.js">
+      <PackagePath>js\i18n\angular-locale_hi-in.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_hi.js">
+      <PackagePath>js\i18n\angular-locale_hi.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_hr-hr.js">
+      <PackagePath>js\i18n\angular-locale_hr-hr.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_hr.js">
+      <PackagePath>js\i18n\angular-locale_hr.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_hu-hu.js">
+      <PackagePath>js\i18n\angular-locale_hu-hu.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_hu.js">
+      <PackagePath>js\i18n\angular-locale_hu.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_id-id.js">
+      <PackagePath>js\i18n\angular-locale_id-id.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_id.js">
+      <PackagePath>js\i18n\angular-locale_id.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_in.js">
+      <PackagePath>js\i18n\angular-locale_in.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_is-is.js">
+      <PackagePath>js\i18n\angular-locale_is-is.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_is.js">
+      <PackagePath>js\i18n\angular-locale_is.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_it-it.js">
+      <PackagePath>js\i18n\angular-locale_it-it.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_it-sm.js">
+      <PackagePath>js\i18n\angular-locale_it-sm.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_it.js">
+      <PackagePath>js\i18n\angular-locale_it.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_iw.js">
+      <PackagePath>js\i18n\angular-locale_iw.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ja-jp.js">
+      <PackagePath>js\i18n\angular-locale_ja-jp.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ja.js">
+      <PackagePath>js\i18n\angular-locale_ja.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_kn-in.js">
+      <PackagePath>js\i18n\angular-locale_kn-in.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_kn.js">
+      <PackagePath>js\i18n\angular-locale_kn.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ko-kr.js">
+      <PackagePath>js\i18n\angular-locale_ko-kr.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ko.js">
+      <PackagePath>js\i18n\angular-locale_ko.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ln-cd.js">
+      <PackagePath>js\i18n\angular-locale_ln-cd.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ln.js">
+      <PackagePath>js\i18n\angular-locale_ln.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_lt-lt.js">
+      <PackagePath>js\i18n\angular-locale_lt-lt.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_lt.js">
+      <PackagePath>js\i18n\angular-locale_lt.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_lv-lv.js">
+      <PackagePath>js\i18n\angular-locale_lv-lv.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_lv.js">
+      <PackagePath>js\i18n\angular-locale_lv.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ml-in.js">
+      <PackagePath>js\i18n\angular-locale_ml-in.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ml.js">
+      <PackagePath>js\i18n\angular-locale_ml.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_mr-in.js">
+      <PackagePath>js\i18n\angular-locale_mr-in.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_mr.js">
+      <PackagePath>js\i18n\angular-locale_mr.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ms-my.js">
+      <PackagePath>js\i18n\angular-locale_ms-my.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ms.js">
+      <PackagePath>js\i18n\angular-locale_ms.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_mt-mt.js">
+      <PackagePath>js\i18n\angular-locale_mt-mt.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_mt.js">
+      <PackagePath>js\i18n\angular-locale_mt.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_nl-cw.js">
+      <PackagePath>js\i18n\angular-locale_nl-cw.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_nl-nl.js">
+      <PackagePath>js\i18n\angular-locale_nl-nl.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_nl-sx.js">
+      <PackagePath>js\i18n\angular-locale_nl-sx.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_nl.js">
+      <PackagePath>js\i18n\angular-locale_nl.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_no.js">
+      <PackagePath>js\i18n\angular-locale_no.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_or-in.js">
+      <PackagePath>js\i18n\angular-locale_or-in.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_or.js">
+      <PackagePath>js\i18n\angular-locale_or.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_pl-pl.js">
+      <PackagePath>js\i18n\angular-locale_pl-pl.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_pl.js">
+      <PackagePath>js\i18n\angular-locale_pl.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_pt-br.js">
+      <PackagePath>js\i18n\angular-locale_pt-br.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_pt-pt.js">
+      <PackagePath>js\i18n\angular-locale_pt-pt.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_pt.js">
+      <PackagePath>js\i18n\angular-locale_pt.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ro-ro.js">
+      <PackagePath>js\i18n\angular-locale_ro-ro.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ro.js">
+      <PackagePath>js\i18n\angular-locale_ro.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ru-ru.js">
+      <PackagePath>js\i18n\angular-locale_ru-ru.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ru.js">
+      <PackagePath>js\i18n\angular-locale_ru.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_sk-sk.js">
+      <PackagePath>js\i18n\angular-locale_sk-sk.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_sk.js">
+      <PackagePath>js\i18n\angular-locale_sk.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_sl-si.js">
+      <PackagePath>js\i18n\angular-locale_sl-si.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_sl.js">
+      <PackagePath>js\i18n\angular-locale_sl.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_sq-al.js">
+      <PackagePath>js\i18n\angular-locale_sq-al.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_sq.js">
+      <PackagePath>js\i18n\angular-locale_sq.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_sr-cyrl-rs.js">
+      <PackagePath>js\i18n\angular-locale_sr-cyrl-rs.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_sr-latn-rs.js">
+      <PackagePath>js\i18n\angular-locale_sr-latn-rs.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_sr.js">
+      <PackagePath>js\i18n\angular-locale_sr.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_sv-se.js">
+      <PackagePath>js\i18n\angular-locale_sv-se.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_sv.js">
+      <PackagePath>js\i18n\angular-locale_sv.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_sw-tz.js">
+      <PackagePath>js\i18n\angular-locale_sw-tz.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_sw.js">
+      <PackagePath>js\i18n\angular-locale_sw.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ta-in.js">
+      <PackagePath>js\i18n\angular-locale_ta-in.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ta.js">
+      <PackagePath>js\i18n\angular-locale_ta.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_te-in.js">
+      <PackagePath>js\i18n\angular-locale_te-in.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_te.js">
+      <PackagePath>js\i18n\angular-locale_te.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_th-th.js">
+      <PackagePath>js\i18n\angular-locale_th-th.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_th.js">
+      <PackagePath>js\i18n\angular-locale_th.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_tl.js">
+      <PackagePath>js\i18n\angular-locale_tl.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_tr-tr.js">
+      <PackagePath>js\i18n\angular-locale_tr-tr.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_tr.js">
+      <PackagePath>js\i18n\angular-locale_tr.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_uk-ua.js">
+      <PackagePath>js\i18n\angular-locale_uk-ua.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_uk.js">
+      <PackagePath>js\i18n\angular-locale_uk.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ur-pk.js">
+      <PackagePath>js\i18n\angular-locale_ur-pk.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_ur.js">
+      <PackagePath>js\i18n\angular-locale_ur.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_vi-vn.js">
+      <PackagePath>js\i18n\angular-locale_vi-vn.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_vi.js">
+      <PackagePath>js\i18n\angular-locale_vi.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_zh-cn.js">
+      <PackagePath>js\i18n\angular-locale_zh-cn.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_zh-hans-cn.js">
+      <PackagePath>js\i18n\angular-locale_zh-hans-cn.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_zh-hk.js">
+      <PackagePath>js\i18n\angular-locale_zh-hk.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_zh-tw.js">
+      <PackagePath>js\i18n\angular-locale_zh-tw.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_zh.js">
+      <PackagePath>js\i18n\angular-locale_zh.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_zu-za.js">
+      <PackagePath>js\i18n\angular-locale_zu-za.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\i18n\angular-locale_zu.js">
+      <PackagePath>js\i18n\angular-locale_zu.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\jquery.min.js">
+      <PackagePath>js\jquery.min.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\ui-bootstrap-tpls-0.11.0.js">
+      <PackagePath>js\ui-bootstrap-tpls-0.11.0.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\data\signIn.json">
+      <PackagePath>data\signIn.json</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\errors.json">
+      <PackagePath>js\errors.json</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\version.json">
+      <PackagePath>js\version.json</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\fonts\glyphicons-halflings-regular.eot">
+      <PackagePath>fonts\glyphicons-halflings-regular.eot</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\fonts\glyphicons-halflings-regular.svg">
+      <PackagePath>fonts\glyphicons-halflings-regular.svg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\fonts\glyphicons-halflings-regular.ttf">
+      <PackagePath>fonts\glyphicons-halflings-regular.ttf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\fonts\glyphicons-halflings-regular.woff">
+      <PackagePath>fonts\glyphicons-halflings-regular.woff</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\images\Square150x150Logo.scale-240.png">
+      <PackagePath>images\Square150x150Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\images\Square44x44Logo.scale-240.png">
+      <PackagePath>images\Square44x44Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\images\Wide310x150Logo.scale-240.png">
+      <PackagePath>images\Wide310x150Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\images\Square71x71Logo.scale-240.png">
+      <PackagePath>images\Square71x71Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\images\SplashScreen.scale-240.png">
+      <PackagePath>images\SplashScreen.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\images\StoreLogo.scale-240.png">
+      <PackagePath>images\StoreLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\ressources\ic_launcher.png">
+      <PackagePath>ressources\ic_launcher.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\index.html">
+      <PackagePath>index.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\partials\.#list.html">
+      <PackagePath>partials\.#list.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\partials\list.html">
+      <PackagePath>partials\list.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\partials\signIn.html">
+      <PackagePath>partials\signIn.html</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\js\version.txt">
+      <PackagePath>js\version.txt</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\App1\bin\Debug\ReverseMap\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\Microsoft.Phone.WinJS.2.1\1.0\">
+      <Name>Microsoft.Phone.WinJS.2.1</Name>
+      <Version>1.0.9651.0</Version>
+      <Architecture>Neutral</Architecture>
+      <FrameworkIdentity>Name=Microsoft.Phone.WinJS.2.1, MinVersion=1.0.9651.0</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\Microsoft.Phone.WinJS.2.1\1.0\Microsoft.Phone.WinJS.2.1.appx</AppxLocation>
+      <MoreInfo>http://go.microsoft.com/fwlink/%3fLinkId=260891</MoreInfo>
+    </ResolvedSDKReference>
+  </ItemGroup>
+</Project>

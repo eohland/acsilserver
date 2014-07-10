@@ -117,6 +117,27 @@ namespace Acsilserver1.ViewModels
             }
         }
 
+        private string _numFile;
+        /// <summary>
+        /// Exemple de propriété ViewModel ; cette propriété est utilisée dans la vue pour afficher sa valeur à l'aide d'une liaison.
+        /// </summary>
+        /// <returns></returns>
+        public string NumFile
+        {
+            get
+            {
+                return _numFile;
+            }
+            set
+            {
+                if (value != _numFile)
+                {
+                    _numFile = value;
+                    NotifyPropertyChanged("NumFile");
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
         {

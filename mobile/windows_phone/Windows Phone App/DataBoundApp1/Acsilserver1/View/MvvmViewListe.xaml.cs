@@ -59,7 +59,7 @@ namespace Acsilserver1
             //TODO -> si le click vient de la list et que c'est pour un dossier -> faire le load
             
             string g = e.Uri.ToString();
-            if (!App.ViewModel.IsDataLoaded)
+         /*   if (!App.ViewModel.IsDataLoaded)*/
                 App.ViewModel.LoadData(folderID);
         }
 

@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{088190B4-8DF8-4E53-95C7-4DE2B1C09E48}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>App1</RootNamespace>
+    <AssemblyName>App1</AssemblyName>
+    <DefaultLanguage>fr-FR</DefaultLanguage>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{76F1466A-8B6D-4E39-A767-685A06062A39};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="Html\css\bootstrap-theme.css.map" />
+    <None Include="Html\css\bootstrap.css.map" />
+    <None Include="Html\data\signIn.json" />
+    <None Include="Html\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Html\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="Html\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Html\js\angular-animate.min.js.map" />
+    <None Include="Html\js\angular-cookies.min.js.map" />
+    <None Include="Html\js\angular-loader.min.js.map" />
+    <None Include="Html\js\angular-resource.min.js.map" />
+    <None Include="Html\js\angular-route.min.js.map" />
+    <None Include="Html\js\angular-sanitize.min.js.map" />
+    <None Include="Html\js\angular-touch.min.js.map" />
+    <None Include="Html\js\angular.min.js.map" />
+    <None Include="Html\js\errors.json" />
+    <None Include="Html\js\version.json" />
+    <None Include="Html\ressources\Thumbs.db" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Logo.scale-240.png" />
+    <Content Include="Assets\SmallLogo.scale-240.png" />
+    <Content Include="Assets\SplashScreen.scale-240.png" />
+    <Content Include="Assets\Square71x71Logo.scale-240.png" />
+    <Content Include="Assets\StoreLogo.scale-240.png" />
+    <Content Include="Assets\WideLogo.scale-240.png" />
+    <Content Include="Html\css\bootstrap-theme.css" />
+    <Content Include="Html\css\bootstrap-theme.min.css" />
+    <Content Include="Html\css\bootstrap.css" />
+    <Content Include="Html\css\bootstrap.min.css" />
+    <Content Include="Html\css\jquery-2.1.1.min.js" />
+    <Content Include="Html\css\phone.css" />
+    <Content Include="Html\css\signin.css" />
+    <Content Include="Html\css\sticky-footer-navbar.css" />
+    <Content Include="Html\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Html\index.html" />
+    <Content Include="Html\js\angular-animate.js" />
+    <Content Include="Html\js\angular-animate.min.js" />
+    <Content Include="Html\js\angular-cookies.js" />
+    <Content Include="Html\js\angular-cookies.min.js" />
+    <Content Include="Html\js\angular-csp.css" />
+    <Content Include="Html\js\angular-loader.js" />
+    <Content Include="Html\js\angular-loader.min.js" />
+    <Content Include="Html\js\angular-mocks.js" />
+    <Content Include="Html\js\angular-resource.js" />
+    <Content Include="Html\js\angular-resource.min.js" />
+    <Content Include="Html\js\angular-route.js" />
+    <Content Include="Html\js\angular-route.min.js" />
+    <Content Include="Html\js\angular-sanitize.js" />
+    <Content Include="Html\js\angular-sanitize.min.js" />
+    <Content Include="Html\js\angular-scenario.js" />
+    <Content Include="Html\js\angular-touch.js" />
+    <Content Include="Html\js\angular-touch.min.js" />
+    <Content Include="Html\js\angular.js" />
+    <Content Include="Html\js\angular.min.js" />
+    <Content Include="Html\js\API.js" />
+    <Content Include="Html\js\app.js" />
+    <Content Include="Html\js\bootstrap.js" />
+    <Content Include="Html\js\bootstrap.min.js" />
+    <Content Include="Html\js\controllers.js" />
+    <Content Include="Html\js\docs.min.js" />
+    <Content Include="Html\js\holder.js" />
+    <Content Include="Html\js\i18n\angular-locale_af-na.js" />
+    <Content Include="Html\js\i18n\angular-locale_af-za.js" />
+    <Content Include="Html\js\i18n\angular-locale_af.js" />
+    <Content Include="Html\js\i18n\angular-locale_am-et.js" />
+    <Content Include="Html\js\i18n\angular-locale_am.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-001.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-ae.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-bh.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-dz.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-eg.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-iq.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-jo.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-kw.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-lb.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-ly.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-ma.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-om.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-qa.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-sa.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-sd.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-sy.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-tn.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar-ye.js" />
+    <Content Include="Html\js\i18n\angular-locale_ar.js" />
+    <Content Include="Html\js\i18n\angular-locale_bg-bg.js" />
+    <Content Include="Html\js\i18n\angular-locale_bg.js" />
+    <Content Include="Html\js\i18n\angular-locale_bn-bd.js" />
+    <Content Include="Html\js\i18n\angular-locale_bn-in.js" />
+    <Content Include="Html\js\i18n\angular-locale_bn.js" />
+    <Content Include="Html\js\i18n\angular-locale_ca-ad.js" />
+    <Content Include="Html\js\i18n\angular-locale_ca-es.js" />
+    <Content Include="Html\js\i18n\angular-locale_ca.js" />
+    <Content Include="Html\js\i18n\angular-locale_cs-cz.js" />
+    <Content Include="Html\js\i18n\angular-locale_cs.js" />
+    <Content Include="Html\js\i18n\angular-locale_da-dk.js" />
+    <Content Include="Html\js\i18n\angular-locale_da.js" />
+    <Content Include="Html\js\i18n\angular-locale_de-at.js" />
+    <Content Include="Html\js\i18n\angular-locale_de-be.js" />
+    <Content Include="Html\js\i18n\angular-locale_de-ch.js" />
+    <Content Include="Html\js\i18n\angular-locale_de-de.js" />
+    <Content Include="Html\js\i18n\angular-locale_de-li.js" />
+    <Content Include="Html\js\i18n\angular-locale_de-lu.js" />
+    <Content Include="Html\js\i18n\angular-locale_de.js" />
+    <Content Include="Html\js\i18n\angular-locale_el-cy.js" />
+    <Content Include="Html\js\i18n\angular-locale_el-gr.js" />
+    <Content Include="Html\js\i18n\angular-locale_el.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-as.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-au.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-bb.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-be.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-bm.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-bw.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-bz.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-ca.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-dsrt-us.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-dsrt.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-fm.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-gb.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-gu.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-gy.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-hk.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-ie.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-in.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-iso.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-jm.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-mh.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-mp.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-mt.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-mu.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-na.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-nz.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-ph.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-pk.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-pr.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-pw.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-sg.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-tc.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-tt.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-um.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-us.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-vg.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-vi.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-za.js" />
+    <Content Include="Html\js\i18n\angular-locale_en-zw.js" />
+    <Content Include="Html\js\i18n\angular-locale_en.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-419.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-ar.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-bo.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-cl.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-co.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-cr.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-do.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-ea.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-ec.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-es.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-gq.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-gt.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-hn.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-ic.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-mx.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-ni.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-pa.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-pe.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-pr.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-py.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-sv.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-us.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-uy.js" />
+    <Content Include="Html\js\i18n\angular-locale_es-ve.js" />
+    <Content Include="Html\js\i18n\angular-locale_es.js" />
+    <Content Include="Html\js\i18n\angular-locale_et-ee.js" />
+    <Content Include="Html\js\i18n\angular-locale_et.js" />
+    <Content Include="Html\js\i18n\angular-locale_eu-es.js" />
+    <Content Include="Html\js\i18n\angular-locale_eu.js" />
+    <Content Include="Html\js\i18n\angular-locale_fa-af.js" />
+    <Content Include="Html\js\i18n\angular-locale_fa-ir.js" />
+    <Content Include="Html\js\i18n\angular-locale_fa.js" />
+    <Content Include="Html\js\i18n\angular-locale_fi-fi.js" />
+    <Content Include="Html\js\i18n\angular-locale_fi.js" />
+    <Content Include="Html\js\i18n\angular-locale_fil-ph.js" />
+    <Content Include="Html\js\i18n\angular-locale_fil.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-be.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-bf.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-bi.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-bj.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-bl.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-ca.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-cd.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-cf.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-cg.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-ch.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-ci.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-cm.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-dj.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-fr.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-ga.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-gf.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-gn.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-gp.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-gq.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-km.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-lu.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-mc.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-mf.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-mg.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-ml.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-mq.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-ne.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-re.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr-yt.js" />
+    <Content Include="Html\js\i18n\angular-locale_fr.js" />
+    <Content Include="Html\js\i18n\angular-locale_gl-es.js" />
+    <Content Include="Html\js\i18n\angular-locale_gl.js" />
+    <Content Include="Html\js\i18n\angular-locale_gsw-ch.js" />
+    <Content Include="Html\js\i18n\angular-locale_gsw.js" />
+    <Content Include="Html\js\i18n\angular-locale_gu-in.js" />
+    <Content Include="Html\js\i18n\angular-locale_gu.js" />
+    <Content Include="Html\js\i18n\angular-locale_he-il.js" />
+    <Content Include="Html\js\i18n\angular-locale_he.js" />
+    <Content Include="Html\js\i18n\angular-locale_hi-in.js" />
+    <Content Include="Html\js\i18n\angular-locale_hi.js" />
+    <Content Include="Html\js\i18n\angular-locale_hr-hr.js" />
+    <Content Include="Html\js\i18n\angular-locale_hr.js" />
+    <Content Include="Html\js\i18n\angular-locale_hu-hu.js" />
+    <Content Include="Html\js\i18n\angular-locale_hu.js" />
+    <Content Include="Html\js\i18n\angular-locale_id-id.js" />
+    <Content Include="Html\js\i18n\angular-locale_id.js" />
+    <Content Include="Html\js\i18n\angular-locale_in.js" />
+    <Content Include="Html\js\i18n\angular-locale_is-is.js" />
+    <Content Include="Html\js\i18n\angular-locale_is.js" />
+    <Content Include="Html\js\i18n\angular-locale_it-it.js" />
+    <Content Include="Html\js\i18n\angular-locale_it-sm.js" />
+    <Content Include="Html\js\i18n\angular-locale_it.js" />
+    <Content Include="Html\js\i18n\angular-locale_iw.js" />
+    <Content Include="Html\js\i18n\angular-locale_ja-jp.js" />
+    <Content Include="Html\js\i18n\angular-locale_ja.js" />
+    <Content Include="Html\js\i18n\angular-locale_kn-in.js" />
+    <Content Include="Html\js\i18n\angular-locale_kn.js" />
+    <Content Include="Html\js\i18n\angular-locale_ko-kr.js" />
+    <Content Include="Html\js\i18n\angular-locale_ko.js" />
+    <Content Include="Html\js\i18n\angular-locale_ln-cd.js" />
+    <Content Include="Html\js\i18n\angular-locale_ln.js" />
+    <Content Include="Html\js\i18n\angular-locale_lt-lt.js" />
+    <Content Include="Html\js\i18n\angular-locale_lt.js" />
+    <Content Include="Html\js\i18n\angular-locale_lv-lv.js" />
+    <Content Include="Html\js\i18n\angular-locale_lv.js" />
+    <Content Include="Html\js\i18n\angular-locale_ml-in.js" />
+    <Content Include="Html\js\i18n\angular-locale_ml.js" />
+    <Content Include="Html\js\i18n\angular-locale_mr-in.js" />
+    <Content Include="Html\js\i18n\angular-locale_mr.js" />
+    <Content Include="Html\js\i18n\angular-locale_ms-my.js" />
+    <Content Include="Html\js\i18n\angular-locale_ms.js" />
+    <Content Include="Html\js\i18n\angular-locale_mt-mt.js" />
+    <Content Include="Html\js\i18n\angular-locale_mt.js" />
+    <Content Include="Html\js\i18n\angular-locale_nl-cw.js" />
+    <Content Include="Html\js\i18n\angular-locale_nl-nl.js" />
+    <Content Include="Html\js\i18n\angular-locale_nl-sx.js" />
+    <Content Include="Html\js\i18n\angular-locale_nl.js" />
+    <Content Include="Html\js\i18n\angular-locale_no.js" />
+    <Content Include="Html\js\i18n\angular-locale_or-in.js" />
+    <Content Include="Html\js\i18n\angular-locale_or.js" />
+    <Content Include="Html\js\i18n\angular-locale_pl-pl.js" />
+    <Content Include="Html\js\i18n\angular-locale_pl.js" />
+    <Content Include="Html\js\i18n\angular-locale_pt-br.js" />
+    <Content Include="Html\js\i18n\angular-locale_pt-pt.js" />
+    <Content Include="Html\js\i18n\angular-locale_pt.js" />
+    <Content Include="Html\js\i18n\angular-locale_ro-ro.js" />
+    <Content Include="Html\js\i18n\angular-locale_ro.js" />
+    <Content Include="Html\js\i18n\angular-locale_ru-ru.js" />
+    <Content Include="Html\js\i18n\angular-locale_ru.js" />
+    <Content Include="Html\js\i18n\angular-locale_sk-sk.js" />
+    <Content Include="Html\js\i18n\angular-locale_sk.js" />
+    <Content Include="Html\js\i18n\angular-locale_sl-si.js" />
+    <Content Include="Html\js\i18n\angular-locale_sl.js" />
+    <Content Include="Html\js\i18n\angular-locale_sq-al.js" />
+    <Content Include="Html\js\i18n\angular-locale_sq.js" />
+    <Content Include="Html\js\i18n\angular-locale_sr-cyrl-rs.js" />
+    <Content Include="Html\js\i18n\angular-locale_sr-latn-rs.js" />
+    <Content Include="Html\js\i18n\angular-locale_sr.js" />
+    <Content Include="Html\js\i18n\angular-locale_sv-se.js" />
+    <Content Include="Html\js\i18n\angular-locale_sv.js" />
+    <Content Include="Html\js\i18n\angular-locale_sw-tz.js" />
+    <Content Include="Html\js\i18n\angular-locale_sw.js" />
+    <Content Include="Html\js\i18n\angular-locale_ta-in.js" />
+    <Content Include="Html\js\i18n\angular-locale_ta.js" />
+    <Content Include="Html\js\i18n\angular-locale_te-in.js" />
+    <Content Include="Html\js\i18n\angular-locale_te.js" />
+    <Content Include="Html\js\i18n\angular-locale_th-th.js" />
+    <Content Include="Html\js\i18n\angular-locale_th.js" />
+    <Content Include="Html\js\i18n\angular-locale_tl.js" />
+    <Content Include="Html\js\i18n\angular-locale_tr-tr.js" />
+    <Content Include="Html\js\i18n\angular-locale_tr.js" />
+    <Content Include="Html\js\i18n\angular-locale_uk-ua.js" />
+    <Content Include="Html\js\i18n\angular-locale_uk.js" />
+    <Content Include="Html\js\i18n\angular-locale_ur-pk.js" />
+    <Content Include="Html\js\i18n\angular-locale_ur.js" />
+    <Content Include="Html\js\i18n\angular-locale_vi-vn.js" />
+    <Content Include="Html\js\i18n\angular-locale_vi.js" />
+    <Content Include="Html\js\i18n\angular-locale_zh-cn.js" />
+    <Content Include="Html\js\i18n\angular-locale_zh-hans-cn.js" />
+    <Content Include="Html\js\i18n\angular-locale_zh-hk.js" />
+    <Content Include="Html\js\i18n\angular-locale_zh-tw.js" />
+    <Content Include="Html\js\i18n\angular-locale_zh.js" />
+    <Content Include="Html\js\i18n\angular-locale_zu-za.js" />
+    <Content Include="Html\js\i18n\angular-locale_zu.js" />
+    <Content Include="Html\js\jquery.min.js" />
+    <Content Include="Html\js\ui-bootstrap-tpls-0.11.0.js" />
+    <Content Include="Html\js\version.txt" />
+    <Content Include="Html\partials\.#list.html" />
+    <Content Include="Html\partials\list.html" />
+    <Content Include="Html\partials\signIn.html" />
+    <Content Include="Html\ressources\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\fr-FR\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetPlatformIdentifier)' == '' ">
+    <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
