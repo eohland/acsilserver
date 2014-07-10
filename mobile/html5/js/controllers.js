@@ -1,7 +1,9 @@
 var signinCtrl = angular.module('signinCtrl', []);
 
-signinCtrl.controller('signinCtrl', ['$scope', '$http', function($scope, $http) {
+signinCtrl.controller('signinCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
     $scope.signIn = true;
+    $scope.loading = false;
+    $scope.error = false;
     
     $http.get('data/signIn.json').success(function(data) {
 	$scope.langs = data;
@@ -12,20 +14,33 @@ signinCtrl.controller('signinCtrl', ['$scope', '$http', function($scope, $http) 
 	myData = $.param({grant_type: "password",
 			  username: login,
 			  password: password,
-			  client_id: "1_27mi5mierc008884gswkkcsosowco84s4c4k88swwkw84ccgs4",
-			  client_secret: "57ac67c1x1wckk8s0sgsogs0os0s0g0k88k8k0co0g08kgw4o8"});
+			  client_id: "3_1zm54gls83c0ko4gwk8cg44wsgskkckssg80occ8ssw0ww0wwk",
+			  client_secret: "27yd9lyhqj40wkwccgok8848woo80c00ksgocck08s8k80cgwc"});
 	console.log(myData);
 	//myData = decodeURIComponent(myData);
 	//console.log(myData);
 	$http({
 	    method: 'POST',
-	    url: "http://localhost/acs/app_dev.php/oauth/v2/token",
+	    url: localStorage.getItem("server.url")+"app_dev.php/oauth/v2/token",
 	    data: myData,
 	    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 	}).success(function(data) {
 	    console.log(data);
+	    localStorage.setItem("credential.password", password);
+	    localStorage.setItem("credential.username", login);
+	    localStorage.setItem("credential.access_token", data.access_token);
+	    localStorage.setItem("credential.refresh_token", data.refresh_token);
+	    $location.path('/list').replace();
+	    $scope.loading = false;
 	}).error(function(data) {
-	    console.log(data);
+	    $scope.loading = false;
+	    $scope.error = true;
+	    if (data.error.search("invalid_grant") != -1)
+		$scope.errorMessage = "Login or Password invalid";
+	    else if (data.error.search("invalid_request") != -1)
+		$scope.errorMessage = "Login or Password required";
+	    else
+		$scope.errorMessage = data.error/	    console.log(data);   
 	});
 	//	API.authenticate(login, password);
 	//	location.assign('#/list');
@@ -35,8 +50,24 @@ signinCtrl.controller('signinCtrl', ['$scope', '$http', function($scope, $http) 
 
 var listCtrl = angular.module('listCtrl', ['ngSanitize']);
 
-listCtrl.controller('listCtrl', ['$scope', '$routeParams',function($scope, $routeParams) {
+listCtrl.run(function($http) {
+    $http.defaults.headers.common.Authorization = 'Bearer '
+	+ localStorage.getItem("credential.access_token");
+});
 
+listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http',function($scope, $routeParams, $http) {
+    url = localStorage.getItem("server.url");
+    delete $http.defaults.headers.common['X-Requested-With'];
+    $http({
+	method: 'POST',
+	url: localStorage.getItem("server.url")+'app_dev.php/service/1/op/list',	
+    }).success(function(data) {
+	console.log(data);
+	$scope.folders = data.folders;
+	$scope.files = data.files;
+    }).error(function(data) {
+    	console.log(data);
+    });
 }]);
 
 var propertiesCtrl = angular.module('propertiesDirective', ['ngSanitize']);
