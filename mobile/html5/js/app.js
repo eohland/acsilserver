@@ -8,9 +8,14 @@ var clientApp = angular.module('clientApp', [
     'listCtrl',
 ]);
 
-clientApp.config(['$routeProvider', function($routeProvider, $locationProvider) {
+clientApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
     
     console.log($routeProvider);
+/*    $httpProvider.defaults.useXDomain = true;
+    $httpProvider.defaults.withCredentials = true;
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+*/
     $routeProvider.
 	when('/signin', {
             templateUrl: 'partials/signIn.html',
@@ -34,11 +39,12 @@ clientApp.controller('AppCtrl', ['$scope', function($scope) {
 	window.history.back();
     };
 
-    $scope.signIn = function() {
+    $scope.showBack = function() {
+	console.log("hash="+location.hash+" search="+location.hash.search("list")); 
 	console.log("hash="+location.hash+" search="+location.hash.search("signin")); 
-	if (location.hash.search("signin") == -1)
-	    return false;
-	else
+	if (location.hash.search("signin") == -1 && location.hash.search("list") == -1)
 	    return true;
+	else
+	    return false;
     }
 }]);

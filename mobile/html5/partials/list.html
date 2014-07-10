@@ -1,28 +1,12 @@
-<div>
-  <table class="table table-striped">
-      <thead>
-        <tr>
-          <th> </th>
-          <th> </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>video1</td>
-          <td>100MB</td>
-        </tr>
-        <tr>
-          <td>pic1</td>
-          <td>6MB</td>
-        </tr>
-        <tr>
-          <td>music1</td>
-          <td>12MB</td>
-        </tr>
-        <tr>
-          <td>text1</td>
-          <td>0.2MB</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="list-group">
+  <div ng-repeat="folder in folders">
+    <div class="list-group-item">
+      {{folder.name}}
+    </div>
+  </div>
+  <div  ng-repeat="file in files">
+    <div class="list-group-item">
+      {{file.info.name}}
+    </div>
+  </div>
 </div> <!-- <div ng-controller="rListCtrl"> -->
