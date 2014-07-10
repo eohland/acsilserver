@@ -11,11 +11,13 @@ signinCtrl.controller('signinCtrl', ['$scope', '$http', '$location', function($s
 
     $scope.signIn = function (login, password) {
 	console.log(login+"|"+password);
-	myData = $.param({grant_type: "password",
-			  username: login,
-			  password: password,
-			  client_id: "3_1zm54gls83c0ko4gwk8cg44wsgskkckssg80occ8ssw0ww0wwk",
-			  client_secret: "27yd9lyhqj40wkwccgok8848woo80c00ksgocck08s8k80cgwc"});
+	myData = $.param({
+	    grant_type: "password",
+	    username: login,
+	    password: password,
+	    client_id: "1_1czy7ecwsklcw84c8woococ4cg0ko44cwoosgkgw8w0kcck448",//*/"3_1zm54gls83c0ko4gwk8cg44wsgskkckssg80occ8ssw0ww0wwk",
+	    client_secret: "2k4nxulmjk2swsws00ooosswoo40ko0sok04c8kss4sk4woo0g"//*/"27yd9lyhqj40wkwccgok8848woo80c00ksgocck08s8k80cgwc"
+	});
 	console.log(myData);
 	//myData = decodeURIComponent(myData);
 	//console.log(myData);
