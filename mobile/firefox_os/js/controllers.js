@@ -224,22 +224,35 @@ var propertiesCtrl = angular.module('propertiesDirective', ['ngSanitize']);
 
 propertiesCtrl.controller('propertiesCtrl', ['$scope', '$http',function($scope, $http) {
     $scope.session = localStorage.getItem("credential.access_token");
-    $scope.installed = localStorage.getItem("firefox.installed");
     $scope.server = [];
     $scope.server.url = localStorage.getItem("server.url");
 
     
+    $scope.notInstalled = function() {
+	var request = navigator.mozApps.checkInstalled("http://firefox.galan.im/acsilserver.webapp");
+	request.onsuccess = function() {
+	    console.log(request.result);
+	    if (request.result) {
+		return false;// we're installed
+	    } else {
+		return true;// not installed
+	    }
+	};
+	request.onerror = function() {
+	    alert('Error checking installation status: ' + this.error.message);
+	    return true;
+	};
+	    return true;
+    }
+
     $scope.install = function() {
-	ev.preventDefault();
 	// define the manifest URL
-	var manifest_url = "acsilserver.webapp";
+	var manifest_url = "http://firefox.galan.im/acsilserver.webapp";
 	// install the app
 	var myapp = navigator.mozApps.install(manifest_url);
 	myapp.onsuccess = function(data) {
 	    // App is installed, remove button
-	    localStorage.setItem("firefox.installed", true);
-	    $scope.installes = true;
-	    $scope.$apply();
+	    console.log('Install success');
 	};
 	myapp.onerror = function() {
 	    console.log('Install failed, error: ' + this.error.name);
