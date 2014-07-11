@@ -12,27 +12,30 @@ using System.IO.IsolatedStorage;
 using System.IO;
 using System.Text;
 using System.Diagnostics;
+using System.Collections.Specialized;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Acsilserver1
 {
     public partial class MainPage : PhoneApplicationPage
     
     {
-        private string url;
 
-        private int AUTH = 0;
-        private int TOKEN = 1;
-        private int TOKEN2 = 2;
-        private int count = 0;
-        private int state;
-        private string code;
-
+        string grantType = "password";
+        string applicationID = "1_1czy7ecwsklcw84c8woococ4cg0ko44cwoosgkgw8w0kcck448";
+        string clientString = "2k4nxulmjk2swsws00ooosswoo40ko0sok04c8kss4sk4woo0g";
+        string username = null;
+        string password = null;
+        string APIurl = "app_dev.php/oauth/v2/token";
+        HttpWebResponse response = null;
 
         // Constructeur
         public MainPage()
         {
             InitializeComponent();          
-            state = AUTH;
             // Exemple de code pour la localisation d'ApplicationBar
             //BuildLocalizedApplicationBar();
         }
@@ -78,159 +81,95 @@ namespace Acsilserver1
         //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
         //    ApplicationBar.MenuItems.Add(appBarMenuItem);
         //}
-        void GetRequestStreamCallback(IAsyncResult callbackResult)
+
+        private void GetResponse(IAsyncResult result)
         {
-            if (state == AUTH)
+            HttpWebRequest request = result.AsyncState as HttpWebRequest;
+            if (request != null)
             {
-                HttpWebRequest myRequest = (HttpWebRequest)callbackResult.AsyncState;
-                // End the stream request operation
-                Stream postStream = myRequest.EndGetRequestStream(callbackResult);
- 
-                // Create the post data
-                string postData = "consumer_key=cosumerKey&redirect_uri=http://www.google.com";
-                byte[] byteArray = Encoding.UTF8.GetBytes(postData);
- 
-                // Add the post data to the web request
-                postStream.Write(byteArray, 0, byteArray.Length);
-                postStream.Close();
- 
-                // Start the web request
-                myRequest.BeginGetResponse(new AsyncCallback(GetResponsetStreamCallback), myRequest);
-            }
-           else if (state == TOKEN)
-            {
-                HttpWebRequest myRequest = (HttpWebRequest)callbackResult.AsyncState;
-                // End the stream request operation
-                Stream postStream = myRequest.EndGetRequestStream(callbackResult);
- 
-                // Create the post data
-                string postData = "consumer_key=consumerKey="+code;
-                byte[] byteArray = Encoding.UTF8.GetBytes(postData);
- 
-                // Add the post data to the web request
-                postStream.Write(byteArray, 0, byteArray.Length);
-                postStream.Close();
- 
-                // Start the web request
-                myRequest.BeginGetResponse(new AsyncCallback(GetResponsetStreamCallback), myRequest);
-            }
-        }
-        void GetResponsetStreamCallback(IAsyncResult callbackResult)
-        {
-            if (state == AUTH)
-            {
-                HttpWebRequest request = (HttpWebRequest)callbackResult.AsyncState;
-                HttpWebResponse response = (HttpWebResponse)request.EndGetResponse(callbackResult);
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                try
                 {
-                    Debug.WriteLine("Ok");
-                }
-                else
-                {
-                    Debug.WriteLine(response.StatusCode);
-                }
-                using (StreamReader httpWebStreamReader = new StreamReader(response.GetResponseStream()))
-                {
-                    string result = httpWebStreamReader.ReadToEnd();
-                    //For debug: show results
-                    Debug.WriteLine(result);
-                    string[] data = result.Split('=');
-                    url = "https://getpocket.com/auth/authorize?request_token=" + data[1] + "&redirect_uri=http://www.google.com";
-                    code = data[1];
- 
-                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    WebResponse response = request.EndGetResponse(result);
+                    using (StreamReader reader = new StreamReader(response.GetResponseStream()))
                     {
-                        // change UI here
-                        web1.Visibility = System.Windows.Visibility.Visible;
-                        web1.Navigate(new Uri(url));
-                    });
+                        // Get the Response Stream
+                        string json = reader.ReadLine();
+                        Console.WriteLine(json);                       
+                    }
+                }
+                catch (WebException e)
+                {
+                    return;
                 }
             }
-            else if (state == TOKEN)
-            {
-                HttpWebRequest request = (HttpWebRequest)callbackResult.AsyncState;
-                HttpWebResponse response = (HttpWebResponse)request.EndGetResponse(callbackResult);
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    Debug.WriteLine("Ok1");
-                }
-                else
-                {
-                    Debug.WriteLine(response.StatusCode);
-                }
-                using (StreamReader httpWebStreamReader = new StreamReader(response.GetResponseStream()))
-                {
-                    string result = httpWebStreamReader.ReadToEnd();
-                    //For debug: show results
-                    Debug.WriteLine(result);
- 
-                }
-            }
-        }
- 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            System.Uri myUri = new System.Uri("https://getpocket.com/v3/oauth/request");
-            HttpWebRequest myRequest = (HttpWebRequest)HttpWebRequest.Create(myUri);
-            myRequest.Method = "POST";
-            myRequest.ContentType = "application/x-www-form-urlencoded";
-            myRequest.BeginGetRequestStream(new AsyncCallback(GetRequestStreamCallback), myRequest);
- 
-        }
- 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            web1.Navigate(new Uri(url));
- 
-        }
- 
-        private void web1_Navigated(object sender, NavigationEventArgs e)
-        {
- 
- 
-            if (strCmp(e.Uri.AbsoluteUri,"http://www.google.") == true)
-            {
-                web1.Visibility = System.Windows.Visibility.Collapsed;
-                MessageBox.Show("complete");
-                HttpWebRequest myRequest = (HttpWebRequest)HttpWebRequest.Create("https://getpocket.com/v3/oauth/authorize");
-                myRequest.Method = "POST";
-                myRequest.ContentType = "application/x-www-form-urlencoded";
-                myRequest.BeginGetRequestStream(new AsyncCallback(GetRequestStreamCallback), myRequest);
-                state = TOKEN;
-            }
- 
-        }
-        private bool strCmp(string a, string b)
-        {
-            if(a.Length < b.Length)
-                return false;
-            bool equal = false;
-            for (int i = 0; i < b.Length; i++)
-            {
- 
-                if (a[i] == b[i])
-                    equal = true;
-                else
-                {
-                    equal = false;
-                    break;
-                }
- 
-            }
- 
-            return equal;
         }
 
+
+        private void GetRequestStreamCallback(IAsyncResult callbackResult)
+        {
+            HttpWebRequest myRequest = (HttpWebRequest)callbackResult.AsyncState;
+            Stream postStream = myRequest.EndGetRequestStream(callbackResult);
+            StringBuilder data = new StringBuilder();
+            data.Append("grant_type=" + Uri.EscapeDataString(grantType));
+            data.Append("&client_id=" + Uri.EscapeDataString(applicationID));
+            data.Append("&client_secret=" + Uri.EscapeDataString(clientString));
+            data.Append("&username=" + Uri.EscapeDataString(username));
+            data.Append("&password=" + Uri.EscapeDataString(password));
+            byte[] byteArray = Encoding.UTF8.GetBytes(data.ToString());
+            postStream.Write(byteArray, 0, byteArray.Length);
+            postStream.Close();
+            myRequest.BeginGetResponse(new AsyncCallback(GetResponsetStreamCallback), myRequest);
+        }
+
+        private void GetResponsetStreamCallback(IAsyncResult callbackResult)
+        {
+
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)callbackResult.AsyncState;
+                HttpWebResponse response = (HttpWebResponse)request.EndGetResponse(callbackResult);
+                string responseString = "";
+                Stream streamResponse = response.GetResponseStream();
+                StreamReader reader = new StreamReader(streamResponse);
+                responseString = reader.ReadToEnd();
+                streamResponse.Close();
+                reader.Close();
+                response.Close();
+                string result = responseString;
+                JObject o = JObject.Parse(result);
+
+                string rssTitle = (string)o["access_token"];
+                PhoneApplicationService.Current.State["token"] = result;
+                IsolatedStorageSettings.ApplicationSettings["token"] = result;
+                    Dispatcher.BeginInvoke(
+                    (Action)(() =>
+                        {
+                            NavigationService.Navigate(new Uri("/View/MvvmViewListe.xaml", UriKind.RelativeOrAbsolute));
+                        }));
+
+            }
+            catch (Exception e)
+            {
+                Dispatcher.BeginInvoke(
+                    (Action)(() =>
+                    {
+                        MessageBox.Show("Mauvaise identification");
+                    }));
+            }
+        }
 
         private void Button_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (!string.IsNullOrEmpty(Login.Text) && !string.IsNullOrEmpty(URL.Text) && !string.IsNullOrEmpty(Password.Password))
             {
-                //tenter connection
-                HttpWebRequest requete = (HttpWebRequest)HttpWebRequest.Create("http://localhost:8081/web/app_dev.php/service/1/op/list");
-                requete.Method = "POST";
-                requete.ContentType = "application/json";
-       
+                string destinationURL = URL.Text + APIurl;
+                username = Login.Text;
+                password = Password.Password;
+                HttpWebRequest spAuthReq = HttpWebRequest.Create(destinationURL) as HttpWebRequest;
+                spAuthReq.ContentType = "application/x-www-form-urlencoded";
+                spAuthReq.Method = "POST";
+                spAuthReq.BeginGetRequestStream(new AsyncCallback(GetRequestStreamCallback), spAuthReq);
+
                 PhoneApplicationService.Current.State["URL"] = URL.Text;
                 PhoneApplicationService.Current.State["login"] = Login.Text;
                 PhoneApplicationService.Current.State["Pwd"] = Password.Password;
@@ -251,7 +190,7 @@ namespace Acsilserver1
                 }
                 try
                 {
-                    NavigationService.Navigate(new Uri("/View/MvvmViewListe.xaml", UriKind.RelativeOrAbsolute));
+                    //NavigationService.Navigate(new Uri("/View/MvvmViewListe.xaml", UriKind.RelativeOrAbsolute));
                 }
                 catch (Exception exc)
                 {
