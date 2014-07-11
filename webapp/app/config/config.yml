@@ -78,6 +78,7 @@ fos_oauth_server:
       user_provider: platform.user.provider
       options:
         supported_scopes: user
+        access_token_lifetime: 63072000
 
 
 # FOSRestBundle Configuration

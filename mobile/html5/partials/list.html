@@ -1,12 +1,21 @@
-<div class="list-group">
-  <div ng-repeat="folder in folders">
-    <div class="list-group-item">
-      {{folder.name}}
+<div class="container">
+  <div class="list-group">
+    <div ng-repeat="folder in folders">
+      <a ng-href="#list/{{folder.id}}" class="list-group-item disabled">
+	<div>
+	  {{folder.name}}
+	</div>
+      </a>
     </div>
-  </div>
-  <div  ng-repeat="file in files">
-    <div class="list-group-item">
-      {{file.info.name}}
+    <div  ng-repeat="file in files">
+      <a ng-href="{{fileToUrl(file.info.pseudo_owner, file.info.path)}}" class="list-group-item">
+	<div>
+	  {{file.info.name}}
+	</div>
+      </a>
     </div>
-  </div>
-</div> <!-- <div ng-controller="rListCtrl"> -->
+  </div> <!-- <div ng-controller="rListCtrl"> -->
+
+  <ng-include src="'partials/loading.html'"></ng-include>
+
+</div>

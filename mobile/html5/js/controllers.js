@@ -11,6 +11,7 @@ signinCtrl.controller('signinCtrl', ['$scope', '$http', '$location', function($s
 
     $scope.signIn = function (login, password) {
 	console.log(login+"|"+password);
+	$scope.loading = true;
 	myData = $.param({
 	    grant_type: "password",
 	    username: login,
@@ -19,8 +20,6 @@ signinCtrl.controller('signinCtrl', ['$scope', '$http', '$location', function($s
 	    client_secret: "2k4nxulmjk2swsws00ooosswoo40ko0sok04c8kss4sk4woo0g"//*/"27yd9lyhqj40wkwccgok8848woo80c00ksgocck08s8k80cgwc"
 	});
 	console.log(myData);
-	//myData = decodeURIComponent(myData);
-	//console.log(myData);
 	$http({
 	    method: 'POST',
 	    url: localStorage.getItem("server.url")+"app_dev.php/oauth/v2/token",
@@ -32,8 +31,13 @@ signinCtrl.controller('signinCtrl', ['$scope', '$http', '$location', function($s
 	    localStorage.setItem("credential.username", login);
 	    localStorage.setItem("credential.access_token", data.access_token);
 	    localStorage.setItem("credential.refresh_token", data.refresh_token);
-	    $location.path('/list').replace();
-	    $scope.loading = false;
+	    alert("tata");
+	    setTimeout(function(){
+		alert("toto");
+		$scope.loading = false;
+		$location.path('/list').replace();
+		$scope.$apply();
+	    }, 200);
 	}).error(function(data) {
 	    $scope.loading = false;
 	    $scope.error = true;
@@ -58,18 +62,26 @@ listCtrl.run(function($http) {
 });
 
 listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http',function($scope, $routeParams, $http) {
+    $scope.loading = true;
     url = localStorage.getItem("server.url");
-    delete $http.defaults.headers.common['X-Requested-With'];
     $http({
 	method: 'POST',
 	url: localStorage.getItem("server.url")+'app_dev.php/service/1/op/list',	
     }).success(function(data) {
+	$scope.loading = false;
 	console.log(data);
 	$scope.folders = data.folders;
 	$scope.files = data.files;
+	
     }).error(function(data) {
+	$scope.loading = false;
     	console.log(data);
     });
+
+    $scope.fileToUrl = function(pseudo_owner, path) {
+	var url = localStorage.getItem("server.url")+'uploads/' + pseudo_owner + '/' + path;
+	return url;
+    }
 }]);
 
 var propertiesCtrl = angular.module('propertiesDirective', ['ngSanitize']);
