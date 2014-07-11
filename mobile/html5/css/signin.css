@@ -1,11 +1,11 @@
 body {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 51px;
+//  padding-bottom: 40px;
   background-color: #eee;
 }
 
 body > .container {
-padding: 11px 15px 0;
+//padding: 11px 15px 0;
 }
 
 .form-signin {
@@ -420,4 +420,57 @@ padding: 11px 15px 0;
     margin-top: -32px;  /* -1 * image height / 2 */
     display: block;
     opacity: 1;     
+}
+
+.list-bold {
+    font-weight: bold;
+//    font-size: medium;
+}
+
+.my-list .row {
+margin-right: 0;
+margin-left: 0;
+}
+
+.my-list .file-drop{
+    padding-bottom: 0;
+}
+
+.my-list .list-group-item {
+    padding: 0 0;
+}
+
+.my-list .file-drop div{
+    font-size: xx-large;
+    background-color: #B0B0B0;
+    padding-bottom: -15px;
+}
+
+.my-list .apply-padding{
+    padding: 10px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+a:active {
+    color: black;
+    text-decoration: none;
 }

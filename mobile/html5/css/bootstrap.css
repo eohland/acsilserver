@@ -734,8 +734,8 @@ pre code {
   overflow-y: scroll;
 }
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
+//  padding-right: 15px;
+//  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -3128,6 +3128,20 @@ input[type="button"].btn-block {
     left: 0;
   }
 }
+
+//WORKAROUND TO KEEP THE OPTIN ON THE RIGHT ON SMALL DEVICES
+.navbar-right {
+    right: 0;
+    left: auto;
+}
+
+.navbar-left {
+    float: left !important;
+}
+.navbar-right {
+    float: right !important;
+}
+
 .btn-group,
 .btn-group-vertical {
   position: relative;
@@ -3642,7 +3656,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   min-height: 50px;
-  margin-bottom: 20px;
+  //margin-bottom: 20px;
   border: 1px solid transparent;
 }
 @media (min-width: 768px) {

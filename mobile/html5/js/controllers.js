@@ -31,13 +31,11 @@ signinCtrl.controller('signinCtrl', ['$scope', '$http', '$location', function($s
 	    localStorage.setItem("credential.username", login);
 	    localStorage.setItem("credential.access_token", data.access_token);
 	    localStorage.setItem("credential.refresh_token", data.refresh_token);
-	    alert("tata");
 	    setTimeout(function(){
-		alert("toto");
 		$scope.loading = false;
-		$location.path('/list').replace();
+		$location.path('/list/0');
 		$scope.$apply();
-	    }, 200);
+	    }, 2000);
 	}).error(function(data) {
 	    $scope.loading = false;
 	    $scope.error = true;
@@ -56,17 +54,88 @@ signinCtrl.controller('signinCtrl', ['$scope', '$http', '$location', function($s
 
 var listCtrl = angular.module('listCtrl', ['ngSanitize']);
 
-listCtrl.run(function($http) {
+listCtrl.directive('onLongPress', function($timeout) {
+    return {
+	restrict: 'A',
+	link: function($scope, $elm, $attrs) {
+	    $elm.bind('touchstart', function(evt) {
+		// Locally scoped variable that will keep track of the long press
+		$scope.longPress = true;
+		
+		// We'll set a timeout for 600 ms for a long press
+		$timeout(function() {
+		    if ($scope.longPress) {
+			// If the touchend event hasn't fired,
+			// apply the function given in on the element's on-long-press attribute
+			$scope.$apply(function() {
+			    $scope.$eval($attrs.onLongPress)
+			});
+		    }
+		}, 600);
+	    });
+	    
+	    $elm.bind('touchend', function(evt) {
+		// Prevent the onLongPress event from firing
+		$scope.longPress = false;
+		// If there is an on-touch-end function attached to this element, apply it
+		if ($attrs.onTouchEnd) {
+		    $scope.$apply(function() {
+			$scope.$eval($attrs.onTouchEnd)
+		    });
+		}
+	    });
+	}
+    };
+})
+
+listCtrl.directive('onLongClick', function($timeout) {
+    return {
+	restrict: 'A',
+	link: function($scope, $elm, $attrs) {
+	    $elm.bind('mousedown', function(evt) {
+		// Locally scoped variable that will keep track of the long press
+		$scope.longClick = true;
+		
+		// We'll set a timeout for 600 ms for a long press
+		$timeout(function() {
+		    if ($scope.longClick) {
+			// If the touchend event hasn't fired,
+			// apply the function given in on the element's on-long-press attribute
+			$scope.$apply(function() {
+			    $scope.$eval($attrs.onLongClick)
+			});
+		    }
+		}, 600);
+	    });
+	    
+	    $elm.bind('mouseup', function(evt) {
+		// Prevent the onLongPress event from firing
+		$scope.longClick = false;
+		// If there is an on-touch-end function attached to this element, apply it
+		if ($attrs.onMouseUp) {
+		    $scope.$apply(function() {
+			$scope.$eval($attrs.onMouseUp)
+		    });
+		}
+	    });
+	}
+    };
+})
+
+
+listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '$location',function($scope, $routeParams, $http, $window, $location) {
+    $scope.loading = true;
+    justLongPressed = false;
+    //myUrl = localStorage.getItem("server.url");
     $http.defaults.headers.common.Authorization = 'Bearer '
 	+ localStorage.getItem("credential.access_token");
-});
+    myData = $.param({folderId: $routeParams.id});
 
-listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http',function($scope, $routeParams, $http) {
-    $scope.loading = true;
-    url = localStorage.getItem("server.url");
     $http({
 	method: 'POST',
-	url: localStorage.getItem("server.url")+'app_dev.php/service/1/op/list',	
+	url: localStorage.getItem("server.url")+'app_dev.php/service/1/op/list/' + $routeParams.id,
+	data: myData,
+	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }).success(function(data) {
 	$scope.loading = false;
 	console.log(data);
@@ -78,10 +147,77 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http',function($sco
     	console.log(data);
     });
 
-    $scope.fileToUrl = function(pseudo_owner, path) {
-	var url = localStorage.getItem("server.url")+'uploads/' + pseudo_owner + '/' + path;
+    var fileToUrl = function(pseudo_owner, path, real_path) {
+	var url = localStorage.getItem("server.url")+'uploads/' + pseudo_owner + '/' + real_path + path;
 	return url;
     }
+    $scope.fileGetUrl = function(pseudo_owner, path, real_path) {
+	var url = localStorage.getItem("server.url")+'uploads/' + pseudo_owner + '/' + real_path + path;
+	return url;
+    }
+
+    $scope.timeToReadable = function(str) {
+	newstr = str.slice(0, str.search("T"));
+	return newstr;
+    }
+
+    $scope.byteToReadable = function(nbr) {
+	if (nbr < 1000) {
+	    return nbr + "B";
+	}
+	else if (nbr >= 1000 && nbr < 1000000) {
+	    nbr = nbr / 1000;
+	    return nbr + "kB";
+	}
+	else if (nbr >= 1000000) {
+	    nbr = nbr / 1000000;
+	    return nbr + "MB";
+	}
+	
+    }
+
+    $scope.itemOnTouchEnd = function(pseudo_owner, path, real_path) {
+	if (justLongPressed == false) {
+	    path = fileToUrl(pseudo_owner, path, real_path);
+	    window.location.assign(path);
+	    alert("patate");
+	}
+    }
+
+    $scope.folderOnTouchEnd = function(id) {
+	$location.path('/list/'+id);
+    }
+
+    $scope.itemOnLongPress = function(id) {
+	//alert("toto");
+        justLongPressed = true;
+	$scope.showid = id;
+//	$scope.$apply();
+	setTimeout(function(){
+            justLongPressed = false;
+        }, 500);
+
+    }
+
+    $scope.download = function(fileId) {
+	$http({
+	    method: 'POST',
+	    url: localStorage.getItem("server.url")+'app_dev.php/service/1/op/download/' + fileId,
+	    data: myData,
+	    headers: {
+		'Content-Type': 'application/x-www-form-urlencoded'
+		
+	    }
+	}).success(function(data) {
+	    $scope.loading = false;
+	    console.log(data);
+	}).error(function(data) {
+	    $scope.loading = false;
+    	    console.log(data);
+	});
+	alert("prout");
+    }
+
 }]);
 
 var propertiesCtrl = angular.module('propertiesDirective', ['ngSanitize']);
@@ -89,7 +225,7 @@ var propertiesCtrl = angular.module('propertiesDirective', ['ngSanitize']);
 
 
 propertiesCtrl.controller('propertiesCtrl', ['$scope', '$http',function($scope, $http) {
-    $scope.session = utils.readCookie("session");
+    $scope.session = localStorage.getItem("credential.access_token");
     $scope.server = [];
     $scope.server.url = localStorage.getItem("server.url");
 }]);

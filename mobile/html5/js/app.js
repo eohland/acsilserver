@@ -6,6 +6,7 @@ var clientApp = angular.module('clientApp', [
     'signinCtrl',
     'propertiesDirective',
     'listCtrl',
+//    'uploadCtrl',
 ]);
 
 clientApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
@@ -24,13 +25,17 @@ clientApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $h
 	when('/properties', {
             templateUrl: 'partials/properties.html',
             controller: 'propertiesCtrl'
-	}).
-	when('/list', {
+	}).	
+	when('/list/:id', {
             templateUrl: 'partials/list.html',
             controller: 'listCtrl'
 	}).
+	when('/upload/:id', {
+            templateUrl: 'partials/upload.html',
+            controller: 'uploadCtrl'
+	}).
 	otherwise({
-            redirectTo: '/list'
+            redirectTo: '/list/0'
 	});
 }]);
 
@@ -40,11 +45,22 @@ clientApp.controller('AppCtrl', ['$scope', function($scope) {
     };
 
     $scope.showBack = function() {
-	console.log("hash="+location.hash+" search="+location.hash.search("list")); 
-	console.log("hash="+location.hash+" search="+location.hash.search("signin")); 
-	if (location.hash.search("signin") == -1 && location.hash.search("list") == -1)
+	if (location.hash.search("signin") == -1 && location.hash.search("list/0") == -1)
 	    return true;
 	else
 	    return false;
     }
+
+    $scope.showUpload = function() {
+	if (location.hash.search("signin") == -1 && location.hash.search("properties") == -1)
+	    return true;
+	else
+	    return false;
+    }
+
+    $scope.getCurrentFolderId = function() {
+	//var id = location.hash.substring(location.hash.lastIndexOf("/"), location.hash.lenght);
+	//return id;
+    }
+
 }]);
