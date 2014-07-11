@@ -407,6 +407,12 @@ $list = array("files" => $listfiles, "folders" => $listfolders, "users" => $list
 			-> getRepository('AcsilServerAppBundle:Document') 
 			-> findOneBy(array('id' => $id, 'isProfilePicture' => 0));
 	$response = new Response();
+	if ($id == 0)
+	{
+	 $response -> setContent($id);
+	 $response -> setStatusCode(404);
+	 return ($response);
+	}
 	$response->headers->set('Content-type', 'application/octet-stream');
 	if ($document->getRealPath())
 	    $path = $document->getUploadRootDir().'/'.$document->getRealPath().'/'.$document->getPath();

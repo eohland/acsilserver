@@ -27,8 +27,8 @@ delete:
         _method: POST
 
 list:
-    pattern: /service/1/op/list
-    defaults: { _controller: APIBundle:Operations:listFiles, folderId: '' }
+    pattern: /service/1/op/list/{folderId}
+    defaults: { _controller: APIBundle:Operations:listFiles, folderId: 0 }
     requirements:
         _method: POST
 
@@ -39,8 +39,8 @@ upload:
         _method: POST
 
 download:
-    pattern: /service/1/op/download
-    defaults: { _controller: APIBundle:Operations:download, id: '' }
+    pattern: /service/1/op/download/{id}
+    defaults: { _controller: APIBundle:Operations:download, id: 0 }
     requirements:
         _method: POST
 
