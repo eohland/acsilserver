@@ -1,0 +1,73 @@
+<div class="container my-list">
+  <div class="list-group">
+    <div ng-repeat="folder in folders" >
+      <div class="list-group-item">
+      <div ng-click="folderOnTouchEnd(folder.id)"
+	   class="row">
+	<div class="col-xs-8 col-sm-8 col-md-8 apply-padding">
+	  <div class="list-bold">
+	    {{folder.name}}
+	  </div>
+	  <div></div>
+	</div>
+	<div class="col-xs-4 col-sm-4 col-md-4 apply-padding">
+	  <div class="list-bold">
+	    Folder
+	  </div>
+	  <div></div>
+	</div>
+      </div>
+      </div>
+    </div>
+    <div  ng-repeat="file in files">
+      <div class="list-group-item">
+	<div class="row file-info">
+	  <div on-touch-end="itemOnTouchEnd(file.info.pseudo_owner, file.info.path, file.info.real_path)"
+	       on-long-press="itemOnLongPress(file.info.id)"
+	       on-mouse-up="itemOnTouchEnd(file.info.pseudo_owner, file.info.path, file.info.real_path)"
+	       on-long-click="itemOnLongPress(file.info.id)"
+	       class="col-xs-8 col-sm-8 col-md-8 apply-padding">
+	    <div class="list-bold">
+	      {{file.info.name}}
+	    </div>
+	    <div>
+	      {{file.info.owner}}
+	    </div>
+	  </div>
+	  <div on-touch-end="itemOnTouchEnd(file.info.pseudo_owner, file.info.path, file.info.real_path)"
+	       on-long-press="itemOnLongPress(file.info.id)"
+	       on-mouse-up="itemOnTouchEnd(file.info.pseudo_owner, file.info.path, file.info.real_path)"
+	       on-long-click="itemOnLongPress(file.info.id)"
+	       class="col-xs-4 col-sm-4 col-md-4 apply-padding">
+	    <div class="list-bold">
+	      {{byteToReadable(file.info.size)}}
+	    </div>
+	    <div>
+	      {{timeToReadable(file.info.upload_date)}}
+	    </div>
+	  </div>
+	  <div ng-if="file.info.id == showid" class="file-drop text-center row">
+	    <a ng-href="{{fileGetUrl(file.info.pseudo_owner, file.info.path, file.info.real_path)}}"
+	       download="file.info.name">
+	      <div class="col-xs-3 col-sm-3 col-md-3">
+		<span class="glyphicon glyphicon-cloud-download">
+	      </div>
+	    </a>
+	    <div class="col-xs-3 col-sm-3 col-md-3">
+	      <span class="glyphicon glyphicon-edit">
+	    </div>
+	    <div class="col-xs-3 col-sm-3 col-md-3">
+	      <span class="glyphicon glyphicon-user">
+	    </div>
+	    <div class="col-xs-3 col-sm-3 col-md-3">
+	      <span class="glyphicon glyphicon-trash">
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div> <!-- <div ng-controller="rListCtrl"> -->
+
+  <ng-include src="'partials/loading.html'"></ng-include>
+
+</div>

@@ -1,0 +1,13 @@
+{
+  "name": "AcsilServer",
+  "description": "A client to access your acsilserver",
+  "launch_path": "/index.html",
+  "icons": {
+    "128": "/ressources/ic_launcher.png"
+  },
+  "developer": {
+    "name": "AcsilServer",
+    "url": "http://Acsilserver.com"
+  },
+  "default_locale": "en"
+}

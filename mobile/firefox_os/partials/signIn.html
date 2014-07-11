@@ -1,0 +1,20 @@
+<div class="container">
+
+  <form class="form-signin" role="form" ng-repeat="lang in langs" name="signForm">
+    <img src="ressources/ic_launcher.png" alt="..." class="img-circle" style="text-align:center;margin:auto;">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <div class="form-group">
+    <input type="text" class="form-control" id="name"
+	   placeholder="{{lang.email}}" ng-model="signin.name" autofocus>
+    <input type="password" class="form-control" id="password"
+	   placeholder="{{lang.password}}" ng-model="signin.password">
+    </div>
+    <div class="alert alert-danger" role="alert" ng-show="error">{{errorMessage}}</div>
+    <button class="btn btn-lg btn-primary btn-block"
+	    ng-click="signIn(signin.name, signin.password)">
+      Sign in
+    </button>
+  </form>
+  <ng-include src="'partials/loading.html'"></ng-include>
+  
+</div> <!-- /container -->

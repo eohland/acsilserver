@@ -51,7 +51,7 @@ signinCtrl.controller('signinCtrl', ['$scope', '$http', '$location', function($s
     }
 
 }]);
-
+ 
 var listCtrl = angular.module('listCtrl', ['ngSanitize']);
 
 listCtrl.directive('onLongPress', function($timeout) {
@@ -224,8 +224,27 @@ var propertiesCtrl = angular.module('propertiesDirective', ['ngSanitize']);
 
 propertiesCtrl.controller('propertiesCtrl', ['$scope', '$http',function($scope, $http) {
     $scope.session = localStorage.getItem("credential.access_token");
+    $scope.installed = localStorage.getItem("firefox.installed");
     $scope.server = [];
     $scope.server.url = localStorage.getItem("server.url");
+
+    
+    $scope.install = function() {
+	ev.preventDefault();
+	// define the manifest URL
+	var manifest_url = "acsilserver.webapp";
+	// install the app
+	var myapp = navigator.mozApps.install(manifest_url);
+	myapp.onsuccess = function(data) {
+	    // App is installed, remove button
+	    localStorage.setItem("firefox.installed", true);
+	    $scope.installes = true;
+	    $scope.$apply();
+	};
+	myapp.onerror = function() {
+	    console.log('Install failed, error: ' + this.error.name);
+	};
+    }
 }]);
 
 propertiesCtrl.directive('save', ['$http', function($http) {
