@@ -1,23 +1,67 @@
 {% extends '::base.html.twig' %}
 {# Page for authentification #}
+
+{% block stylesheets %}
+{{ parent() }}
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+ {% stylesheets filter='cssrewrite' '@AcsilServerAppBundle/Resources/public/css/*' %}
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css"> {#font-awesome doesn't work on IE and FF so we have to use this one#}
+  <link href="{{ asset('public/css/style.css') }}" rel="stylesheet" />
+  <link href="{{ asset('public/css/style_responsive.css') }}" rel="stylesheet" />
+  <link href="{{ asset('public/css/style_default.css') }}" rel="stylesheet"  id="style_color" />
+  {% endstylesheets %} 
+{% endblock %}
+
 {% block body %}
 {% if error %}
     <div>{{ error.message }}</div>
 {% endif %}
+   <body id=login-body>	</body>
+ <div id="login">
+<form id="loginform" class="form-vertical no-padding no-margin" action="{{ path('_login_check') }}" method="post">
+     <div class="lock">
+          <i class="icon-lock"></i>
+      </div>
+   {# <label for="username">Login :</label> #}
+        <div class="control-wrap">
+		  <h4>Log To Your AcsilServer</h4>
+	        <div class="control-group">
+              <div class="controls">
+                  <div class="input-prepend">
+                      <span class="add-on"><i class="icon-user"></i></span><input type="text" id="username"  placeholder="Email" name="_username" value="{{ last_username }}" />
+                  </div>
+              </div>
+          </div>
 
-<form action="{{ path('_login_check') }}" method="post">
-    <label for="username">Login :</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+		{#  <label for="password">Mot de passe :</label> #}
+		            <div class="control-group">
+              <div class="controls">
+                  <div class="input-prepend">
+ 					  <span class="add-on"><i class="icon-key"></i></span><input type="password" id="input-password" placeholder="Password" name="_password" />
+                  </div>
 
-    <label for="password">Mot de passe :</label>
-    <input type="password" id="password" name="_password" />
+                  <div class="clearfix space5"></div>
+              </div>
 
-    {#
-        Si vous voulez contrôler l'URL vers laquelle l'utilisateur est redirigé en cas de succès
-        (plus de détails ci-dessous)
-        <input type="hidden" name="_target_path" value="/account" />
-    #}
-
-    <button type="submit">login</button>
+          </div>
+		  
+ 
+ </div>
+    <button type="submit" id="login-btn" class="btn btn-block login-btn">login</button>
 </form>
+ </div>
+  <div id="login-copyright">
+      2014 &copy; AcsilServer.
+  </div>
+        {% javascripts 
+        	'@AcsilServerAppBundle/Resources/public/js/*' 
+        %}
+			<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+			<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+			<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+        	<script src="{{ asset('public/js/jquery-1.8.3.min.js') }}" type="text/javascript"></script>
+        	<script src="{{ asset('public/js/jquery.blockui.js') }}" type="text/javascript"></script>
+        	<script src="{{ asset('public/js/scripts.js') }}" type="text/javascript"></script>
+        {% endjavascripts %}
 {% endblock %}

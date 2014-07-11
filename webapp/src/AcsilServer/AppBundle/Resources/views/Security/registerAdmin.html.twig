@@ -78,8 +78,9 @@
 			    {#{{ form_label(newUserForm.pictureAccount, newUserForm.pictureAccount.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}#}
 			    Profile picture
 			    <div class="controls">
+					<h5> Account picture </h5>
 				    {{ form_errors(newUserForm.pictureAccount) }}
-				    {{ form_widget(newUserForm.pictureAccount, {'attr': {'class': 'control'}}) }}
+				    {{ form_widget(newUserForm.pictureAccount, {'attr': {'class': 'control','label': 'No account picture selected'}}) }}
 				</div><!-- controls -->
 			</div><!-- control group -->
 	</div><!-- row fluid -->
