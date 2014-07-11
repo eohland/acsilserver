@@ -82,29 +82,6 @@ namespace Acsilserver1
         //    ApplicationBar.MenuItems.Add(appBarMenuItem);
         //}
 
-        private void GetResponse(IAsyncResult result)
-        {
-            HttpWebRequest request = result.AsyncState as HttpWebRequest;
-            if (request != null)
-            {
-                try
-                {
-                    WebResponse response = request.EndGetResponse(result);
-                    using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                    {
-                        // Get the Response Stream
-                        string json = reader.ReadLine();
-                        Console.WriteLine(json);                       
-                    }
-                }
-                catch (WebException e)
-                {
-                    return;
-                }
-            }
-        }
-
-
         private void GetRequestStreamCallback(IAsyncResult callbackResult)
         {
             HttpWebRequest myRequest = (HttpWebRequest)callbackResult.AsyncState;
@@ -139,8 +116,9 @@ namespace Acsilserver1
                 JObject o = JObject.Parse(result);
 
                 string rssTitle = (string)o["access_token"];
-                PhoneApplicationService.Current.State["token"] = result;
-                IsolatedStorageSettings.ApplicationSettings["token"] = result;
+
+                PhoneApplicationService.Current.State["token"] = rssTitle;
+                IsolatedStorageSettings.ApplicationSettings["token"] = rssTitle;
                     Dispatcher.BeginInvoke(
                     (Action)(() =>
                         {
