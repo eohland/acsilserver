@@ -236,10 +236,10 @@ class OperationsController extends Controller {
     \sa 
   */
  public function listFilesAction($folderId) {
-		$em = $this -> getDoctrine() -> getManager();
-		$securityContext = $this -> get('security.context');
+ $em = $this -> getDoctrine() -> getManager();
+ $securityContext = $this -> get('security.context');
 
-		$listAllfiles = $em 
+ 		$listAllfiles = $em 
 			-> getRepository('AcsilServerAppBundle:Document') 
 			-> findBy(array('folder' => $folderId, 'isProfilePicture' => 0));
 
@@ -257,8 +257,10 @@ class OperationsController extends Controller {
 			$query = $em->createQuery(
     'SELECT d
     FROM AcsilServerAppBundle:Document d
-    WHERE d.folder > :folder AND d.isShared = 1'
-)->setParameter('folder', 0);
+    WHERE d.folder > :folder AND d.isShared = 1 AND d.owner != :owner'
+)
+->setParameter('folder', 0)
+->setParameter('owner', $this->getUser()->getEmail());
 
 $sharedFiles = $query->getResult();
 		$listAllfiles = array_merge($listAllfiles, $sharedFiles);
@@ -270,7 +272,8 @@ $sharedFiles = $query->getResult();
 			-> findOneBy(array('id' => $folderId, 'owner' => $this->getUser()->getEmail()));
 		$parentId = $currentFolder->getParentFolder();
 		}
-     /**
+
+		     /**
       * Get informations about files
       */	
 		$listfiles = array();
@@ -311,8 +314,9 @@ $sharedFiles = $query->getResult();
 					$listUserFileInfos = array("info" => $file, "sharedFileUserInfos" => '');
 				array_push($listfiles, $listUserFileInfos);
 			}
-		}	
-$list = array("files" => $listfiles, "folders" => $listfolders, "users" => $listusers);		
+		}
+
+$list = array("files" => $listfiles, "folders" => $listfolders, "users" => $listusers);
 	return ($list);
 	}
 
