@@ -1,7 +1,9 @@
 {
   "name": "AcsilServer",
   "description": "A client to access your acsilserver",
-  "launch_path": "/index.html",
+  "chrome": {
+     "navigation": true
+  },
   "icons": {
     "128": "/ressources/ic_launcher.png"
   },
@@ -9,5 +11,7 @@
     "name": "AcsilServer",
     "url": "http://Acsilserver.com"
   },
+  "fullscreen": "true",
+  "type": "web",
   "default_locale": "en"
 }

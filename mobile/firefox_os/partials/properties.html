@@ -1,5 +1,5 @@
 <div class="text-center">
-  <button ng-if="installed != true"type="button" class="btn btn-primary" ng-click="install()">Primary</button>
+  <button ng-if="notInstalled()" type="button" class="btn btn-primary" ng-click="install()"> INSTALL THE APP</button>
   <form class="form-horizontal" role="form" novalidate>
     <div class="form-group">
       <label for="inputUrl3" class="col-xs-3 control-label">Server url</label>
