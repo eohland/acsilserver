@@ -1,6 +1,34 @@
-var signinCtrl = angular.module('signinCtrl', []);
+//PROPERTIES MODULE
 
-signinCtrl.controller('signinCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
+
+var propertiesCtrl = angular.module('propertiesDirective', ['ngSanitize']);
+
+propertiesCtrl.controller('propertiesCtrl', ['$scope', '$http',function($scope, $http) {
+    $scope.session = localStorage.getItem("credential.access_token");
+    $scope.server = [];
+    $scope.server.url = localStorage.getItem("server.url");
+}]);
+
+propertiesCtrl.directive('save', ['$http', function($http) {
+    return {
+	require: 'ngModel',
+	link: function(scope, ele, attrs, ctrl) {
+	    ctrl.$parsers.unshift(function(viewValue) {
+		console.log("value = "+viewValue);
+		localStorage.setItem("server.url", viewValue);
+	    });
+	}
+    }
+}]);
+
+
+//LOGIN MODULE
+
+var signinCtrl = angular.module('signinCtrl', ['ionic']);
+
+signinCtrl.controller('signinCtrl',
+		      ['$scope', '$http', '$location', '$ionicPopup',
+		       function($scope, $http, $location, $ionicPopup) {
     $scope.signIn = true;
     $scope.loading = false;
     $scope.error = false;
@@ -39,20 +67,30 @@ signinCtrl.controller('signinCtrl', ['$scope', '$http', '$location', function($s
 	}).error(function(data) {
 	    $scope.loading = false;
 	    $scope.error = true;
+
 	    if (data.error.search("invalid_grant") != -1)
-		$scope.errorMessage = "Login or Password invalid";
+		errorMessage = "Login or Password invalid";
 	    else if (data.error.search("invalid_request") != -1)
-		$scope.errorMessage = "Login or Password required";
+		errorMessage = "Login or Password required";
 	    else
-		$scope.errorMessage = data.error/	    console.log(data);   
+		errorMessage = data.error;
+	    console.log(data);   
+
+	    var alertPopup = $ionicPopup.alert({
+		title: 'ERROR',
+		template: errorMessage,
+	    });
 	});
 	//	API.authenticate(login, password);
 	//	location.assign('#/list');
     }
 
 }]);
- 
-var listCtrl = angular.module('listCtrl', ['ngSanitize']);
+
+
+//LIST MODULE
+
+var listCtrl = angular.module('listCtrl', ['ngSanitize', 'ionic']);
 
 listCtrl.directive('onLongPress', function($timeout) {
     return {
@@ -123,9 +161,10 @@ listCtrl.directive('onLongClick', function($timeout) {
 })
 
 
-listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '$location',function($scope, $routeParams, $http, $window, $location) {
+listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '$location', '$ionicModal',function($scope, $routeParams, $http, $window, $location, $ionicModal) {
     $scope.loading = true;
     justLongPressed = false;
+    console.log(MimeType.init());
     //myUrl = localStorage.getItem("server.url");
     $http.defaults.headers.common.Authorization = 'Bearer '
 	+ localStorage.getItem("credential.access_token");
@@ -138,19 +177,55 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }).success(function(data) {
 	$scope.loading = false;
-	console.log(data);
+	
+	data.files.forEach(function(file) {
+	    file.info["mime_type"] = MimeType.lookup(file.info.path);
+	    file.info["icon"] = getImg(file.info.mime_type);
+	});
+
 	$scope.folders = data.folders;
 	$scope.files = data.files;
+	console.log($scope.folders);
+	console.log($scope.files);
 	
     }).error(function(data) {
 	$scope.loading = false;
     	console.log(data);
     });
 
+    $ionicModal.fromTemplateUrl('my-modal.html', {
+	scope: $scope,
+	animation: 'slide-in-up'
+    }).then(function(modal) {
+	$scope.modal = modal;
+    });
+
     var fileToUrl = function(pseudo_owner, path, real_path) {
 	var url = localStorage.getItem("server.url")+'uploads/' + pseudo_owner + '/' + real_path + path;
 	return url;
     }
+    var getImg = function(mime_type) {
+	if (mime_type.search("audio") != -1)
+	    img = "img/icone/ios7-musical-notes.png";
+	else if (mime_type.search("video") != -1)
+	    img = "img/icone/ios7-film.png";
+	else if (mime_type.search("image") != -1)
+	    img = "img/icone/image.png";
+	else if (type.search("epub") != -1
+		 ||mime_type.search("ebook") != -1)
+	    img = "img/icone/android-book.png";
+	else if (mime_type.search("text") != -1
+		 || mime_type.search("msword") != -1
+		 || mime_type.search("pdf") != -1)
+	    img = "img/icone/document-text.png";
+	else if (mime_type.search("zip") != -1
+		 || mime_type.search("tar")!= -1)
+	    img = "img/icone/ios7-box.png";
+	else
+	    img = "img/icone/ios7-help-empty.png";
+	return img;
+    }
+    
     $scope.fileGetUrl = function(pseudo_owner, path, real_path) {
 	var url = localStorage.getItem("server.url")+'uploads/' + pseudo_owner + '/' + real_path + path;
 	return url;
@@ -176,10 +251,19 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	
     }
 
-    $scope.itemOnTouchEnd = function(pseudo_owner, path, real_path) {
+    $scope.itemOnTouchEnd = function(pseudo_owner, path, real_path, name) {
 	if (justLongPressed == false) {
 	    path = fileToUrl(pseudo_owner, path, real_path);
-	    window.location.assign(path);
+	    console.log(path);
+	    MimeType.init();
+	    if (MimeType.lookup(path).search("audio") != -1)
+		url = "/musicPlayer/"+encodeURIComponent(path)+"/"+name;
+	    else if (MimeType.lookup(path).search("video") != -1)
+		url = "/videoPlayer/"+encodeURIComponent(path)+"/"+name;
+	    else if (MimeType.lookup(path).search("image") != -1)
+		url = "/imagePlayer/"+encodeURIComponent(path)+"/"+name;
+	    console.log(url);
+	    $location.path(url);
 	}
     }
 
@@ -192,14 +276,20 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
         justLongPressed = true;
 	$scope.showid = id;
 //	$scope.$apply();
+	$scope.modal.show();
 	setTimeout(function(){
             justLongPressed = false;
         }, 500);
 
     }
 
+    $scope.closeModal = function(fileId) {
+	$scope.modal.hide();
+    }
+
     $scope.download = function(fileId) {
-	$http({
+	console.log(fileId);
+/*	$http({
 	    method: 'POST',
 	    url: localStorage.getItem("server.url")+'app_dev.php/service/1/op/download/' + fileId,
 	    data: myData,
@@ -214,60 +304,75 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	    $scope.loading = false;
     	    console.log(data);
 	});
-    }
-
+    */}
 }]);
 
-var propertiesCtrl = angular.module('propertiesDirective', ['ngSanitize']);
+//MUSIC PLAYER MODULE
 
+var musicPlayerCtrl = angular.module('musicPlayerCtrl', ['ngSanitize', 'mediaPlayer']);
 
+musicPlayerCtrl.controller('musicPlayerCtrl', ['$scope', '$routeParams', '$sce', function($scope, $routeParams, $sce) {
+//    console.log($scope.audio1.network);
+//    console.log($scope.audio1.ended);
+//    $scope.audio1.play();
+    MimeType.init();
+    $scope.mimetype =  MimeType.lookup(decodeURIComponent($routeParams.url));
+    $scope.srcUrl = $sce.trustAsResourceUrl(decodeURIComponent($routeParams.url));
+    $scope.title = $routeParams.name;
+//    $scope.audio1.loading(true);
+    setTimeout(function(){
+	var angularmp = angular.element(document.querySelector('audio')).scope().mediaPlayer;
+	var angularpl = angular.element(document.querySelector('audio')).scope().mediaPlaylist;
+	angularmp.load(true);
+	angularpl.push({ src: $scope.srcUrl, type: $scope.mimetype});
+    }, 1000);
 
-propertiesCtrl.controller('propertiesCtrl', ['$scope', '$http',function($scope, $http) {
-    $scope.session = localStorage.getItem("credential.access_token");
-    $scope.server = [];
-    $scope.server.url = localStorage.getItem("server.url");
-
-    
-    $scope.notInstalled = function() {
-	var request = navigator.mozApps.checkInstalled("http://firefox.galan.im/acsilserver.webapp");
-	request.onsuccess = function() {
-	    console.log(request.result);
-	    if (request.result) {
-		return false;// we're installed
-	    } else {
-		return true;// not installed
-	    }
-	};
-	request.onerror = function() {
-	    alert('Error checking installation status: ' + this.error.message);
-	    return true;
-	};
-	    return true;
+    $scope.getUrl = function() {
+	url = $sce.trustAsResourceUrl(decodeURIComponent($routeParams.url));
+	console.log(url);
+	return url;
     }
 
-    $scope.install = function() {
-	// define the manifest URL
-	var manifest_url = "http://firefox.galan.im/acsilserver.webapp";
-	// install the app
-	var myapp = navigator.mozApps.install(manifest_url);
-	myapp.onsuccess = function(data) {
-	    // App is installed, remove button
-	    console.log('Install success');
-	};
-	myapp.onerror = function() {
-	    console.log('Install failed, error: ' + this.error.name);
-	};
+    $scope.getType = function() {
+	type =  MimeType.lookup(decodeURIComponent($routeParams.url));
+	console.log(type);
+	return type;
     }
-}]);
 
-propertiesCtrl.directive('save', ['$http', function($http) {
-    return {
-	require: 'ngModel',
-	link: function(scope, ele, attrs, ctrl) {
-	    ctrl.$parsers.unshift(function(viewValue) {
-		console.log("value = "+viewValue);
-		localStorage.setItem("server.url", viewValue);
-	    });
+    $scope.seekPercentage = function ($event) {
+	var percentage = ($event.offsetX / $event.target.offsetWidth);
+	if (percentage <= 1) {
+	    return percentage;
+	} else {
+	    return 0;
 	}
     }
+}]);
+
+var videoPlayerCtrl = angular.module('videoPlayerCtrl', ['ngSanitize']);
+
+videoPlayerCtrl.controller('videoPlayerCtrl', ['$scope', '$routeParams', '$sce', function($scope, $routeParams, $sce) {
+    MimeType.init();
+    $scope.mimetype = MimeType.lookup(decodeURIComponent($routeParams.url));
+    $scope.srcUrl = $sce.trustAsResourceUrl(decodeURIComponent($routeParams.url));
+    $scope.title = $routeParams.name;
+    console.log($scope.mimetype);
+    $scope.videoHeight = window.innerHeight - 43;
+    $scope.videoWidth = window.innerWidth;
+    console.log($scope.videoHeight);
+    console.log($scope.videoWidth);
+}]);
+
+var imagePlayerCtrl = angular.module('imagePlayerCtrl', ['ngSanitize', 'ui.bootstrap']);
+
+imagePlayerCtrl.controller('imagePlayerCtrl', ['$scope', '$routeParams', '$sce', function($scope, $routeParams, $sce) {
+    MimeType.init();
+    $scope.mimetype = MimeType.lookup(decodeURIComponent($routeParams.url));
+    $scope.srcUrl = $sce.trustAsResourceUrl(decodeURIComponent($routeParams.url));
+    $scope.title = $routeParams.name;
+    console.log($scope.mimetype);
+    $scope.videoHeight = window.innerHeight - 43;
+    $scope.videoWidth = window.innerWidth;
+    console.log($scope.videoHeight);
+    console.log($scope.videoWidth);
 }]);

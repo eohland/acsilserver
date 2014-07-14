@@ -1,16 +1,25 @@
 <div class="container">
 
   <form class="form-signin" role="form" ng-repeat="lang in langs" name="signForm">
-    <img src="ressources/ic_launcher.png" alt="..." class="img-circle" style="text-align:center;margin:auto;">
-    <h2 class="form-signin-heading">Please sign in</h2>
-    <div class="form-group">
+    <img src="img/ic_launcher.png" alt="..." class="img-circle" style="text-align:center;margin:auto;">
+    <!--<div class="form-group">
     <input type="text" class="form-control" id="name"
 	   placeholder="{{lang.email}}" ng-model="signin.name" autofocus>
     <input type="password" class="form-control" id="password"
 	   placeholder="{{lang.password}}" ng-model="signin.password">
+    </div>-->
+    <div class="list list-inset">
+      <label class="item item-input">
+	<input type="text" placeholder="First Name" 
+	       id="name" ng-model="signin.name" autofocus>
+      </label>
+      <label class="item item-input">
+	<input type="password" placeholder="{{lang.password}}" 
+	       id="password" ng-model="signin.password">
+      </label>
     </div>
     <div class="alert alert-danger" role="alert" ng-show="error">{{errorMessage}}</div>
-    <button class="btn btn-lg btn-primary btn-block"
+    <button class="button button-calm button-block"
 	    ng-click="signIn(signin.name, signin.password)">
       Sign in
     </button>

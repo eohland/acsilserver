@@ -1,25 +1,49 @@
-<div class="container my-list">
-  <div class="list-group">
-    <div ng-repeat="folder in folders" >
-      <div class="list-group-item">
-      <div ng-click="folderOnTouchEnd(folder.id)"
-	   class="row">
-	<div class="col-xs-8 col-sm-8 col-md-8 apply-padding">
-	  <div class="list-bold">
-	    {{folder.name}}
-	  </div>
-	  <div></div>
-	</div>
-	<div class="col-xs-4 col-sm-4 col-md-4 apply-padding">
-	  <div class="list-bold">
-	    Folder
-	  </div>
-	  <div></div>
-	</div>
-      </div>
-      </div>
-    </div>
-    <div  ng-repeat="file in files">
+<div class="my-list">
+<ion-list>
+  <ion-item class="item item-avatar" ng-repeat="folder in folders"
+	    ng-click="folderOnTouchEnd(folder.id)">
+    <img src="img/icone/ios7-folder.png">
+    <span stype="float:left">
+    <h2>{{folder.name}}</h2>
+    <p>
+      {{folder.owner}}
+    </p>
+    </span>
+    <span class="badge badge-calm" style="font-size:larger;">
+      {{folder.size}}
+    </span>
+  </ion-item>
+</ion-list>
+<ion-list>
+  <ion-item class="item item-avatar" ng-repeat="file in files"
+	    on-touch-end="itemOnTouchEnd(file.info.pseudo_owner,
+			  file.info.path,
+			  file.info.real_path,
+			  file.info.name)"
+	    on-long-press="itemOnLongPress(file.info.id)"
+	    on-mouse-up="itemOnTouchEnd(file.info.pseudo_owner,
+			 file.info.path,
+			 file.info.real_path,
+			 file.info.name)"
+	    on-long-click="itemOnLongPress(file.info.id)">
+    <img ng-src="{{file.info.icon}}">
+    <span style="float:left;">
+    <h2>{{file.info.name}}</h2>
+    <p>
+      {{file.info.owner}}
+    </p>
+    </span>
+    <span class="item-note">
+      <h2>{{timeToReadable(file.info.upload_date)}}</h2>
+      <p>
+	{{timeToReadable(file.info.upload_date)}}
+      </p>
+   </span>
+
+  </ion-item>
+</ion-list>
+
+<!--    <div  ng-repeat="file in files">
       <div class="list-group-item">
 	<div class="row file-info">
 	  <div on-touch-end="itemOnTouchEnd(file.info.pseudo_owner, file.info.path, file.info.real_path)"
@@ -66,8 +90,38 @@
 	</div>
       </div>
     </div>
-  </div> <!-- <div ng-controller="rListCtrl"> -->
-
+  </div> -->
+<!-- <div ng-controller="rListCtrl"> -->
+<script id="my-modal.html" type="text/ng-template">
+  <div class="modal">
+    <ion-header-bar class="bar-dark">
+      <h3 class="title">Options</h3>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+	<a class="item item-icon-left" ng-click="download(showid)">
+	  <i class="icon ion-ios7-cloud-download"></i>
+	  Download
+	</a>
+	<a class="item item-icon-left" ng-click="">
+	  <i class="icon ion-ios7-compose"></i>
+	  Edit
+	</a>
+	<a class="item item-icon-left">
+	  <i class="icon ion-ios7-trash"></i>
+	  Delete
+	</a>
+      </ion-list>
+    </ion-content>
+    <ion-footer-bar class="bar-calm">
+      <button class="title button button-full button-clear"
+	      style="color:black;"
+	      ng-click="closeModal()">
+	Close
+      </button>
+    </ion-footer-bar>
+  </div>
+</script>
   <ng-include src="'partials/loading.html'"></ng-include>
 
 </div>

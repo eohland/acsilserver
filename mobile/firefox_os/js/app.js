@@ -1,22 +1,30 @@
+// Ionic Starter App
+
+// angular.module is a global place for creating, registering and retrieving Angular modules
+// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// the 2nd parameter is an array of 'requires'
+
 var clientApp = angular.module('clientApp', [
+    'ionic',
     'ngRoute',
     'ngResource',
     'ngSanitize',
-    'ui.bootstrap',
     'signinCtrl',
     'propertiesDirective',
     'listCtrl',
+    'musicPlayerCtrl',
+    'videoPlayerCtrl',
+    'imagePlayerCtrl',
+    "com.2fdevs.videogular",
+    "com.2fdevs.videogular.plugins.controls",
+    "com.2fdevs.videogular.plugins.overlayplay",
+    "com.2fdevs.videogular.plugins.buffering",
+    "com.2fdevs.videogular.plugins.poster",
 //    'uploadCtrl',
 ]);
 
 clientApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
-    
-    console.log($routeProvider);
-/*    $httpProvider.defaults.useXDomain = true;
-    $httpProvider.defaults.withCredentials = true;
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-*/
+
     $routeProvider.
 	when('/signin', {
             templateUrl: 'partials/signIn.html',
@@ -30,6 +38,18 @@ clientApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $h
             templateUrl: 'partials/list.html',
             controller: 'listCtrl'
 	}).
+	when('/musicPlayer/:url/:name', {
+            templateUrl: 'partials/musicPlayer.html',
+            controller: 'musicPlayerCtrl'
+	}).
+	when('/videoPlayer/:url/:name', {
+            templateUrl: 'partials/videoPlayer.html',
+            controller: 'videoPlayerCtrl'
+	}).
+	when('/imagePlayer/:url/:name', {
+            templateUrl: 'partials/imagePlayer.html',
+            controller: 'imagePlayerCtrl'
+	}).
 	when('/upload/:id', {
             templateUrl: 'partials/upload.html',
             controller: 'uploadCtrl'
@@ -38,6 +58,20 @@ clientApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $h
             redirectTo: '/list/0'
 	});
 }]);
+
+clientApp.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if(window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+  });
+})
+
 
 clientApp.controller('AppCtrl', ['$scope', function($scope) {
     $scope.back = function() { 
@@ -52,7 +86,7 @@ clientApp.controller('AppCtrl', ['$scope', function($scope) {
     }
 
     $scope.showUpload = function() {
-	if (location.hash.search("signin") == -1 && location.hash.search("properties") == -1)
+	if (location.hash.search("list") != -1)
 	    return true;
 	else
 	    return false;
