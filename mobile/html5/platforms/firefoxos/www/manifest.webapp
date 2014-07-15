@@ -4,12 +4,14 @@
         "*"
     ],
     "version": "0.0.2",
-    "name": "acsliserver",
-    "pkgName": "com.epitech.acsliserver452717",
+    "name": "acsliserver_ionic",
+    "pkgName": "com.epitech.acsliserver",
     "description": "The client app for your acsilserver",
     "developer": {
         "name": "Ionic Framework Team",
         "url": "http://acsilserver.com.com/"
     },
-    "icons": {}
+    "icons": {
+    	"128": "/img/is_launcher.png"
+    }
 }

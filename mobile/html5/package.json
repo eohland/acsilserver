@@ -1,6 +1,6 @@
 {
   "name": "AcsilServer",
-  "version": "1.0.0",
+  "version": "0.8.0",
   "description": "The client app for your acsilserver",
   "dependencies": {
     "gulp": "^3.5.6",
