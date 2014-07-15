@@ -1,0 +1,19 @@
+{
+  "name": "videogular-themes-default",
+  "version": "0.4.2",
+  "main": "./videogular.css",
+  "dependencies": {
+    "videogular": "latest"
+  },
+  "homepage": "https://github.com/2fdevs/bower-videogular-themes-default",
+  "_release": "0.4.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.4.2",
+    "commit": "57180efc0bfbd156afdda622b25b95743c892eac"
+  },
+  "_source": "git://github.com/2fdevs/bower-videogular-themes-default.git",
+  "_target": "~0.4.2",
+  "_originalSource": "videogular-themes-default",
+  "_direct": true
+}

@@ -1,0 +1,24 @@
+<audio media-player="mediaPlayer" playlist="mediaPlaylist"></audio>
+<ion-content style="text-align:center;padding-top:100px;">
+  <img src="img/icone/ios7-musical-notes.png" style="margin:auto;width:auto;max-height:80%;max-width:80%;">
+  <h2>{{title}}</h2>
+</ion-content>
+<div class="my-footer calm">
+  <div class="progress" ng-click="mediaPlayer.seek(mediaPlayer.duration * seekPercentage($event))">
+    <div class="progress-bar" role="progressbar"
+	 aria-valuemin="0" aria-valuemax="100"
+	 ng-style="{ width: mediaPlayer.currentTime*100/mediaPlayer.duration + '%' }">
+    </div>
+    <div class="time" ng-show="mediaPlayer.formatTime">
+      <span id="time1">{{mediaPlayer.formatTime}}</span><span id="time2">/</span><span id="time3">{{mediaPlayer.formatDuration}}</span>
+    </div>
+  </div>
+  <div>
+    <div class="button-bar">
+      <a ng-click="mediaPlayer.playPause()"
+	 class="button button-icon icon ion-ios7-play"
+	 ng-class="{ 'ion-ios7-pause': mediaPlayer.playing, 'ion-ios7-play': !mediaPlayer.playing }">
+      </a>
+    </div>
+  </div>
+</div>
