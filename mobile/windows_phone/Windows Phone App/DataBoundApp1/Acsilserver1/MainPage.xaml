@@ -47,17 +47,17 @@
 
         <!--ContentPanel - placez tout contenu supplémentaire ici-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBox x:Name="URL" HorizontalAlignment="Left" Height="72" Margin="0,55,0,0" TextWrapping="Wrap" Text="http://galan.im/" VerticalAlignment="Top" Width="456"/>
-            <TextBox x:Name="Login" HorizontalAlignment="Left" Height="72" Margin="0,176,0,0" TextWrapping="Wrap" Text="guillaume.galan@gmail.com" VerticalAlignment="Top" Width="456"/>
-
+            <TextBox x:Name="URL" HorizontalAlignment="Left" Height="72" Margin="0,55,0,0" TextWrapping="Wrap" Text="http://dev.acsilserver.com/" VerticalAlignment="Top" Width="456"/>
+            <TextBox x:Name="Login" HorizontalAlignment="Left" Height="72" Margin="0,176,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="456"/>
+            
             <TextBlock HorizontalAlignment="Left" Margin="10,23,0,0" TextWrapping="Wrap" Text="URL de votre Acsilserver:" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,144,0,0" TextWrapping="Wrap" Text="Identifiant:" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,253,0,0" TextWrapping="Wrap" Text="Mot de passe:" VerticalAlignment="Top"/>
             <Button x:Name="BConnect" Content="Connection" Margin="278,426,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Tap="Button_Tap"/>
             <CheckBox x:Name="Save" Content="Se souvenir de mes identifiants" HorizontalAlignment="Left" Margin="10,349,0,0" VerticalAlignment="Top" />
-            <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="0,285,0,0" VerticalAlignment="Top" Width="456" Password="admin"/>
+            <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="0,285,0,0" VerticalAlignment="Top" Width="456"/>
             <TextBlock x:Name="Erreur" HorizontalAlignment="Left" Margin="22,421,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="251" Height="99" Visibility="Collapsed" Foreground="Red"/>
-            </Grid>
+        </Grid>
 
         <!--Supprimez les commentaires pour voir une grille d'alignement qui vous aidera à vous assurer que vos contrôles sont
             alignés sur les limites communes.  L'image a une marge supérieure de -32px pour

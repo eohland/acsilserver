@@ -1,0 +1,15 @@
+{
+    "launch_path": "http://192.168.0.100/acsionic/firefoxtest/index.html",
+    "installs_allowed_from": [
+        "*"
+    ],
+    "version": "0.0.2",
+    "name": "acsliserver",
+    "pkgName": "com.epitech.acsliserver452717",
+    "description": "The client app for your acsilserver",
+    "developer": {
+        "name": "AcsilServer",
+        "url": "http://acsilserver.com/"
+    },
+    "icons": {}
+}

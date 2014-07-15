@@ -7,7 +7,6 @@ app			usr/share/acsilserver
 README.md		usr/share/acsilserver
 #sfcmd			usr/share/acsilserver
 src			usr/share/acsilserver
-TODO			usr/share/acsilserver
 #UPGRADE-2.2.md		usr/share/acsilserver
 #UPGRADE.md		usr/share/acsilserver
 vendor			usr/share/acsilserver

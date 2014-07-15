@@ -6,7 +6,7 @@
 ## Login   <ohland_e@epitech.net>
 ## 
 ## Started on  Fri Feb 21 16:04:50 2014 emmanuel ohland
-## Last update Tue Feb 25 16:11:39 2014 emmanuel ohland
+## Last update Thu Jun 05 14:39:05 2014 emmanuel ohland
 ##
 
 PKGNAME='acsilserver'
@@ -15,7 +15,7 @@ PKGDIR="pkg/$PKGNAME-$PKGVER"
 
 build() {
   mkdir -p "$PKGDIR"
-  cp -r ../{app,bin,src,vendor,web,README.md,TODO} $PKGDIR
+  cp -r ../webapp/{app,bin,src,vendor,web,README.md} $PKGDIR
   cp -r debian $PKGDIR
   sed -i "s/0.1/$PKGVER/" $PKGDIR/debian/files
 

@@ -9,33 +9,19 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Acsilserver1.Resources;
 using System.IO.IsolatedStorage;
-using System.IO;
-using System.Text;
-using System.Diagnostics;
-using System.Collections.Specialized;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Acsilserver1
 {
     public partial class MainPage : PhoneApplicationPage
-    
     {
-
-        string grantType = "password";
-        string applicationID = "1_1czy7ecwsklcw84c8woococ4cg0ko44cwoosgkgw8w0kcck448";
-        string clientString = "2k4nxulmjk2swsws00ooosswoo40ko0sok04c8kss4sk4woo0g";
-        string username = null;
-        string password = null;
-        string APIurl = "app_dev.php/oauth/v2/token";
-        HttpWebResponse response = null;
-
         // Constructeur
         public MainPage()
         {
-            InitializeComponent();          
+            InitializeComponent();
+
+           
+            
+
             // Exemple de code pour la localisation d'ApplicationBar
             //BuildLocalizedApplicationBar();
         }
@@ -82,6 +68,7 @@ namespace Acsilserver1
         //    ApplicationBar.MenuItems.Add(appBarMenuItem);
         //}
 
+<<<<<<< HEAD
         private void GetRequestStreamCallback(IAsyncResult callbackResult)
         {
             HttpWebRequest myRequest = (HttpWebRequest)callbackResult.AsyncState;
@@ -136,18 +123,17 @@ namespace Acsilserver1
             }
         }
 
+=======
+>>>>>>> master
         private void Button_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (!string.IsNullOrEmpty(Login.Text) && !string.IsNullOrEmpty(URL.Text) && !string.IsNullOrEmpty(Password.Password))
             {
-                string destinationURL = URL.Text + APIurl;
-                username = Login.Text;
-                password = Password.Password;
-                HttpWebRequest spAuthReq = HttpWebRequest.Create(destinationURL) as HttpWebRequest;
-                spAuthReq.ContentType = "application/x-www-form-urlencoded";
-                spAuthReq.Method = "POST";
-                spAuthReq.BeginGetRequestStream(new AsyncCallback(GetRequestStreamCallback), spAuthReq);
-
+                //tenter connection
+                HttpWebRequest requete = (HttpWebRequest)HttpWebRequest.Create("http://localhost:8081/web/app_dev.php/service/1/op/list");
+                requete.Method = "POST";
+                requete.ContentType = "application/json";
+       
                 PhoneApplicationService.Current.State["URL"] = URL.Text;
                 PhoneApplicationService.Current.State["login"] = Login.Text;
                 PhoneApplicationService.Current.State["Pwd"] = Password.Password;
@@ -168,7 +154,7 @@ namespace Acsilserver1
                 }
                 try
                 {
-                    //NavigationService.Navigate(new Uri("/View/MvvmViewListe.xaml", UriKind.RelativeOrAbsolute));
+                    NavigationService.Navigate(new Uri("/View/MvvmViewListe.xaml", UriKind.RelativeOrAbsolute));
                 }
                 catch (Exception exc)
                 {

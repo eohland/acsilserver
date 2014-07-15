@@ -60,8 +60,10 @@ class UploadController extends Controller {
 			$query = $em->createQuery(
     'SELECT d
     FROM AcsilServerAppBundle:Document d
-    WHERE d.folder > :folder AND d.isShared = 1'
-)->setParameter('folder', 0);
+    WHERE d.folder > :folder AND d.isShared = 1 AND d.owner != :owner'
+)
+->setParameter('folder', 0)
+->setParameter('owner', $this->getUser()->getEmail());
 
 $sharedFiles = $query->getResult();
 		$listAllfiles = array_merge($listAllfiles, $sharedFiles);
