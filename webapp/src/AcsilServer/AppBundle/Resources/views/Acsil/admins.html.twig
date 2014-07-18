@@ -1,11 +1,27 @@
 {# Page for users' management #}
 
 {% extends '::base.html.twig' %}
+{#BLOCK TITRE#}
+{% block title %}User Management{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite' '@AcsilServerAppBundle/Resources/public/css/*' %}
+		<link href="{{ asset('public/css/bootstrap-fileupload.css') }}" rel="stylesheet" />
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css"> {#font-awesome doesn't work on IE and FF so we have to use this one#}
+		<link href="{{ asset('public/css/dropzone.css') }}" rel="stylesheet" />
+		<link href="{{ asset('public/css/style.css') }}" rel="stylesheet" />
+		<link href="{{ asset('public/css/style_responsive.css') }}" rel="stylesheet" />
+		<link href="{{ asset('public/css/style_default.css') }}" rel="stylesheet"  id="style_color" />
+		<link href="{{ asset('public/css/jquery.fancybox.css') }}" rel="stylesheet" />
+		<link href="{{ asset('public/css/uniform.default.css') }}" rel="stylesheet" type="text/css"/> 
+	{% endstylesheets %} 
+{% endblock %}
 
 {% block body %}
+<body id=login-body>	</body>
 	<div id="userList" class="row-fluid">
 		<h2>{{ 'Manage users'|trans }}</h2>
-		
 		<div id="newUser" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			{% include 'AcsilServerAppBundle:Security:register.html.twig' %}
 		</div><!-- newUser -->
@@ -16,9 +32,9 @@
 		<div id="deleteAccount" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<h2>{{ 'Delete account'|trans }}</h2>
 			<p>
-				{{ 'account.confirm.delete'|trans }} <span class="filename"></span>
-				<a class="confirm btn btn-danger" href="">{{ 'Yes'|trans }}</a>
-				<a class="noconfirm btn btn-primary" href="{{ path('_acsiladmins') }}">{{ 'No'|trans }}</a>
+				{{ 'Do you really want to delete this account?'|trans }} <span class="filename"></span><br></br>
+				<a class="confirm btn btn-primary" href="">{{ 'Yes'|trans }}</a>
+				<a class="noconfirm btn btn-danger" href="{{ path('_acsiladmins') }}">{{ 'No'|trans }}</a>
 			</p>
 		</div><!-- deleteAccount -->
 		
@@ -90,4 +106,11 @@
 			</div><!-- itemList -->
 		</div><!-- row fluid -->
 	</div><!-- userList -->
+	
+	 {# BEGIN COPYRIGHT #}
+  <div id="login-copyright">
+      2014 &copy; AcsilServer.
+  </div>
+  {# END COPYRIGHT #}
+
 {% endblock %}

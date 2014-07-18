@@ -24,5 +24,6 @@
 	
 	</div><!-- row fluid -->
 
-    <input class="btn" type="submit" value="{{ 'share'|trans }}" />
+    <input class="btn btn-primary" type="submit" value="{{ 'Share'|trans }}" />
+	<a class="noconfirm btn btn-danger" href="{{ path('_managefile', {'folderId': folderId|default(0)}) }}">{{ 'Cancel'|trans }}</a>
 </form>

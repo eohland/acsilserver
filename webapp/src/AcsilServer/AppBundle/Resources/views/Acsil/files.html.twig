@@ -1,7 +1,22 @@
 {# Page for files' management #}
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets filter='cssrewrite' '@AcsilServerAppBundle/Resources/public/css/*' %}
+		<link href="{{ asset('public/css/bootstrap-fileupload.css') }}" rel="stylesheet" />
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css"> {#font-awesome doesn't work on IE and FF so we have to use this one#}
+		<link href="{{ asset('public/css/dropzone.css') }}" rel="stylesheet" />
+		<link href="{{ asset('public/css/style.css') }}" rel="stylesheet" />
+		<link href="{{ asset('public/css/style_responsive.css') }}" rel="stylesheet" />
+		<link href="{{ asset('public/css/style_default.css') }}" rel="stylesheet"  id="style_color" />
+		<link href="{{ asset('public/css/jquery.fancybox.css') }}" rel="stylesheet" />
+		<link href="{{ asset('public/css/uniform.default.css') }}" rel="stylesheet" type="text/css"/> 
+	{% endstylesheets %} 
+{% endblock %}
+
 {% block body %}
+<body id=login-body>	</body>
 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 	
@@ -32,26 +47,27 @@
 				]
 			</div><!-- userlist -->
 			
-			<h3>These users already have rights</h3>
+			<h4>These users already have rights:</h4>
 			<div id="sharedWith"></div><!-- sharedWith -->
 			
-			<h3>Give rights to user</h3>
+			<h4>Give rights to user</h4>
 			{% include 'AcsilServerAppBundle:Upload:ShareFile.html.twig' %}
 		</div><!-- shareFile -->
 		
-				<div id="renameFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<h2>{{ 'Rename this document'|trans }}</h2>
-						
-			<h3>Rename a file</h3>
+		<div id="renameFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<p>	
+			<h2>{{ 'Rename this document'|trans }}</h2>	
+			<h4>Rename a file</h4>
 			{% include 'AcsilServerAppBundle:Upload:RenameFile.html.twig' %}
-		</div><!-- shareFile -->
+			</p>
+		</div><!-- renameFile -->
 		
 		<div id="deleteFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<h2>{{ 'Delete file'|trans }}</h2>
 			<p>
-				{{ 'Are you sure you want to delete this file?'|trans }} <span class="filename"></span>
-				<a class="confirm btn btn-danger" href="">{{ 'yes'|trans }}</a>
-				<a class="noconfirm btn btn-primary" href="{{ path('_managefile', {'folderId': folderId|default(0)}) }}">{{ 'no'|trans }}</a>
+				<h4>{{ 'Are you sure you want to delete this file?'|trans }}</h4> <span class="filename"></span>
+				<a class="confirm btn btn-danger" href="">{{ 'Yes'|trans }}</a>
+				<a class="noconfirm btn btn-primary" href="{{ path('_managefile', {'folderId': folderId|default(0)}) }}">{{ 'No'|trans }}</a>
 			</p>
 		</div><!-- deleteFile -->
 		<div class="row-fluid">
@@ -157,17 +173,17 @@
 									{% if is_granted('EDIT', document.info) %}
 										<li>
 											<a class="renamefile" href="#renameFile" filename="{{ document.info.name }}" fileid="{{ document.info.id }}" data-toggle="modal">
-												<i class="icon-download"></i> {{ 'Rename'|trans }} 
+												<i class="icon-font"></i> {{ 'Rename'|trans }} 
 											</a>
 										</li>
 										<li><a href="{{ path('_movefile', {'id': document.info.id, 'action':0}) }}">
 									
-											<i class="icon-download-alt"></i> {{ 'Copy'|trans }} </a>
+											<i class="icon-tags"></i> {{ 'Copy'|trans }} </a>
 																	
 										</li>
 										<li><a href="{{ path('_movefile', {'id': document.info.id, 'action':1}) }}">
 									
-											<i class="icon-download-alt"></i> {{ 'Cut'|trans }} </a>
+											<i class="icon-tag"></i> {{ 'Cut'|trans }} </a>
 																	
 										</li>
 									{% endif %}

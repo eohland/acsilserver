@@ -22,5 +22,6 @@
 		</div><!-- control group -->
 	</div><!-- row fluid -->
 	
-    <input class="btn" type="submit" value="{{ 'upload'|trans }}" />
+    <input class="btn btn-primary" type="submit" value="{{ 'Upload'|trans }}" />
+	<a class="noconfirm btn btn-danger" href="{{ path('_managefile', {'folderId': folderId|default(0)}) }}">{{ 'Cancel'|trans }}</a>
 </form>
