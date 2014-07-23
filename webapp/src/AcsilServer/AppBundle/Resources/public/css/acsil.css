@@ -29,15 +29,15 @@ span.role {
 }
 
 .userRow:nth-child(odd) {
-	background-color: #EFEFEF;
+	background-color: #E6E6E6;
 }
 
 .userRow.admin {
-	border-left: 10px solid #FBB450;
+	border-left: 10px solid #FF0000;
 }
 
 .userRow.user {
-	border-left: 10px solid #3A87AD;
+	border-left: 10px solid #2ECCFA;
 }
 
 .userOptions, .fileOptions {

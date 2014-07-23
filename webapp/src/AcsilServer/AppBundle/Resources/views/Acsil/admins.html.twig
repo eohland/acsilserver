@@ -51,8 +51,8 @@
 					{#{{ 'adminzone.description'|trans }}#}
 					Create and manage as many user as you want.<br />
 					<ul>
-						<li><span style="color: #FBB450;">These are Admins</span></li>
-						<li><span style="color: #3A87AD;">These are Users</span></li>
+						<li><span style="color: #FF0000;">These are Admins</span></li>
+						<li><span style="color: #2ECCFA;">These are Users</span></li>
 					</ul>
 				</p>
 			</div><!-- span3 -->
@@ -60,9 +60,8 @@
 			<div id="itemList" class="span9 offset1">
 				{% for key, admin in listadmins %}
 					<div class="userRow row-fluid {{ admin.roles.0 == "ROLE_SUPER_ADMIN" ? "admin" : "user" }}">
-					
 						<div class="userInfos span10">
-							<img src="" alt="" height="60" width="100" /> {{ admin.firstname }} {{ admin.lastname }}
+							<img src="" alt="" height="60" width="100" /> &nbsp{{ admin.firstname }} {{ admin.lastname }}
 							<!-- hidden values -->
 							<span class="userId">{{ admin.id }}</span>
 							<span class="userPicture">{{ admin.pictureAccount }}</span>
