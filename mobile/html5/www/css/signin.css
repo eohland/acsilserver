@@ -575,7 +575,11 @@ font-size: 52px;
   .modal {
       bottom:auto;
 }
-
+}
 .modal .item {
     margin:0;
+}
+
+.my-list{
+margin-top: 45px;
 }

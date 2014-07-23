@@ -1,4 +1,4 @@
-<div class="my-list">
+<ion-content class="my-list">
 <ion-list>
   <ion-item class="item item-avatar" ng-repeat="folder in folders"
 	    ng-click="folderOnTouchEnd(folder.id)">
@@ -16,30 +16,32 @@
 </ion-list>
 <ion-list>
   <ion-item class="item item-avatar" ng-repeat="file in files"
-	    on-touch-end="itemOnTouchEnd(file.info.pseudo_owner,
+	    ng-click="itemOnTouchEnd(file.info.pseudo_owner,
 			  file.info.path,
 			  file.info.real_path,
-			  file.info.name)"
-	    on-long-press="itemOnLongPress(file.info.id)"
-	    on-mouse-up="itemOnTouchEnd(file.info.pseudo_owner,
-			 file.info.path,
-			 file.info.real_path,
-			 file.info.name)"
-	    on-long-click="itemOnLongPress(file.info.id)">
+			  file.info.name)">
     <img ng-src="{{file.info.icon}}">
     <span style="float:left;">
     <h2>{{file.info.name}}</h2>
     <p>
-      {{file.info.owner}}
+      {{byteToReadable(file.info.size)}}
     </p>
     </span>
-    <span class="item-note">
+ <button class="button button-calm" style="float:right;"
+	 ng-click="itemOnLongPress(file.info.pseudo_owner,
+			  file.info.path,
+			  file.info.real_path,
+			  file.info.name,
+			  file.info.id)">
+      <i class="icon ion-ios7-settings-strong"></i>
+    </button>
+<!--    <span class="item-note">
       <h2>{{timeToReadable(file.info.upload_date)}}</h2>
       <p>
 	{{timeToReadable(file.info.upload_date)}}
       </p>
    </span>
-
+-->
   </ion-item>
 </ion-list>
 
@@ -99,7 +101,10 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-	<a class="item item-icon-left" ng-click="download(showid)">
+	<a target="_self"
+	   download="{{showDownloadName}}"
+	   href="{{showPath}}"
+	   class="item item-icon-left">
 	  <i class="icon ion-ios7-cloud-download"></i>
 	  Download
 	</a>
@@ -124,4 +129,4 @@
 </script>
   <ng-include src="'partials/loading.html'"></ng-include>
 
-</div>
+</ion-content>
