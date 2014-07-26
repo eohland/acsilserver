@@ -23,6 +23,11 @@ span.role {
 	border-left: 1px solid #000000;
 }
 
+.mini {
+width:100px;
+height:120px;
+}
+
 .userRow {
 	padding: 20px 0;
 	border-bottom: 1px dashed #CCCCCC;

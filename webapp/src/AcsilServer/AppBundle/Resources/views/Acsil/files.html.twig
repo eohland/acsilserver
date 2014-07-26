@@ -134,8 +134,13 @@
 					<div class="userRow row-fluid">
 						<div class="fileInfos span9">
 							<div class="fileName span8">
-										<a href="{{app.request.basepath}}/{{ document.info.getWebPath() }}" target="_blank">
-											{{ document.info.name|trans }} </a>
+						{% if (document.info.mimeType == "jpeg" or document.info.mimeType == "jpg" or document.info.mimeType == "png") or document.info.mimeType == "gif" %}
+						<div class="mini">						
+								<img src="{{app.request.basepath}}/{{ document.info.getWebPath() }}" alt="lol"/> 
+							</div>
+						{% endif %}
+							<a href="{{app.request.basepath}}/{{ document.info.getWebPath() }}" target="_blank">
+											{{ document.info.name|trans }}.{{ document.info.mimeType|trans }} </a>
 							</div><!-- fileName -->
 							<div class="fileSize span2">
 								{{ document.info.size }} Bytes

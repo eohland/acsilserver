@@ -155,7 +155,7 @@ $sharedFiles = $query->getResult();
 		$document -> setIsProfilePicture(0);
 		$document -> setIsShared(0);
 		if ($document -> getFile() == null) {
-			return $this -> redirect($this -> generateUrl('_upload', array(
+		return $this -> redirect($this -> generateUrl('_managefile', array(
             'folderId' => $folderId,
         )));
 		}

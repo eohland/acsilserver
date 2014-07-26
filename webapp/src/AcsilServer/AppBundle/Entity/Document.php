@@ -28,7 +28,10 @@ class Document extends Data
      * @Assert\File(maxSize="6000000")
      */
     private $file;
- 
+ 	/**
+     * @ORM\Column(type="string", length=55)
+     */
+    private $mimeType;
 
   	 /**
      * @ORM\Column(type="integer")
@@ -49,6 +52,11 @@ class Document extends Data
 	public function getFolder()
     {
         return $this->folder;
+    }
+
+	public function getMimeType()
+    {
+        return $this->mimeType;
     }
 	
 			    /**
@@ -73,6 +81,19 @@ class Document extends Data
 	 public function setIsShared($isShared)
     {
         $this->isShared = $isShared;
+    
+        return $this;
+    }
+	
+				    /**
+     * Set mimeType
+     *
+     * @param string $mimeType
+     * @return Document
+     */
+    public function setMimeType($mimeType)
+    {
+        $this->mimeType = $mimeType;
     
         return $this;
     }
@@ -113,10 +134,21 @@ class Document extends Data
     {
         if (null !== $this->file) {
             $tempPath = sha1(uniqid(mt_rand(), true));
-			$this->setPath('f'.substr($tempPath, -6).'.'.$this->file->guessExtension());
-			$this->setSize($this->file->getClientSize());
- }
-    }
+			//$ext = $this->file->guessExtension();
+$ext = "";
+			if ($ext)
+		{
+			$this->setPath('f'.substr($tempPath, -6).'.'.$ext);
+			$this->setMimeType($ext);
+		}
+		else
+		{
+			$this->setPath('f'.substr($tempPath, -6));
+			$this->setMimeType("");
+			}		
+		$this->setSize($this->file->getClientSize());
+		}
+	}
 
     /**
      * @ORM\PostPersist()
