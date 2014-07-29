@@ -19,7 +19,6 @@
 {% endblock %}
 
 {% block body %}
-<body id=login-body>	</body>
 	<div id="userList" class="row-fluid">
 		<h2>{{ 'Manage users'|trans }}</h2>
 		<div id="newUser" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -43,8 +42,9 @@
 		
 		<div class="row-fluid">
 			<div class="span2">
-				<ul>
-					<li><a href="#newUser" data-toggle="modal"><i class="icon-plus"></i> {{ 'Create new user' }} </a></li>
+				<!--<ul> -->
+				<ul class="nav nav-pills">
+					<li class="active"><a href="#newUser" data-toggle="modal"><i class="icon-plus"></i> {{ 'Create new user' | trans}} </a></li>
 					{#<li><a href="#newGuest" data-toggle="modal"><i class="icon-plus"></i> {{ 'new.guest' }} </a></li>#}
 				</ul>
 				<p>

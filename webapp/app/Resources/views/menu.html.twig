@@ -1,19 +1,20 @@
 <div class="row-fluid">
 	<div id="menu">
 		{% block menu %}
-			<ul class="nav nav-pills">
+			<ul class="nav nav-tabs">
 				{#<li><a href="{{ path('_acsil') }}">{{ 'Home'|trans }}</a></li>#}
 				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 					{% if app.user.roles.0 == 'ROLE_SUPER_ADMIN' %}
 							<li class="active">
-								<a href="{{ path('_acsiladmins') }}">{{ 'User Management'|trans }}</a>
+								<a href="{{ path('_acsiladmins') }}"><i class="icon-user"></i>{{ ' User Management'|trans }}</a>
 							</li>
 					{% endif %}
 							<li class="active">
-								<a href="{{ path('_managefile', {'folderId': 0|default(0)}) }}">{{ 'File Management'|trans }}</a>
+								<a href="{{ path('_managefile', {'folderId': 0|default(0)}) }}"><i class="icon-file"></i>{{ ' File Management'|trans }}</a>
 							</li>
 				{% endif %}
 			</ul>
 		{% endblock %}
 	</div><!-- menu -->
 </div><!-- row fluid -->
+

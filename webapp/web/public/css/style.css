@@ -3540,3 +3540,22 @@ borderBlue
 {
     border: 3px blue outset;
 }
+
+.nav-pills>li.active>a:hover {
+    background-color:blue;
+}
+/*This changes the color of the hovered pill*/
+
+
+.nav-tabs > li.active > a {
+	color:white;
+    background-color:deepskyblue;
+}
+/* This changes the color of the active tab*/
+
+.nav-tabs>li.active>a:hover {
+	color:white;
+    background-color:blue;
+	cursor: pointer;
+}
+/*This changes the color of the hovered tab*/
