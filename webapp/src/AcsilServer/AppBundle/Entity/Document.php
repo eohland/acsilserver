@@ -134,8 +134,7 @@ class Document extends Data
     {
         if (null !== $this->file) {
             $tempPath = sha1(uniqid(mt_rand(), true));
-			//$ext = $this->file->guessExtension();
-$ext = "";
+			$ext = $this->file->guessExtension();
 			if ($ext)
 		{
 			$this->setPath('f'.substr($tempPath, -6).'.'.$ext);
