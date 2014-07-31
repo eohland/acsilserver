@@ -92,7 +92,7 @@ signinCtrl.controller('signinCtrl',
 
 var listCtrl = angular.module('listCtrl', ['ngSanitize', 'ionic']);
 
-listCtrl.directive('onLongPress', function($timeout) {
+/*listCtrl.directive('onLongPress', function($timeout) {
     return {
 	restrict: 'A',
 	link: function($scope, $elm, $attrs) {
@@ -125,7 +125,7 @@ listCtrl.directive('onLongPress', function($timeout) {
 	}
     };
 })
-
+*/
 listCtrl.directive('onLongClick', function($timeout) {
     return {
 	restrict: 'A',
@@ -180,6 +180,7 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	
 	data.files.forEach(function(file) {
 	    file.info["mime_type"] = MimeType.lookup(file.info.path);
+	    console.log(file.info["mime_type"]);
 	    file.info["icon"] = getImg(file.info.mime_type);
 	});
 
@@ -205,13 +206,15 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	return url;
     }
     var getImg = function(mime_type) {
-	if (mime_type.search("audio") != -1)
+	if (mime_type == false)
+	    img = "img/icone/ios7-help-empty.png";
+	else if (mime_type.search("audio") != -1)
 	    img = "img/icone/ios7-musical-notes.png";
 	else if (mime_type.search("video") != -1)
 	    img = "img/icone/ios7-film.png";
 	else if (mime_type.search("image") != -1)
 	    img = "img/icone/image.png";
-	else if (type.search("epub") != -1
+	else if (mime_type.search("epub") != -1
 		 ||mime_type.search("ebook") != -1)
 	    img = "img/icone/android-book.png";
 	else if (mime_type.search("text") != -1
@@ -271,10 +274,14 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	$location.path('/list/'+id);
     }
 
-    $scope.itemOnLongPress = function(id) {
+    $scope.itemOnLongPress = function(pseudo_owner, path, real_path, name, id) {
 	//alert("toto");
         justLongPressed = true;
-	$scope.showid = id;
+	$scope.showOwner = pseudo_owner;
+	$scope.showName = name;
+	$scope.showDownloadName = name;// + path.slice(path.lastIndexOf("."));;
+	$scope.showId = id;
+	$scope.showPath = fileToUrl(pseudo_owner, path, real_path);
 //	$scope.$apply();
 	$scope.modal.show();
 	setTimeout(function(){

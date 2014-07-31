@@ -18,7 +18,7 @@ propertiesCtrl.directive('save', ['$http', function($http) {
 		localStorage.setItem("server.url", viewValue);
 	    });
 	}
-    }
+    };
 }]);
 
 
@@ -26,9 +26,7 @@ propertiesCtrl.directive('save', ['$http', function($http) {
 
 var signinCtrl = angular.module('signinCtrl', ['ionic']);
 
-signinCtrl.controller('signinCtrl',
-		      ['$scope', '$http', '$location', '$ionicPopup',
-		       function($scope, $http, $location, $ionicPopup) {
+signinCtrl.controller('signinCtrl', ['$scope', '$http', '$location', '$ionicPopup', function($scope, $http, $location, $ionicPopup) {
     $scope.signIn = true;
     $scope.loading = false;
     $scope.error = false;
@@ -83,7 +81,7 @@ signinCtrl.controller('signinCtrl',
 	});
 	//	API.authenticate(login, password);
 	//	location.assign('#/list');
-    }
+    };
 
 }]);
 
@@ -93,39 +91,39 @@ signinCtrl.controller('signinCtrl',
 var listCtrl = angular.module('listCtrl', ['ngSanitize', 'ionic']);
 
 /*listCtrl.directive('onLongPress', function($timeout) {
-    return {
-	restrict: 'A',
-	link: function($scope, $elm, $attrs) {
-	    $elm.bind('touchstart', function(evt) {
-		// Locally scoped variable that will keep track of the long press
-		$scope.longPress = true;
-		
-		// We'll set a timeout for 600 ms for a long press
-		$timeout(function() {
-		    if ($scope.longPress) {
-			// If the touchend event hasn't fired,
-			// apply the function given in on the element's on-long-press attribute
-			$scope.$apply(function() {
-			    $scope.$eval($attrs.onLongPress)
-			});
-		    }
-		}, 600);
-	    });
-	    
-	    $elm.bind('touchend', function(evt) {
-		// Prevent the onLongPress event from firing
-		$scope.longPress = false;
-		// If there is an on-touch-end function attached to this element, apply it
-		if ($attrs.onTouchEnd) {
-		    $scope.$apply(function() {
-			$scope.$eval($attrs.onTouchEnd)
-		    });
-		}
-	    });
-	}
-    };
-})
-*/
+ return {
+ restrict: 'A',
+ link: function($scope, $elm, $attrs) {
+ $elm.bind('touchstart', function(evt) {
+ // Locally scoped variable that will keep track of the long press
+ $scope.longPress = true;
+ 
+ // We'll set a timeout for 600 ms for a long press
+ $timeout(function() {
+ if ($scope.longPress) {
+ // If the touchend event hasn't fired,
+ // apply the function given in on the element's on-long-press attribute
+ $scope.$apply(function() {
+ $scope.$eval($attrs.onLongPress)
+ });
+ }
+ }, 600);
+ });
+ 
+ $elm.bind('touchend', function(evt) {
+ // Prevent the onLongPress event from firing
+ $scope.longPress = false;
+ // If there is an on-touch-end function attached to this element, apply it
+ if ($attrs.onTouchEnd) {
+ $scope.$apply(function() {
+ $scope.$eval($attrs.onTouchEnd)
+ });
+ }
+ });
+ }
+ };
+ })
+ */
 listCtrl.directive('onLongClick', function($timeout) {
     return {
 	restrict: 'A',
@@ -194,17 +192,31 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
     	console.log(data);
     });
 
-    $ionicModal.fromTemplateUrl('my-modal.html', {
+    $ionicModal.fromTemplateUrl('modal-menu.html', {
 	scope: $scope,
 	animation: 'slide-in-up'
     }).then(function(modal) {
-	$scope.modal = modal;
+	$scope.modalMenu = modal;
+    });
+
+    $ionicModal.fromTemplateUrl('modal-info.html', {
+	scope: $scope,
+	animation: 'slide-in-up'
+    }).then(function(modal) {
+	$scope.modalInfo = modal;
+    });
+
+    $ionicModal.fromTemplateUrl('modal-rename.html', {
+	scope: $scope,
+	animation: 'slide-in-up'
+    }).then(function(modal) {
+	$scope.modalRename = modal;
     });
 
     var fileToUrl = function(pseudo_owner, path, real_path) {
 	var url = localStorage.getItem("server.url")+'uploads/' + pseudo_owner + '/' + real_path + path;
 	return url;
-    }
+    };
     var getImg = function(mime_type) {
 	if (mime_type == false)
 	    img = "img/icone/ios7-help-empty.png";
@@ -227,17 +239,17 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	else
 	    img = "img/icone/ios7-help-empty.png";
 	return img;
-    }
+    };
     
     $scope.fileGetUrl = function(pseudo_owner, path, real_path) {
 	var url = localStorage.getItem("server.url")+'uploads/' + pseudo_owner + '/' + real_path + path;
 	return url;
-    }
+    };
 
     $scope.timeToReadable = function(str) {
 	newstr = str.slice(0, str.search("T"));
 	return newstr;
-    }
+    };
 
     $scope.byteToReadable = function(nbr) {
 	if (nbr < 1000) {
@@ -251,8 +263,10 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	    nbr = nbr / 1000000;
 	    return nbr + "MB";
 	}
+	else
+	    return nbr + "?";
 	
-    }
+    };
 
     $scope.itemOnTouchEnd = function(pseudo_owner, path, real_path, name) {
 	if (justLongPressed == false) {
@@ -268,50 +282,106 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	    console.log(url);
 	    $location.path(url);
 	}
-    }
+    };
 
     $scope.folderOnTouchEnd = function(id) {
 	$location.path('/list/'+id);
-    }
+    };
 
-    $scope.itemOnLongPress = function(pseudo_owner, path, real_path, name, id) {
+    $scope.itemOnLongPress = function(pseudo_owner, 
+				      path, 
+				      real_path, 
+				      name, 
+				      id, 
+				      owner, 
+				      upDate, 
+				      type, 
+				      size) {
 	//alert("toto");
         justLongPressed = true;
 	$scope.showOwner = pseudo_owner;
 	$scope.showName = name;
 	$scope.showDownloadName = name;// + path.slice(path.lastIndexOf("."));;
 	$scope.showId = id;
+	$scope.showOwner = owner;
+	$scope.showUpDate = upDate;
+	$scope.showType = type;
+	$scope.showSize = size;
 	$scope.showPath = fileToUrl(pseudo_owner, path, real_path);
-//	$scope.$apply();
-	$scope.modal.show();
+	//	$scope.$apply();
+	$scope.modalMenu.show();
 	setTimeout(function(){
             justLongPressed = false;
         }, 500);
 
-    }
+    };
 
-    $scope.closeModal = function(fileId) {
-	$scope.modal.hide();
-    }
+    $scope.showInfo = function() {
+	$scope.modalMenu.hide();
+	$scope.modalInfo.show();
+    };
 
+    $scope.showRename = function() {
+	$scope.rename = [];
+	$scope.rename.name = $scope.showName;
+	$scope.modalMenu.hide();
+	$scope.modalRename.show();
+    };
+
+    $scope.closeModal = function(modalName) {
+
+	if (modalName.search("menu") != -1)
+	    $scope.modalMenu.hide();
+	else if (modalName.search("info") != -1) {
+	    $scope.modalInfo.hide();
+	    $scope.modalMenu.show();
+	}
+	else if (modalName.search("rename") != -1) {
+	    $scope.modalRename.hide();
+	    $scope.modalMenu.show();
+	}
+    };
+
+    $scope.saveNewName = function(fileId, rename) {
+	console.log("NewName = "+ rename.name);
+	console.log("showName = "+ $scope.showName);
+	if (rename.name != $scope.showName) {
+	    $scope.loading = true;    
+	    myData = $.param({fromId: $scope.showId, toName: rename.name});
+	    $http({
+		method: 'POST',
+		url: localStorage.getItem("server.url")+'app_dev.php/service/1/op/rename',
+		data: myData,
+		headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	    }).success(function(data) {
+		$scope.loading = false;
+		$window.location.reload();
+	    }).error(function(data) {
+		    $scope.loading = false;
+    		    console.log(data);
+	    });
+	}
+		       $scope.closeModal("rename");
+    };
+    
     $scope.download = function(fileId) {
 	console.log(fileId);
-/*	$http({
-	    method: 'POST',
-	    url: localStorage.getItem("server.url")+'app_dev.php/service/1/op/download/' + fileId,
-	    data: myData,
-	    headers: {
-		'Content-Type': 'application/x-www-form-urlencoded'
-		
-	    }
-	}).success(function(data) {
-	    $scope.loading = false;
-	    console.log(data);
-	}).error(function(data) {
-	    $scope.loading = false;
-    	    console.log(data);
-	});
-    */}
+	/*	$http({
+	 method: 'POST',
+	 url: localStorage.getItem("server.url")+'app_dev.php/service/1/op/download/' + fileId,
+	 data: myData,
+	 headers: {
+	 'Content-Type': 'application/x-www-form-urlencoded'
+	 
+	 }
+	 }).success(function(data) {
+	 $scope.loading = false;
+	 console.log(data);
+	 }).error(function(data) {
+	 $scope.loading = false;
+    	 console.log(data);
+	 });
+	 */}
 }]);
 
 //MUSIC PLAYER MODULE
@@ -319,14 +389,14 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 var musicPlayerCtrl = angular.module('musicPlayerCtrl', ['ngSanitize', 'mediaPlayer']);
 
 musicPlayerCtrl.controller('musicPlayerCtrl', ['$scope', '$routeParams', '$sce', function($scope, $routeParams, $sce) {
-//    console.log($scope.audio1.network);
-//    console.log($scope.audio1.ended);
-//    $scope.audio1.play();
+    //    console.log($scope.audio1.network);
+    //    console.log($scope.audio1.ended);
+    //    $scope.audio1.play();
     MimeType.init();
     $scope.mimetype =  MimeType.lookup(decodeURIComponent($routeParams.url));
     $scope.srcUrl = $sce.trustAsResourceUrl(decodeURIComponent($routeParams.url));
     $scope.title = $routeParams.name;
-//    $scope.audio1.loading(true);
+    //    $scope.audio1.loading(true);
     setTimeout(function(){
 	var angularmp = angular.element(document.querySelector('audio')).scope().mediaPlayer;
 	var angularpl = angular.element(document.querySelector('audio')).scope().mediaPlaylist;
