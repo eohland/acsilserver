@@ -42,8 +42,8 @@ signinCtrl.controller('signinCtrl', ['$scope', '$http', '$location', '$ionicPopu
 	    grant_type: "password",
 	    username: login,
 	    password: password,
-	    client_id: "1_1czy7ecwsklcw84c8woococ4cg0ko44cwoosgkgw8w0kcck448",//*/"3_1zm54gls83c0ko4gwk8cg44wsgskkckssg80occ8ssw0ww0wwk",
-	    client_secret: "2k4nxulmjk2swsws00ooosswoo40ko0sok04c8kss4sk4woo0g"//*/"27yd9lyhqj40wkwccgok8848woo80c00ksgocck08s8k80cgwc"
+	    client_id: "1_powyjhqgq28scskw0w04wg8wck8osksgko0ggwgk44kokwo8k",//*/"3_1zm54gls83c0ko4gwk8cg44wsgskkckssg80occ8ssw0ww0wwk",
+	    client_secret: "29zjq3ov25hccgk48k84swwo800gccoo08wk40sw48s00gc8kw"//*/"27yd9lyhqj40wkwccgok8848woo80c00ksgocck08s8k80cgwc"
 	});
 	console.log(myData);
 	$http({
