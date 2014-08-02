@@ -179,7 +179,7 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	data.files.forEach(function(file) {
 	    file.info["mime_type"] = MimeType.lookup(file.info.path);
 	    console.log(file.info["mime_type"]);
-	    file.info["icon"] = getImg(file.info.mime_type);
+	    file.info["icon"] = getImg(file.info);
 	});
 
 	$scope.folders = data.folders;
@@ -217,24 +217,27 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	var url = localStorage.getItem("server.url")+'uploads/' + pseudo_owner + '/' + real_path + path;
 	return url;
     };
-    var getImg = function(mime_type) {
-	if (mime_type == false)
+    var getImg = function(info) {
+	if (info.mime_type == false)
 	    img = "img/icone/ios7-help-empty.png";
-	else if (mime_type.search("audio") != -1)
+	else if (info.mime_type.search("audio") != -1)
 	    img = "img/icone/ios7-musical-notes.png";
-	else if (mime_type.search("video") != -1)
+	else if (info.mime_type.search("video") != -1)
 	    img = "img/icone/ios7-film.png";
-	else if (mime_type.search("image") != -1)
-	    img = "img/icone/image.png";
-	else if (mime_type.search("epub") != -1
-		 ||mime_type.search("ebook") != -1)
+	else if (info.mime_type.search("image") != -1)
+	{
+	    //img = "img/icone/image.png";
+	    img = fileToUrl(info.pseudo_owner, info.path, info.real_path);
+	}
+	else if (info.mime_type.search("epub") != -1
+		 || info.mime_type.search("ebook") != -1)
 	    img = "img/icone/android-book.png";
-	else if (mime_type.search("text") != -1
-		 || mime_type.search("msword") != -1
-		 || mime_type.search("pdf") != -1)
+	else if (info.mime_type.search("text") != -1
+		 || info.mime_type.search("msword") != -1
+		 || info.mime_type.search("pdf") != -1)
 	    img = "img/icone/document-text.png";
-	else if (mime_type.search("zip") != -1
-		 || mime_type.search("tar")!= -1)
+	else if (info.mime_type.search("zip") != -1
+		 || info.mime_type.search("tar")!= -1)
 	    img = "img/icone/ios7-box.png";
 	else
 	    img = "img/icone/ios7-help-empty.png";
@@ -347,7 +350,7 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	console.log("showName = "+ $scope.showName);
 	if (rename.name != $scope.showName) {
 	    $scope.loading = true;    
-	    myData = $.param({fromId: $scope.showId, toName: rename.name});
+	    var myData = $.param({rename: {fromId: $scope.showId,  toName: rename.name}});
 	    $http({
 		method: 'POST',
 		url: localStorage.getItem("server.url")+'app_dev.php/service/1/op/rename',
@@ -361,7 +364,7 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
     		    console.log(data);
 	    });
 	}
-		       $scope.closeModal("rename");
+	$scope.closeModal("rename");
     };
     
     $scope.download = function(fileId) {
@@ -382,6 +385,24 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
     	 console.log(data);
 	 });
 	 */}
+
+    $scope.delete = function(fileId) {
+        $scope.loading = true;
+        var myData = $.param({delete: {deleteId: fileId}});
+        $http({
+            method: 'POST',
+            url: localStorage.getItem("server.url")+'app_dev.php/service/1/op/delete',
+            data: myData,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(data) {
+            $scope.loading = false;
+            $window.location.reload();
+        }).error(function(data) {
+            $scope.loading = false;
+            console.log(data);
+        });
+        $scope.closeModal("option");
+    };
 }]);
 
 //MUSIC PLAYER MODULE
