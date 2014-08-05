@@ -1,6 +1,9 @@
 {# Page for files' management #}
 {% extends '::base.html.twig' %}
 
+{#BLOCK TITRE#}
+{% block title %}File Management{% endblock %}
+
 {% block stylesheets %}
 	{{ parent() }}
 	{% stylesheets filter='cssrewrite' '@AcsilServerAppBundle/Resources/public/css/*' %}
@@ -102,6 +105,14 @@
 					<div class="userRow row-fluid">
 						<div class="fileInfos span9">
 							<div class="fileName span8">
+							<div class="mini span2" style="width: 50px; height: 50px">
+								{% if folder.size == 0 %}
+									<img src="{{asset('public/img/folder-empty.png')}}" alt="lol"/>
+								{% else %}
+									<img src="{{asset('public/img/folder-full.png')}}" alt="lol"/>
+									{% endif %}
+							</div>
+								&nbsp &nbsp
 								<a href="{{ path('_managefile', {'folderId': folder.id|default(0)}) }}">{{ folder.name|trans }}</b></a>
 							</div><!-- fileName -->
 							<div class="fileSize span2">
@@ -141,8 +152,9 @@
 							<img src="{{asset('public/img/file.png')}}" alt="lol"/>
 						{% endif %}						
 							</div>
+							&nbsp &nbsp
 							<a href="{{app.request.basepath}}/{{ document.info.getWebPath() }}" target="_blank">
-											&nbsp &nbsp{{ document.info.name|trans }}.{{ document.info.mimeType|trans }} </a>
+											{{ document.info.name|trans }}.{{ document.info.mimeType|trans }} </a>
 							</div><!-- fileName -->
 							<div class="fileSize span2">
 								{{ document.info.size }} Bytes

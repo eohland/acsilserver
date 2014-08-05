@@ -602,31 +602,14 @@ ul.sidebar-menu span.icon-box  {
 
 /* footer container */
 #footer {
-	position:absolute;
-	bottom:0;
+	position:fixed;
+	margin-top: -20px;
 	width:83%;
 	height:20px;
+	bottom:0;
+	margin:0 auto;
     background: url("../img/top-bg.jpg");
-}
-
-#footer .go-top {
-    display: block;
-    font-size: 12px;
-    text-decoration: none;
-    color: #fff;
-    cursor: pointer;
-    margin-top: -3px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    font-size: 16px;
-    background-color: #111;
-    opacity: 0.8;
-    padding: 3px 5px 2px 6px;
-    opacity:0.4;
-    filter: alpha(opacity = 40);
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
+	clear:both;
 }
 
 /* custom wells */
