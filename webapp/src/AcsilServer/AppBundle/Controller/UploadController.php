@@ -552,34 +552,32 @@ $sharedFiles = $query->getResult();
 			-> getRepository('AcsilServerAppBundle:Folder') 
 			-> findOneBy(array('id' => $id));
 
-			/**            $zip->addFromString(basename($f),  file_get_contents($f)); 
- 	$response->headers->set('Content-Length: ' . filesize($zipName));
-	readfile($zipName);
-*/
 	
 $source_dir = $folder->getAbsolutePath();
-$zip_file =  basename($source_dir.".zip");
+$zip_file =  $folder->getName();
 $file_list = $folder->listDirectory($folder->getAbsolutePath());
 $zip = new \ZipArchive();
 if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
+//die(print_r(var_dump($file_list)));
   foreach ($file_list as $file) {
     if ($file !== $zip_file) {
-	print_r($file);
-	echo('<td>' . "\n");
-	if (is_readable($file))
-      $zip->addFile($file, substr($file, strlen($source_dir)));
-    }
+	  $tmp = basename($file);
+	  if ($tmp[0] == 'f')
+	  {
+		   $zip->addFromString(str_replace($source_dir,'',$file), file_get_contents($file));
+	}		
+	}
 	else
-die(print_r("Don't exist."));	
+	throw $this -> createNotFoundException('No file found for ' . $file);
   }
   if ($zip->close() == false)
-die(print_r("Not created."));
-  
+	throw $this -> createNotFoundException('Cannot create Zip file ' . $zip_file);
   }
 	$response = new Response();
 	$response->headers->set('Content-type', 'application/zip');
 	$response->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', $zip_file));
-	//$response->setContent(file_get_contents($zip_file));
+	$response->setContent(file_get_contents($zip_file));
+	@unlink($zip_file);
 	return $response;
 	}
 

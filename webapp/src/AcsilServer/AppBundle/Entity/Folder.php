@@ -102,41 +102,29 @@ if ($this->getPath() == null)
     {
         return 'uploads/'.$this->getPseudoOwner();
     }	
-
+	
 	public function listDirectory($dir)
 	{
 	$result = array();
-//	die(print_r($dir));
 	$root = array();
 	if (is_dir($dir))
 {
 	$root = scandir($dir);
-//die(print_r($root));
 	}
 	foreach($root as $value) {
       if($value === '.' || $value === '..') {
         continue;
       }
 	  
-/*      if(is_file("$dir$value")) {
-        $result[] = "$dir$value";
-        continue;
-      }
-	if (@opendir("$dir$value"))
-	die(print_r("YEAAAHHH"));
-      if(is_dir("$dir$value")) {
-	  die(print_r(var_dump(is_dir("$dir$value"))));
-        $result[] = "$dir$value/";
-      }*/
 if ($value[0] == 'f')
 {
- $result[] = "$dir$value";
+ $result[] = "$dir/$value";
 } 
 if ($value[0] == 'd')
 {
- $result[] = "$dir/$value/";
+ $result[] = "$dir/$value";
 } 
- foreach(self::listDirectory("$dir/$value/") as $value)
+ foreach(self::listDirectory("$dir/$value") as $value)
       {
         $result[] = $value;
       }

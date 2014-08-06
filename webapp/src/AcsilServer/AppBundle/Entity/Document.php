@@ -143,7 +143,7 @@ class Document extends Data
 		else
 		{
 			$this->setPath('f'.substr($tempPath, -6));
-			$this->setMimeType("");
+			$this->setMimeType(".unknown");
 			}		
 		$this->setSize($this->file->getClientSize());
 		}
