@@ -23,6 +23,10 @@ abstract class Data
      */
     protected $realPath; 
 	/**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $chosenPath; 
+	/**
      * @ORM\Column(type="integer")
      */
 	 protected $size;
@@ -202,9 +206,28 @@ abstract class Data
     
         return $this;
     }
+
+			    /**
+     * Set chosenPath
+     *
+     * @param string $chosenPath
+     * @return Data
+     */
+    public function setChosenPath($chosenPath)
+    {
+        $this->chosenPath = $chosenPath;
+    
+        return $this;
+    }
 	
 	public function getRealPath()
     {
         return $this->realPath;
     }
+	
+	public function getChosenPath()
+    {
+	return $this->chosenPath;
+    }
+
 }

@@ -54,7 +54,9 @@ class UploadController extends Controller {
 		$listfolders = $em
 			-> getRepository('AcsilServerAppBundle:Folder') 
 			-> findBy(array('parentFolder' => $folderId, 'owner' => $this->getUser()->getEmail()));
-		if ($folderId == 0)
+	$currentPath = "";
+	$parentIdList = array();
+			if ($folderId == 0)
 		{
 		$parentId = 0;
 			$query = $em->createQuery(
@@ -74,6 +76,23 @@ $sharedFiles = $query->getResult();
 			-> getRepository('AcsilServerAppBundle:Folder') 
 			-> findOneBy(array('id' => $folderId, 'owner' => $this->getUser()->getEmail()));
 		$parentId = $currentFolder->getParentFolder();
+		$tmpPath = $currentFolder->getChosenPath().$currentFolder->getName();
+		$currentPath = explode("/", $tmpPath);
+		$currentPath = array_reverse($currentPath);
+		$tempId = $folderId;
+	foreach ($currentPath as $stepFolder) {
+			if ($tempId != 0) {
+		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
+		   if (!$parent) {
+        throw $this->createNotFoundException(
+            'No parent found for id : '.$id
+        );
+		}
+		$parentIdList[$tempId] = $stepFolder;
+		$tempId = $parent->getParentFolder();
+		}
+		}	
+		$parentIdList = array_reverse($parentIdList, true);
 		}
      /**
       * Get informations about files
@@ -117,8 +136,6 @@ $sharedFiles = $query->getResult();
 				array_push($listfiles, $listUserFileInfos);
 			}
 		}
-		//die(print_r($listfiles));
-		//die(print_r($listUserFileInfos));	
 		return $this -> render('AcsilServerAppBundle:Acsil:files.html.twig', 
 			array(
 				'listfiles' => $listfiles, 
@@ -126,6 +143,7 @@ $sharedFiles = $query->getResult();
 				'folderId' => $folderId,
 				'listfolders' => $listfolders,
 				'parentId' => $parentId,
+				'parentIdList' => $parentIdList,				
 				'form' => $form -> createView(), 
 				'shareForm' => $shareForm -> createView(),
 				'folderform' => $folderForm -> createView(),
@@ -170,6 +188,7 @@ $sharedFiles = $query->getResult();
 		
 		$tempId = $folderId;
 		$totalPath = "";
+		$chosenPath = "";
 		while ($tempId != 0) {
 		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
 		   if (!$parent) {
@@ -178,6 +197,7 @@ $sharedFiles = $query->getResult();
         );
 		}
 		$totalPath = $parent->getPath().'/'.$totalPath;
+		$chosenPath = $parent->getName().'/'.$chosenPath;
 		$tempId = $parent->getParentFolder();
 		}
 		if ($folderId != 0)
@@ -187,6 +207,7 @@ $sharedFiles = $query->getResult();
 		$em -> persist($folder);
 		}
 		$document -> setRealPath($totalPath);
+		$document -> setChosenPath($chosenPath);		
 		$em -> persist($document);
 		$em -> flush();
     /**
@@ -489,6 +510,7 @@ $sharedFiles = $query->getResult();
 		
 		$tempId = $folderId;
 		$totalPath = "";
+		$chosenPath = "";
 		while ($tempId != 0) {
 		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
 		   if (!$parent) {
@@ -497,12 +519,12 @@ $sharedFiles = $query->getResult();
         );
 		}
 		$totalPath = $parent->getPath().'/'.$totalPath;
+		$chosenPath = $parent->getName().'/'.$chosenPath;
 		$tempId = $parent->getParentFolder();
 		}
 		
 		$folder-> setRealPath($totalPath);
-		
-		
+		$folder-> setChosenPath($chosenPath);
 		$em -> persist($folder);
 		$em -> flush();
     /**

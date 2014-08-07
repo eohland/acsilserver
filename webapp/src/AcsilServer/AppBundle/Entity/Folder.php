@@ -97,7 +97,7 @@ if ($this->getPath() == null)
     {
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }
-
+	
     public function getUploadDir()
     {
         return 'uploads/'.$this->getPseudoOwner();
