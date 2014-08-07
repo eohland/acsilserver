@@ -580,13 +580,18 @@ $zip_file =  $folder->getName();
 $file_list = $folder->listDirectory($folder->getAbsolutePath());
 $zip = new \ZipArchive();
 if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
-//die(print_r(var_dump($file_list)));
   foreach ($file_list as $file) {
     if ($file !== $zip_file) {
 	  $tmp = basename($file);
 	  if ($tmp[0] == 'f')
 	  {
-		   $zip->addFromString(str_replace($source_dir,'',$file), file_get_contents($file));
+	  	$doc = $em 
+			-> getRepository('AcsilServerAppBundle:Document') 
+			-> findOneBy(array('path' => $tmp));
+					if (!$doc) {
+			throw $this -> createNotFoundException('No document found for path ' . $tmp);
+		}
+		   $zip->addFromString($doc->getChosenPath().$doc->getName().'.'.$doc->getMimeType(), file_get_contents($file));
 	}		
 	}
 	else
