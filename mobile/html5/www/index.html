@@ -24,6 +24,8 @@
     <script src="lib/angular-resource/angular-resource.js"></script>
     <script src="lib/angular-sanitize/angular-sanitize.js"></script>
     <script src="lib/angular-touch/angular-touch.js"></script>
+    <script src="lib/ng-file-upload/angular-file-upload.min.js"></script> 
+    <script src="lib/ng-file-upload/angular-file-upload-shim.min.js"></script> 
     <script src="js/ui-bootstrap.js"></script>
     <script src="js/ui-bootstrap-tpls.js"></script>
     <script src="js/mimetype.js"></script>
@@ -57,12 +59,12 @@
 	<h1 class="title">AcsilServer</h1>
 	<div class="buttons">
 
-	  <a ng-if="showUpload() == true"
-	     ng-href="#/upload/{{getCurrentFolderId()}}"
+	  <!--<a ng-if="showUpload() == true"
+	     ng-href="#/upload"
 	     class="button no-animation button-icon icon ion-plus-round" 
 	     style="-webkit-user-select: none; -webkit-user-drag: none;
 		    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-	  </a>
+	  </a>-->
 
 	  <a href="#/properties"
 	     class="button no-animation button-icon icon ion-gear-a"

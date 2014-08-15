@@ -20,7 +20,8 @@ var clientApp = angular.module('clientApp', [
     "com.2fdevs.videogular.plugins.overlayplay",
     "com.2fdevs.videogular.plugins.buffering",
     "com.2fdevs.videogular.plugins.poster",
-//    'uploadCtrl',
+    "angularFileUpload",
+    'uploadCtrl',
 ]);
 
 clientApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
@@ -50,7 +51,7 @@ clientApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $h
             templateUrl: 'partials/imagePlayer.html',
             controller: 'imagePlayerCtrl'
 	}).
-	when('/upload/:id', {
+	when('/upload', {
             templateUrl: 'partials/upload.html',
             controller: 'uploadCtrl'
 	}).
