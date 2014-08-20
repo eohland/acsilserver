@@ -7,6 +7,10 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Request;
 use AcsilServer\AppBundle\Entity;
 use AcsilServer\AppBundle\Form;
+use AcsilServer\AppBundle\Entity\Document;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
 /**
  * This controller contains all functions about security
@@ -92,12 +96,51 @@ class SecurityController extends Controller
 				$user->setUsertype($role);
 				$user->setCreationDate(new \Datetime());
 				
-				$em->persist($user);
-				$em->flush();
+			//	$em->flush();
 				
                 // deleted from symphony 2.4
 				//$session->setFlash('notice', $this->get('translator')->trans('created.user'));
 				$session->getFlashBag()->add('notice', $this->get('translator')->trans('created.user'));
+				
+				
+				
+    /**
+     * Create and fill a new document object
+    */
+		$document = new Document();
+		$request = $this -> getRequest();
+		$uploadedFile = $request -> files -> get('acsilserver_appbundle_usertype');
+		//$parameters = $request -> request -> get('acsilserver_appbundle_documenttype');
+		//die(print_r($uploadedFile));
+		$document -> setFile($uploadedFile['pictureAccount']);
+		$document -> setIsShared(0);
+		$document -> setName('avatar-' . $form->getData()->getEmail());
+		$document -> setOwner($form->getData()->getEmail());
+		$document -> setuploadDate(new \DateTime());
+		$document -> setPseudoOwner($form->getData() -> getUsername());
+		$document -> setIsProfilePicture(1);
+		$document -> setFolder(0);
+		$document -> setRealPath("");
+		$document -> setChosenPath("");		
+		$em -> persist($document);
+		$user->setPictureAccount($document->getWebPath());
+		$em->persist($user);
+		$em -> flush();
+    /**
+    * Set the rights
+    */
+		$aclProvider = $this -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($document);
+		$acl = $aclProvider -> createAcl($objectIdentity);
+
+		$securityContext = $this -> get('security.context');
+		//$user = $securityContext -> getToken() -> getUser();
+		$securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+		$aclProvider -> updateAcl($acl);
+
+				
 				
 				if ($registerAdmin)
 					return $this -> redirect($this->generateUrl('_home'));

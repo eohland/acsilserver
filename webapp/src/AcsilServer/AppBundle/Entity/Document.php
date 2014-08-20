@@ -137,12 +137,27 @@ class Document extends Data
 			$ext = $this->file->guessExtension();
 			if ($ext)
 		{
+		if ($this->getIsProfilePicture() == 0)
+		{
 			$this->setPath('f'.substr($tempPath, -6).'.'.$ext);
-			$this->setMimeType($ext);
 		}
 		else
 		{
-			$this->setPath('f'.substr($tempPath, -6));
+			$this->setPath($this->getName().'.'.$ext);		
+		}
+		$this->setMimeType($ext);
+		}
+		else
+		{
+		if ($this->getIsProfilePicture() == 0)
+		{
+		$this->setPath('f'.substr($tempPath, -6));
+		}
+		else
+		{
+			$this->setPath($this->getName().'.'.$ext);
+
+		}
 			$this->setMimeType(".unknown");
 			}		
 		$this->setSize($this->file->getClientSize());
@@ -199,14 +214,7 @@ class Document extends Data
 
     public function getUploadDir()
     {
-		if ($this->getIsProfilePicture() == 0)
-		{
         return 'uploads/'.$this->getPseudoOwner();
-        }
-		else
-		{
-		  return 'uploads/picture';
-		}
 	}
 
 }
