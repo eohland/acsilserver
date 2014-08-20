@@ -724,4 +724,77 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
             'folderId' => $folderId,
         )));
 	}
+		/**
+ * Delete a folder
+*/
+	public function deleteFolderAction($id) {
+	
+	
+	
+	$em = $this -> getDoctrine() -> getManager();
+	$folder = $em 
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('id' => $id));
+
+	$folderId = $folder->getParentFolder();
+$file_list = $folder->listDirectory($folder->getAbsolutePath());
+  foreach ($file_list as $file) {
+	  $tmp = basename($file);
+	  if ($tmp[0] == 'f')
+	  {
+	  $doc = $em 
+			-> getRepository('AcsilServerAppBundle:Document') 
+			-> findOneBy(array('path' => $tmp));
+					if (!$doc) {
+			throw $this -> createNotFoundException('No document found for path ' . $tmp);
+		}
+	//	die(print_r(var_dump($doc)));
+	//delete
+//			if (false === $securityContext -> isGranted('DELETE', $doc)) {
+//			throw new AccessDeniedException();
+//		}
+		$aclProvider = $this -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($doc);
+		$aclProvider -> deleteAcl($objectIdentity);
+		$parentId = $doc->getFolder();
+		if ($parentId != 0)
+		{
+		$folder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($parentId);
+		$folder->setSize($folder->getSize() - 1);
+		$em -> persist($folder);
+		}
+		$em -> remove($doc);
+		
+		}
+		}
+		 foreach ($file_list as $file) {
+	  $tmp = basename($file);
+			  if ($tmp[0] == 'd')
+	  {
+	  $folder = $em 
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('path' => $tmp));
+					if (!$folder) {
+			throw $this -> createNotFoundException('No folder found for path ' . $tmp);
+		}
+	//	die(print_r(var_dump($doc)));
+	//delete
+//			if (false === $securityContext -> isGranted('DELETE', $doc)) {
+//			throw new AccessDeniedException();
+//		}
+		$aclProvider = $this -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($folder);
+		$aclProvider -> deleteAcl($objectIdentity);
+		$em -> remove($folder);
+		
+		}	
+		
+		}
+		
+		$em -> flush();		
+
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
+	}
 }

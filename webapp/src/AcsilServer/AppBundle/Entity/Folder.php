@@ -74,6 +74,9 @@ if ($this->getPath() == null)
      */
     public function removeUpload()
     {
+	       if ($file = $this->getAbsolutePath()) {
+            rmdir($file);
+        }
     }
 	
 	public function getAbsolutePath()

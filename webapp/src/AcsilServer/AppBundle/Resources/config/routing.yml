@@ -113,3 +113,7 @@ _folder:
 _download_folder:
     pattern:  /acsil/folder/download/{id}
     defaults: { _controller: AcsilServerAppBundle:Upload:downloadFolder, id: '' }
+
+_delete_folder:
+    pattern:  /acsil/folder/delete/{id}
+    defaults: { _controller: AcsilServerAppBundle:Upload:deleteFolder, id: '' }
