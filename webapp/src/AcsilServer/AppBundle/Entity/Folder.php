@@ -17,8 +17,29 @@ class Folder extends Data
      * @ORM\Column(type="integer")
      */
     private $parentFolder;
+	/**
+     * @ORM\Column(type="integer")
+     */
+	 private $fSize;
 
-	     /* Set parentFolder
+		    /**
+     * Set fSize
+     *
+     * @param integer $fSize
+     * @return Folder
+     */
+    public function setFSize($fSize)
+    {
+        $this->fSize = $fSize;
+    
+        return $this;
+    }
+	
+		public function getFSize()
+    {
+        return $this->fSize;
+    }
+	 /* Set parentFolder
      *
      * @param integer $parentFolder
      * @return Folder

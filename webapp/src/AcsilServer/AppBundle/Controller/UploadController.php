@@ -507,10 +507,16 @@ $sharedFiles = $query->getResult();
 		$folder -> setPseudoOwner($this -> getUser() -> getUsername());
 		$folder -> setParentFolder($folderId);
 		$folder -> setSize(0);
-		
+		$folder -> setFSize(0);
 		$tempId = $folderId;
 		$totalPath = "";
 		$chosenPath = "";
+		if ($folderId != 0)
+		{
+		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($folderId);
+		$parent->setFSize($parent->getFSize() + 1);
+		$em->persist($parent);
+		}
 		while ($tempId != 0) {
 		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
 		   if (!$parent) {
@@ -764,9 +770,17 @@ $file_list = $folder->listDirectory($folder->getAbsolutePath());
 		$em -> persist($folder);
 		}
 		$em -> remove($doc);
+		unset($file_list[array_search($file,$file_list)]);
 		
 		}
 		}
+		//die(print_r($file_list));
+		$em -> flush();	
+		$cpt = 1;
+		while ($cpt != 0)
+		{
+		$cpt = 0;
+		//print_r($cpt);
 		 foreach ($file_list as $file) {
 	  $tmp = basename($file);
 			  if ($tmp[0] == 'd')
@@ -782,14 +796,37 @@ $file_list = $folder->listDirectory($folder->getAbsolutePath());
 //			if (false === $securityContext -> isGranted('DELETE', $doc)) {
 //			throw new AccessDeniedException();
 //		}
+		if ($folder->getFSize() == 0 && $folder->getSize() == 0)
+{
 		$aclProvider = $this -> get('security.acl.provider');
 		$objectIdentity = ObjectIdentity::fromDomainObject($folder);
 		$aclProvider -> deleteAcl($objectIdentity);
-		$em -> remove($folder);
-		
-		}	
-		
+		$parentId = $folder->getParentFolder();
+		if ($parentId != 0)
+		{
+		$parentFolder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($parentId);
+		$parentFolder->setFSize($parentFolder->getFSize() - 1);
+		$em -> persist($parentFolder);
 		}
+		$em -> remove($folder);
+		unset($file_list[array_search($file,$file_list)]);
+		}
+			else
+		{
+		//		die(print_r($file));
+		$cpt = 1;
+//		die(print_r(current($file_list)));
+		}
+		}	
+		else
+		{
+		unset($file_list[array_search($file,$file_list)]);
+//		unset(key($file_list));
+//		$file_list = array_values($file_list);
+		}
+		}
+		}
+		//die(print_r(var_dump($file_list)));
 		
 		$em -> flush();		
 
