@@ -22,6 +22,12 @@ body {
 
 #user {
 	text-align: right;
-	margin: 10px 15px 0 0;
-	padding: 0
+	margin: 10px -75px 0 0;
+	padding: 0;
+	right: 0;
+}
+
+#pictureAccount {
+	width: 4%;
+	height: 4%;
 }

@@ -7,9 +7,9 @@
 		<div class="span8 offset3">
 			<div class="row-fluid">
 				<div id="user">
-				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}                                                    
-				<img src="{{ asset( app.user.pictureAccount ) }}" /> 
-				{{ app.user.firstname }} {{ app.user.lastname }} ({{ app.user.email }}) <a href="{{ path('_logout') }}">{{ 'Logout'|trans }}</a>
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}   
+					<img id="pictureAccount" src="{{ asset( app.user.pictureAccount ) }}" /> 				
+					{{ app.user.firstname }} {{ app.user.lastname }} ({{ app.user.email }}) <a href="{{ path('_logout') }}">{{ 'Logout'|trans }}</a>
 					{% else %}
 						
 					{% endif %}

@@ -96,6 +96,21 @@
 										{% endif %}
 									</ul>
 								</div><!-- btn group -->
+							{% else %}
+								<div class="btn-group">
+									<a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i></a>
+									<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a class="changePictureAccount" href="#" data-toggle="modal">
+											<i class="icon-camera"></i> {{ 'Change Picture Account'|trans }} </a>
+										</li>
+										<li><a class="changePwd" href="#" data-toggle="modal">
+											<i class="icon-key"></i> {{ 'Change Password'|trans }} </a>
+										</li>
+										<li><a class="changeMail" href="#" data-toggle="modal">
+											<i class="icon-envelope"></i> {{ 'Change E-mail'|trans }} </a>
+										</li>
+								</div>		
 							{% endif %}
 						</div><!-- userOptions -->
 					
