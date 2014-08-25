@@ -3542,3 +3542,7 @@ borderBlue
 	cursor: pointer;
 }
 /*This changes the color of the hovered tab*/
+
+#folderPath {
+	margin: 10px 0 10px 150px;
+}

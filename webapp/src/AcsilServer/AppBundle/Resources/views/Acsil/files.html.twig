@@ -86,8 +86,11 @@
 					<li class="active"><a href="#addFile" data-toggle="modal"><i class="icon-plus"></i> {{ 'Add file'|trans }} </a></li>
 				</ul>
 				<p>
-					{#{{ 'filezone.description'|trans }}#}
-					You can add and manage as many files as you want as long as you have the correct rights to. You can also share files with users within your network.
+					<ul>
+						<li>You can add and manage as many files as you want as long as you have the correct rights to.</li>
+						<li>You can also share files with users within your network.</li>
+						<li>You can click on the 'Current path' chunks to get in which folder you want. </li>
+					</ul>
 				</p>
 				</div><!-- span3 -->
 			<div class="span2">
@@ -105,13 +108,15 @@
 						<li class="active"><a href="{{ path('_managefile', {'folderId': parentId|default(0)}) }}"> <i class="icon-arrow-left"></i>{{ ' Back'|trans }}</b></a></li>
 				</ul>
 				</div><!-- span3 -->
-	<a href="{{ path('_managefile', {'folderId': 0|default(0)}) }}">{{ "Root"|trans }}</b></a>
-	/
-					{% for key,value in parentIdList %}
-	<a href="{{ path('_managefile', {'folderId': key|default(0)}) }}">{{ value|trans }}</b></a>
-	/
+			<div id="folderPath" class="span5">
+				{{ "Current path : " | trans }}
+				<a href="{{ path('_managefile', {'folderId': 0|default(0)}) }}">{{ "Root"|trans }}</b></a>
+				/
+				{% for key,value in parentIdList %}
+					<a href="{{ path('_managefile', {'folderId': key|default(0)}) }}">{{ value|trans }}</b></a>
+					/
 				{% endfor %}
-
+			</div><!-- folderPath -->
 	
 			<div id="itemList" class="span9 offset1">				
 				
