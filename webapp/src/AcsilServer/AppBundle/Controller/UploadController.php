@@ -608,7 +608,7 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
   }
 	$response = new Response();
 	$response->headers->set('Content-type', 'application/zip');
-	$response->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', $zip_file));
+	$response->headers->set('Content-Disposition', sprintf('attachment; filename="%s.zip"', $zip_file));
 	$response->setContent(file_get_contents($zip_file));
 	@unlink($zip_file);
 	return $response;
