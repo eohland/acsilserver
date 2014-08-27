@@ -49,3 +49,9 @@ folder:
     defaults: { _controller: APIBundle:Operations:folder, folderId: '' }
     requirements:
         _method: POST
+
+share:
+    pattern: /service/1/op/share/{id}
+    defaults: { _controller: APIBundle:Operations:share, id: 0 }
+    requirements:
+        _method: POST

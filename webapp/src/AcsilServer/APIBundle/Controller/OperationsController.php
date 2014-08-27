@@ -30,7 +30,8 @@ use AcsilServer\AppBundle\Entity\Document;
 use AcsilServer\AppBundle\Form\DocumentType;
 use AcsilServer\AppBundle\Entity\Folder;
 use AcsilServer\AppBundle\Form\FolderType;
-
+use AcsilServer\AppBundle\Entity\ShareFile;
+use AcsilServer\AppBundle\Form\ShareFileType;
 
 //!  File operations API class. 
 /*!
@@ -110,6 +111,87 @@ class OperationsController extends Controller {
       $path = $form -> get('toPath') -> getData();	//!< the file's destination path.
       $ret = $this -> copyFile($id, $path, "move", $response); //!< the content of the response to the request
       $response -> setContent($ret);
+      $response -> setStatusCode(201);
+      return $response;
+    }
+    return View::create($form, 400);
+  }
+
+    //! share a file.
+  /*!
+    \return The HTTP status code
+  */
+  public function shareAction($id) {
+    $share = new Share();	//!< the data model for the form.
+
+    $form = $this -> createForm(new ShareType(), $share);
+    $form -> handleRequest($this -> getRequest());
+
+    if ($form -> isValid()) {
+      $response = new Response(); 	//!< the response to the request.
+      $friendName = $form -> get('userMail') -> getData();	
+      $rights = $form -> get('rights') -> getData();	
+		$right = $parameters['rights'];
+		if ($friendName == NULL || $right == NULL) {
+			throw $this -> createNotFoundException('Invalid data.');
+			return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => 0,
+        )));
+		}
+		$em = $this -> getDoctrine() -> getManager();
+		$friend = $em -> getRepository('AcsilServerAppBundle:User') -> findOneByEmail($friendName);
+
+		if (!$friend) {
+			throw $this -> createNotFoundException('No user found for name ' . $friendName);
+		}
+
+		$document = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneById($id);
+        $folderId = $document->getFolder();
+		if (!$document) {
+			throw $this -> createNotFoundException('No document found for id ' . $id);
+		}
+
+		$builder = new MaskBuilder();
+		if ($right == "EDIT") {
+			$builder -> add('view') -> add('edit') -> add('delete');
+			$document->setIsShared(1);
+			}
+		if ($right == "VIEW") {
+			$builder -> add('view');
+			$document->setIsShared(1);
+		}
+        /**
+		 * Set the rights for the other user 
+		*/
+		$aclProvider = $this -> container -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($document);
+		$acl = $aclProvider -> findAcl($objectIdentity);
+		$securityContext = $this -> container -> get('security.context');
+		$securityIdentity = UserSecurityIdentity::fromAccount($friend);
+		$aces = $acl -> getObjectAces();
+
+		foreach ($aces as $index => $ace) {
+			if ($ace -> getSecurityIdentity() == $securityIdentity) {
+				$acl -> deleteObjectAce($index);
+				break;
+			}
+		}
+		if ($right != "DELETE") {
+			$mask = $builder -> get();
+			var_dump($builder -> get());
+			$acl -> insertObjectAce($securityIdentity, $mask);
+		}
+	else
+	{
+			$document->setIsShared(0);
+	}
+		$aclProvider -> updateAcl($acl);
+		$em -> persist($document);
+		$em -> flush();
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
+      $response -> setContent($id);
       $response -> setStatusCode(201);
       return $response;
     }
