@@ -204,4 +204,44 @@ class SecurityController extends Controller
 		$em->flush();
 		return $this->redirect($this->generateUrl('_acsiladmins'));
 	}
+	
+/**
+* Change pwd
+*/
+	public function changePwdAction(Request $request) {
+		/*$em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
+		
+		$factory = $this->get('security.encoder_factory');
+		$encoder = $factory->getEncoder($user);
+		
+		$changePwdForm = $this->createForm(new Form\ChangePwdType(), new Entity\ChangePwd());
+		
+		if ($this->getRequest()->isMethod('POST')) {
+			$changePwdForm->bind($this->getRequest());
+			if ($changePwdForm->isValid()) {
+				$password = $encoder->encodePassword($changePwdForm->getData()->getPassword(), $user->getSalt());
+				$user->setPassword($password);
+				$em->persist($user);
+				$em->flush();
+			}
+		}
+		return $this->redirect($this->generateUrl('_acsiladmins'));
+		}	*/
+	 $em = $this->getDoctrine()->getManager();
+  $user = $this->getUser();
+  $parameters = $request -> request -> get('acsilserver_appbundle_changepwdtype');
+  $passwd = $parameters['pwd'];
+  //die(print_r($passwd));
+  $factory = $this->get('security.encoder_factory');
+  $encoder = $factory->getEncoder($user);
+  
+  
+    $password = $encoder->encodePassword($passwd, $user->getSalt());
+    $user->setPassword($password);
+    $em->persist($user);
+    $em->flush();
+
+	return $this -> redirect($this -> generateUrl('_acsiladmins'));	
+	}
 }

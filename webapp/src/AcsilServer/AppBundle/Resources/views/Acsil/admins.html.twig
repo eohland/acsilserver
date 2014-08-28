@@ -19,6 +19,16 @@
 {% endblock %}
 
 {% block body %}
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+	<div id="changePwd" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<p>	
+			<h2>&nbsp{{ 'Change password'|trans }}</h2>	
+			{% include 'AcsilServerAppBundle:Security:changePwd.html.twig' %}
+			</p>
+		</div><!-- changePwd -->
+		
 	<div id="userList" class="row-fluid">
 		<h2>{{ 'Manage users'|trans }}</h2>
 		<div id="newUser" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -104,7 +114,7 @@
 										<li><a class="changePictureAccount" href="#" data-toggle="modal">
 											<i class="icon-camera"></i> {{ 'Change Picture Account'|trans }} </a>
 										</li>
-										<li><a class="changePwd" href="#" data-toggle="modal">
+										<li><a class="changePwd" href="#changePwd" data-toggle="modal">
 											<i class="icon-key"></i> {{ 'Change Password'|trans }} </a>
 										</li>
 										<li><a class="changeMail" href="#" data-toggle="modal">

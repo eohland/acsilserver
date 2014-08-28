@@ -37,6 +37,7 @@ class AcsilController extends Controller
     	$factory = $this->get('security.encoder_factory');
 		$encoder = $factory->getEncoder($user);
 		$newUserForm = $this->createForm(new Form\UserType(), $user);
+		$changePwdForm = $this->createForm(new Form\ChangePwdType(), new Entity\ChangePwd());
 		
 		$listadmins = $em
 			->getRepository('AcsilServerAppBundle:User')
@@ -46,6 +47,7 @@ class AcsilController extends Controller
 			array(
 				'listadmins' =>$listadmins,
 				'newUserForm' => $newUserForm->createView(),
+				'changePwdForm' => $changePwdForm->createView(),
 			));
 	}
 }

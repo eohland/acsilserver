@@ -50,7 +50,11 @@ _deleteaccount:
 _changerole:
     pattern:  /acsil/admin/changeUserRole/{id}/{role}
     defaults: { _controller: AcsilServerAppBundle:Security:changeRole }
-    
+
+_changepwd:
+    pattern:  /acsil/admins/changePwd
+    defaults: { _controller: AcsilServerAppBundle:Security:changePwd }
+
 #####################################################################################
 #                                 File management                                   #
 #####################################################################################
