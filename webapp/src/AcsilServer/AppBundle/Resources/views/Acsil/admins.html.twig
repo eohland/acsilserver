@@ -28,6 +28,13 @@
 			{% include 'AcsilServerAppBundle:Security:changePwd.html.twig' %}
 			</p>
 		</div><!-- changePwd -->
+
+	<div id="changeEmail" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<p>	
+			<h2>&nbsp{{ 'Change e-mail'|trans }}</h2>	
+			{% include 'AcsilServerAppBundle:Security:changeEmail.html.twig' %}
+			</p>
+		</div><!-- changeEmail -->
 		
 	<div id="userList" class="row-fluid">
 		<h2>{{ 'Manage users'|trans }}</h2>
@@ -117,7 +124,7 @@
 										<li><a class="changePwd" href="#changePwd" data-toggle="modal">
 											<i class="icon-key"></i> {{ 'Change Password'|trans }} </a>
 										</li>
-										<li><a class="changeMail" href="#" data-toggle="modal">
+										<li><a class="changeEmail" href="#changeEmail" data-toggle="modal">
 											<i class="icon-envelope"></i> {{ 'Change E-mail'|trans }} </a>
 										</li>
 								</div>		

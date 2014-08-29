@@ -55,6 +55,10 @@ _changepwd:
     pattern:  /acsil/admins/changePwd
     defaults: { _controller: AcsilServerAppBundle:Security:changePwd }
 
+_changeemail:
+    pattern:  /acsil/admins/changeEmail
+    defaults: { _controller: AcsilServerAppBundle:Security:changeEmail }
+
 #####################################################################################
 #                                 File management                                   #
 #####################################################################################

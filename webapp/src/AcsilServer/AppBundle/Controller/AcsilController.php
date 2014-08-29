@@ -38,6 +38,7 @@ class AcsilController extends Controller
 		$encoder = $factory->getEncoder($user);
 		$newUserForm = $this->createForm(new Form\UserType(), $user);
 		$changePwdForm = $this->createForm(new Form\ChangePwdType(), new Entity\ChangePwd());
+		$changeEmailForm = $this->createForm(new Form\ChangeEmailType(), new Entity\ChangeEmail());
 		
 		$listadmins = $em
 			->getRepository('AcsilServerAppBundle:User')
@@ -48,6 +49,7 @@ class AcsilController extends Controller
 				'listadmins' =>$listadmins,
 				'newUserForm' => $newUserForm->createView(),
 				'changePwdForm' => $changePwdForm->createView(),
+				'changeEmailForm' => $changeEmailForm->createView(),				
 			));
 	}
 }

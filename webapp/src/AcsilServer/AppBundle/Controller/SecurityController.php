@@ -209,39 +209,38 @@ class SecurityController extends Controller
 * Change pwd
 */
 	public function changePwdAction(Request $request) {
-		/*$em = $this->getDoctrine()->getManager();
-		$user = $this->getUser();
-		
-		$factory = $this->get('security.encoder_factory');
-		$encoder = $factory->getEncoder($user);
-		
-		$changePwdForm = $this->createForm(new Form\ChangePwdType(), new Entity\ChangePwd());
-		
-		if ($this->getRequest()->isMethod('POST')) {
-			$changePwdForm->bind($this->getRequest());
-			if ($changePwdForm->isValid()) {
-				$password = $encoder->encodePassword($changePwdForm->getData()->getPassword(), $user->getSalt());
-				$user->setPassword($password);
-				$em->persist($user);
-				$em->flush();
-			}
-		}
-		return $this->redirect($this->generateUrl('_acsiladmins'));
-		}	*/
-	 $em = $this->getDoctrine()->getManager();
-  $user = $this->getUser();
-  $parameters = $request -> request -> get('acsilserver_appbundle_changepwdtype');
-  $passwd = $parameters['pwd'];
-  //die(print_r($passwd));
-  $factory = $this->get('security.encoder_factory');
-  $encoder = $factory->getEncoder($user);
+	$em = $this->getDoctrine()->getManager();
+	$user = $this->getUser();
+	
+	$parameters = $request -> request -> get('acsilserver_appbundle_changepwdtype');
+	$pwd = $parameters['pwd'];
+	
+	$factory = $this->get('security.encoder_factory');
+	$encoder = $factory->getEncoder($user);
   
-  
-    $password = $encoder->encodePassword($passwd, $user->getSalt());
+    $password = $encoder->encodePassword($pwd, $user->getSalt());
     $user->setPassword($password);
     $em->persist($user);
     $em->flush();
 
 	return $this -> redirect($this -> generateUrl('_acsiladmins'));	
 	}
+	
+/**
+* Change e-mail
+*/
+	public function changeEmailAction(Request $request) {
+	$em = $this->getDoctrine()->getManager();
+	$user = $this->getUser();
+	
+	$parameters = $request -> request -> get('acsilserver_appbundle_changeemailtype');
+	$email = $parameters['email'];
+	
+    $user->setEmail($email);
+    $em->persist($user);
+    $em->flush();
+
+	return $this -> redirect($this -> generateUrl('_acsiladmins'));	
+	}
+	
 }
