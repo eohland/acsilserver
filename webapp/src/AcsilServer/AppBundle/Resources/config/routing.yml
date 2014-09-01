@@ -59,6 +59,10 @@ _changeemail:
     pattern:  /acsil/admins/changeEmail
     defaults: { _controller: AcsilServerAppBundle:Security:changeEmail }
 
+_changepicture:
+    pattern:  /acsil/admins/changePicture
+    defaults: { _controller: AcsilServerAppBundle:Security:changePicture }
+
 #####################################################################################
 #                                 File management                                   #
 #####################################################################################
@@ -94,10 +98,6 @@ _renamefile:
     defaults: { _controller: AcsilServerAppBundle:Upload:rename, id: '' }
     options:
         expose: true
-
-_upload_picture:
-    pattern:  /acsil/acount-picture/
-    defaults: { _controller: AcsilServerAppBundle:Upload:picture }
 
 _download:
     pattern:  /acsil/download/{id}

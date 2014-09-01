@@ -243,4 +243,52 @@ class SecurityController extends Controller
 	return $this -> redirect($this -> generateUrl('_acsiladmins'));	
 	}
 	
-}
+/**
+ * Change picture account
+*/
+	public function changePictureAction(Request $request) {
+	
+	$em = $this->getDoctrine()->getManager();
+	$user = $this->getUser();
+	
+	/*
+	*	Delete old picture
+	*/
+	$query = $em -> createQuery('SELECT d FROM AcsilServerAppBundle:Document d WHERE d.name = :docName AND d.isProfilePicture = 1') -> setParameter('docName', 'avatar-' . $user -> getEmail());
+	$fileToDelete = $query -> getSingleResult();
+	$em -> remove($fileToDelete);
+	$em->flush();
+	
+   /**
+     * Create and fill a new document for new picture
+    */
+	$document = new Document();
+
+	$uploadedFile = $request -> files -> get('acsilserver_appbundle_changepicturetype');
+	$document -> setFile($uploadedFile['picture']);
+	$document -> setIsShared(0);
+	$document -> setName('avatar-' . $user->getEmail());
+	$document -> setOwner($user->getEmail());
+	$document -> setuploadDate(new \DateTime());
+	$document -> setPseudoOwner($user -> getUsername());
+	$document -> setIsProfilePicture(1);
+	$document -> setFolder(0);
+	$document -> setRealPath("");
+	$document -> setChosenPath("");	
+	
+	$em -> persist($document);
+	$user->setPictureAccount($document->getWebPath());
+		
+	$em->persist($user);
+	$em -> flush();
+		
+	$aclProvider = $this -> get('security.acl.provider');
+	$objectIdentity = ObjectIdentity::fromDomainObject($document);
+	$acl = $aclProvider -> createAcl($objectIdentity);
+	$securityContext = $this -> get('security.context');
+	$user = $securityContext -> getToken() -> getUser();
+	$user -> setPictureAccount($document -> getWebPath());
+	
+	return $this -> redirect($this -> generateUrl('_acsiladmins'));	
+	}
+}	

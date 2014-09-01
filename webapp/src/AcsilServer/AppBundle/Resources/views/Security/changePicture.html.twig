@@ -1,0 +1,22 @@
+<form id="changePictureForm" action="{{ path('_changepicture') }}" method="post" {{ form_enctype(changePictureForm) }}>
+
+{# Page for change picture #}
+	<div class="row-fluid">
+		<p>
+		<div class="control-group span8"> 
+		New picture
+			<div class="controls">
+				{{ form_errors(changePictureForm.picture) }}
+				{{ form_widget(changePictureForm.picture, {'attr': {'class': 'span12', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }} 
+			</div><!-- controls -->
+		</div><!-- control group -->
+		
+		</p>
+	</div><!-- row fluid --> 
+	<br> 
+	<p>
+	&nbsp &nbsp
+	<input class="btn btn-primary" type="submit" value="{{ 'Change'|trans }}" />
+	<a class="noconfirm btn btn-danger" href="{{ path('_acsiladmins', {'folderId': folderId|default(0)}) }}">{{ 'Cancel'|trans }}</a>
+	</p>
+</form>
