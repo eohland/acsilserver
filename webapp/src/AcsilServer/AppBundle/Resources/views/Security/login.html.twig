@@ -14,9 +14,14 @@
 {% endblock %}
 
 {% block body %}
-{% if error %}
-    <div>{{ error.message }}</div>
-{% endif %}
+	{#Check if authentification errors#}
+	{% if error %}
+		{% if error.message == "Bad credentials"%}
+			<script type="text/javascript"> alert('Wrong Password'); </script>
+		{% else %}
+			<script type="text/javascript"> alert('Wrong E-mail'); </script>
+		{% endif %}
+	{% endif %}
    
  <div id="login">
 <form id="loginform" class="form-vertical no-padding no-margin" action="{{ path('_login_check') }}" method="post">
