@@ -48,10 +48,14 @@ class SecurityController extends Controller
 		 * Verifiy the role of the user
 		 */
 		if ( ! $isSuperAdmin) {
+			$errorPwd = '';
+			$errorMail = '';
 			return $this->render('AcsilServerAppBundle:Security:registerAdmin.html.twig',
 				array(
 					'newUserForm' => $form->createView(),
-				));
+					'errorPwd' => $errorPwd,
+					'errorMail' => $errorMail,
+					));
 		}
 		
 		return $this->render('AcsilServerAppBundle:Security:login.html.twig', 
@@ -78,12 +82,46 @@ class SecurityController extends Controller
 		if ($registerAdmin)
 			$user->setUsertype('admin');
 		$encoder = $factory->getEncoder($user);
-		$form = $this->createForm(new Form\UserType(), $user);
+		
+		$isSuperAdmin = $em 
+			-> getRepository('AcsilServerAppBundle:User') 
+			-> findOneBy(array('roles' => $superAdmin));
+			
+		if ( ! $isSuperAdmin)
+			$form = $this->createForm(new Form\UserType(FALSE, TRUE), $user);
+		else
+			$form = $this->createForm(new Form\UserType(), $user);
+
+		$errorPwd = '';
+		$errorMail = '';
 		
 		if ($request->isMethod('POST')) {
 			$form->bind($request);
 			
 			if ($form->isValid()) {
+				if ($form->getData()->getPassword() != $form->getData()->getConfirmPassword()) { //Check if pwd and confirm pwd are equal
+					$errorPwd = 'error';
+					if ( ! $isSuperAdmin)
+						return $this->render('AcsilServerAppBundle:Security:registerAdmin.html.twig',
+							array(
+									'newUserForm' => $form->createView(),
+									'errorPwd' => $errorPwd,
+									'errorMail' => $errorMail,
+								));	
+				}
+				//Check if email is already use
+				$query = $em -> createQuery('SELECT u FROM AcsilServerAppBundle:User u WHERE u.email = :userEmail') -> setParameter('userEmail', $form ->getData()->getEmail());
+				if ($query -> getOneOrNullResult() != NULL) {
+					$errorMail = 'error';
+					if ( ! $isSuperAdmin)
+						return $this->render('AcsilServerAppBundle:Security:registerAdmin.html.twig',
+							array(
+									'newUserForm' => $form->createView(),
+									'errorPwd' => $errorPwd,
+									'errorMail' => $errorMail,
+								));		
+				}	
+			
 				$password = $encoder->encodePassword($form->getData()->getPassword(), $user->getSalt());
 				$form->getData()->getUsertype() == 'user' ? $role = $admin : $role = $superAdmin;
 				
@@ -199,6 +237,12 @@ class SecurityController extends Controller
 		$adminToDelete = $em
 			->getRepository('AcsilServerAppBundle:User')
 			->findOneBy(array('id' => $id));
+		
+		/*	Delete picture account */
+		$query = $em -> createQuery('SELECT d FROM AcsilServerAppBundle:Document d WHERE d.name = :docName AND d.isProfilePicture = 1') -> setParameter('docName', 'avatar-' . $adminToDelete -> getEmail());
+		$fileToDelete = $query -> getSingleResult();
+		$em -> remove($fileToDelete);
+		$em->flush();
 		
 		$em->remove($adminToDelete);
 		$em->flush();
