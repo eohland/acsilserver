@@ -135,7 +135,7 @@ class Document extends Data
         if (null !== $this->file) {
             $tempPath = sha1(uniqid(mt_rand(), true));
 			$ext = $this->file->guessExtension();
-			if ($ext)
+		if ($ext)
 		{
 		if ($this->getIsProfilePicture() == 0)
 		{
