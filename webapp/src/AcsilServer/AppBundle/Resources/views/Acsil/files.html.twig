@@ -90,6 +90,7 @@
 						<li>You can add and manage as many files as you want as long as you have the correct rights to.</li>
 						<li>You can also share files with users within your network.</li>
 						<li>You can click on the 'Current path' chunks to get in which folder you want. </li>
+						<li>A shared file is symbolized by a blue corner on the right top of the thumbnail. </li>						
 					</ul>
 				</p>
 				</div><!-- span3 -->
@@ -173,10 +174,20 @@
 						<div class="mini span2" style="width: 50px; height: 50px">			
 						{#Display the image or a default image#}
 						{% if (document.info.mimeType == "jpeg" or document.info.mimeType == "jpg" or document.info.mimeType == "png") or document.info.mimeType == "gif" %}
-							<img src="{{app.request.basepath}}/{{ document.info.getWebPath() }}" alt="lol"/> 
+							<img id="miniImg" src="{{app.request.basepath}}/{{ document.info.getWebPath() }}" alt="lol"/> 
+						{% elseif document.info.mimeType == "mp3" %}
+							<img id="miniImg" src="{{asset('public/img/music-mini.png')}}" alt="lol"/>
+						{% elseif document.info.mimeType == "avi" or document.info.mimeType == "mpeg4" %}
+							<img id="miniImg" src="{{asset('public/img/video-mini.png')}}" alt="lol"/>							
 						{% else %}
-							<img src="{{asset('public/img/file.png')}}" alt="lol"/>
-						{% endif %}						
+							<img id="miniImg" src="{{asset('public/img/file.png')}}" alt="lol"/>
+						{% endif %}
+						
+						{#Display an icon if the file is shared#}
+						{% if document.info.isShared == 1 %}
+							<img id="miniImgShare" src="{{asset('public/img/share-mini.png')}}" alt="lol"/>
+						{% endif %}
+						
 							</div>
 							&nbsp &nbsp
 							<a href="{{app.request.basepath}}/{{ document.info.getWebPath() }}" target="_blank">
@@ -193,7 +204,7 @@
 						<div class="fileOptions span3">
 							{% if is_granted('OWNER', document.info) %}
 							<a class="sharefile btn btn-primary" href="#shareFile" filename="{{ document.info.name }}" fileid="{{ document.info.id }}" data-toggle="modal">
-								<i class="icon-file icon-white"></i> {{ 'Share'|trans }}
+								<i class="icon-user icon-white"></i> {{ 'Share'|trans }}
 							</a>
 							<div class="sharedWith">
 								{% set totalUsers = document.sharedFileUserInfos|length %}
