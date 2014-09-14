@@ -1,3 +1,22 @@
+{# Check errors when form is full #}
+{% if errorForm is defined %}
+	{% if errorForm == "errorPwd" %}
+		<script type="text/javascript"> alert('Password and Confirm Password are different');
+			javascript:history.back(); {# To have css/js #}
+		</script>
+	{% endif %}
+	{% if errorForm == "errorMail" %}
+		<script type="text/javascript"> alert('E-mail already use. Please choose an other one'); 
+			javascript:history.back();
+		</script>
+	{% endif %}
+	{% if errorForm == "errorPicture" %}
+		<script type="text/javascript"> alert('Picture Account should be a .jpeg .jpg .png or.gif file'); 
+			javascript:history.back();
+		</script>
+	{% endif %}
+{% endif %}
+
 {# Page for user's registration #}
 {% if app.request.get('_route') == '_login' %}
 	<h2>{{ 'Welcome admin'|trans }}</h2>
@@ -9,7 +28,7 @@
     {# {{ form_widget(newUserForm) }} #}
 
 	{{ form_errors(newUserForm) }}
-
+	
 		<div class="row-fluid">
 			<div class="control-group span6">
 			    {#{{ form_label(newUserForm.firstname, newUserForm.firstname.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}#}
@@ -85,3 +104,24 @@
      <input class="btn btn-primary" type="submit" value="{{ 'Submit'|trans }}" />
 	 <a class="btn btn-danger" href="{{ path('_acsiladmins') }}"> {{ 'Cancel'|trans }}</a>
 </form>	
+
+ {# BEGIN JAVASCRIPTS #}
+	{% block javascripts %}
+	<script src="{{asset('public/js/jquery-1.8.3.min.js')}}"></script>
+	<script src="{{asset('public/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('public/js/jquery.blockui.js')}}"></script>
+	<script type="text/javascript" src="{{asset('public/js/chosen.jquery.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('public/js/jquery.uniform.min.js')}}"></script>
+	{# BEGIN PAGE LEVEL PLUGINS #}
+	<script src="{{asset('public/js/dropzone.js')}}"></script>
+	<script src="{{asset('public/js/scripts.js')}}"></script>
+	{# END PAGE LEVEL PLUGINS #}
+	<script>
+    jQuery(document).ready(function() {     
+       App.init();
+	  App.initLogin();
+    });
+	</script>  
+ {% endblock %}
+  {# END JAVASCRIPTS #}
+  

@@ -19,12 +19,16 @@
 
 {# BEGIN BODY #}
 {% block body %}
-
-	{% if errorPwd == "error" %}
+	
+	{# Check errors when form is full #}
+	{% if errorForm == "errorPwd" %}
 		<script type="text/javascript"> alert('Password and Confirm Password are different'); </script>
 	{% endif %}
-	{% if errorMail == "error" %}
+	{% if errorForm == "errorMail" %}
 		<script type="text/javascript"> alert('E-mail already use. Please choose an other one'); </script>
+	{% endif %}
+	{% if errorForm == "errorPicture" %}
+		<script type="text/javascript"> alert('Picture Account should be a .jpeg .jpg .png or.gif file'); </script>
 	{% endif %}
 
 	{# BEGIN LOGIN #}
@@ -109,7 +113,8 @@
        App.init();
 	  App.initLogin();
     });
-	</script>  
+	</script>
+	
  {% endblock %}
   {# END JAVASCRIPTS #}
   

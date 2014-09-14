@@ -48,13 +48,11 @@ class SecurityController extends Controller
 		 * Verifiy the role of the user
 		 */
 		if ( ! $isSuperAdmin) {
-			$errorPwd = '';
-			$errorMail = '';
+			$errorForm = '';
 			return $this->render('AcsilServerAppBundle:Security:registerAdmin.html.twig',
 				array(
 					'newUserForm' => $form->createView(),
-					'errorPwd' => $errorPwd,
-					'errorMail' => $errorMail,
+					'errorForm' => $errorForm,
 					));
 		}
 		
@@ -92,36 +90,59 @@ class SecurityController extends Controller
 		else
 			$form = $this->createForm(new Form\UserType(), $user);
 
-		$errorPwd = '';
-		$errorMail = '';
+		$errorForm = '';
 		
 		if ($request->isMethod('POST')) {
 			$form->bind($request);
 			
 			if ($form->isValid()) {
-				if ($form->getData()->getPassword() != $form->getData()->getConfirmPassword()) { //Check if pwd and confirm pwd are equal
-					$errorPwd = 'error';
-					if ( ! $isSuperAdmin)
-						return $this->render('AcsilServerAppBundle:Security:registerAdmin.html.twig',
-							array(
-									'newUserForm' => $form->createView(),
-									'errorPwd' => $errorPwd,
-									'errorMail' => $errorMail,
-								));	
-				}
 				//Check if email is already use
 				$query = $em -> createQuery('SELECT u FROM AcsilServerAppBundle:User u WHERE u.email = :userEmail') -> setParameter('userEmail', $form ->getData()->getEmail());
 				if ($query -> getOneOrNullResult() != NULL) {
-					$errorMail = 'error';
+					$errorForm = 'errorMail';
 					if ( ! $isSuperAdmin)
 						return $this->render('AcsilServerAppBundle:Security:registerAdmin.html.twig',
 							array(
 									'newUserForm' => $form->createView(),
-									'errorPwd' => $errorPwd,
-									'errorMail' => $errorMail,
-								));		
-				}	
-			
+									'errorForm' => $errorForm,
+								));
+					return $this->render('AcsilServerAppBundle:Security:register.html.twig',
+						array(
+								'newUserForm' => $form->createView(),
+								'errorForm' => $errorForm,
+							));
+					}
+				//Check if pwd and confirm pwd are equal
+				if ($form->getData()->getPassword() != $form->getData()->getConfirmPassword()) {
+					$errorForm = 'errorPwd';
+					if ( ! $isSuperAdmin)
+						return $this->render('AcsilServerAppBundle:Security:registerAdmin.html.twig',
+							array(
+									'newUserForm' => $form->createView(),
+									'errorForm' => $errorForm,
+								));
+					return $this->render('AcsilServerAppBundle:Security:register.html.twig',
+						array(
+								'newUserForm' => $form->createView(),
+								'errorForm' => $errorForm,
+							));
+				}
+				//Check if pictureAccount is .jpeg .jpg .png or .gif	
+				if ($form ->getData()->getPictureAccount()->getMimeType() != "image/jpeg" && $form ->getData()->getPictureAccount()->getMimeType() != "image/jpg" &&
+					$form ->getData()->getPictureAccount()->getMimeType() != "image/png" && $form ->getData()->getPictureAccount()->getMimeType() != "image/gif") {
+					$errorForm = 'errorPicture';
+					if ( ! $isSuperAdmin)
+						return $this->render('AcsilServerAppBundle:Security:registerAdmin.html.twig',
+							array(
+									'newUserForm' => $form->createView(),
+									'errorForm' => $errorForm,
+								));
+					return $this->render('AcsilServerAppBundle:Security:register.html.twig',
+						array(
+								'newUserForm' => $form->createView(),
+								'errorForm' => $errorForm,
+							));	
+				}
 				$password = $encoder->encodePassword($form->getData()->getPassword(), $user->getSalt());
 				$form->getData()->getUsertype() == 'user' ? $role = $admin : $role = $superAdmin;
 				
@@ -188,8 +209,9 @@ class SecurityController extends Controller
 		
 		return $this->render('AcsilServerAppBundle:Security:register.html.twig',
 			array(
-				'newUserForm' => $form->createView(),
-			));
+					'newUserForm' => $form->createView(),
+					'errorForm' => $errorForm,
+				));
 	}
 	
     public function requestAction()
