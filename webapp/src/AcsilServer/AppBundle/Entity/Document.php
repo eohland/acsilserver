@@ -32,7 +32,11 @@ class Document extends Data
      * @ORM\Column(type="string", length=55)
      */
     private $mimeType;
-
+/**
+     * @ORM\Column(type="string", length=55)
+     */
+    private $formatedSize;
+	
   	 /**
      * @ORM\Column(type="integer")
      */
@@ -57,6 +61,10 @@ class Document extends Data
 	public function getMimeType()
     {
         return $this->mimeType;
+    }
+	public function getFormatedSize()
+    {
+        return $this->formatedSize;
     }
 	
 			    /**
@@ -94,6 +102,18 @@ class Document extends Data
     public function setMimeType($mimeType)
     {
         $this->mimeType = $mimeType;
+    
+        return $this;
+    }
+				    /**
+     * Set formatedSize
+     *
+     * @param string $formatedSize
+     * @return Document
+     */
+    public function setFormatedSize($formatedSize)
+    {
+        $this->formatedSize = $formatedSize;
     
         return $this;
     }
@@ -160,7 +180,10 @@ class Document extends Data
 		}
 			$this->setMimeType(".unknown");
 			}		
-		$this->setSize($this->file->getClientSize());
+		$size = $this->file->getClientSize();
+		$this->setSize($size);
+		$formatedSize = $this->formatSizeUnits(strval($size));
+		$this->setFormatedSize($formatedSize);
 		}
 	}
 
@@ -217,4 +240,33 @@ class Document extends Data
         return 'uploads/'.$this->getPseudoOwner();
 	}
 
+	public function formatSizeUnits($bytes)
+    {
+        if ($bytes >= 1073741824)
+        {
+            $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+        }
+        elseif ($bytes >= 1048576)
+        {
+            $bytes = number_format($bytes / 1048576, 2) . ' MB';
+        }
+        elseif ($bytes >= 1024)
+        {
+            $bytes = number_format($bytes / 1024, 2) . ' KB';
+        }
+        elseif ($bytes > 1)
+        {
+            $bytes = $bytes . ' bytes';
+        }
+        elseif ($bytes == 1)
+        {
+            $bytes = $bytes . ' byte';
+        }
+        else
+        {
+            $bytes = '0 bytes';
+        }
+
+        return $bytes;
+}
 }
