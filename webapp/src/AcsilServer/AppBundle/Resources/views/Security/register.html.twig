@@ -1,8 +1,13 @@
 {# Check errors when form is full #}
 {% if errorForm is defined %}
+	{% if errorForm == "errorSizePwd" %}
+		<script type="text/javascript"> alert('Password must have at least 6 characters');
+			javascript:history.back(); {# To have css/js #}
+		</script>
+	{% endif %}
 	{% if errorForm == "errorPwd" %}
 		<script type="text/javascript"> alert('Password and Confirm Password are different');
-			javascript:history.back(); {# To have css/js #}
+			javascript:history.back();
 		</script>
 	{% endif %}
 	{% if errorForm == "errorMail" %}

@@ -113,6 +113,21 @@ class SecurityController extends Controller
 							));
 					}
 				//Check if pwd and confirm pwd are equal
+				if (strlen($form->getData()->getPassword()) < 6) {
+					$errorForm = 'errorSizePwd';
+					if ( ! $isSuperAdmin)
+						return $this->render('AcsilServerAppBundle:Security:registerAdmin.html.twig',
+							array(
+									'newUserForm' => $form->createView(),
+									'errorForm' => $errorForm,
+								));
+					return $this->render('AcsilServerAppBundle:Security:register.html.twig',
+						array(
+								'newUserForm' => $form->createView(),
+								'errorForm' => $errorForm,
+							));
+				}
+				//Check if pwd and confirm pwd are equal
 				if ($form->getData()->getPassword() != $form->getData()->getConfirmPassword()) {
 					$errorForm = 'errorPwd';
 					if ( ! $isSuperAdmin)

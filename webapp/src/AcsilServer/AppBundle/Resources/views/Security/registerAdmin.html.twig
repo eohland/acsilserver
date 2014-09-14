@@ -21,6 +21,9 @@
 {% block body %}
 	
 	{# Check errors when form is full #}
+	{% if errorForm == "errorSizePwd" %}
+		<script type="text/javascript"> alert('Password must have at least 6 characters'); </script>
+	{% endif %}
 	{% if errorForm == "errorPwd" %}
 		<script type="text/javascript"> alert('Password and Confirm Password are different'); </script>
 	{% endif %}
