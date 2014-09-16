@@ -50,6 +50,16 @@ $(document).ready(function() {
 		$('#renameFileForm').attr('action', renameFormPath);
 	})
 	
+	// Rename folder
+	$('.fileOptions a.renamefolder').click(function() {
+		var fileid = $(this).attr('fileid');
+		var filename = $(this).attr('filename');
+		
+		var renameFormPath = Routing.generate('_renamefolder', { id: fileid });
+		console.log(renameFormPath);
+		$('#renameFileForm').attr('action', renameFormPath);
+	})
+	
 	// Delete file
 	$('.fileOptions a.deletefile').click(function() {
 		//console.log($(this).attr('fileid'))

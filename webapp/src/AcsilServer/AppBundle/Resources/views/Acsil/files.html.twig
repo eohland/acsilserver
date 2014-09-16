@@ -58,8 +58,7 @@
 		
 		<div id="renameFile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<p>	
-			<h2>&nbsp{{ 'Rename this document'|trans }}</h2>	
-			<h4>&nbsp Rename a file</h4>
+			<h2>&nbsp{{ 'Rename this document'|trans }}</h2>
 			{% include 'AcsilServerAppBundle:Upload:RenameFile.html.twig' %}
 			</p>
 		</div><!-- renameFile -->
@@ -151,6 +150,12 @@
 									{% if is_granted('VIEW', folder) %}
 										<li><a href="{{ path('_download_folder', {'id': folder.id}) }}" target="_blank">
 											<i class="icon-download-alt"></i> {{ 'Download'|trans }} </a>
+										</li>
+									{% endif %}
+									{% if is_granted('EDIT', folder) %}
+										{% set isFolder = 1 %}
+										<li> <a class="renamefolder" href="#renameFile" filename="{{ folder.name }}" fileid="{{ folder.id }}" data-toggle="modal">
+												<i class="icon-font"></i> {{ 'Rename'|trans }} </a>
 										</li>
 									{% endif %}
 									{% if is_granted('DELETE', folder) %}

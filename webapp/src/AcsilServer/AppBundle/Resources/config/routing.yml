@@ -125,3 +125,9 @@ _download_folder:
 _delete_folder:
     pattern:  /acsil/folder/delete/{id}
     defaults: { _controller: AcsilServerAppBundle:Upload:deleteFolder, id: '' }
+
+_renamefolder:
+    pattern:  /acsil/myfile/renameFolder/{id}
+    defaults: { _controller: AcsilServerAppBundle:Upload:renameFolder, id: ''}
+    options:
+        expose: true

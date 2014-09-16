@@ -417,6 +417,34 @@ $sharedFiles = $query->getResult();
         )));
 	}
 	
+/**
+ * Rename a file
+*/
+	public function renameFolderAction($id) {
+		$em = $this -> getDoctrine() -> getManager();
+		$securityContext = $this -> get('security.context');
+		$parameters = $_GET['acsilserver_appbundle_renamefiletype'];
+		$name = $parameters['name'];
+
+		$folderToRename = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneBy(array('id' => $id));
+			
+		if (!$folderToRename) {
+			throw $this -> createNotFoundException('No folder found for id ' . $id);
+		}
+		
+		$folderId = $folderToRename->getParentFolder();
+
+		if (false === $securityContext -> isGranted('EDIT', $folderToRename)) {
+			throw new AccessDeniedException();
+		}
+		$folderToRename->setName($name);
+		$em -> persist($folderToRename);
+		$em -> flush();
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
+	}
+	
 	/**
  * Function to create a new folder
  */	
@@ -749,7 +777,7 @@ $file_list = $folder->listDirectory($folder->getAbsolutePath());
 		$cpt = 1;
 //		die(print_r(current($file_list)));
 		}
-		}	
+		}
 		else
 		{
 		unset($file_list[array_search($file,$file_list)]);
