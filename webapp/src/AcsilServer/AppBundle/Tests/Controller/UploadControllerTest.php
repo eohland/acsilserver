@@ -18,7 +18,7 @@ class SecurityControllerTest extends WebTestCase
 		/* Login */
 		
 		$crawler = $client->request('GET', '/login/');
-		$form = $crawler->selectButton('login')->form();
+		$form = $crawler->selectButton('login-btn')->form();
 		$form['_username'] = "test@test.fr";
 		$form['_password'] = "test42";
 		$crawler = $client->submit($form);
@@ -32,7 +32,7 @@ class SecurityControllerTest extends WebTestCase
 		$this->assertTrue($client->getResponse()->isSuccessful());
 		
 		$crawler = $client->request('GET', '/acsil/myfile/0#addFile');
-		$form = $crawler->selectButton('upload')->form();
+		$form = $crawler->selectButton('Upload')->form();
 		$this->file = tempnam(sys_get_temp_dir(), 'upl');
         imagepng(imagecreatetruecolor(10, 10), $this->file);
         $this->image = new UploadedFile(
