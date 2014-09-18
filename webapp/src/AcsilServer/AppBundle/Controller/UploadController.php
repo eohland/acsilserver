@@ -540,6 +540,13 @@ $sharedFiles = $query->getResult();
 			-> getRepository('AcsilServerAppBundle:Folder') 
 			-> findOneBy(array('id' => $id));
 
+	if ($folder->getSize() == 0 && $folder->getFSize() == 0)
+	{
+	$folderId = $folder->getParentFolder();
+	return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
+	}
 	
 $source_dir = $folder->getAbsolutePath();
 $zip_file =  $folder->getName();
