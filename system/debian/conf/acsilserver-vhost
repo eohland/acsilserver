@@ -13,6 +13,11 @@ Alias /acs /usr/share/acsilserver/web
         php_flag track_vars On
         php_flag register_globals Off
         php_value include_path .
+
+        php_value upload_max_filesize 1000M
+        php_value post_max_size 1000M
+        php_value max_execution_time 1000
+        php_value max_input_time 1000
     </IfModule>
 </Directory>
 <VirtualHost *:80>
