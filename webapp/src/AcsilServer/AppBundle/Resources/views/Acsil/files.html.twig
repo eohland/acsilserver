@@ -179,13 +179,13 @@
 						<div class="mini span2" style="width: 50px; height: 50px">			
 						{#Display the image or a default image#}
 						{% if (document.info.mimeType == "jpeg" or document.info.mimeType == "jpg" or document.info.mimeType == "png") or document.info.mimeType == "gif" %}
-							<img id="miniImg" src="{{app.request.basepath}}/{{ document.info.getWebPath() }}" alt="lol"/> 
-						{% elseif document.info.mimeType == "mp3" %}
-							<img id="miniImg" src="{{asset('public/img/music-mini.png')}}" alt="lol"/>
+							<img id="miniImg" src="{{app.request.basepath}}/{{ document.info.getWebPath() }}" alt="img"/> 
+						{% elseif document.info.mimeType == "mp3" or  document.info.mimeType == "mpga"%}
+							<img id="miniImg" src="{{asset('public/img/music-mini.png')}}" alt="music"/>
 						{% elseif document.info.mimeType == "avi" or document.info.mimeType == "mpeg4" %}
-							<img id="miniImg" src="{{asset('public/img/video-mini.png')}}" alt="lol"/>							
+							<img id="miniImg" src="{{asset('public/img/video-mini.png')}}" alt="video"/>							
 						{% else %}
-							<img id="miniImg" src="{{asset('public/img/file.png')}}" alt="lol"/>
+							<img id="miniImg" src="{{asset('public/img/file.png')}}" alt="file"/>
 						{% endif %}
 						
 						{#Display an icon if the file is shared#}

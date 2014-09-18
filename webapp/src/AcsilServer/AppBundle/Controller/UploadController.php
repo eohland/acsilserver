@@ -794,7 +794,10 @@ $file_list = $folder->listDirectory($folder->getAbsolutePath());
 		}
 		}
 		//die(print_r(var_dump($file_list)));
-		
+		$folder = $em 
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('id' => $id));
+		$em -> remove($folder);
 		$em -> flush();		
 
 		return $this -> redirect($this -> generateUrl('_managefile', array(
