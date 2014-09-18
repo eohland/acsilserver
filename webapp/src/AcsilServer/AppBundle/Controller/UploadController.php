@@ -628,32 +628,39 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 			-> getRepository('AcsilServerAppBundle:Document') 
 			-> findOneBy(array('id' => $move->getFileId()));
 			$newDoc->setSize($origin->getSize());
+			$newDoc -> setMimeType($origin->getMimeType());
+			$newDoc ->setFormatedSize($origin->getFormatedSize());
+			$newDoc->setChosenPath($origin->getChosenPath());
 			$file = $origin->getFile();
 			$newDoc->setFile($origin->getFile());
 			$tempPath = sha1(uniqid(mt_rand(), true));
-			//$endName = "jpeg";
 			$endName = strstr($origin->getPath(), '.');
 			$newDoc->setPath(substr($tempPath, -6).$endName);
-			$tempId = $folderId;
-			$totalPath = "";
-			while ($tempId != 0) {
-			$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
-			if (!$parent) {
-			throw $this->createNotFoundException(
-				'No parent found for id : '.$id
-			);
-			}
-			$totalPath = $parent->getPath().'/'.$totalPath;
-			$tempId = $parent->getParentFolder();
-			}
-			if ($folderId != 0)
-			{
-			$currentFolder->setSize($currentFolder->getSize() + 1);
+
+
+
+		$tempId = $folderId;
+		$totalPath = "";
+		$chosenPath = "";
+		while ($tempId != 0) {
+		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
+		   if (!$parent) {
+        throw $this->createNotFoundException(
+            'No parent found for id : '.$id
+        );
+		}
+		$totalPath = $parent->getPath().'/'.$totalPath;
+		$chosenPath = $parent->getName().'/'.$chosenPath;
+		$tempId = $parent->getParentFolder();
+		}
+		if ($folderId != 0)
+		{
+		$currentFolder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($folderId);
+		$currentFolder->setSize($currentFolder->getSize() + 1);
 		$em -> persist($currentFolder);
 		}
 		$newDoc -> setRealPath($totalPath);
-
-		
+		$newDoc -> setChosenPath($chosenPath);
 
 	
 		copy($origin->getAbsolutePath(), $newDoc->getAbsolutePath());
