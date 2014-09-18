@@ -109,7 +109,7 @@
      <input class="btn btn-primary" type="submit" value="{{ 'Submit'|trans }}" />
 	 <a class="btn btn-danger" href="{{ path('_acsiladmins') }}"> {{ 'Cancel'|trans }}</a>
 </form>	
-
+{% if app.request.get('_route') == '_login' %}
  {# BEGIN JAVASCRIPTS #}
 	{% block javascripts %}
 	<script src="{{asset('public/js/jquery-1.8.3.min.js')}}"></script>
@@ -129,4 +129,4 @@
 	</script>  
  {% endblock %}
   {# END JAVASCRIPTS #}
-  
+  {% endif %}
