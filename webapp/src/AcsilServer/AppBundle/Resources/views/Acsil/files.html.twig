@@ -153,7 +153,6 @@
 										</li>
 									{% endif %}
 									{% if is_granted('EDIT', folder) %}
-										{% set isFolder = 1 %}
 										<li> <a class="renamefolder" href="#renameFile" filename="{{ folder.name }}" fileid="{{ folder.id }}" data-toggle="modal">
 												<i class="icon-font"></i> {{ 'Rename'|trans }} </a>
 										</li>
