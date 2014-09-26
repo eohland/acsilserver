@@ -1,3 +1,12 @@
+{# Check errors when form is full #}
+	{% if errorForm is defined %}
+		{% if errorForm == "errorMail" %}
+			<script type="text/javascript"> alert('E-mail already use. Please choose an other one'); 
+				javascript:history.back();
+			</script>
+		{% endif %}
+	{% endif %}	
+
 <form id="changeEmailForm" action="{{ path('_changeemail') }}" method="post">
 
 {# Page for change email #}

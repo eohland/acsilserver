@@ -1,10 +1,19 @@
+{# Check errors when form is full #}
+	{% if errorForm is defined %}
+		{% if errorForm == "errorPicture" %}
+			<script type="text/javascript"> alert('Picture Account should be a .jpeg .jpg .png or.gif file'); 
+				javascript:history.back();
+			</script>
+		{% endif %}
+	{% endif %}
+	
 <form id="changePictureForm" action="{{ path('_changepicture') }}" method="post" {{ form_enctype(changePictureForm) }}>
 
 {# Page for change picture #}
 	<div class="row-fluid">
 		<p>
 		<div class="control-group span8"> 
-		New picture
+		<p> New picture  </p>
 			<div class="controls">
 				{{ form_errors(changePictureForm.picture) }}
 				{{ form_widget(changePictureForm.picture, {'attr': {'class': 'span12', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }} 

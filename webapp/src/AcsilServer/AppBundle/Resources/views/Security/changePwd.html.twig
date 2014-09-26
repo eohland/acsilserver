@@ -1,3 +1,17 @@
+{# Check errors when form is full #}
+	{% if errorForm is defined %}
+		{% if errorForm == "errorSizePwd" %}
+			<script type="text/javascript"> alert('Password must have at least 6 characters');
+				javascript:history.back(); {# To have css/js #}
+			</script>
+		{% endif %}
+		{% if errorForm == "errorPwd" %}
+			<script type="text/javascript"> alert('Password and Confirm Password are different'); 
+				javascript:history.back();
+			</script>
+		{% endif %}
+	{% endif %}
+
 <form id="changePwdForm" action="{{ path('_changepwd') }}" method="post">
 
 {# Page for change password #}
@@ -9,6 +23,11 @@
 				{{ form_errors(changePwdForm.pwd) }}
 				{{ form_widget(changePwdForm.pwd, {'attr': {'class': 'span12', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }} 
 			</div><!-- controls -->
+		Confirm new password
+			<div class="controls">
+				{{ form_errors(changePwdForm.confirmPwd) }}
+				{{ form_widget(changePwdForm.confirmPwd, {'attr': {'class': 'span12', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }} 
+			</div><!-- controls -->	
 		</div><!-- control group -->
 		
 	</p>
@@ -20,3 +39,25 @@
 	<a class="noconfirm btn btn-danger" href="{{ path('_acsiladmins', {'folderId': folderId|default(0)}) }}">{{ 'Cancel'|trans }}</a>
 	</p>
 </form>
+
+{% if app.request.get('_route') == '_changepwd' %}
+{# BEGIN JAVASCRIPTS #}
+	{% block javascripts %}
+	<script src="{{asset('public/js/jquery-1.8.3.min.js')}}"></script>
+	<script src="{{asset('public/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('public/js/jquery.blockui.js')}}"></script>
+	<script type="text/javascript" src="{{asset('public/js/chosen.jquery.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('public/js/jquery.uniform.min.js')}}"></script>
+	{# BEGIN PAGE LEVEL PLUGINS #}
+	<script src="{{asset('public/js/dropzone.js')}}"></script>
+	<script src="{{asset('public/js/scripts.js')}}"></script>
+	{# END PAGE LEVEL PLUGINS #}
+	<script>
+    jQuery(document).ready(function() {     
+       App.init();
+	  App.initLogin();
+    });
+	</script>  
+ {% endblock %}
+  {# END JAVASCRIPTS #}
+  {% endif %}

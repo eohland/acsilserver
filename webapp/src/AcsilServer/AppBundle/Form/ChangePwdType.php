@@ -15,6 +15,7 @@ class ChangePwdType extends AbstractType
     {
         $builder
             ->add('pwd',  'password', array('required' => TRUE))
+			->add('confirmPwd',  'password', array('required' => TRUE))
         ;
     }
 

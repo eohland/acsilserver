@@ -112,7 +112,7 @@ class SecurityController extends Controller
 								'errorForm' => $errorForm,
 							));
 					}
-				//Check if pwd and confirm pwd are equal
+				//Check if pwd < 6 char
 				if (strlen($form->getData()->getPassword()) < 6) {
 					$errorForm = 'errorSizePwd';
 					if ( ! $isSuperAdmin)
@@ -295,6 +295,31 @@ class SecurityController extends Controller
 	
 	$parameters = $request -> request -> get('acsilserver_appbundle_changepwdtype');
 	$pwd = $parameters['pwd'];
+	$confirmPwd = $parameters['confirmPwd'];
+	
+	$errorForm = 'errorSizePwd';
+	$changePwdForm = $this->createForm(new Form\ChangePwdType(), new Entity\ChangePwd());
+		
+	//Check if pwd < 6 char
+	if (strlen($pwd) < 6) {
+		$errorForm = 'errorSizePwd';
+		return $this->render('AcsilServerAppBundle:Security:ChangePwd.html.twig',
+			array(
+					'changePwdForm' => $changePwdForm->createView(),
+					'errorForm' => $errorForm,
+					
+		));
+	}	
+	//Check if pwd and confirm pwd are equal
+	if ($pwd != $confirmPwd) {
+		$errorForm = 'errorPwd';
+		return $this->render('AcsilServerAppBundle:Security:ChangePwd.html.twig',
+			array(
+					'changePwdForm' => $changePwdForm->createView(),
+					'errorForm' => $errorForm,
+					
+		));
+	}
 	
 	$factory = $this->get('security.encoder_factory');
 	$encoder = $factory->getEncoder($user);
@@ -317,6 +342,18 @@ class SecurityController extends Controller
 	$parameters = $request -> request -> get('acsilserver_appbundle_changeemailtype');
 	$email = $parameters['email'];
 	
+	$changeEmailForm = $this->createForm(new Form\ChangeEmailType(), new Entity\ChangeEmail());
+	
+	//Check if email is already use
+	$query = $em -> createQuery('SELECT u FROM AcsilServerAppBundle:User u WHERE u.email = :userEmail') -> setParameter('userEmail', $email);
+	if ($query -> getOneOrNullResult() != NULL) {
+		$errorForm = 'errorMail';
+		return $this->render('AcsilServerAppBundle:Security:changeEmail.html.twig',
+			array(
+					'changeEmailForm' => $changeEmailForm->createView(),
+					'errorForm' => $errorForm,
+		));
+	}							
     $user->setEmail($email);
     $em->persist($user);
     $em->flush();
@@ -332,6 +369,22 @@ class SecurityController extends Controller
 	$em = $this->getDoctrine()->getManager();
 	$user = $this->getUser();
 	
+	$uploadedFile = $request -> files -> get('acsilserver_appbundle_changepicturetype');
+	$picture = $uploadedFile['picture'];
+	
+	$changePictureForm = $this->createForm(new Form\ChangePictureType(), new Entity\ChangePicture());
+	
+	//Check if pictureAccount is .jpeg .jpg .png or .gif	
+	if ($picture->getMimeType() != "image/jpeg" && $picture->getMimeType() != "image/jpg" &&
+		$picture->getMimeType() != "image/png" && $picture->getMimeType() != "image/gif") {
+			$errorForm = 'errorPicture';
+			return $this->render('AcsilServerAppBundle:Security:changePicture.html.twig',
+				array(
+						'changePictureForm' => $changePictureForm->createView(),
+						'errorForm' => $errorForm,
+			));
+	}
+
 	/*
 	*	Delete old picture
 	*/
@@ -339,13 +392,12 @@ class SecurityController extends Controller
 	$fileToDelete = $query -> getSingleResult();
 	$em -> remove($fileToDelete);
 	$em->flush();
-	
+
    /**
      * Create and fill a new document for new picture
     */
 	$document = new Document();
 
-	$uploadedFile = $request -> files -> get('acsilserver_appbundle_changepicturetype');
 	$document -> setFile($uploadedFile['picture']);
 	$document -> setIsShared(0);
 	$document -> setName('avatar-' . $user->getEmail());
@@ -356,20 +408,20 @@ class SecurityController extends Controller
 	$document -> setFolder(0);
 	$document -> setRealPath("");
 	$document -> setChosenPath("");	
-	
+
 	$em -> persist($document);
 	$user->setPictureAccount($document->getWebPath());
-		
+
 	$em->persist($user);
 	$em -> flush();
-		
+
 	$aclProvider = $this -> get('security.acl.provider');
 	$objectIdentity = ObjectIdentity::fromDomainObject($document);
 	$acl = $aclProvider -> createAcl($objectIdentity);
 	$securityContext = $this -> get('security.context');
 	$user = $securityContext -> getToken() -> getUser();
 	$user -> setPictureAccount($document -> getWebPath());
-	
+
 	return $this -> redirect($this -> generateUrl('_acsiladmins'));	
 	}
 }	

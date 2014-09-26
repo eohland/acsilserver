@@ -10,6 +10,7 @@ class ChangePwd
      * @ORM\Column(type="string", length=50)
      */
     private $pwd;
+	private $confirmPwd;
 
     public function setPwd($pwd)
     {
@@ -21,5 +22,17 @@ class ChangePwd
     public function getPwd()
     {
         return $this->pwd;
+    }
+	
+	public function setConfirmPwd($pwd)
+    {
+        $this->confirmPwd = $confirmPwd;
+    
+        return $this;
+    }
+
+    public function getConfirmPwd()
+    {
+        return $this->confirmPwd;
     }
 }
