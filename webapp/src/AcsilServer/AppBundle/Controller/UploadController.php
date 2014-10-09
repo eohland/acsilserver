@@ -23,16 +23,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use \ZipArchive;
 use \RecursiveIteratorIterator;
-/**
- * This controller contains all the functions in touch with upload
- */
 
+//!  File and folder operations Webapp class. 
+/*!
+  Class of the Webapp. Perform the operations on the files and the folders
+*/
 class UploadController extends Controller {
 
-/**
- * function in touch with the main page of the FileManagement part 
- */ 
-
+ //! List the files and folders
+  /*!
+    \param $folderId the id of the current folder.
+    \return an array containing the forms and a list of files and folders  
+  */
 	public function manageAction($folderId) {
 		$em = $this -> getDoctrine() -> getManager();
 		$document = new Document();
@@ -151,9 +153,11 @@ $sharedFiles = $query->getResult();
 			));
 	}
 
-/**
- * Function to upload a new file
- */	
+ //! Upload a file
+  /*!
+    \param $folderId the id of the current folder.
+    \return $folderId the id of the current folder.
+  */
 	
 	/**
 	 * @Template()
@@ -229,9 +233,12 @@ $sharedFiles = $query->getResult();
         )));
 	}
 
-/**
- * Share a file
- */
+ //! Share a file
+  /*!
+    \param $request the request containing the data sent to the controller.
+    \param $id the id of the file to share.
+    \return $folderId the id of the current folder.
+  */
 
 	public function shareAction(Request $request, $id) {
 		$parameters = $_GET['acsilserver_appbundle_sharefiletype'];
@@ -298,10 +305,14 @@ $sharedFiles = $query->getResult();
         )));
 	}
 
-/**
- * Change the rights which have a user on a file
-*/ 
-	
+
+	 //! Change the rights which have a user on a file
+  /*!
+    \param $fileId the id of the shared file.
+    \param $userId the id of the user.
+	\param $newRights the new rights that the user will have to perform actions on the file.
+    \return $folderId the id of the current folder.
+  */
 	public function updateRightsAction($fileId, $userId, $newRights) {
 		
 		$em = $this -> getDoctrine() -> getManager();
@@ -362,9 +373,11 @@ $sharedFiles = $query->getResult();
         )));
 	}
 
-/**
- * Delete a file
-*/
+ //! Delete a file
+  /*!
+    \param $id the id of the file.
+    \return $folderId the id of the current folder.
+  */
 	public function deleteAction($id) {
 		$securityContext = $this -> get('security.context');
 		$em = $this -> getDoctrine() -> getManager();
@@ -393,9 +406,12 @@ $sharedFiles = $query->getResult();
             'folderId' => $folderId,
         )));
 	}
-/**
- * Rename a file
-*/
+	
+//! Rename a file
+  /*!
+    \param $id the id of the file to rename.
+    \return $folderId the id of the current folder.
+  */
 	public function renameAction($id) {
 		$em = $this -> getDoctrine() -> getManager();
 		$securityContext = $this -> get('security.context');
@@ -417,9 +433,11 @@ $sharedFiles = $query->getResult();
         )));
 	}
 	
-/**
- * Rename a file
-*/
+//! Rename a folder
+  /*!
+    \param $id the id of the folder to rename.
+    \return $folderId the id of the current folder.
+  */
 	public function renameFolderAction($id) {
 		$em = $this -> getDoctrine() -> getManager();
 		$securityContext = $this -> get('security.context');
@@ -445,10 +463,11 @@ $sharedFiles = $query->getResult();
         )));
 	}
 	
-	/**
- * Function to create a new folder
- */	
-	
+	//! Create a folder
+  /*!
+    \param $folderId the id of the current folder.
+    \return $folderId the id of the current folder.
+  */
 	/**
 	 * @Template()
 	 */
@@ -511,6 +530,12 @@ $sharedFiles = $query->getResult();
             'folderId' => $folderId,
         )));
 	}
+	
+	//! Download a file
+  /*!
+    \param $id the id of the file to download.
+    \return $response the response which contain the file.
+  */
 	/**
 	 * @Template()
 	 */
@@ -530,7 +555,11 @@ $sharedFiles = $query->getResult();
 	return $response;
 	}
 
-
+	//! Download a folder
+  /*!
+    \param $id the id of the folder to download.
+    \return $response the response which contain an archive of the folder.
+  */
 	/**
 	 * @Template()
 	 */	
@@ -581,6 +610,12 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 	return $response;
 	}
 
+	//! Move a file
+  /*!
+    \param $id the id of the file to move.
+    \param $action used to differentiate COPY from CUT.
+    \return $folderId the id of the current folder.
+  */
 	/**
 	 * @Template()
 	 */		
@@ -704,9 +739,11 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
             'folderId' => $folderId,
         )));
 	}
-		/**
- * Delete a folder
-*/
+	//! Delete a folder
+  /*!
+    \param $id the id of the folder to delete.
+    \return $folderId the id of the current folder.
+  */
 	public function deleteFolderAction($id) {
 	
 	
@@ -728,11 +765,6 @@ $file_list = $folder->listDirectory($folder->getAbsolutePath());
 					if (!$doc) {
 			throw $this -> createNotFoundException('No document found for path ' . $tmp);
 		}
-	//	die(print_r(var_dump($doc)));
-	//delete
-//			if (false === $securityContext -> isGranted('DELETE', $doc)) {
-//			throw new AccessDeniedException();
-//		}
 		$aclProvider = $this -> get('security.acl.provider');
 		$objectIdentity = ObjectIdentity::fromDomainObject($doc);
 		$aclProvider -> deleteAcl($objectIdentity);
@@ -748,13 +780,11 @@ $file_list = $folder->listDirectory($folder->getAbsolutePath());
 		
 		}
 		}
-		//die(print_r($file_list));
 		$em -> flush();	
 		$cpt = 1;
 		while ($cpt != 0)
 		{
 		$cpt = 0;
-		//print_r($cpt);
 		 foreach ($file_list as $file) {
 	  $tmp = basename($file);
 			  if ($tmp[0] == 'd')
@@ -765,11 +795,6 @@ $file_list = $folder->listDirectory($folder->getAbsolutePath());
 					if (!$folder) {
 			throw $this -> createNotFoundException('No folder found for path ' . $tmp);
 		}
-	//	die(print_r(var_dump($doc)));
-	//delete
-//			if (false === $securityContext -> isGranted('DELETE', $doc)) {
-//			throw new AccessDeniedException();
-//		}
 		if ($folder->getFSize() == 0 && $folder->getSize() == 0)
 {
 		$aclProvider = $this -> get('security.acl.provider');
@@ -787,20 +812,15 @@ $file_list = $folder->listDirectory($folder->getAbsolutePath());
 		}
 			else
 		{
-		//		die(print_r($file));
 		$cpt = 1;
-//		die(print_r(current($file_list)));
 		}
 		}
 		else
 		{
 		unset($file_list[array_search($file,$file_list)]);
-//		unset(key($file_list));
-//		$file_list = array_values($file_list);
 		}
 		}
 		}
-		//die(print_r(var_dump($file_list)));
 		$folder = $em 
 			-> getRepository('AcsilServerAppBundle:Folder') 
 			-> findOneBy(array('id' => $id));
