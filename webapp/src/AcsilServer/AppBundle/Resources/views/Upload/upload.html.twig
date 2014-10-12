@@ -8,7 +8,7 @@
 		    Document name
 		    <div class="controls">
 			    {{ form_errors(form.name) }}
-			    {{ form_widget(form.name, {'attr': {'class': 'span12 typeaheadUserMail', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }}
+				  {{ form_widget(form.name,  {'id': 'filename'}, {'attr': {'class': 'span12 typeaheadUserMail', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }}
 			</div><!-- controls -->
 		</div><!-- control group -->
 		
@@ -17,7 +17,7 @@
 		    File
 		    <div class="controls">
 			    {{ form_errors(form.file) }}
-			    {{ form_widget(form.file, {'attr': {'class': 'span12 typeaheadUserMail', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }}
+			     {{ form_widget(form.file,  {'id': 'upload'}, {'attr': {'class': 'span12 typeaheadUserMail', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }}
 			</div><!-- controls -->
 		</div><!-- control group -->
 	</div><!-- row fluid -->

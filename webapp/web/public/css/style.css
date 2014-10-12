@@ -610,6 +610,7 @@ ul.sidebar-menu span.icon-box  {
 	margin:0 auto;
     background: url("../img/top-bg.jpg");
 	clear:both;
+	z-index:5;
 }
 
 /* custom wells */

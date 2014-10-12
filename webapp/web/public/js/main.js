@@ -117,3 +117,16 @@ $(document).ready(function() {
 	})
 
 })
+
+document.getElementById('upload').onchange = uploadOnChange;
+
+function uploadOnChange() {
+    var filename = this.value;
+ filename = filename.substr(0, filename.lastIndexOf("."));
+ 
+    var lastIndex = filename.lastIndexOf("\\");
+    if (lastIndex >= 0) {
+        filename = filename.substring(lastIndex + 1);
+    }
+    document.getElementById('filename').value = filename;
+}
