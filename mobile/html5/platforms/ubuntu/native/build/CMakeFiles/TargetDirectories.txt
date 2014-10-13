@@ -1,0 +1,7 @@
+/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/build/CMakeFiles/copy_wwwqmlxml.dir
+/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/build/CMakeFiles/cordova-ubuntu.dir
+/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/build/CMakeFiles/cordova-ubuntu_automoc.dir
+/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/build/CMakeFiles/cordovaubuntuplugin.dir
+/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/build/CMakeFiles/cordovaubuntuplugin_automoc.dir
+/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/build/CMakeFiles/coreplugins.dir
+/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/build/CMakeFiles/coreplugins_automoc.dir

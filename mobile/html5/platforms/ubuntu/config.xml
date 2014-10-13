@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.acsilserver.epitech" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Acsliserver</name>
+    <description>The client app for your Acsilserver</description>
+    <preference name="loglevel" value="DEBUG" />
+    <name>Acsliserver</name>
+    <description>
+        The client app for your Acsilserver
+    </description>
+    <author email="contact@acsilserver.com" href="http://acsilserver.com">
+      Acsilserver Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="BackupWebStorage" value="none" />
+    <icon src="res/icon_128.png" />
+</widget>

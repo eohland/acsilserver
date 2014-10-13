@@ -1,0 +1,1 @@
+{"name":"com.acsilserver.epitech","version":"1.0.0","title":"Acsliserver","hooks":{"cordova":{"desktop":"cordova.desktop","apparmor":"apparmor.json"}},"framework":"ubuntu-sdk-14.04","maintainer":"Acsilserver Team <contact@acsilserver.com>","architecture":"armhf","description":"The client app for your Acsilserver"}
