@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ##
 ## makebuild-win.sh for in  /srv/http/acsilserver/system
 ## 
@@ -6,11 +6,11 @@
 ## Login   <ohland_e@epitech.net>
 ## 
 ## Started on  Sat Mar 01 01:07:27 2014 emmanuel ohland
-## Last update Mon Apr 21 22:15:30 2014 emmanuel ohland
+## Last update Wed Oct 15 14:27:12 2014 emmanuel ohland
 ##
 
 BUILDNAME='acsilserver_win'
-BUILDVER=`git -C .. tag | tail -1 | sed 's/^.//'`
+BUILDVER=`git --work-tree='..' tag | tail -1 | sed 's/^.//'`
 BUILDDIR="build-win/$BUILDNAME.$BUILDVER"
 BUILDAPPDIR="$BUILDDIR/acsilserver-master"
 

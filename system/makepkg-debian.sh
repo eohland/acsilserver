@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ##
 ## makepkg-debian.sh for in  /srv/http/acsilserver/system
 ## 
@@ -6,11 +6,11 @@
 ## Login   <ohland_e@epitech.net>
 ## 
 ## Started on  Fri Feb 21 16:04:50 2014 emmanuel ohland
-## Last update Thu Jun 05 14:39:05 2014 emmanuel ohland
+## Last update Wed Oct 15 14:27:36 2014 emmanuel ohland
 ##
 
 PKGNAME='acsilserver'
-PKGVER=`git -C .. tag | tail -1 | sed 's/^.//'`
+PKGVER=`git --work-tree='..' tag | tail -1 | sed 's/^.//'`
 PKGDIR="pkg/$PKGNAME-$PKGVER"
 
 build() {
