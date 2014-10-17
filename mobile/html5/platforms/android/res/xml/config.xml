@@ -1,10 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.epitech.acsliserver" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.acsilserver.epitech" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
-    <preference name="AndroidLaunchMode" value="singleTop" />
-    <feature name="App">
-        <param name="android-package" value="org.apache.cordova.App" />
-    </feature>
     <feature name="Keyboard">
         <param name="android-package" value="com.ionic.keyboard.IonicKeyboard" />
         <param name="onload" value="true" />
@@ -12,12 +8,17 @@
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
-    <name>acsliserver</name>
+    <icon density="mdpi" src="res/icon_48.png" />
+    <icon density="hdpi" src="res/icon_72.png" />
+    <icon density="xhdpi" src="res/icon_96.png" />
+    <icon density="xxhdpi" src="res/icon_144.png" />
+    <icon density="xxxhdpi" src="res/icon_192.png" />
+    <name>Acsliserver</name>
     <description>
-        The client app for your acsilserver
+        The client app for your Acsilserver
     </description>
-    <author email="team@acsilserver.com" href="http://acsilserver.com.com/">
-      Ionic Framework Team
+    <author email="contact@acsilserver.com" href="http://acsilserver.com">
+      Acsilserver Team
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -25,7 +26,5 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="BackupWebStorage" value="none" />
-    <feature name="StatusBar">
-        <param name="ios-package" onload="true" value="CDVStatusBar" />
-    </feature>
+    <icon src="res/icon_128.png" />
 </widget>

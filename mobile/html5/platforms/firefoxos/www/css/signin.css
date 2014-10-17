@@ -573,7 +573,11 @@ font-size: 52px;
 
 @media (min-width: 680px) {
   .modal {
-      bottom:auto;
+//      bottom:auto;
+//           height: 61%;
+//           min-height: 61%;
+           max-height: 348px;
+
 }
 }
 .modal .item {

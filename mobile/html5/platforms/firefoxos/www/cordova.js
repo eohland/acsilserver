@@ -1,5 +1,5 @@
 // Platform: firefoxos
-// 3.5.0
+// 3.6.3
 /*
  Licensed to the Apache Software Foundation (ASF) under one
  or more contributor license agreements.  See the NOTICE file
@@ -19,7 +19,7 @@
  under the License.
 */
 ;(function() {
-var CORDOVA_JS_BUILD_LABEL = '3.5.0';
+var CORDOVA_JS_BUILD_LABEL = '3.6.3';
 // file: src/scripts/require.js
 
 /*jshint -W079 */
@@ -265,7 +265,7 @@ var cordova = {
         try {
             cordova.callbackFromNative(callbackId, true, args.status, [args.message], args.keepCallback);
         } catch (e) {
-            console.log("Error in error callback: " + callbackId + " = "+e);
+            console.log("Error in success callback: " + callbackId + " = "+e);
         }
     },
 
@@ -1208,10 +1208,11 @@ define("cordova/platform", function(require, exports, module) {
 
 module.exports = {
     id: 'firefoxos',
-    cordovaVersion: '3.0.0',
 
     bootstrap: function() {
-        require('cordova/modulemapper').clobbers('cordova/exec/proxy', 'cordova.commandProxy');
+        var modulemapper = require('cordova/modulemapper');
+
+        modulemapper.clobbers('cordova/exec/proxy', 'cordova.commandProxy');
         require('cordova/channel').onNativeReady.fire();
     }
 };
@@ -1301,11 +1302,11 @@ function handlePluginsObject(path, moduleList, finishPluginLoading) {
 function findCordovaPath() {
     var path = null;
     var scripts = document.getElementsByTagName('script');
-    var term = 'cordova.js';
+    var term = '/cordova.js';
     for (var n = scripts.length-1; n>-1; n--) {
         var src = scripts[n].src.replace(/\?.*$/, ''); // Strip any query param (CB-6007).
         if (src.indexOf(term) == (src.length - term.length)) {
-            path = src.substring(0, src.length - term.length);
+            path = src.substring(0, src.length - term.length) + '/';
             break;
         }
     }

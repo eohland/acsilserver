@@ -18,16 +18,19 @@
     <!-- ionic/angularjs js -->
     <script src="js/jquery.min.js"></script>
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="lib/angular/angular.js"></script>
-    <script src="lib/angular/angular.js"></script>
+<!--    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular.js"></script>-->
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="lib/angular-resource/angular-resource.js"></script>
     <script src="lib/angular-sanitize/angular-sanitize.js"></script>
     <script src="lib/angular-touch/angular-touch.js"></script>
+    <script src="lib/ng-file-upload/angular-file-upload.min.js"></script> 
+    <script src="lib/ng-file-upload/angular-file-upload-shim.min.js"></script> 
     <script src="js/ui-bootstrap.js"></script>
     <script src="js/ui-bootstrap-tpls.js"></script>
     <script src="js/mimetype.js"></script>
     <script src="js/angular-media-player.js"></script>
+    <script src="js/jquery.gdocviewer.js"></script>
     <script src="lib/videogular/videogular.js"></script>
     <script src="lib/videogular-buffering/buffering.js"></script>
     <script src="lib/videogular-controls/controls.js"></script>
@@ -47,7 +50,7 @@
     </script>
 
   </head>
-  <body ng-app="clientApp" ng-controller="AppCtrl">
+  <body ng-app="clientApp" ng-controller="AppCtrl" class="platform-android platform-cordova platform-webview">
 
     <ion-pane>
       <ion-header-bar class="bar-dark">
@@ -57,12 +60,12 @@
 	<h1 class="title">AcsilServer</h1>
 	<div class="buttons">
 
-	  <a ng-if="showUpload() == true"
-	     ng-href="#/upload/{{getCurrentFolderId()}}"
+	  <!--<a ng-if="showUpload() == true"
+	     ng-href="#/upload"
 	     class="button no-animation button-icon icon ion-plus-round" 
 	     style="-webkit-user-select: none; -webkit-user-drag: none;
 		    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-	  </a>
+	  </a>-->
 
 	  <a href="#/properties"
 	     class="button no-animation button-icon icon ion-gear-a"

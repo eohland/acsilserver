@@ -5,7 +5,6 @@
     ],
     "version": "0.0.2",
     "name": "acsliserver",
-    "pkgName": "com.epitech.acsliserver452717",
     "description": "The client app for your acsilserver",
     "developer": {
         "name": "Ionic Framework Team",

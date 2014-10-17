@@ -2,7 +2,7 @@
 <ion-list>
   <ion-item class="item item-avatar" ng-repeat="folder in folders"
 	    ng-click="folderOnTouchEnd(folder.id)">
-    <img src="img/icone/ios7-folder.png">
+    <img src="img/icone/ios7-folder.png" />
     <span stype="float:left">
     <h2>{{folder.name}}</h2>
     <p>
@@ -19,8 +19,9 @@
 	    ng-click="itemOnTouchEnd(file.info.pseudo_owner,
 			  file.info.path,
 			  file.info.real_path,
-			  file.info.name)">
-    <img ng-src="{{file.info.icon}}">
+			  file.info.name,
+			  file.info.id)">
+    <img ng-src="{{file.info.icon}}" />
     <span style="float:left;">
     <h2>{{file.info.name}}</h2>
     <p>
@@ -29,10 +30,14 @@
     </span>
  <button class="button button-calm" style="float:right;"
 	 ng-click="itemOnLongPress(file.info.pseudo_owner,
-			  file.info.path,
-			  file.info.real_path,
-			  file.info.name,
-			  file.info.id)">
+	 file.info.path,
+	 file.info.real_path,
+	 file.info.name,
+	 file.info.id,
+	 file.info.owner,
+	 file.info.upload_date,
+	 file.info.mime_type,
+	 file.info.size)">
       <i class="icon ion-ios7-settings-strong"></i>
     </button>
 <!--    <span class="item-note">
@@ -45,25 +50,33 @@
   </ion-item>
 </ion-list>
 
-<script id="my-modal.html" type="text/ng-template">
+<script id="modal-menu.html" type="text/ng-template">
   <div class="modal">
     <ion-header-bar class="bar-dark">
       <h3 class="title">Options</h3>
     </ion-header-bar>
     <ion-content>
       <ion-list>
-	<a target="_self"
+<!--	<a target="_self"
 	   download="{{showDownloadName}}"
 	   href="{{showPath}}"
 	   class="item item-icon-left">
 	  <i class="icon ion-ios7-cloud-download"></i>
 	  Download
+	</a>-->
+	<a class="item item-icon-left" ng-click="showInfo()">
+	  <i class="icon ion-ios7-paper"></i>
+	  Info
 	</a>
-	<a class="item item-icon-left" ng-click="">
+	<a class="item item-icon-left" ng-click="showRename()">
 	  <i class="icon ion-ios7-compose"></i>
-	  Edit
+	  Rename
 	</a>
-	<a class="item item-icon-left">
+<!--	<a class="item item-icon-left" ng-click="">
+	  <i class="icon ion-ios7-copy"></i>
+	  Copy
+	</a>-->
+	<a class="item item-icon-left" ng-click="delete(showId)">
 	  <i class="icon ion-ios7-trash"></i>
 	  Delete
 	</a>
@@ -72,8 +85,81 @@
     <ion-footer-bar class="bar-calm">
       <button class="title button button-full button-clear"
 	      style="color:black;"
-	      ng-click="closeModal()">
+	      ng-click="closeModal('menu')">
 	Close
+      </button>
+    </ion-footer-bar>
+  </div>
+</script>
+
+<script id="modal-info.html" type="text/ng-template">
+  <div class="modal">
+    <ion-header-bar class="bar-dark">
+      <h3 class="title">Info</h3>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+	<ion-item>
+	  Name
+	  <span class="item-note">
+	    {{showName}}
+	  </span>
+	</ion-item>
+	<ion-item>
+	  Size
+	  <span class="item-note">
+	    {{byteToReadable(showSize)}}
+	  </span>
+	</ion-item>
+	<ion-item>
+	  Type
+	  <span class="item-note">
+	    {{showType}}
+	  </span>
+	</ion-item>
+	<ion-item>
+	  Upload Date
+	  <span class="item-note">
+	    {{timeToReadable(showUpDate)}}
+	  </span>
+	</ion-item>
+	<ion-item>
+	  Owner
+	  <span class="item-note">
+	    {{showOwner}}
+	  </span>
+	</ion-item>
+      </ion-list>
+    </ion-content>
+    <ion-footer-bar class="bar-calm">
+      <button class="title button button-full button-clear"
+	      style="color:black;"
+	      ng-click="closeModal('info')">
+	Close
+      </button>
+    </ion-footer-bar>
+  </div>
+</script>
+  <ng-include src="'partials/loading.html'"></ng-include>
+
+<script id="modal-rename.html" type="text/ng-template">
+  <div class="modal">
+    <ion-header-bar class="bar-dark">
+      <h3 class="title">Rename</h3>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+	<ion-item class="item-input">
+	  <span class="input-label">Name</span>
+	  <input type="text" ng-model="rename.name" style="text-align:right">
+	</ion-item>
+      </ion-list>
+    </ion-content>
+    <ion-footer-bar class="bar-calm">
+      <button class="title button button-full button-clear"
+	      style="color:black;"
+	      ng-click="saveNewName(showId, rename)">
+	Close/Save
       </button>
     </ion-footer-bar>
   </div>

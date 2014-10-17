@@ -3,13 +3,18 @@
     "installs_allowed_from": [
         "*"
     ],
-    "version": "0.0.2",
-    "name": "acsliserver",
-    "pkgName": "com.epitech.acsliserver",
-    "description": "The client app for your acsilserver",
+    "version": "1.0.0",
+    "name": "Acsliserver",
+    "description": "The client app for your Acsilserver",
     "developer": {
-        "name": "Ionic Framework Team",
-        "url": "http://acsilserver.com.com/"
+        "name": "Acsilserver Team",
+        "url": "http://acsilserver.com"
     },
-    "icons": {}
+    "icons": {
+        "48": "/icon/icon-48.png",
+        "60": "/icon/icon-60.png",
+        "64": "/icon/icon-64.png",
+        "128": "/icon/icon-128.png",
+        "256": "/icon/icon-256.png"
+    }
 }

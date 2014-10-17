@@ -3,10 +3,20 @@
 
 var propertiesCtrl = angular.module('propertiesDirective', ['ngSanitize']);
 
-propertiesCtrl.controller('propertiesCtrl', ['$scope', '$http',function($scope, $http) {
+propertiesCtrl.controller('propertiesCtrl', ['$scope', '$http', '$location',function($scope, $http, $location) {
     $scope.session = localStorage.getItem("credential.access_token");
     $scope.server = [];
     $scope.server.url = localStorage.getItem("server.url");
+    console.log("session="+ $scope.session);
+
+    $scope.logout = function() {
+    console.log("session="+ $scope.session);
+	localStorage.removeItem("credential.password");
+	localStorage.removeItem("credential.username");
+	localStorage.removeItem("credential.access_token");
+	localStorage.removeItem("credential.refresh_token");	
+	$location.path('/signin');
+    };
 }]);
 
 propertiesCtrl.directive('save', ['$http', function($http) {
@@ -159,8 +169,9 @@ listCtrl.directive('onLongClick', function($timeout) {
 })
 
 
-listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '$location', '$ionicModal',function($scope, $routeParams, $http, $window, $location, $ionicModal) {
+listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '$location', '$ionicModal', '$sanitize',function($scope, $routeParams, $http, $window, $location, $ionicModal, $sanitize) {
     $scope.loading = true;
+    $scope.showUpDate = "null";
     justLongPressed = false;
     console.log(MimeType.init());
     //myUrl = localStorage.getItem("server.url");
@@ -241,7 +252,7 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	    img = "img/icone/ios7-box.png";
 	else
 	    img = "img/icone/ios7-help-empty.png";
-	return img;
+	return $sanitize(img);
     };
     
     $scope.fileGetUrl = function(pseudo_owner, path, real_path) {
@@ -250,6 +261,8 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
     };
 
     $scope.timeToReadable = function(str) {
+	if (!str)
+	    return "null";
 	newstr = str.slice(0, str.search("T"));
 	return newstr;
     };
@@ -271,7 +284,7 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	
     };
 
-    $scope.itemOnTouchEnd = function(pseudo_owner, path, real_path, name) {
+    $scope.itemOnTouchEnd = function(pseudo_owner, path, real_path, name, id) {
 	if (justLongPressed == false) {
 	    path = fileToUrl(pseudo_owner, path, real_path);
 	    console.log(path);
@@ -281,9 +294,17 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	    else if (MimeType.lookup(path).search("video") != -1)
 		url = "/videoPlayer/"+encodeURIComponent(path)+"/"+name;
 	    else if (MimeType.lookup(path).search("image") != -1)
-		url = "/imagePlayer/"+encodeURIComponent(path)+"/"+name;
+		url = "/imagePlayer/"+encodeURIComponent(path)+"/"+name+"/"+id;
+	    else if (MimeType.lookup(path).search("msword") != -1
+		     || MimeType.lookup(path).search("pdf") != -1
+		     || MimeType.lookup(path).search("ms-powerpoint") != -1
+		     || MimeType.lookup(path).search("text") != -1)
+		url = "/documentViewer/"+encodeURIComponent(path)+"/"+name;
+	    else
+		url = null,
 	    console.log(url);
-	    $location.path(url);
+	    if (url != null)
+		$location.path(url);
 	}
     };
 
@@ -463,8 +484,9 @@ videoPlayerCtrl.controller('videoPlayerCtrl', ['$scope', '$routeParams', '$sce',
 
 var imagePlayerCtrl = angular.module('imagePlayerCtrl', ['ngSanitize', 'ui.bootstrap']);
 
-imagePlayerCtrl.controller('imagePlayerCtrl', ['$scope', '$routeParams', '$sce', function($scope, $routeParams, $sce) {
+imagePlayerCtrl.controller('imagePlayerCtrl', ['$scope', '$routeParams', '$sce', '$http', function($scope, $routeParams, $sce, $http) {
     MimeType.init();
+    $scope.id = decodeURIComponent($routeParams.id);
     $scope.mimetype = MimeType.lookup(decodeURIComponent($routeParams.url));
     $scope.srcUrl = $sce.trustAsResourceUrl(decodeURIComponent($routeParams.url));
     $scope.title = $routeParams.name;
@@ -473,8 +495,42 @@ imagePlayerCtrl.controller('imagePlayerCtrl', ['$scope', '$routeParams', '$sce',
     $scope.videoWidth = window.innerWidth;
     console.log($scope.videoHeight);
     console.log($scope.videoWidth);
+
+    $http.defaults.headers.common.Authorization = 'Bearer '
+	+ localStorage.getItem("credential.access_token");
+
+    $scope.delete = function() {
+        $scope.loading = true;
+        var myData = $.param({delete: {deleteId: $scope.id}});
+        $http({
+            method: 'POST',
+            url: localStorage.getItem("server.url")+'app_dev.php/service/1/op/delete',
+            data: myData,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(data) {
+            $scope.loading = false;
+            window.history.back();
+        }).error(function(data) {
+            $scope.loading = false;
+            console.log(data);
+        });
+    };
 }]);
 
+var documentViewerCtrl = angular.module('documentViewerCtrl', ['ngSanitize']);
+
+documentViewerCtrl.controller('documentViewerCtrl', ['$scope', '$routeParams', '$sce', function($scope, $routeParams, $sce) {
+    $scope.srcUrl = $sce.trustAsUrl(decodeURIComponent($routeParams.url));
+    console.log( $scope.srcUrl),
+    $scope.title = $routeParams.name;
+            $scope.loading = true;
+    
+window.setTimeout(function() {
+            $scope.loading = false;
+    $('a.embed').gdocsViewer({width: "100%", height: "100%"});
+    $('#embedURL').gdocsViewer();
+}, 1000);    
+}]);
 
 var uploadCtrl = angular.module('uploadCtrl', ['ngSanitize', 'ionic']);
 
@@ -504,7 +560,7 @@ ajax.setRequestHeader('Authorization', 'Bearer '+ localStorage.getItem("credenti
 
 }]);
 
-totoCtrl.controller('totoCtrl', ['$scope', '$routeParams', '$http', '$window', '$location', '$upload', function($scope, $routeParams, $http, $window, $location, $upload) {
+/*totoCtrl.controller(, ['$scope', '$routeParams', '$http', '$window', '$location', '$upload', function($scope, $routeParams, $http, $window, $location, $upload) {
 
     $scope.onFileSelect = function($files) {
 	//$files: an array of files selected, each file has name, size, and type.
@@ -541,8 +597,8 @@ totoCtrl.controller('totoCtrl', ['$scope', '$routeParams', '$http', '$window', '
 	}
 	/* alternative way of uploading, send the file binary with the file's content-type.
 	 Could be used to upload files to CouchDB, imgur, etc... html5 FileReader is needed. 
-	 It could also be used to monitor the progress of a normal http post/put request with large data*/
+	 It could also be used to monitor the progress of a normal http post/put request with large data
 	// $scope.upload = $upload.http({...})  see 88#issuecomment-31366487 for sample code.
     };
-}]);
+}]);*/
 

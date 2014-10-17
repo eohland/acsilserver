@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.epitech.acsliserver" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>acsliserver</name>
+<widget id="com.acsilserver.epitech" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Acsliserver</name>
   <description>
-        The client app for your acsilserver
+        The client app for your Acsilserver
     </description>
-  <author email="team@acsilserver.com" href="http://acsilserver.com.com/">
-      Ionic Framework Team
+  <author email="contact@acsilserver.com" href="http://acsilserver.com">
+      Acsilserver Team
     </author>
   <content src="index.html"/>
   <access origin="*"/>
@@ -16,4 +16,18 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+ <icon src="res/icon_128.png" /> 
+ <platform name="android">
+    <icon src="res/icon_48.png" density="mdpi" />
+    <icon src="res/icon_72.png" density="hdpi" />
+    <icon src="res/icon_96.png" density="xhdpi" />
+    <icon src="res/icon_144.png" density="xxhdpi" />
+    <icon src="res/icon_192.png" density="xxxhdpi" />
+  </platform>
+  <platform name="firefoxos">
+    <icon src="res/icon_256.png" width="256" height="256" />
+    <icon src="res/icon_128.png" width="128" height="128" />
+    <icon src="res/icon_64.png" width="64" height="64" />
+    <icon src="res/icon_18.png" width="48" height="48" />
+   </platform>
 </widget>

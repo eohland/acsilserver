@@ -2,7 +2,7 @@
 <ion-list>
   <ion-item class="item item-avatar" ng-repeat="folder in folders"
 	    ng-click="folderOnTouchEnd(folder.id)">
-    <img src="img/icone/ios7-folder.png">
+    <img src="img/icone/ios7-folder.png" />
     <span stype="float:left">
     <h2>{{folder.name}}</h2>
     <p>
@@ -19,8 +19,9 @@
 	    ng-click="itemOnTouchEnd(file.info.pseudo_owner,
 			  file.info.path,
 			  file.info.real_path,
-			  file.info.name)">
-    <img ng-src="{{file.info.icon}}">
+			  file.info.name,
+			  file.info.id)">
+    <img ng-src="{{file.info.icon}}" />
     <span style="float:left;">
     <h2>{{file.info.name}}</h2>
     <p>
@@ -56,13 +57,13 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-	<a target="_self"
+<!--	<a target="_self"
 	   download="{{showDownloadName}}"
 	   href="{{showPath}}"
 	   class="item item-icon-left">
 	  <i class="icon ion-ios7-cloud-download"></i>
 	  Download
-	</a>
+	</a>-->
 	<a class="item item-icon-left" ng-click="showInfo()">
 	  <i class="icon ion-ios7-paper"></i>
 	  Info
@@ -71,10 +72,10 @@
 	  <i class="icon ion-ios7-compose"></i>
 	  Rename
 	</a>
-	<a class="item item-icon-left" ng-click="">
+<!--	<a class="item item-icon-left" ng-click="">
 	  <i class="icon ion-ios7-copy"></i>
 	  Copy
-	</a>
+	</a>-->
 	<a class="item item-icon-left" ng-click="delete(showId)">
 	  <i class="icon ion-ios7-trash"></i>
 	  Delete
@@ -84,7 +85,7 @@
     <ion-footer-bar class="bar-calm">
       <button class="title button button-full button-clear"
 	      style="color:black;"
-	      ng-click="closeModal('info')">
+	      ng-click="closeModal('menu')">
 	Close
       </button>
     </ion-footer-bar>

@@ -10,12 +10,18 @@
 	       class="input-label"
 	       type="text" save>
       </label>
-      <ion-pane ng-if="session != null">
-	<label class="item item-input">
+      <div ng-if="session != null">
+<!--	<label class="item item-input">
 	  <span class="input-label">Password</span>
 	  <input type="password">
 	</label>
-      </ion-pane>
+-->
+	<div class="item">
+	  <button class="button button-block button-assertive" ng-click="logout()">
+	    Disconnect
+	  </button>
+	</div>
+      </div>
     </div>
     <!--    
 	    <div class="form-group">
