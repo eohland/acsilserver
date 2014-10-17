@@ -295,8 +295,16 @@ listCtrl.controller('listCtrl', ['$scope', '$routeParams', '$http', '$window', '
 		url = "/videoPlayer/"+encodeURIComponent(path)+"/"+name;
 	    else if (MimeType.lookup(path).search("image") != -1)
 		url = "/imagePlayer/"+encodeURIComponent(path)+"/"+name+"/"+id;
+	    else if (MimeType.lookup(path).search("msword") != -1
+		     || MimeType.lookup(path).search("pdf") != -1
+		     || MimeType.lookup(path).search("ms-powerpoint") != -1
+		     || MimeType.lookup(path).search("text") != -1)
+		url = "/documentViewer/"+encodeURIComponent(path)+"/"+name;
+	    else
+		url = null,
 	    console.log(url);
-	    $location.path(url);
+	    if (url != null)
+		$location.path(url);
 	}
     };
 
@@ -509,6 +517,20 @@ imagePlayerCtrl.controller('imagePlayerCtrl', ['$scope', '$routeParams', '$sce',
     };
 }]);
 
+var documentViewerCtrl = angular.module('documentViewerCtrl', ['ngSanitize']);
+
+documentViewerCtrl.controller('documentViewerCtrl', ['$scope', '$routeParams', '$sce', function($scope, $routeParams, $sce) {
+    $scope.srcUrl = $sce.trustAsUrl(decodeURIComponent($routeParams.url));
+    console.log( $scope.srcUrl),
+    $scope.title = $routeParams.name;
+            $scope.loading = true;
+    
+window.setTimeout(function() {
+            $scope.loading = false;
+    $('a.embed').gdocsViewer({width: "100%", height: "100%"});
+    $('#embedURL').gdocsViewer();
+}, 1000);    
+}]);
 
 var uploadCtrl = angular.module('uploadCtrl', ['ngSanitize', 'ionic']);
 

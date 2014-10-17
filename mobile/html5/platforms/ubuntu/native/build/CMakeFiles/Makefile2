@@ -87,9 +87,9 @@ clean: CMakeFiles/copy_wwwqmlxml.dir/clean
 # Target rules for target CMakeFiles/cordova-ubuntu.dir
 
 # All Build rule for target.
-CMakeFiles/cordova-ubuntu.dir/all: CMakeFiles/cordova-ubuntu_automoc.dir/all
 CMakeFiles/cordova-ubuntu.dir/all: CMakeFiles/copy_wwwqmlxml.dir/all
 CMakeFiles/cordova-ubuntu.dir/all: CMakeFiles/cordovaubuntuplugin.dir/all
+CMakeFiles/cordova-ubuntu.dir/all: CMakeFiles/cordova-ubuntu_automoc.dir/all
 	$(MAKE) -f CMakeFiles/cordova-ubuntu.dir/build.make CMakeFiles/cordova-ubuntu.dir/depend
 	$(MAKE) -f CMakeFiles/cordova-ubuntu.dir/build.make CMakeFiles/cordova-ubuntu.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/build/CMakeFiles  4 5

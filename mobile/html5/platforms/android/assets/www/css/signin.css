@@ -4,6 +4,10 @@ body {
   background-color: #eee;
 }
 
+iframe {
+    height: 100vh;
+}
+
 #main-content {
     padding-top: 44px;
     background-color: #eee;

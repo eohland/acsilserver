@@ -22,6 +22,7 @@ var clientApp = angular.module('clientApp', [
     "com.2fdevs.videogular.plugins.poster",
     "angularFileUpload",
     'uploadCtrl',
+    "documentViewerCtrl",
 ]);
 
 clientApp.config(['$routeProvider', '$httpProvider', '$compileProvider', function($routeProvider, $httpProvider, $compileProvider) {
@@ -49,6 +50,10 @@ clientApp.config(['$routeProvider', '$httpProvider', '$compileProvider', functio
 	when('/videoPlayer/:url/:name', {
             templateUrl: 'partials/videoPlayer.html',
             controller: 'videoPlayerCtrl'
+	}).
+	when('/documentViewer/:url/:name', {
+            templateUrl: 'partials/documentViewer.html',
+            controller: 'documentViewerCtrl'
 	}).
 	when('/imagePlayer/:url/:name/:id', {
             templateUrl: 'partials/imagePlayer.html',

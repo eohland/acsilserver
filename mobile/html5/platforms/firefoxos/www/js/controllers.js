@@ -527,7 +527,7 @@ documentViewerCtrl.controller('documentViewerCtrl', ['$scope', '$routeParams', '
     
 window.setTimeout(function() {
             $scope.loading = false;
-    $('a.embed').gdocsViewer({width: 740, height: 742});
+    $('a.embed').gdocsViewer({width: "100%", height: "100%"});
     $('#embedURL').gdocsViewer();
 }, 1000);    
 }]);

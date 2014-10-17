@@ -11,10 +11,9 @@
         "url": "http://acsilserver.com"
     },
     "icons": {
-        "48": "/icon/icon-48.png",
-        "60": "/icon/icon-60.png",
-        "64": "/icon/icon-64.png",
-        "128": "/icon/icon-128.png",
-        "256": "/icon/icon-256.png"
+        "48": "icon/icon-48.png",
+        "64": "icon/icon-64.png",
+        "128": "icon/icon-128.png",
+        "256": "icon/icon-256.png"
     }
 }

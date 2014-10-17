@@ -19,13 +19,13 @@
     },
     "installed_plugins": {
         "com.ionic.keyboard": {
-            "PACKAGE_NAME": "com.epitech.acsliserver"
+            "PACKAGE_NAME": "com.acsilserver.epitech"
         },
         "org.apache.cordova.console": {
-            "PACKAGE_NAME": "com.epitech.acsliserver"
+            "PACKAGE_NAME": "com.acsilserver.epitech"
         },
         "org.apache.cordova.device": {
-            "PACKAGE_NAME": "com.epitech.acsliserver"
+            "PACKAGE_NAME": "com.acsilserver.epitech"
         }
     },
     "dependent_plugins": {}
