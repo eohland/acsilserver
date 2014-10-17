@@ -177,7 +177,7 @@
 							<img id="miniImg" src="{{app.request.basepath}}/{{ document.info.getWebPath() }}" alt="img"/> 
 						{% elseif document.info.mimeType == "mp3" or  document.info.mimeType == "mpga"%}
 							<img id="miniImg" src="{{asset('public/img/music-mini.png')}}" alt="music"/>
-						{% elseif document.info.mimeType == "avi" or document.info.mimeType == "mpeg4" %}
+						{% elseif document.info.mimeType == "avi" or document.info.mimeType == "mpeg4" or document.info.mimeType == "mp4"%}
 							<img id="miniImg" src="{{asset('public/img/video-mini.png')}}" alt="video"/>							
 						{% else %}
 							<img id="miniImg" src="{{asset('public/img/document.png')}}" alt="file"/>

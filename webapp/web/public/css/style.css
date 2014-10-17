@@ -1647,7 +1647,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 
 .login-header {
-    background: url("../img/top-bg.jpg") repeat-x;
+    background: #43cee6;
     border-width: 0;
     height: 90px;
     text-align: center;
@@ -1714,7 +1714,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
     color: #999 !important;
 }
 .login-btn {
-    background: url("../img/login-btn.jpg");
+    background: #43cee6;
     border: none;
     box-shadow: 1px 0 1px #FFFFFF, 0 0 3px rgba(0, 0, 0, 0.2) inset;
     -moz-box-shadow: 1px 0 1px #FFFFFF, 0 0 3px rgba(0, 0, 0, 0.2) inset;
