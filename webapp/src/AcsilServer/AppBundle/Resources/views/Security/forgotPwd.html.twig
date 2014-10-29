@@ -1,0 +1,50 @@
+{# Check errors when form is full #}
+	{% if errorForm is defined %}
+		{% if errorForm == "errorMail" %}
+			<script type="text/javascript"> alert('Wrong E-mail');
+				javascript:history.back(); {# To have css/js #}
+			</script>
+		{% endif %}
+		{% if errorForm == "errorQuestion" %}
+			<script type="text/javascript"> alert('Wrong question'); 
+				javascript:history.back();
+			</script>
+		{% endif %}
+		{% if errorForm == "errorAnswer" %}
+			<script type="text/javascript"> alert('Wrong answer'); 
+				javascript:history.back();
+			</script>
+		{% endif %}
+
+	{% endif %}
+		
+<form id="forgotPwdForm" action="{{ path('_forgotpwd') }}" method="post">
+
+{# Page for forgot password #}
+	<div class="row-fluid">
+	<p>
+		<div class="control-group span8">
+		<h5> To change your password, enter your e-mail address and answer to the question you chose. </h5>
+		E-mail address
+			<div class="controls">
+				{{ form_errors(forgotPwdForm.email) }}
+				{{ form_widget(forgotPwdForm.email, {'attr': {'class': 'span12', 'autocomplete': 'off', 'data-provide': 'typeahead', 'placeholder': 'Email'}}) }} 
+			</div><!-- controls -->
+		Question
+			<div class="controls">
+				{{ form_errors(forgotPwdForm.question) }}
+				{{ form_widget(forgotPwdForm.question, {'attr': {'class': 'span12', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }} 
+				Answer
+				{{ form_errors(forgotPwdForm.answer) }}
+				{{ form_widget(forgotPwdForm.answer, {'attr': {'class': 'span12', 'autocomplete': 'off', 'data-provide': 'typeahead', 'placeholder': 'Answer'}}) }} 
+			</div><!-- controls -->	
+		</div><!-- control group -->
+	</p>
+	</div><!-- row fluid -->
+	
+	<p>
+	&nbsp &nbsp
+	<input class="btn btn-primary" type="submit" value="{{ 'Submit'|trans }}" />
+	<a class="noconfirm btn btn-danger" href="{{ path('_login') }}">{{ 'Cancel'|trans }}</a>
+	</p>
+</form>

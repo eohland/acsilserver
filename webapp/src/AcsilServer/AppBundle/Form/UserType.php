@@ -36,6 +36,15 @@ class UserType extends AbstractType
 	            ->add('password', 'password', array('required' => TRUE))
 	            ->add('confirm_password', 'password', array())
 				->add('pictureAccount', 'file', array('required' => TRUE))
+				->add('question', 'choice', 
+					array(
+						'choices' => array(
+							'q1' => 'In which town am I born?',
+							'q2' => 'What is the name of my first pet?',
+							'q3' => 'What is my favorite movie?',
+							'q4' => 'What is my favorite song?',
+						)))
+	            ->add('answer', 'text', array('required' => TRUE))
 	        ;
 		} else {
 	        $builder
@@ -53,6 +62,15 @@ class UserType extends AbstractType
 						'preferred_choices' => array($this->roles ? $this->roles : 'ROLE_ADMIN'),
 					))
 				->add('pictureAccount', 'file', array('required' => TRUE))
+					->add('question', 'choice', 
+					array(
+						'choices' => array(
+							'q1' => 'In which town am I born?',
+							'q2' => 'What is the name of my first pet?',
+							'q3' => 'What is my favorite movie?',
+							'q4' => 'What is my favorite song?',
+						)))
+	            ->add('answer', 'text', array('required' => TRUE))						
 	        ;
 		}
     }

@@ -52,6 +52,9 @@ class User implements AdvancedUserInterface
      */
     private $password;
 	
+	  /**
+     * @ORM\Column(type="string", length=40)
+     */
 	private $confirm_password;
 
     /**
@@ -69,7 +72,7 @@ class User implements AdvancedUserInterface
      */
     private $creationDate;
 
-	  /**
+	 /**
      * @ORM\Column(type="string", length=255)
      */
 	private $pictureAccount;
@@ -79,6 +82,16 @@ class User implements AdvancedUserInterface
      */
     private $isActive;
 
+	 /**
+     * @ORM\Column(type="string", length=255)
+     */
+	private $question;
+
+	 /**
+     * @ORM\Column(type="string", length=255)
+     */
+	private $answer;
+	
     public function __construct()
     {
         $this->isActive = true;
@@ -350,6 +363,52 @@ class User implements AdvancedUserInterface
         return $this->isActive;
     }
 	
+	 /**
+     * Get question
+     *
+     * @return string 
+     */
+    public function getQuestion()
+    {
+        return $this->question;
+    }
+
+    /**
+     * Set question
+     *
+     * @param string $question
+     * @return User
+     */
+    public function setQuestion($question)
+    {
+        $this->question = $question;
+    
+        return $this;
+    }
+	
+	 /**
+     * Get answer
+     *
+     * @return string 
+     */
+    public function getAnswer()
+    {
+        return $this->answer;
+    }
+	
+   /**
+     * Set answer
+     *
+     * @param string $answer
+     * @return User
+     */
+    public function setAnswer($answer)
+    {
+        $this->answer = $answer;
+    
+        return $this;
+    }
+
     /**
      * @inheritDoc
      */

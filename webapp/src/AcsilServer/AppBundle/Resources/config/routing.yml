@@ -20,6 +20,15 @@ _request:
     pattern:  /request/
     defaults: { _controller: AcsilServerAppBundle:Security:request }
 
+_forgotpwd:
+    pattern:  /login/forgotPwd
+    defaults: { _controller: AcsilServerAppBundle:Security:forgotPwd }
+
+_changepwd:
+    pattern:  /login/changePwd/{id}
+    defaults: { _controller: AcsilServerAppBundle:Security:changePwd, id: '' }
+    options:
+        expose: true
 
 #####################################################################################
 #                                        Home                                       #
@@ -51,9 +60,9 @@ _changerole:
     pattern:  /acsil/admin/changeUserRole/{id}/{role}
     defaults: { _controller: AcsilServerAppBundle:Security:changeRole }
 
-_changepwd:
-    pattern:  /acsil/admins/changePwd
-    defaults: { _controller: AcsilServerAppBundle:Security:changePwd }
+_changequestion:
+    pattern:  /acsil/admins/changeQuestion
+    defaults: { _controller: AcsilServerAppBundle:Security:changeQuestion }	
 
 _changeemail:
     pattern:  /acsil/admins/changeEmail

@@ -102,8 +102,25 @@
 				    {{ form_widget(newUserForm.pictureAccount, {'attr': {'class': 'span12'}}) }}
 				</div><!-- controls -->
 			</div><!-- control group -->
-		</div><!-- row fluid -->
-	
+			</div><!-- row fluid -->
+
+			<div class="row-fluid">
+				<div class="control-group span6">
+					Secret question 
+					<div class="controls">
+						{{ form_errors(newUserForm.question) }}
+						{{ form_widget(newUserForm.question, {'attr': {'class': 'control'}}) }}
+					</div><!-- controls -->
+				</div><!-- control group -->
+				<div class="control-group span6">
+					Answer
+					<div class="controls">
+						{{ form_errors(newUserForm.answer) }}
+						{{ form_widget(newUserForm.answer, {'attr': {'class': 'control', 'placeholder': 'Answer'}}) }}
+					</div><!-- controls -->
+				</div><!-- control group -->
+			</div><!-- row fluid -->
+				
 	{{ form_rest(newUserForm) }}
 	
      <input class="btn btn-primary" type="submit" value="{{ 'Submit'|trans }}" />

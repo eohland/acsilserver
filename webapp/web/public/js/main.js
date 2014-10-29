@@ -28,7 +28,7 @@ $(document).ready(function() {
 	//Delete account
 	$('.userOptions a.deleteaccount').click(function() {
 		var accountid = $(this).attr('accountid');
-		
+		document.write('Js');
 		var link = Routing.generate('_deleteaccount', { id: accountid })
 		$('#deleteAccount a.confirm').attr('href', link);
 	})
@@ -42,9 +42,7 @@ $(document).ready(function() {
 		//console.log($(this).attr('fileid'))
 		var fileid = $(this).attr('fileid');
 		var filename = $(this).attr('filename');
-		
-		//var link = Routing.generate('_renamefile', { id: fileid })
-//		$('#deleteFile a.confirm').attr('href', link);
+
 		var renameFormPath = Routing.generate('_renamefile', { id: fileid });
 		console.log(renameFormPath);
 		$('#renameFileForm').attr('action', renameFormPath);
@@ -117,6 +115,13 @@ $(document).ready(function() {
 	})
 
 })
+	
+$('a.changePwd').click(function(){
+    var accountid = $(this).attr('accountid');
+
+	var link = Routing.generate('_changepwd', { id: accountid });
+	$('#changePwdForm').attr('action', link);
+});
 
 document.getElementById('upload').onchange = uploadOnChange;
 

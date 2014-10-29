@@ -17,21 +17,22 @@
 		{% endif %}
 	{% endif %}
 
-<form id="changePwdForm" action="{{ path('_changepwd') }}" method="post">
+
+<form id="changeQuestionForm" action="{{ path("_changequestion") }}" method="post">
 
 {# Page for change password #}
 	<div class="row-fluid">
 	<p>
 		<div class="control-group span8">
-		New password
+		New Question
 			<div class="controls">
-				{{ form_errors(changePwdForm.pwd) }}
-				{{ form_widget(changePwdForm.pwd, {'attr': {'class': 'span12', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }} 
+				{{ form_errors(changeQuestionForm.question) }}
+				{{ form_widget(changeQuestionForm.question, {'attr': {'class': 'span12', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }} 
 			</div><!-- controls -->
-		Confirm new password
+		New Answer
 			<div class="controls">
-				{{ form_errors(changePwdForm.confirmPwd) }}
-				{{ form_widget(changePwdForm.confirmPwd, {'attr': {'class': 'span12', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }} 
+				{{ form_errors(changeQuestionForm.answer) }}
+				{{ form_widget(changeQuestionForm.answer, {'attr': {'class': 'span12', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }} 
 			</div><!-- controls -->	
 		</div><!-- control group -->
 		
@@ -45,7 +46,7 @@
 	</p>
 </form>
 
-{% if app.request.get('_route') == '_changepwd' %}
+{% if app.request.get('_route') == '_changequestion' %}
 {# BEGIN JAVASCRIPTS #}
 	{% block javascripts %}
 	<script src="{{asset('public/js/jquery-1.8.3.min.js')}}"></script>

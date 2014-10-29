@@ -56,6 +56,9 @@ class SecurityController extends Controller
 					));
 		}
 		
+		$forgotPwdForm = $this->createForm(new Form\ForgotPwdType(), new Entity\ForgotPwd());
+		$changePwdForm = $this->createForm(new Form\ChangePwdType(), new Entity\ChangePwd());
+
 		return $this->render('AcsilServerAppBundle:Security:login.html.twig', 
 			array(
 				/**
@@ -63,6 +66,9 @@ class SecurityController extends Controller
 				 */
 				'last_username' => $session->get(SecurityContext::LAST_USERNAME),
 				'error'         => $error,
+				'forgotPwdForm' => $forgotPwdForm->createView(),
+				'changePwdForm' => $changePwdForm->createView(),
+				'forgotPwdMsg'	=> '',
 			));
     }
 
@@ -169,6 +175,8 @@ class SecurityController extends Controller
 				$user->setRoles($role);
 				$user->setUsertype($role);
 				$user->setCreationDate(new \Datetime());
+				$user->setQuestion($form->getdata()->getQuestion());
+				$user->setAnswer($form->getdata()->getAnswer());
 				
 			//	$em->flush();
 				
@@ -269,7 +277,7 @@ class SecurityController extends Controller
 	public function deleteAction($id) {
 		if ($this->getUser()->getId() == $id)
 			return $this->redirect($this->generateUrl('_acsiladmins'));
-		
+			
 		$em = $this->getDoctrine()->getManager();
 		$adminToDelete = $em
 			->getRepository('AcsilServerAppBundle:User')
@@ -289,16 +297,30 @@ class SecurityController extends Controller
 /**
 * Change pwd
 */
-	public function changePwdAction(Request $request) {
+	public function changePwdAction(Request $request, $id) {
 	$em = $this->getDoctrine()->getManager();
-	$user = $this->getUser();
-	
+	$changePwdForm = $this->createForm(new Form\ChangePwdType(), new Entity\ChangePwd());
+
+	if ($id == '')
+		$user = $this->getUser();
+	else {
+		//Find user by id
+		$query = $em -> createQuery('SELECT u FROM AcsilServerAppBundle:User u WHERE u.id = :userId') -> setParameter('userId', $id);
+		if (($user = $query -> getOneOrNullResult()) == NULL) {
+			$errorForm = 'errorUser';
+			return $this->render('AcsilServerAppBundle:Security:changePwd.html.twig',
+				array(
+						'changePwdForm' => $changePwdForm->createView(),
+						'errorForm' => $errorForm,
+						'id' => $id,
+			));
+		}
+	}
+
 	$parameters = $request -> request -> get('acsilserver_appbundle_changepwdtype');
 	$pwd = $parameters['pwd'];
 	$confirmPwd = $parameters['confirmPwd'];
-	
-	$errorForm = 'errorSizePwd';
-	$changePwdForm = $this->createForm(new Form\ChangePwdType(), new Entity\ChangePwd());
+	$errorForm = '';
 		
 	//Check if pwd < 6 char
 	if (strlen($pwd) < 6) {
@@ -307,7 +329,7 @@ class SecurityController extends Controller
 			array(
 					'changePwdForm' => $changePwdForm->createView(),
 					'errorForm' => $errorForm,
-					
+					'id' => $id,
 		));
 	}	
 	//Check if pwd and confirm pwd are equal
@@ -317,7 +339,7 @@ class SecurityController extends Controller
 			array(
 					'changePwdForm' => $changePwdForm->createView(),
 					'errorForm' => $errorForm,
-					
+					'id' => $id,
 		));
 	}
 	
@@ -329,7 +351,7 @@ class SecurityController extends Controller
     $em->persist($user);
     $em->flush();
 
-	return $this -> redirect($this -> generateUrl('_acsiladmins'));	
+	return $this -> redirect($this -> generateUrl('_acsiladmins'));
 	}
 	
 /**
@@ -424,4 +446,89 @@ class SecurityController extends Controller
 
 	return $this -> redirect($this -> generateUrl('_acsiladmins'));	
 	}
-}	
+	
+	
+/**
+* forgot pwd
+*/
+	public function forgotPwdAction(Request $request) {
+	$em = $this->getDoctrine()->getManager();
+	$session = $request->getSession();
+	$parameters = $request -> request -> get('acsilserver_appbundle_forgotpwdtype');
+	$email = $parameters['email'];
+	$question = $parameters['question'];
+	$answer = $parameters['answer'];
+	
+	$errorForm = '';
+	$forgotPwdForm = $this->createForm(new Form\ForgotPwdType(), new Entity\ForgotPwd());
+	$changePwdForm = $this->createForm(new Form\ChangePwdType(), new Entity\ChangePwd());
+		
+	//Check if email exist
+	$query = $em -> createQuery('SELECT u FROM AcsilServerAppBundle:User u WHERE u.email = :userEmail') -> setParameter('userEmail', $email);
+	if (($user = $query -> getOneOrNullResult()) == NULL) {
+		$errorForm = 'errorMail';
+		return $this->render('AcsilServerAppBundle:Security:ForgotPwd.html.twig',
+			array(
+					'forgotPwdForm' => $forgotPwdForm->createView(),
+					'errorForm' => $errorForm,
+		));
+	}
+
+	//Check if it's the good question
+	$query = $em -> createQuery('SELECT u FROM AcsilServerAppBundle:User u WHERE u.email = :userEmail AND u.question = :userQuestion') -> setParameters(array( 'userEmail' => $email, 'userQuestion' => $question));
+	if ($query -> getOneOrNullResult() == NULL) {
+		$errorForm = 'errorQuestion';
+		return $this->render('AcsilServerAppBundle:Security:ForgotPwd.html.twig',
+			array(
+					'forgotPwdForm' => $forgotPwdForm->createView(),
+					'errorForm' => $errorForm,
+		));
+	}	
+
+	//Check if it's the good answer
+	$query = $em -> createQuery('SELECT u FROM AcsilServerAppBundle:User u WHERE u.email = :userEmail AND u.answer = :userAnswer') -> setParameters(array('userEmail' => $email, 'userAnswer' => $answer));
+	if ($query -> getOneOrNullResult() == NULL) {
+		$errorForm = 'errorAnswer';
+		return $this->render('AcsilServerAppBundle:Security:ForgotPwd.html.twig',
+			array(
+					'forgotPwdForm' => $forgotPwdForm->createView(),
+					'errorForm' => $errorForm,
+		));
+	}
+
+	return $this->render('AcsilServerAppBundle:Security:login.html.twig',
+		array(
+			/**
+			 * last username entered by the user
+			 */
+			'last_username' => $session->get(SecurityContext::LAST_USERNAME),
+			'error'         => '',
+			'forgotPwdForm' => $forgotPwdForm->createView(),
+			'changePwdForm' => $changePwdForm->createView(),
+			'forgotPwdMsg'	=> 'ok',
+			'id' => $user->getId(),
+	));
+
+	}
+
+/**
+* Change secret question and answer
+*/
+	public function changeQuestionAction(Request $request) {
+	$em = $this->getDoctrine()->getManager();
+	$user = $this->getUser();
+	
+	$parameters = $request -> request -> get('acsilserver_appbundle_changequestiontype');
+	$question = $parameters['question'];
+	$answer = $parameters['answer'];
+
+	$changeQuestionForm = $this->createForm(new Form\ChangeQuestionType(), new Entity\ChangeQuestion());
+
+    $user->setQuestion($question);
+	$user->setAnswer($answer);
+    $em->persist($user);
+    $em->flush();
+
+	return $this -> redirect($this -> generateUrl('_acsiladmins'));
+	}
+}
