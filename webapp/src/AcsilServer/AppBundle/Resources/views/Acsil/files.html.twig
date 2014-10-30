@@ -170,7 +170,7 @@
 				{% for document in listfiles %}
 					<div class="userRow row-fluid">
 						<div class="fileInfos span9">
-							<div class="fileName span8">
+							<div class="fileName span5">
 						<div class="mini span2" style="width: 50px; height: 50px">			
 						{#Display the image or a default image#}
 						{% if (document.info.mimeType == "jpeg" or document.info.mimeType == "jpg" or document.info.mimeType == "png") or document.info.mimeType == "gif" %}
@@ -194,10 +194,18 @@
 											{{ document.info.name|trans }}.{{ document.info.mimeType|trans }} </a>
 							</div><!-- fileName -->
 							<div class="fileSize span2">
+								<div class="fileSize" >
+									<b>	Size: </b>  
+								</div>
 								{{ document.info.formatedSize }}
 							</div>
 							<div class="fileUploadDate span2">
+								<b> Upload date: </b> 
 								{{ document.info.uploaddate|date }}
+							</div><!-- file upload date -->
+							<div class="fileUploadDate span3">
+								<b> Last modifaction date: </b> 
+								{{ document.info.lastmodifdate|date }}
 							</div><!-- file upload date -->
 						</div><!-- fileInfos -->
 						

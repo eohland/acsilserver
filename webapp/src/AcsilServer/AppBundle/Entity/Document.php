@@ -41,7 +41,12 @@ class Document extends Data
      * @ORM\Column(type="integer")
      */
     private $folder;
-
+	
+	/**
+     * @ORM\Column(type="datetime")
+     */
+    protected $lastModifDate;
+	
 	     /* Set folder
      *
      * @param integer $folder
@@ -144,6 +149,29 @@ class Document extends Data
         $this->file = $file;
     
         return $this;
+    }
+
+	/**
+     * Set lastModifDate
+     *
+     * @param \DateTime $lastModifDate
+     * @return Data
+     */
+    public function setLastModifDate(\DateTime $lastModifDate = NULL)
+    {
+        $this->lastModifDate = $lastModifDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastModifDate
+     *
+     * @return \DateTime 
+     */
+    public function getLastModifDate()
+    {
+        return $this->lastModifDate;
     }
 
 	/**

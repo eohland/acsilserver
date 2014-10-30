@@ -186,6 +186,7 @@ $sharedFiles = $query->getResult();
 		}
 		$document -> setOwner($this -> getUser() -> getEmail());
 		$document -> setuploadDate(new \DateTime());
+		$document -> setLastModifDate(new \DateTime());
 		$document -> setPseudoOwner($this -> getUser() -> getUsername());
 		$document -> setFolder($folderId);
 		
@@ -366,6 +367,7 @@ $sharedFiles = $query->getResult();
 			$document->setIsShared(0);			
 			}
 		$aclProvider -> updateAcl($acl);
+		$document -> setLastModifDate(new \DateTime());
 		$em -> persist($document);
 		$em -> flush();
 		return $this -> redirect($this -> generateUrl('_managefile', array(
@@ -426,6 +428,7 @@ $sharedFiles = $query->getResult();
 			throw new AccessDeniedException();
 		}
 		$fileToRename->setName($name);
+		$fileToRename -> setLastModifDate(new \DateTime());
 		$em -> persist($fileToRename);
 		$em -> flush();
 		return $this -> redirect($this -> generateUrl('_managefile', array(
@@ -487,6 +490,7 @@ $sharedFiles = $query->getResult();
 		$folder -> setParentFolder($folderId);
 		$folder -> setSize(0);
 		$folder -> setFSize(0);
+		$folder -> setIsShared(0);		
 		$tempId = $folderId;
 		$totalPath = "";
 		$chosenPath = "";
@@ -664,6 +668,7 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 			$newDoc -> setIsShared(0);
 			$newDoc -> setOwner($this -> getUser() -> getEmail());
 			$newDoc -> setuploadDate(new \DateTime());
+			$newDoc -> setLastModifDate(new \DateTime());
 			$newDoc -> setPseudoOwner($this -> getUser() -> getUsername());
 			$newDoc -> setFolder($folderId);
 			$origin = $em 
@@ -745,8 +750,6 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
     \return $folderId the id of the current folder.
   */
 	public function deleteFolderAction($id) {
-	
-	
 	
 	$em = $this -> getDoctrine() -> getManager();
 	$folder = $em 
@@ -831,4 +834,5 @@ $file_list = $folder->listDirectory($folder->getAbsolutePath());
             'folderId' => $folderId,
         )));
 	}
+
 }

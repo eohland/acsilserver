@@ -177,15 +177,14 @@ class SecurityController extends Controller
 				$user->setCreationDate(new \Datetime());
 				$user->setQuestion($form->getdata()->getQuestion());
 				$user->setAnswer($form->getdata()->getAnswer());
-				
+
 			//	$em->flush();
-				
+
                 // deleted from symphony 2.4
 				//$session->setFlash('notice', $this->get('translator')->trans('created.user'));
 				$session->getFlashBag()->add('notice', $this->get('translator')->trans('created.user'));
-				
-				
-				
+
+
     /**
      * Create and fill a new document object
     */
@@ -199,11 +198,12 @@ class SecurityController extends Controller
 		$document -> setName('avatar-' . $form->getData()->getEmail());
 		$document -> setOwner($form->getData()->getEmail());
 		$document -> setuploadDate(new \DateTime());
+		$document -> setLastModifDate(new \DateTime());
 		$document -> setPseudoOwner($form->getData() -> getUsername());
 		$document -> setIsProfilePicture(1);
 		$document -> setFolder(0);
 		$document -> setRealPath("");
-		$document -> setChosenPath("");		
+		$document -> setChosenPath("");
 		$em -> persist($document);
 		$user->setPictureAccount($document->getWebPath());
 		$em->persist($user);
@@ -472,7 +472,7 @@ class SecurityController extends Controller
 					'forgotPwdForm' => $forgotPwdForm->createView(),
 					'errorForm' => $errorForm,
 		));
-	}
+	}	
 
 	//Check if it's the good question
 	$query = $em -> createQuery('SELECT u FROM AcsilServerAppBundle:User u WHERE u.email = :userEmail AND u.question = :userQuestion') -> setParameters(array( 'userEmail' => $email, 'userQuestion' => $question));
@@ -484,7 +484,7 @@ class SecurityController extends Controller
 					'errorForm' => $errorForm,
 		));
 	}	
-
+	
 	//Check if it's the good answer
 	$query = $em -> createQuery('SELECT u FROM AcsilServerAppBundle:User u WHERE u.email = :userEmail AND u.answer = :userAnswer') -> setParameters(array('userEmail' => $email, 'userAnswer' => $answer));
 	if ($query -> getOneOrNullResult() == NULL) {
@@ -496,7 +496,7 @@ class SecurityController extends Controller
 		));
 	}
 
-	return $this->render('AcsilServerAppBundle:Security:login.html.twig',
+	return $this->render('AcsilServerAppBundle:Security:login.html.twig', 
 		array(
 			/**
 			 * last username entered by the user
@@ -505,12 +505,12 @@ class SecurityController extends Controller
 			'error'         => '',
 			'forgotPwdForm' => $forgotPwdForm->createView(),
 			'changePwdForm' => $changePwdForm->createView(),
-			'forgotPwdMsg'	=> 'ok',
+			'forgotPwdMsg'	=> 'ok',	
 			'id' => $user->getId(),
 	));
 
 	}
-
+	
 /**
 * Change secret question and answer
 */
@@ -521,14 +521,14 @@ class SecurityController extends Controller
 	$parameters = $request -> request -> get('acsilserver_appbundle_changequestiontype');
 	$question = $parameters['question'];
 	$answer = $parameters['answer'];
-
+		
 	$changeQuestionForm = $this->createForm(new Form\ChangeQuestionType(), new Entity\ChangeQuestion());
-
+	
     $user->setQuestion($question);
 	$user->setAnswer($answer);
     $em->persist($user);
     $em->flush();
 
-	return $this -> redirect($this -> generateUrl('_acsiladmins'));
+	return $this -> redirect($this -> generateUrl('_acsiladmins'));	
 	}
 }
