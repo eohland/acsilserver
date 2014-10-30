@@ -1,0 +1,469 @@
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\ApplicationIcon.png
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\FlipCycleTileLarge.png
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\FlipCycleTileSmall.png
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\IconicTileMediumLarge.png
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\IconicTileSmall.png
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\Acsilserver1.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\Acsilserver1.pdb
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\en\Acsilserver1.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\qps-ploc\Acsilserver1.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\AppManifest.xaml
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\Properties\WMAppManifest.xml
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\Acsilserver1_Debug_AnyCPU.xap
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\Microsoft.Phone.Controls.Toolkit.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\Newtonsoft.Json.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\Newtonsoft.Json.xml
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\ar-SA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\az-Latn-AZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\be-BY\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\bg-BG\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\ca-ES\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\cs-CZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\da-DK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\de-DE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\el-GR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\en-GB\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\es-ES\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\es-MX\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\et-EE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\fa-IR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\fi-FI\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\fil-PH\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\fr-CA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\fr-FR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\he-IL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\hi-IN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\hr-HR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\hu-HU\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\id-ID\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\it-IT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\ja-JP\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\kk-KZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\ko-KR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\lt-LT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\lv-LV\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\mk-MK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\ms-MY\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\nb-NO\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\nl-NL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\pl-PL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\pt-BR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\pt-PT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\ro-RO\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\ru-RU\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\sk-SK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\sl-SI\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\sq-AL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\sr-Latn-CS\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\sv-SE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\th-TH\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\tr-TR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\uk-UA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\uz-Latn-UZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\vi-VN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\zh-CN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\Bin\Debug\zh-TW\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\obj\Debug\App.g.cs
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\obj\Debug\MainPage.g.cs
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\obj\Debug\View\MvvmViewFile.g.cs
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\obj\Debug\View\MvvmViewListe.g.cs
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.g.resources
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.Resources.AppResources.en.resources
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.Resources.AppResources.qps-ploc.qps-ploc.resources
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.Resources.AppResources.resources
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.csproj.GenerateResource.Cache
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.dll
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.pdb
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\obj\Debug\XapCacheFile.xml
+C:\Users\Edouard\Documents\Visual Studio 2012\Projects\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.csprojResolveAssemblyReference.cache
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\ApplicationIcon.png
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\FlipCycleTileLarge.png
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\FlipCycleTileSmall.png
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\IconicTileMediumLarge.png
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\IconicTileSmall.png
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Acsilserver1.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Acsilserver1.pdb
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\en\Acsilserver1.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\qps-ploc\Acsilserver1.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\AppManifest.xaml
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Properties\WMAppManifest.xml
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Acsilserver1_Debug_AnyCPU.xap
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Microsoft.Phone.Controls.Toolkit.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Newtonsoft.Json.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Newtonsoft.Json.xml
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\ar-SA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\az-Latn-AZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\be-BY\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\bg-BG\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\ca-ES\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\cs-CZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\da-DK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\de-DE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\el-GR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\en-GB\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\es-ES\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\es-MX\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\et-EE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\fa-IR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\fi-FI\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\fil-PH\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\fr-CA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\fr-FR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\he-IL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\hi-IN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\hr-HR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\hu-HU\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\id-ID\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\it-IT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\ja-JP\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\kk-KZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\ko-KR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\lt-LT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\lv-LV\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\mk-MK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\ms-MY\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\nb-NO\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\nl-NL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\pl-PL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\pt-BR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\pt-PT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\ro-RO\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\ru-RU\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\sk-SK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\sl-SI\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\sq-AL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\sr-Latn-CS\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\sv-SE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\th-TH\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\tr-TR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\uk-UA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\uz-Latn-UZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\vi-VN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\zh-CN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\zh-TW\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.csprojResolveAssemblyReference.cache
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\App.g.cs
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\MainPage.g.cs
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\View\MvvmViewFile.g.cs
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\View\MvvmViewListe.g.cs
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.g.resources
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.Resources.AppResources.en.resources
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.Resources.AppResources.qps-ploc.qps-ploc.resources
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.Resources.AppResources.resources
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.csproj.GenerateResource.Cache
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.pdb
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\XapCacheFile.xml
+C:\Users\Edouard\Documents\GitHub\acsilserver\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\View\MvvmViewDetails.g.cs
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\App.g.cs
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\MainPage.g.cs
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\View\MvvmViewDetails.g.cs
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\View\MvvmViewFile.g.cs
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\View\MvvmViewListe.g.cs
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.g.resources
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.Resources.AppResources.en.resources
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.Resources.AppResources.qps-ploc.qps-ploc.resources
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.Resources.AppResources.resources
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.csproj.GenerateResource.Cache
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\ApplicationIcon.png
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\FlipCycleTileLarge.png
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\FlipCycleTileSmall.png
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\IconicTileMediumLarge.png
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\IconicTileSmall.png
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Acsilserver1.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Acsilserver1.pdb
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\en\Acsilserver1.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\qps-ploc\Acsilserver1.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Microsoft.Phone.Controls.Toolkit.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Newtonsoft.Json.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Newtonsoft.Json.xml
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\ar-SA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\az-Latn-AZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\be-BY\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\bg-BG\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\ca-ES\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\cs-CZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\da-DK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\de-DE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\el-GR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\en-GB\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\es-ES\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\es-MX\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\et-EE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\fa-IR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\fi-FI\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\fil-PH\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\fr-CA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\fr-FR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\he-IL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\hi-IN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\hr-HR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\hu-HU\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\id-ID\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\it-IT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\ja-JP\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\kk-KZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\ko-KR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\lt-LT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\lv-LV\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\mk-MK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\ms-MY\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\nb-NO\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\nl-NL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\pl-PL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\pt-BR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\pt-PT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\ro-RO\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\ru-RU\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\sk-SK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\sl-SI\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\sq-AL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\sr-Latn-CS\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\sv-SE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\th-TH\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\tr-TR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\uk-UA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\uz-Latn-UZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\vi-VN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\zh-CN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\zh-TW\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.dll
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.pdb
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\AppManifest.xaml
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Properties\WMAppManifest.xml
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\Bin\Debug\Acsilserver1_Debug_AnyCPU.xap
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\XapCacheFile.xml
+C:\Users\Edouard\Documents\GitHub\acsilserver\mobile\windows_phone\Windows Phone App\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.csprojResolveAssemblyReference.cache
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\ApplicationIcon.png
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\FlipCycleTileLarge.png
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\FlipCycleTileSmall.png
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\IconicTileMediumLarge.png
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Assets\Tiles\IconicTileSmall.png
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Acsilserver1.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Acsilserver1.pdb
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\en\Acsilserver1.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\AppManifest.xaml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Properties\WMAppManifest.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Acsilserver1_Debug_AnyCPU.xap
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Microsoft.Phone.Controls.Toolkit.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Newtonsoft.Json.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\System.Net.Http.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\System.Net.Http.Extensions.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\System.Net.Http.Primitives.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Newtonsoft.Json.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\System.Net.Http.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\System.Net.Http.Extensions.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\System.Net.Http.Primitives.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\ar-SA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\az-Latn-AZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\be-BY\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\bg-BG\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\ca-ES\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\cs-CZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\da-DK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\de-DE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\el-GR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\en-GB\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\es-ES\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\es-MX\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\et-EE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\fa-IR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\fi-FI\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\fil-PH\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\fr-CA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\fr-FR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\he-IL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\hi-IN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\hr-HR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\hu-HU\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\id-ID\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\it-IT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\ja-JP\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\kk-KZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\ko-KR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\lt-LT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\lv-LV\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\mk-MK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\ms-MY\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\nb-NO\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\nl-NL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\pl-PL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\pt-BR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\pt-PT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\ro-RO\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\ru-RU\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\sk-SK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\sl-SI\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\sq-AL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\sr-Latn-CS\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\sv-SE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\th-TH\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\tr-TR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\uk-UA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\uz-Latn-UZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\vi-VN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\zh-CN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\zh-TW\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\App.g.cs
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\MainPage.g.cs
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\View\MvvmViewDetails.g.cs
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\View\MvvmViewFile.g.cs
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\View\MvvmViewListe.g.cs
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.g.resources
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.Resources.AppResources.en.resources
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.Resources.AppResources.resources
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.csproj.GenerateResource.Cache
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.pdb
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\XapCacheFile.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\en\Acsilserver1.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\resources.pri
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\AppxManifest.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Acsilserver1.build.appxrecipe
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\System.Net.Http\en-US\System.Net.Http.SR.resw
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\System.Net.Http.pri
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\System.Net.Http\qualifiers.txt
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\priconfig.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\priconfig.xml.intermediate
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\layout.resfiles
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\layout.resfiles.intermediate
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\resources.resfiles
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\resources.resfiles.intermediate
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\pri.resfiles
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\pri.resfiles.intermediate
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\qualifiers.txt
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\qualifiers.txt.intermediate
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\ProjectArchitectures.txt
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\MDILProjectFiles.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\obj\Debug\Acsilserver1.csprojResolveAssemblyReference.cache
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Microsoft.Advertising.Mobile.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\microsoft.advertising.mobile.ui.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Microsoft.Phone.Controls.Maps.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\Microsoft.Advertising.Mobile.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\microsoft.advertising.mobile.ui.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\cs-CZ\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\da-DK\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\de-DE\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\el-GR\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\en-GB\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\es-ES\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\fi-FI\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\fr-FR\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\hu-HU\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\it-IT\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\ja-JP\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\ko-KR\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\nb-NO\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\nl-NL\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\pl-PL\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\pt-BR\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\pt-PT\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\ru-RU\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\sv-SE\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\zh-CN\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\Debug\zh-TW\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Assets\ApplicationIcon.png
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Assets\Tiles\FlipCycleTileLarge.png
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Assets\Tiles\FlipCycleTileMedium.png
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Assets\Tiles\FlipCycleTileSmall.png
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Assets\Tiles\IconicTileMediumLarge.png
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Assets\Tiles\IconicTileSmall.png
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Acsilserver1.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Acsilserver1.pdb
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\en\Acsilserver1.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\resources.pri
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\AppxManifest.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Acsilserver1.build.appxrecipe
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Properties\WMAppManifest.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\AppManifest.xaml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Acsilserver1_Debug_AnyCPU.xap
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Microsoft.Advertising.Mobile.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\microsoft.advertising.mobile.ui.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Microsoft.Phone.Controls.Maps.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Microsoft.Phone.Controls.Toolkit.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Newtonsoft.Json.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\System.Net.Http.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\System.Net.Http.Extensions.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\System.Net.Http.Primitives.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Microsoft.Advertising.Mobile.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\microsoft.advertising.mobile.ui.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\Newtonsoft.Json.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\System.Net.Http.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\System.Net.Http.Extensions.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\System.Net.Http.Primitives.xml
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\cs-CZ\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\da-DK\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\de-DE\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\el-GR\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\en-GB\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\es-ES\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\fi-FI\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\fr-FR\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\hu-HU\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\it-IT\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\ja-JP\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\ko-KR\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\nb-NO\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\nl-NL\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\pl-PL\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\pt-BR\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\pt-PT\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\ru-RU\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\sv-SE\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\zh-CN\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\zh-TW\Microsoft.Advertising.Mobile.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\ar-SA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\az-Latn-AZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\be-BY\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\bg-BG\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\ca-ES\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\cs-CZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\da-DK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\de-DE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\el-GR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\en-GB\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\es-ES\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\es-MX\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\et-EE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\fa-IR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\fi-FI\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\fil-PH\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\fr-CA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\fr-FR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\he-IL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\hi-IN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\hr-HR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\hu-HU\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\id-ID\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\it-IT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\ja-JP\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\kk-KZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\ko-KR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\lt-LT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\lv-LV\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\mk-MK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\ms-MY\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\nb-NO\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\nl-NL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\pl-PL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\pt-BR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\pt-PT\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\ro-RO\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\ru-RU\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\sk-SK\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\sl-SI\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\sq-AL\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\sr-Latn-CS\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\sv-SE\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\th-TH\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\tr-TR\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\uk-UA\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\uz-Latn-UZ\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\vi-VN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\zh-CN\Microsoft.Phone.Controls.Toolkit.resources.dll
+C:\Users\Edouard\Documents\ACSIL\DataBoundApp1\Acsilserver1\Bin\All\Debug\zh-TW\Microsoft.Phone.Controls.Toolkit.resources.dll
