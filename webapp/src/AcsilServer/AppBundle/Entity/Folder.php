@@ -17,7 +17,11 @@ class Folder extends Data
      * @ORM\Column(type="integer")
      */
     private $parentFolder;
-	/**
+	 /**
+     * @ORM\Column(type="integer")
+     */
+	 private $isShared;	
+/**
      * @ORM\Column(type="integer")
      */
 	 private $fSize;
@@ -54,7 +58,22 @@ class Folder extends Data
     {
         return $this->parentFolder;
     }
-
+			    /**
+     * Set isShared
+     *
+     * @param integer $IsShared
+     * @return Folder
+     */
+	 public function setIsShared($isShared)
+    {
+        $this->isShared = $isShared;
+    
+        return $this;
+    }
+	public function getIsShared()
+    {
+        return $this->isShared;
+    }
 	/**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()

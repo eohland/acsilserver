@@ -31,6 +31,10 @@ use Doctrine\ORM\Mapping as ORM;
 		 /**
      * @ORM\Column(type="integer")
      */
+	private $isFolder;
+		 /**
+     * @ORM\Column(type="integer")
+     */
 	private $action;
 	    /**
      * Set name
@@ -69,6 +73,18 @@ use Doctrine\ORM\Mapping as ORM;
         return $this;
     }
 		    /**
+     * Set action
+     *
+     * @param integer $isFolder
+     * @return MoveFile
+     */
+    public function setIsFolder($isFolder)
+    {
+        $this->isFolder = $isFolder;
+    
+        return $this;
+    }
+		    /**
      * Set fileId
      *
      * @param integer $fileId
@@ -91,6 +107,10 @@ use Doctrine\ORM\Mapping as ORM;
 	 public function getAction()
     {
         return $this->action;
+    }
+	 public function getIsFolder()
+    {
+        return $this->isFolder;
     }
     public function getFileId()
     {

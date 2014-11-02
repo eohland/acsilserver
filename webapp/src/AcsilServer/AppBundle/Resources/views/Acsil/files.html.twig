@@ -152,6 +152,12 @@
 										<li> <a class="renamefolder" href="#renameFile" filename="{{ folder.name }}" fileid="{{ folder.id }}" data-toggle="modal">
 												<i class="icon-font"></i> {{ 'Rename'|trans }} </a>
 										</li>
+										<li><a href="{{ path('_movefolder', {'id': folder.id, 'action': 0}) }}">
+											<i class="icon-tag"></i> {{ 'Copy'|trans }} </a>
+										</li>
+										<li><a href="{{ path('_movefolder', {'id': folder.id, 'action': 1}) }}">
+											<i class="icon-tag"></i> {{ 'Cut'|trans }} </a>
+										</li>
 									{% endif %}
 									{% if is_granted('DELETE', folder) %}
 										<li>

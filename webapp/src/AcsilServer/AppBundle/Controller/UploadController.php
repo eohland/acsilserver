@@ -641,6 +641,7 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 	$move-> setName($fileToMove->getName());
 	$move-> setAction($action);
 	$move-> setFileId($id);
+	$move->setIsFolder(1);
 	$move-> setPath($fileToMove->getAbsolutePath());
 	$folderId = $fileToMove->getFolder();
 	$em -> persist($move);
@@ -830,6 +831,42 @@ $file_list = $folder->listDirectory($folder->getAbsolutePath());
 		$em -> remove($folder);
 		$em -> flush();		
 
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
+	}
+	//! Move a file
+  /*!
+    \param $id the id of the folder to move.
+    \param $action used to differentiate COPY from CUT.
+    \return $folderId the id of the current folder.
+  */
+	/**
+	 * @Template()
+	 */		
+	public function moveFolderAction($id, $action) {
+	$em = $this -> getDoctrine() -> getManager();
+		$folderToMove = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneBy(array('id' => $id));
+		if (!$folderToMove) {
+			throw $this -> createNotFoundException('No folder found for id ' . $id);
+		}
+		if ($action != 0 && $action != 1) {
+			throw $this -> createNotFoundException('Unknown action: ' . $action);
+		}
+	$isExist = $em -> getRepository('AcsilServerAppBundle:MoveFile') -> findOneBy(array('fileId' => $id));
+	if ($isExist)
+	{
+	$em -> remove($isExist);
+	}
+	$move = new MoveFile();
+	$move-> setName($folderToMove->getName());
+	$move-> setAction($action);
+	$move-> setFileId($id);
+	$move-> setPath($folderToMove->getAbsolutePath());
+	$move->setIsFolder(1);
+	$folderId = $folderToMove->getParentFolder();
+	$em -> persist($move);
+	$em -> flush();
 		return $this -> redirect($this -> generateUrl('_managefile', array(
             'folderId' => $folderId,
         )));
