@@ -135,3 +135,42 @@ function uploadOnChange() {
     }
     document.getElementById('filename').value = filename;
 }
+
+// Share folder
+$('a.sharefolder').click(function() {
+	$('#sharedWith').text('');
+	//console.log($(this).attr('fileid'))
+	var fileid = $(this).attr('fileid');
+	var filename = $(this).attr('filename');
+	var link = Routing.generate('_deletefile', { id: fileid });
+	$('#deleteFile a.confirm').attr('href', link);
+
+	var shareFormPath = Routing.generate('_sharefolder', { id: fileid });
+	console.log(shareFormPath);
+	$('#shareFolderForm').attr('action', shareFormPath);
+
+	var sharedWith = $.parseJSON($(this).parent().find('.sharedWith').text());
+	var lSharedWith = sharedWith.length;
+	if (lSharedWith == 0) {
+		var list = 
+			"<div class='row-fluid'>"
+			+ "No user yet"
+			+"</div><!-- row fluid -->";
+		$('#sharedWith').append(list);
+	} else {
+		for (var i = 0; i < lSharedWith; i++) {
+			var switchRights = sharedWith[i].rights == 'VIEW' ? 'EDIT' : 'VIEW';
+			var list = 
+				"<div class='row-fluid'>"
+				+	"<div class='span7'>" + sharedWith[i].email	+ " can " + sharedWith[i].rights + " file </div><!-- span8 -->"
+				+	"<div class='span2'>"
+				+		"<a href=" + Routing.generate('_updateuserrights', { fileId: fileid, userId: sharedWith[i].id, newRights: switchRights }) + "> allow " + switchRights + "</a>"
+				+	"</div><!-- span2 -->"
+				+	"<div class='span2'>"
+				+		"<a href=" + Routing.generate('_updateuserrights', { fileId: fileid, userId: sharedWith[i].id, newRights: 'DELETE' }) + "> or DELETE </a>"
+				+	"</div><!-- span2 -->"
+				+"</div><!-- row fluid -->";
+			$('#sharedWith').append(list);
+		}
+	}
+})

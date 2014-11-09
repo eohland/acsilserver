@@ -39,6 +39,7 @@ class UploadController extends Controller {
 		$em = $this -> getDoctrine() -> getManager();
 		$document = new Document();
 		$shareForm = $this -> createForm(new ShareFileType(), new ShareFile());
+		$shareFolderForm = $this -> createForm(new ShareFileType(), new ShareFile());
 		$renameForm = $this -> createForm(new RenameFileType(), new RenameFile());
 		$form = $this -> createForm(new DocumentType(), new Document());
 		$folderForm = $this -> createForm(new FolderType(), new Folder());
@@ -46,16 +47,99 @@ class UploadController extends Controller {
 
 		$listAllfiles = $em 
 			-> getRepository('AcsilServerAppBundle:Document') 
-			-> findBy(array('folder' => $folderId, 'isProfilePicture' => 0));
+			-> findBy(array('folder' => $folderId, 'isProfilePicture' => 0, 'owner' => $this->getUser()->getEmail()));
 
 
 		$listusers = $em 
 			-> getRepository('AcsilServerAppBundle:User') 
 			-> findAll();
 		
-		$listfolders = $em
+		$listAllFolders = $em
 			-> getRepository('AcsilServerAppBundle:Folder') 
 			-> findBy(array('parentFolder' => $folderId, 'owner' => $this->getUser()->getEmail()));
+
+		if ($folderId == 0)
+		{
+		$parentId = 0;
+			$query = $em->createQuery(
+    'SELECT f
+    FROM AcsilServerAppBundle:Folder f
+    WHERE f.id > :folder AND f.isShared = 1 AND f.owner != :owner'
+)
+->setParameter('folder', 0)
+->setParameter('owner', $this->getUser()->getEmail());
+
+$sharedFolders = $query->getResult();
+$notDisplayed = array();
+	foreach ($sharedFolders as $shared) {
+		$parentSFolder = $em
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('id' => $shared->getParentFolder()));
+if ($parentSFolder && $parentSFolder->getIsShared() == 1)
+ array_push($notDisplayed, $shared);
+	}
+	foreach ($notDisplayed as $toDelete) {
+$key = array_search($toDelete, $sharedFolders);
+unset($sharedFolders[$key]);
+//var_dump($sharedFolders);
+	}	
+		$listAllFolders = array_merge($listAllFolders, $sharedFolders);
+		}
+		else
+		{
+			$query = $em->createQuery(
+    'SELECT f
+    FROM AcsilServerAppBundle:Folder f
+    WHERE f.parentFolder = :parentFolder AND f.isShared = 1 AND f.owner != :owner'
+)
+->setParameter('parentFolder', $folderId)
+->setParameter('owner', $this->getUser()->getEmail());
+$sharedFolders = $query->getResult();
+		$listAllFolders = array_merge($listAllFolders, $sharedFolders);
+		}
+			
+	/**
+      * Get informations about folders
+      */	
+		$listfolders = array();
+		foreach ($listAllFolders as $folder) {
+		if ($securityContext -> isGranted('EDIT', $folder) === TRUE 
+				|| $securityContext -> isGranted('VIEW', $folder) === TRUE) {
+		
+				
+				$listUserFolderInfos = array();
+				$sharedFolderUserInfos = array();
+				if ($securityContext -> isGranted('OWNER', $folder) === TRUE) {
+					foreach ($listusers as $user) {
+						$aclProvider = $this -> container -> get('security.acl.provider');
+						$objectIdentity = ObjectIdentity::fromDomainObject($folder);
+						$acl = $aclProvider -> findAcl($objectIdentity);
+						$securityContext = $this -> container -> get('security.context');
+						$securityIdentity = UserSecurityIdentity::fromAccount($user);
+						$aces = $acl -> getObjectAces();
+						if ($user != $this -> getUser()) {
+							$rights = NULL;
+							foreach ($aces as $ace) {
+								if ($ace -> getMask() == MaskBuilder::MASK_VIEW) {
+									$rights = "VIEW";
+								}
+									if ($ace -> getMask() == 13) {
+									$rights = "EDIT";
+									}
+							}
+							if ($rights != NULL)
+								array_push($sharedFolderUserInfos, array("user" => $user, "rights" => $rights));
+						}
+					}
+				}
+				if (count($sharedFolderUserInfos) > 0)
+					$listUserFolderInfos = array("info" => $folder, "sharedFolderUserInfos" => $sharedFolderUserInfos);
+				else 
+					$listUserFolderInfos = array("info" => $folder, "sharedFolderUserInfos" => '');
+				array_push($listfolders, $listUserFolderInfos);
+			}
+		}			
+			
 	$currentPath = "";
 	$parentIdList = array();
 			if ($folderId == 0)
@@ -70,13 +154,43 @@ class UploadController extends Controller {
 ->setParameter('owner', $this->getUser()->getEmail());
 
 $sharedFiles = $query->getResult();
+$notDisplayed = array();
+	foreach ($sharedFiles as $shared) {
+		$parentSFolder = $em
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('id' => $shared->getFolder()));
+if ($parentSFolder->getIsShared() == 1)
+ array_push($notDisplayed, $shared);
+	}
+	foreach ($notDisplayed as $toDelete) {
+$key = array_search($toDelete, $sharedFiles);
+unset($sharedFiles[$key]);
+//var_dump($sharedFiles);
+	}	
 		$listAllfiles = array_merge($listAllfiles, $sharedFiles);
 		}
 		else
 		{
+			$query = $em->createQuery(
+    'SELECT d
+    FROM AcsilServerAppBundle:Document d
+    WHERE d.folder = :folder AND d.isShared = 1 AND d.owner != :owner'
+)
+->setParameter('folder', $folderId)
+->setParameter('owner', $this->getUser()->getEmail());
+$sharedFiles = $query->getResult();
+		$listAllfiles = array_merge($listAllfiles, $sharedFiles);
+
 		$currentFolder = $em
 			-> getRepository('AcsilServerAppBundle:Folder') 
-			-> findOneBy(array('id' => $folderId, 'owner' => $this->getUser()->getEmail()));
+			-> findOneBy(array('id' => $folderId));
+		if ($currentFolder->getOwner() != $this->getUser()->getEmail())
+		{
+		$parentIdList = array();
+		$parentId = 0;
+		}
+		else
+		{
 		$parentId = $currentFolder->getParentFolder();
 		$tmpPath = $currentFolder->getChosenPath().$currentFolder->getName();
 		$currentPath = explode("/", $tmpPath);
@@ -95,6 +209,7 @@ $sharedFiles = $query->getResult();
 		}
 		}	
 		$parentIdList = array_reverse($parentIdList, true);
+		}
 		}
      /**
       * Get informations about files
@@ -138,16 +253,17 @@ $sharedFiles = $query->getResult();
 				array_push($listfiles, $listUserFileInfos);
 			}
 		}
-		return $this -> render('AcsilServerAppBundle:Acsil:files.html.twig', 
+		return $this -> render('AcsilServerAppBundle:Acsil:files.html.twig',
 			array(
-				'listfiles' => $listfiles, 
+				'listfiles' => $listfiles,
 				'listusers' => $listusers,
 				'folderId' => $folderId,
 				'listfolders' => $listfolders,
 				'parentId' => $parentId,
-				'parentIdList' => $parentIdList,				
-				'form' => $form -> createView(), 
+				'parentIdList' => $parentIdList,
+				'form' => $form -> createView(),
 				'shareForm' => $shareForm -> createView(),
+				'shareFolderForm' => $shareFolderForm -> createView(),
 				'folderform' => $folderForm -> createView(),
 				'renameForm' => $renameForm -> createView(),
 			));
@@ -872,4 +988,197 @@ $file_list = $folder->listDirectory($folder->getAbsolutePath());
         )));
 	}
 
+		//! Share a folder
+  /*!
+    \param $request the request containing the data sent to the controller.
+    \param $id the id of the folder to share.
+    \return $folderId the id of the current folder.
+  */
+
+	public function shareFolderAction(Request $request, $id) {
+		
+		//die(print_r($id));
+		//$parameters = $_GET['acsilserver_appbundle_sharefiletype'];
+		$parameters = $request -> request -> get('acsilserver_appbundle_sharefiletype');
+		$friendName = $parameters['userMail'];
+		$right = $parameters['rights'];
+		if ($friendName == NULL || $right == NULL) {
+			throw $this -> createNotFoundException('Invalid data.');
+			return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => 0,
+        )));
+		}
+		$em = $this -> getDoctrine() -> getManager();
+		$friend = $em -> getRepository('AcsilServerAppBundle:User') -> findOneByEmail($friendName);
+
+		if (!$friend) {
+			throw $this -> createNotFoundException('No user found for name ' . $friendName);
+		}
+////////////////
+	$folder = $em 
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('id' => $id));
+
+	$folderId = $folder->getParentFolder();
+$file_list = $folder->listDirectory($folder->getAbsolutePath());
+$builder = new MaskBuilder();
+  foreach ($file_list as $file) {
+	  $tmp = basename($file);
+	  if ($tmp[0] == 'f')
+	  {
+	  $document = $em 
+			-> getRepository('AcsilServerAppBundle:Document') 
+			-> findOneBy(array('path' => $tmp));
+					if (!$document) {
+			throw $this -> createNotFoundException('No document found for path ' . $tmp);
+		}
+				/* file ----------------------------- */
+		$builder = new MaskBuilder();
+		if ($right == "EDIT") {
+			$builder -> add('view') -> add('edit') -> add('delete');
+			$document->setIsShared(1);
+			}
+		if ($right == "VIEW") {
+			$builder -> add('view');
+			$document->setIsShared(1);
+		}
+        /**
+		 * Set the rights for the other user 
+		*/
+		$aclProvider = $this -> container -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($document);
+		$acl = $aclProvider -> findAcl($objectIdentity);
+		$securityContext = $this -> container -> get('security.context');
+		$securityIdentity = UserSecurityIdentity::fromAccount($friend);
+		$aces = $acl -> getObjectAces();
+
+		foreach ($aces as $index => $ace) {
+			if ($ace -> getSecurityIdentity() == $securityIdentity) {
+				$acl -> deleteObjectAce($index);
+				break;
+			}
+		}
+		if ($right != "DELETE") {
+			$mask = $builder -> get();
+			var_dump($builder -> get());
+			$acl -> insertObjectAce($securityIdentity, $mask);
+		}
+	else
+	{
+			$document->setIsShared(0);
+	}
+		$aclProvider -> updateAcl($acl);
+		$em -> persist($document);
+		}
+		}
+		$em -> flush();
+		/* ----------------------------- */
+
+//		$cpt = 1;
+//		while ($cpt != 0)
+//		{
+//		$cpt = 0;
+		 foreach ($file_list as $file) {
+	  $tmp = basename($file);
+			  if ($tmp[0] == 'd')
+	  {
+	  $folder = $em 
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('path' => $tmp));
+					if (!$folder) {
+			throw $this -> createNotFoundException('No folder found for path ' . $tmp);
+		}
+		/* folder---------------------------------- */
+//$builder = new MaskBuilder();
+		if ($right == "EDIT") {
+			$builder -> add('view') -> add('edit') -> add('delete');
+			$folder->setIsShared(1);
+			}
+		if ($right == "VIEW") {
+			$builder -> add('view');
+			$folder->setIsShared(1);
+		}
+        /**
+		 * Set the rights for the other user 
+		*/
+		$aclProvider = $this -> container -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($folder);
+		$acl = $aclProvider -> findAcl($objectIdentity);
+		$securityContext = $this -> container -> get('security.context');
+		$securityIdentity = UserSecurityIdentity::fromAccount($friend);
+		$aces = $acl -> getObjectAces();
+
+		foreach ($aces as $index => $ace) {
+			if ($ace -> getSecurityIdentity() == $securityIdentity) {
+				$acl -> deleteObjectAce($index);
+				break;
+			}
+		}
+		if ($right != "DELETE") {
+			$mask = $builder -> get();
+			var_dump($builder -> get());
+			$acl -> insertObjectAce($securityIdentity, $mask);
+		}
+		else
+		{
+			$folder->setIsShared(0);
+		}
+		$aclProvider -> updateAcl($acl);
+		$em -> persist($folder);
+		$em -> flush();		
+		/* ----------------------------------- */
+	//	}
+		}
+		}
+		//last folder
+		$folder = $em 
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('id' => $id));
+		if ($right == "EDIT") {
+			$builder -> add('view') -> add('edit') -> add('delete');
+			$folder->setIsShared(1);
+			}
+		if ($right == "VIEW") {
+			$builder -> add('view');
+			$folder->setIsShared(1);
+		}
+        /**
+		 * Set the rights for the other user 
+		*/
+		$aclProvider = $this -> container -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($folder);
+		$acl = $aclProvider -> findAcl($objectIdentity);
+		$securityContext = $this -> container -> get('security.context');
+		$securityIdentity = UserSecurityIdentity::fromAccount($friend);
+		$aces = $acl -> getObjectAces();
+
+		foreach ($aces as $index => $ace) {
+			if ($ace -> getSecurityIdentity() == $securityIdentity) {
+				$acl -> deleteObjectAce($index);
+				break;
+			}
+		}
+		if ($right != "DELETE") {
+			$mask = $builder -> get();
+			var_dump($builder -> get());
+			$acl -> insertObjectAce($securityIdentity, $mask);
+		}
+		else
+		{
+			$folder->setIsShared(0);
+		}
+		$aclProvider -> updateAcl($acl);
+		$em -> persist($folder);
+		$em -> flush();			
+
+	
+	
+	
+	//////////////
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
+	}
+	
+	
 }

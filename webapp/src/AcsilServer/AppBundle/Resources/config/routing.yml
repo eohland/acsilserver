@@ -143,3 +143,9 @@ _renamefolder:
 _movefolder:
     pattern:  /acsil/myfile/movefolder/{id}/{action}
     defaults: { _controller: AcsilServerAppBundle:Upload:moveFolder, id: '' }
+
+_sharefolder:
+    pattern:  /acsil/myfile/sharefolder/{id}
+    defaults: { _controller: AcsilServerAppBundle:Upload:shareFolder, id:'' }
+    options:
+        expose: true
