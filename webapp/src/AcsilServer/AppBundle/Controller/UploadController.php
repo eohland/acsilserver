@@ -773,12 +773,21 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 	$em = $this -> getDoctrine() -> getManager();
 		$filesToPaste = $em 
 			-> getRepository('AcsilServerAppBundle:MoveFile') 
-			-> findAll();
+			-> findBy(array('isFolder' => 0));
+		$folderToPaste = $em 
+			-> getRepository('AcsilServerAppBundle:MoveFile') 
+			-> findBy(array('isFolder' => 1));
 			$currentFolder = $em 
 			-> getRepository('AcsilServerAppBundle:Folder') 
 			-> findOneBy(array('id' => $folderId));
-			foreach ($filesToPaste as $move) {
 
+			foreach ($filesToPaste as $move) {
+			if ($move->getAction() == 1) {
+			
+			}
+			}
+
+			foreach ($filesToPaste as $move) {
 			$newDoc = new Document();
 			$newDoc -> setName($move->getName());
 			$newDoc -> setIsProfilePicture(0);
@@ -799,8 +808,8 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 			$newDoc->setFile($origin->getFile());
 			$tempPath = sha1(uniqid(mt_rand(), true));
 			$endName = strstr($origin->getPath(), '.');
-			$newDoc->setPath(substr($tempPath, -6).$endName);
-			$origin -> setLastModifDate(new \DateTime());
+			$newDoc->setPath('f'.substr($tempPath, -6).$endName);
+
 
 
 		$tempId = $folderId;
@@ -839,11 +848,8 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 			$oldFolder->setSize($oldFolder->getSize() - 1);
 		$em -> persist($oldFolder);
 		}
-		$newDoc -> setuploadDate($origin->getUploadDate());
 		$em -> remove($origin);
 		}
-		else
-			$em -> persist($origin);	
 		$em -> persist($newDoc);
 		$em -> remove($move);
 		$em -> flush();
@@ -859,7 +865,9 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 		$aclProvider -> updateAcl($acl);
 
 		}
-			
+		
+
+		
 			return $this -> redirect($this -> generateUrl('_managefile', array(
             'folderId' => $folderId,
         )));
@@ -977,13 +985,28 @@ $file_list = $folder->listDirectory($folder->getAbsolutePath());
 	{
 	$em -> remove($isExist);
 	}
+	$folderId = $folderToMove->getParentFolder();
+		$allToMove = $em 
+			-> getRepository('AcsilServerAppBundle:MoveFile') 
+			-> findAll();
+			foreach ($allToMove as $move) {
+			if (strpos($folderToMove->getAbsolutePath(), $move->getPath()) !== false)
+				{
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
+				}
+			if (strpos($move->getPath(), $folderToMove->getAbsolutePath()) !== false)
+				{
+				$em -> remove($move);
+				}
+			}
 	$move = new MoveFile();
 	$move-> setName($folderToMove->getName());
 	$move-> setAction($action);
 	$move-> setFileId($id);
 	$move-> setPath($folderToMove->getAbsolutePath());
 	$move->setIsFolder(1);
-	$folderId = $folderToMove->getParentFolder();
 	$em -> persist($move);
 	$em -> flush();
 		return $this -> redirect($this -> generateUrl('_managefile', array(
@@ -1174,7 +1197,7 @@ $builder = new MaskBuilder();
 		$em -> persist($folder);
 		$em -> flush();			
 
-	
+			
 	
 	
 	//////////////
