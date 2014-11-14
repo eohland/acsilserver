@@ -800,7 +800,7 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 			$tempPath = sha1(uniqid(mt_rand(), true));
 			$endName = strstr($origin->getPath(), '.');
 			$newDoc->setPath(substr($tempPath, -6).$endName);
-
+			$origin -> setLastModifDate(new \DateTime());
 
 
 		$tempId = $folderId;
@@ -839,8 +839,11 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 			$oldFolder->setSize($oldFolder->getSize() - 1);
 		$em -> persist($oldFolder);
 		}
+		$newDoc -> setuploadDate($origin->getUploadDate());
 		$em -> remove($origin);
 		}
+		else
+			$em -> persist($origin);	
 		$em -> persist($newDoc);
 		$em -> remove($move);
 		$em -> flush();
