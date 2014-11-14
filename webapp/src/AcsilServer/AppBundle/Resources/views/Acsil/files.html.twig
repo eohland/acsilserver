@@ -57,7 +57,7 @@
 		</div><!-- shareFile -->
 
 		<div id="shareFolder" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			 <h2 style="margin-left:10px"> {{ 'Share this folder'|trans }}</h2>
+			 <h2 style="margin-left:1%"> {{ 'Share this folder'|trans }}</h2>
 			<div class="usersList">
 				{% set totalUser = listusers|length - 1 %}
 				[
@@ -71,7 +71,7 @@
 			</div><!-- userlist -->
 			
 			<h4> &nbsp These users already have rights:</h4>
-			<div id="sharedWith"></div><!-- sharedWith -->
+			<div id="sharedFolderWith"></div><!-- sharedFolderWith -->
 			
 			<h4> &nbsp Give rights to user</h4>
 			{% include 'AcsilServerAppBundle:Upload:ShareFolder.html.twig' %}
@@ -165,18 +165,18 @@
 						
 						<div class="fileOptions span3">
 							{% if is_granted('OWNER', folder.info) %}
-								<a class="sharefolder btn btn-primary" href="#shareFolder" filename="{{ folder.info.name }}" fileid="{{ folder.info.id }}" data-toggle="modal">
+								<a id="shareFolder "class="sharefolder btn btn-primary" href="#shareFolder" filename="{{ folder.info.name }}" fileid="{{ folder.info.id }}" data-toggle="modal">
 									<i class="icon-user icon-white"></i> {{ 'Share'|trans }}
 								</a>
-								<div class="sharedWith">
+								<div class="sharedFolderWith" hidden>
 									{% set totalUsers = folder.sharedFolderUserInfos|length %}
 									{% if totalUsers > 0 %}
-										[{% for key, sharedwith in folder.sharedFolderUserInfos %}
-											{"id": "{{ sharedwith.user.id }}","email": "{{ sharedwith.user.email }}","rights": "{{ sharedwith.rights }}"} {% if totalUsers > key + 1 %},{% endif %}
+										[{% for key, sharedFolderWith in folder.sharedFolderUserInfos %}
+											{"id": "{{ sharedFolderWith.user.id }}","email": "{{ sharedFolderWith.user.email }}","rights": "{{ sharedFolderWith.rights }}"} {% if totalUsers > key + 1 %},{% endif %}
 										{% endfor %}]
 									{% endif %}
-								</div><!-- sharedWith -->
-							{% endif %}						
+								</div><!-- sharedFolderWith -->
+							{% endif %}
 							<div class="btn-group">
 								<a class="btn btn-primary" href="#"><i class="icon-edit icon-white"></i> {{ 'Edit'|trans }}</a>
 								<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>

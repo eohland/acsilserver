@@ -96,7 +96,7 @@ $(document).ready(function() {
 				var switchRights = sharedWith[i].rights == 'VIEW' ? 'EDIT' : 'VIEW';
 				var list = 
 					"<div class='row-fluid'>"
-					+	"<div class='span7'>" + sharedWith[i].email	+ " can " + sharedWith[i].rights + " file </div><!-- span8 -->"
+					+	"<div class='span7'>" + sharedWith[i].email	+ " can " + sharedWith[i].rights + " this file </div><!-- span8 -->"
 					+	"<div class='span2'>"
 					+		"<a href=" + Routing.generate('_updateuserrights', { fileId: fileid, userId: sharedWith[i].id, newRights: switchRights }) + "> allow " + switchRights + "</a>"
 					+	"</div><!-- span2 -->"
@@ -138,7 +138,7 @@ function uploadOnChange() {
 
 // Share folder
 $('a.sharefolder').click(function() {
-	$('#sharedWith').text('');
+	$('#sharedFolderWith').text('');
 	//console.log($(this).attr('fileid'))
 	var fileid = $(this).attr('fileid');
 	var filename = $(this).attr('filename');
@@ -149,28 +149,29 @@ $('a.sharefolder').click(function() {
 	console.log(shareFormPath);
 	$('#shareFolderForm').attr('action', shareFormPath);
 
-	var sharedWith = $.parseJSON($(this).parent().find('.sharedWith').text());
-	var lSharedWith = sharedWith.length;
-	if (lSharedWith == 0) {
+	var sharedFolderWith = $.parseJSON($(this).parent().find('.sharedFolderWith').text());
+	var lsharedFolderWith = sharedFolderWith.length;
+
+	if (lsharedFolderWith == 0) {
 		var list = 
 			"<div class='row-fluid'>"
 			+ "No user yet"
 			+"</div><!-- row fluid -->";
-		$('#sharedWith').append(list);
+		$('#sharedFolderWith').append(list);
 	} else {
-		for (var i = 0; i < lSharedWith; i++) {
-			var switchRights = sharedWith[i].rights == 'VIEW' ? 'EDIT' : 'VIEW';
+		for (var i = 0; i < lsharedFolderWith; i++) {
+			var switchRights = sharedFolderWith[i].rights == 'VIEW' ? 'EDIT' : 'VIEW';
 			var list = 
 				"<div class='row-fluid'>"
-				+	"<div class='span7'>" + sharedWith[i].email	+ " can " + sharedWith[i].rights + " file </div><!-- span8 -->"
+				+	"<div class='span7' style='margin-left:2%'>" + sharedFolderWith[i].email	+ " can " + sharedFolderWith[i].rights + " this folder </div><!-- span8 -->"
 				+	"<div class='span2'>"
-				+		"<a href=" + Routing.generate('_updateuserrights', { fileId: fileid, userId: sharedWith[i].id, newRights: switchRights }) + "> allow " + switchRights + "</a>"
+				+		"<a href=" + Routing.generate('_updateuserrights', { fileId: fileid, userId: sharedFolderWith[i].id, newRights: switchRights }) + "> allow " + switchRights + "</a>"
 				+	"</div><!-- span2 -->"
 				+	"<div class='span2'>"
-				+		"<a href=" + Routing.generate('_updateuserrights', { fileId: fileid, userId: sharedWith[i].id, newRights: 'DELETE' }) + "> or DELETE </a>"
+				+		"<a href=" + Routing.generate('_updateuserrights', { fileId: fileid, userId: sharedFolderWith[i].id, newRights: 'DELETE' }) + "> or DELETE </a>"
 				+	"</div><!-- span2 -->"
 				+"</div><!-- row fluid -->";
-			$('#sharedWith').append(list);
+			$('#sharedFolderWith').append(list);
 		}
 	}
 })

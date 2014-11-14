@@ -7,7 +7,7 @@
 		<div class="control-group span8">
 		    {#{{ form_label(shareForm.userMail, shareForm.userMail.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}#}
 		    &nbsp Email
-		    <div class="controls" style="margin-left:10px">
+		    <div class="controls" style="margin-left:2%">
 			    {{ form_errors(shareFolderForm.userMail) }}
 			    {{ form_widget(shareFolderForm.userMail, {'attr': {'class': 'span12 typeaheadUserMail', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }}
 			</div><!-- controls -->
@@ -16,7 +16,7 @@
 		<div class="control-group span4">
 		    {#{{ form_label(shareForm.rights, shareForm.rights.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}#}
 		    Choose rights
-		    <div class="controls" style="margin-right:10px">
+		    <div class="controls" style="margin-right:2%">
 			    {{ form_errors(shareFolderForm.rights) }}
 			    {{ form_widget(shareFolderForm.rights, {'attr': {'class': 'span12'}}) }}
 			</div><!-- controls -->
