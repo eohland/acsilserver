@@ -753,13 +753,24 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 	{
 	$em -> remove($isExist);
 	}
+	$allToMove = $em 
+			-> getRepository('AcsilServerAppBundle:MoveFile') 
+			-> findAll();
+	$folderId = $fileToMove->getFolder();
+	foreach ($allToMove as $move) {
+			if (strpos($fileToMove->getAbsolutePath(), $move->getPath()) !== false)
+				{
+		return $this -> redirect($this -> generateUrl('_managefile', array(
+            'folderId' => $folderId,
+        )));
+				}
+			}
 	$move = new MoveFile();
 	$move-> setName($fileToMove->getName());
 	$move-> setAction($action);
 	$move-> setFileId($id);
 	$move->setIsFolder(1);
 	$move-> setPath($fileToMove->getAbsolutePath());
-	$folderId = $fileToMove->getFolder();
 	$em -> persist($move);
 	$em -> flush();
 		return $this -> redirect($this -> generateUrl('_managefile', array(
