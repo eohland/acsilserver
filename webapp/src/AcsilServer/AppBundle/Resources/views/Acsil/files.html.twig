@@ -57,7 +57,7 @@
 		</div><!-- shareFile -->
 
 		<div id="shareFolder" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<h2>{{ 'Share this folder'|trans }}</h2>
+			 <h2 style="margin-left:10px"> {{ 'Share this folder'|trans }}</h2>
 			<div class="usersList">
 				{% set totalUser = listusers|length - 1 %}
 				[
@@ -70,10 +70,10 @@
 				]
 			</div><!-- userlist -->
 			
-			<h4>These users already have rights:</h4>
+			<h4> &nbsp These users already have rights:</h4>
 			<div id="sharedWith"></div><!-- sharedWith -->
 			
-			<h4>Give rights to user</h4>
+			<h4> &nbsp Give rights to user</h4>
 			{% include 'AcsilServerAppBundle:Upload:ShareFolder.html.twig' %}
 		</div><!-- shareFolder -->
 		
@@ -181,12 +181,12 @@
 								<a class="btn btn-primary" href="#"><i class="icon-edit icon-white"></i> {{ 'Edit'|trans }}</a>
 								<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									{% if is_granted('VIEW', folder) %}
+									{% if is_granted('VIEW', folder.info) %}
 										<li><a href="{{ path('_download_folder', {'id': folder.info.id}) }}" target="_blank">
 											<i class="icon-download-alt"></i> {{ 'Download'|trans }} </a>
 										</li>
 									{% endif %}
-									{% if is_granted('EDIT', folder) %}
+									{% if is_granted('EDIT', folder.info) %}
 										<li> <a class="renamefolder" href="#renameFile" filename="{{ folder.info.name }}" fileid="{{ folder.info.id }}" data-toggle="modal">
 												<i class="icon-font"></i> {{ 'Rename'|trans }} </a>
 										</li>
@@ -197,7 +197,7 @@
 											<i class="icon-tag"></i> {{ 'Cut'|trans }} </a>
 										</li>
 									{% endif %}
-									{% if is_granted('DELETE', folder) %}
+									{% if is_granted('DELETE', folder.info) %}
 										<li>
 											<a class="deletefolder" href="{{ path('_delete_folder', {'id': folder.info.id}) }}" foldername="{{ folder.info.name }}" folderid="{{ folder.info.id }}" data-toggle="modal">
 												<i class="icon-trash"></i> {{ 'Delete'|trans }} 
