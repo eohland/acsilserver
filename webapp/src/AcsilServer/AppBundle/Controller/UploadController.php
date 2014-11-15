@@ -795,7 +795,10 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 		$user = $securityContext -> getToken() -> getUser();
 		$rootPath = null;
 			}
+			$temp = new Folder();
+			$subList = array();
 		foreach ($folderToPaste as $move) {
+		$subList = null;
 		//cut
 			if ($move->getAction() == 1) {			
 			if ($folderId == 0)
@@ -805,10 +808,12 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 			$rootPath = strstr($move->getPath(), basename($user->getUsername()), true).$user->getUsername();
 			}
 			rename($move->getPath(),$rootPath.'/'.basename($move->getPath()));			
+			$subList = $temp->listDirectory($rootPath.'/'.basename($move->getPath()));
 			}
 			else
 			{
 			rename($move->getPath(), $currentFolder->getAbsolutePath().'/'.basename($move->getPath()));
+			$subList = $temp->listDirectory($currentFolder->getAbsolutePath().'/'.basename($move->getPath()));
 			}
 			}
 			//copy
@@ -816,17 +821,37 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 			
 			if ($folderId == 0)
 			{
+			
 			if ($rootPath == null)
 			{
 			$rootPath = strstr($move->getPath(), basename($user->getUsername()), true).$user->getUsername();
 			}	
 			$temp->recurse_copy($move->getPath(), $rootPath.'/'.basename($move->getPath()));
+			$subList = $temp->listDirectory($rootPath.'/'.basename($move->getPath()));
 			}
 			else
 			{
-			$temp = new Folder();
 			$temp->recurse_copy($move->getPath(), $currentFolder->getAbsolutePath().'/'.basename($move->getPath()));
+			$subList = $temp->listDirectory($currentFolder->getAbsolutePath().'/'.basename($move->getPath()));
 			}
+			}
+			//die(print_r($subList));
+			foreach ($subList as $sub) {
+			if (basename($sub)[0]= 'd')
+			{
+					$currentSub = $em 
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('path' => basename($sub)));
+			// define path and parents
+			}			
+			else
+			{
+					$currentSub = $em 
+			-> getRepository('AcsilServerAppBundle:Document') 
+			-> findOneBy(array('path' => basename($sub)));
+			// define path and parents			
+			}
+			//delete Move attached
 			}
 			}
 
