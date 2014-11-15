@@ -789,10 +789,44 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 			$currentFolder = $em 
 			-> getRepository('AcsilServerAppBundle:Folder') 
 			-> findOneBy(array('id' => $folderId));
-
-			foreach ($filesToPaste as $move) {
-			if ($move->getAction() == 1) {
+			if ($folderId == 0)
+			{
+			$securityContext = $this -> get('security.context');
+		$user = $securityContext -> getToken() -> getUser();
+		$rootPath = null;
+			}
+		foreach ($folderToPaste as $move) {
+		//cut
+			if ($move->getAction() == 1) {			
+			if ($folderId == 0)
+			{
+					if ($rootPath == null)
+			{
+			$rootPath = strstr($move->getPath(), basename($user->getUsername()), true).$user->getUsername();
+			}
+			rename($move->getPath(),$rootPath.'/'.basename($move->getPath()));			
+			}
+			else
+			{
+			rename($move->getPath(), $currentFolder->getAbsolutePath().'/'.basename($move->getPath()));
+			}
+			}
+			//copy
+			else {
 			
+			if ($folderId == 0)
+			{
+			if ($rootPath == null)
+			{
+			$rootPath = strstr($move->getPath(), basename($user->getUsername()), true).$user->getUsername();
+			}	
+			$temp->recurse_copy($move->getPath(), $rootPath.'/'.basename($move->getPath()));
+			}
+			else
+			{
+			$temp = new Folder();
+			$temp->recurse_copy($move->getPath(), $currentFolder->getAbsolutePath().'/'.basename($move->getPath()));
+			}
 			}
 			}
 
