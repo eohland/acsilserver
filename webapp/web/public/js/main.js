@@ -154,7 +154,7 @@ $('a.sharefolder').click(function() {
 
 	if (lsharedFolderWith == 0) {
 		var list = 
-			"<div class='row-fluid'>"
+			"<div class='row-fluid' style='margin-left:4%'>"
 			+ "No user yet"
 			+"</div><!-- row fluid -->";
 		$('#sharedFolderWith').append(list);
@@ -163,7 +163,7 @@ $('a.sharefolder').click(function() {
 			var switchRights = sharedFolderWith[i].rights == 'VIEW' ? 'EDIT' : 'VIEW';
 			var list = 
 				"<div class='row-fluid'>"
-				+	"<div class='span7' style='margin-left:2%'>" + sharedFolderWith[i].email	+ " can " + sharedFolderWith[i].rights + " this folder </div><!-- span8 -->"
+				+	"<div class='span7' style='margin-left:4%'>" + sharedFolderWith[i].email	+ " can " + sharedFolderWith[i].rights + " this folder </div><!-- span8 -->"
 				+	"<div class='span2'>"
 				+		"<a href=" + Routing.generate('_updateuserrights', { fileId: fileid, userId: sharedFolderWith[i].id, newRights: switchRights }) + "> allow " + switchRights + "</a>"
 				+	"</div><!-- span2 -->"

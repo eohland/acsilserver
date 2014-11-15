@@ -57,7 +57,7 @@
 		</div><!-- shareFile -->
 
 		<div id="shareFolder" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			 <h2 style="margin-left:1%"> {{ 'Share this folder'|trans }}</h2>
+			 <h2 style="margin-left:4%"> {{ 'Share this folder'|trans }}</h2>
 			<div class="usersList">
 				{% set totalUser = listusers|length - 1 %}
 				[
@@ -70,10 +70,10 @@
 				]
 			</div><!-- userlist -->
 			
-			<h4> &nbsp These users already have rights:</h4>
+			<h4> &nbsp &nbsp These users already have rights:</h4>
 			<div id="sharedFolderWith"></div><!-- sharedFolderWith -->
 			
-			<h4> &nbsp Give rights to user</h4>
+			<h4> &nbsp &nbsp Give rights to user</h4>
 			{% include 'AcsilServerAppBundle:Upload:ShareFolder.html.twig' %}
 		</div><!-- shareFolder -->
 		
@@ -170,11 +170,9 @@
 								</a>
 								<div class="sharedFolderWith" hidden>
 									{% set totalUsers = folder.sharedFolderUserInfos|length %}
-									{% if totalUsers > 0 %}
 										[{% for key, sharedFolderWith in folder.sharedFolderUserInfos %}
 											{"id": "{{ sharedFolderWith.user.id }}","email": "{{ sharedFolderWith.user.email }}","rights": "{{ sharedFolderWith.rights }}"} {% if totalUsers > key + 1 %},{% endif %}
 										{% endfor %}]
-									{% endif %}
 								</div><!-- sharedFolderWith -->
 							{% endif %}
 							<div class="btn-group">
@@ -262,11 +260,9 @@
 							</a>
 							<div class="sharedWith">
 								{% set totalUsers = document.sharedFileUserInfos|length %}
-								{% if totalUsers > 0 %}
 									[{% for key, sharedwith in document.sharedFileUserInfos %}
 										{"id": "{{ sharedwith.user.id }}","email": "{{ sharedwith.user.email }}","rights": "{{ sharedwith.rights }}"} {% if totalUsers > key + 1 %},{% endif %}
 									{% endfor %}]
-								{% endif %}
 							</div><!-- sharedWith -->
 							{% endif %}
 							<div class="btn-group">

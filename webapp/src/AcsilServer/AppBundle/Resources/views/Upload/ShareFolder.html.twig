@@ -6,8 +6,8 @@
 	
 		<div class="control-group span8">
 		    {#{{ form_label(shareForm.userMail, shareForm.userMail.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}#}
-		    &nbsp Email
-		    <div class="controls" style="margin-left:2%">
+		    &nbsp &nbsp Email
+		    <div class="controls" style="margin-left:5%">
 			    {{ form_errors(shareFolderForm.userMail) }}
 			    {{ form_widget(shareFolderForm.userMail, {'attr': {'class': 'span12 typeaheadUserMail', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }}
 			</div><!-- controls -->
@@ -16,7 +16,7 @@
 		<div class="control-group span4">
 		    {#{{ form_label(shareForm.rights, shareForm.rights.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}#}
 		    Choose rights
-		    <div class="controls" style="margin-right:2%">
+		    <div class="controls" style="margin-right:5%">
 			    {{ form_errors(shareFolderForm.rights) }}
 			    {{ form_widget(shareFolderForm.rights, {'attr': {'class': 'span12'}}) }}
 			</div><!-- controls -->
@@ -24,7 +24,7 @@
 		</div><!-- control group -->
 	
 	</div><!-- row fluid -->
-	&nbsp
+	&nbsp &nbsp
     <input class="btn btn-primary" type="submit" value="{{ 'Share'|trans }}" />
 	<a class="noconfirm btn btn-danger" href="{{ path('_managefile', {'folderId': folderId|default(0)}) }}">{{ 'Cancel'|trans }}</a>
 </form>
