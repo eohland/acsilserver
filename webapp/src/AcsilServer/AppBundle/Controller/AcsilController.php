@@ -7,6 +7,10 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Request;
 use AcsilServer\AppBundle\Entity;
 use AcsilServer\AppBundle\Form;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+use Symfony\Component\Security\Acl\Exception\AclNotFoundException;
 
 class AcsilController extends Controller
 {
@@ -42,10 +46,37 @@ class AcsilController extends Controller
 		$changePictureForm = $this->createForm(new Form\ChangePictureType(), new Entity\ChangePicture());
 		$changeQuestionForm = $this->createForm(new Form\ChangeQuestionType(), new Entity\ChangeQuestion());
 		
-		$listadmins = $em
+		$listAlladmins = $em
 			->getRepository('AcsilServerAppBundle:User')
 			->findBy(array('roles' => array($superAdmin, $admin)));
 		
+		$listadmins = array();
+		$aclProvider = $this -> get('security.acl.provider');
+		foreach($listAlladmins as $admins) {
+			if ($admins != $this -> getUser()) {
+				$objectIdentity = ObjectIdentity::fromDomainObject($this->getUser());
+				try {
+					$acl = $aclProvider -> findAcl($objectIdentity);
+				}
+				catch (\Symfony\Component\Security\Acl\Exception\AclNotFoundException $e) {
+					continue;
+				}
+
+				$securityContext = $this -> get('security.context');
+				$securityIdentity = UserSecurityIdentity::fromAccount($admins);
+				$aces = $acl -> getObjectAces();
+				foreach ($aces as $ace) {
+					if ($ace -> getSecurityIdentity() == $securityIdentity) {
+						if ($ace -> getMask() == MaskBuilder::MASK_OWNER) {
+							array_push($listadmins, $admins);
+						}
+					}		
+				}
+			}
+			else
+				array_push($listadmins, $admins);
+		}
+
 		return $this->render('AcsilServerAppBundle:Acsil:admins.html.twig',
 			array(
 				'listadmins' =>$listadmins,
