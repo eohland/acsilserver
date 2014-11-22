@@ -1,15 +1,26 @@
 #!/usr/local/bin/python
+"""
+Name: Acsild
+Author: Matthieu 'Korrigan' Rosinski <korrigan@slash16.org>
+Description: This is the daemon script which is in charge of network
+discovery and metrics monitoring in Acsilserver
+
+"""
+
+
+import datetime
+import time
+import select
+import platform
 
 import pybonjour
 import rrdtool
 import psutil
-import select
-import time
 
-_name = 'Acsilserver'
+
 _regtype = '_acsil._tcp'
 _port = 80
-_refresh_interval = 60
+_refresh_interval = 10
 
 
 def register_callback(sdRef, flags, error, name, regtype, domain):
@@ -65,24 +76,27 @@ def main():
 
     """
     init_rrd()
-    sd = pybonjour.DNSServiceRegister(name=_name,
+    sd = pybonjour.DNSServiceRegister(name=platform.node(),
                                       regtype=_regtype,
                                       port=_port,
                                       callBack=register_callback)
-    last_update = time.time()
+    last_update = datetime.datetime.now()
     while 42:
         try:
             print "Updating metrics"
             collect_metrics()
             gen_graphs()
-            time.sleep(_refresh_interval)
-            rdy = select.select([sd], [], [])
+            rdy = select.select([sd], [], [], _refresh_interval)
             if sd in rdy[0]:
                 pybonjour.DNSServiceProcessResult(sd)
         except Exception as e:
             print "Exception occured: {0}".format(e)
         finally:
-            last_update = time.time()
+            next_update = last_update + datetime.timedelta(seconds=_refresh_interval)
+            sleep_interval = (next_update - datetime.datetime.now()).total_seconds()
+            print "Sleeping for {} seconds".format(sleep_interval)
+            time.sleep(max(0, sleep_interval))
+            last_update = datetime.datetime.now()
 
 
 if __name__ == "__main__":
