@@ -2,6 +2,14 @@
     {# {{ form_widget(shareForm) }} #}
 {# Page for files' sharing #}
 	
+	{% if errorShare is defined %}
+		{% if errorShare == "No friends" %}
+			<script type="text/javascript"> alert('This user does not exist.');
+				javascript:history.back(); {# To have css/js #}
+			</script>
+		{% endif %}
+	{% endif %}
+	
 	<div class="row-fluid">
 	
 		<div class="control-group span8">
