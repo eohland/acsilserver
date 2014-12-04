@@ -786,7 +786,7 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 	 * @Template()
 	 */		
 	public function pasteAction($folderId) {
-	$em = $this -> getDoctrine() -> getManager();
+$em = $this -> getDoctrine() -> getManager();
 		$filesToPaste = $em 
 			-> getRepository('AcsilServerAppBundle:MoveFile') 
 			-> findBy(array('isFolder' => 0));
@@ -874,10 +874,11 @@ $baseFolder->setParentFolder($folderId);
 			-> findOneBy(array('path' => basename($sub)));
 			}
 			//Update the path
-		$tempId = $folderId;
+		$tempId = $currentSub->getId();
 		$totalPath = "";
 		$chosenPath = "";
-		while ($tempId != 0) {
+		$baseId = $baseFolder->getId();
+		while ($tempId != $baseId && $tempId != 0) {
 		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
 		   if (!$parent) {
         throw $this->createNotFoundException(
@@ -895,6 +896,8 @@ $baseFolder->setParentFolder($folderId);
 		$em -> persist($currentFolder);
 		}
 		// The path's bug of the documents after "cut" is here
+		$totalPath = $baseFolder->getRealPath().'/'.$baseFolder->getPath().'/'.$totalPath;
+		$chosenPath = $baseFolder->getChosenPath().'/'.$baseFolder->getName().'/'.$chosenPath;		
 		$currentSub -> setRealPath($totalPath);
 		$currentSub -> setChosenPath($chosenPath);
 		//die(print_r($totalPath));
@@ -1012,8 +1015,7 @@ $baseFolder->setParentFolder($folderId);
 		
 			return $this -> redirect($this -> generateUrl('_managefile', array(
             'folderId' => $folderId,
-        )));
-	}
+        )));	}
 	//! Delete a folder
   /*!
     \param $id the id of the folder to delete.
