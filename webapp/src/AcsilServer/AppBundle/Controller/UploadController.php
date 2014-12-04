@@ -796,10 +796,15 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 			$currentFolder = $em 
 			-> getRepository('AcsilServerAppBundle:Folder') 
 			-> findOneBy(array('id' => $folderId));
+
+//Folder Part
+			
+			//If the current folder is the root folder
 			if ($folderId == 0)
 			{
 			$securityContext = $this -> get('security.context');
 		$user = $securityContext -> getToken() -> getUser();
+			//$rootpath = path of the folder's parent
 		$rootPath = null;
 			}
 			$temp = new Folder();
@@ -814,13 +819,87 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 			{
 			$rootPath = strstr($move->getPath(), basename($user->getUsername()), true).$user->getUsername();
 			}
-			rename($move->getPath(),$rootPath.'/'.basename($move->getPath()));			
+			//chmod();
+			//Move folder
+			rename($move->getPath(),$rootPath.'/'.basename($move->getPath()));
+			//Get sub folders and files
 			$subList = $temp->listDirectory($rootPath.'/'.basename($move->getPath()));
 			}
 			else
 			{
 			rename($move->getPath(), $currentFolder->getAbsolutePath().'/'.basename($move->getPath()));
 			$subList = $temp->listDirectory($currentFolder->getAbsolutePath().'/'.basename($move->getPath()));
+			}
+			$baseFolder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($move->getFileId());
+$baseFolder->setParentFolder($folderId);
+		
+
+		$tempId = $folderId;
+		$totalPath = "";
+		$chosenPath = "";
+		while ($tempId != 0) {
+		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
+		   if (!$parent) {
+        throw $this->createNotFoundException(
+            'No parent found for id : '.$id
+        );
+		}
+		$totalPath = $parent->getPath().'/'.$totalPath;
+		$chosenPath = $parent->getName().'/'.$chosenPath;
+		$tempId = $parent->getParentFolder();
+		}
+		if ($folderId != 0)
+		{
+		$currentFolder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($folderId);
+		$currentFolder->setSize($currentFolder->getSize() + 1);
+		$em -> persist($currentFolder);
+		}
+		$baseFolder -> setRealPath($totalPath);
+		$baseFolder -> setChosenPath($chosenPath);
+		$em -> persist($baseFolder);
+
+			foreach ($subList as $sub) {
+			$subname = basename($sub);
+			// check if it's a folder or a file
+			if ($subname[0] == 'd')
+			{
+					$currentSub = $em 
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('path' => $subname));
+			}			
+			else
+			{
+					$currentSub = $em 
+			-> getRepository('AcsilServerAppBundle:Document') 
+			-> findOneBy(array('path' => basename($sub)));
+			}
+			//Update the path
+		$tempId = $folderId;
+		$totalPath = "";
+		$chosenPath = "";
+		while ($tempId != 0) {
+		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
+		   if (!$parent) {
+        throw $this->createNotFoundException(
+            'No parent found for id : '.$id
+        );
+		}
+		$totalPath = $parent->getPath().'/'.$totalPath;
+		$chosenPath = $parent->getName().'/'.$chosenPath;
+		$tempId = $parent->getParentFolder();
+		}
+		if ($folderId != 0)
+		{
+		$currentFolder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($folderId);
+		$currentFolder->setSize($currentFolder->getSize() + 1);
+		$em -> persist($currentFolder);
+		}
+		// The path's bug of the documents after "cut" is here
+		$currentSub -> setRealPath($totalPath);
+		$currentSub -> setChosenPath($chosenPath);
+		//die(print_r($totalPath));
+		$em -> persist($currentSub);
+		$em->remove($move);
 			}
 			}
 			//copy
@@ -843,25 +922,13 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 			}
 			}
 			//die(print_r($subList));
-			foreach ($subList as $sub) {
-			if (basename($sub)[0]= 'd')
-			{
-					$currentSub = $em 
-			-> getRepository('AcsilServerAppBundle:Folder') 
-			-> findOneBy(array('path' => basename($sub)));
-			// define path and parents
-			}			
-			else
-			{
-					$currentSub = $em 
-			-> getRepository('AcsilServerAppBundle:Document') 
-			-> findOneBy(array('path' => basename($sub)));
-			// define path and parents			
+			
+			
 			}
-			//delete Move attached
-			}
-			}
-
+		$em -> flush();
+		
+		// File part
+		
 			foreach ($filesToPaste as $move) {
 			$newDoc = new Document();
 			$newDoc -> setName($move->getName());
