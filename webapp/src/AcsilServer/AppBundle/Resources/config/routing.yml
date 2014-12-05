@@ -149,3 +149,11 @@ _sharefolder:
     defaults: { _controller: AcsilServerAppBundle:Upload:shareFolder, id:'' }
     options:
         expose: true
+
+#####################################################################################
+#                               Modules management                                  #
+#####################################################################################
+
+_module:
+    pattern:  /acsil/module
+    defaults: { _controller: AcsilServerAppBundle:Module:manageModule }
