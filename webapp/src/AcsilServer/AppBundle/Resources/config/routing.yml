@@ -149,6 +149,11 @@ _sharefolder:
     defaults: { _controller: AcsilServerAppBundle:Upload:shareFolder, id:'' }
     options:
         expose: true
+overview:
+    path:     /overview
+    defaults: { _controller: AcsilServerAppBundle:Monitoring:overview }
+    options:
+        expose: true
 
 #####################################################################################
 #                               Modules management                                  #

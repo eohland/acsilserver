@@ -6,6 +6,9 @@
 				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 					{% if app.user.roles.0 == 'ROLE_SUPER_ADMIN' %}
 							<li class="active">
+								<a href="{{ path('overview') }}">{{ ' Status'|trans }}</a>
+							</li>
+							<li class="active">
 								<a href="{{ path('_acsiladmins') }}"><i class="icon-user"></i>{{ ' User Management'|trans }}</a>
 							</li>
 					{% endif %}
