@@ -774,7 +774,7 @@ if ($zip->open($zip_file, ZIPARCHIVE::CREATE) === true) {
 	$move-> setName($fileToMove->getName());
 	$move-> setAction($action);
 	$move-> setFileId($id);
-	$move->setIsFolder(1);
+	$move->setIsFolder(0);
 	$move-> setPath($fileToMove->getAbsolutePath());
 	$em -> persist($move);
 	$em -> flush();
@@ -819,7 +819,7 @@ $em = $this -> getDoctrine() -> getManager();
 			{
 			$rootPath = strstr($move->getPath(), basename($user->getUsername()), true).$user->getUsername();
 			}
-			//chmod();
+//			chmod();
 			//Move folder
 			rename($move->getPath(),$rootPath.'/'.basename($move->getPath()));
 			//Get sub folders and files
@@ -827,12 +827,12 @@ $em = $this -> getDoctrine() -> getManager();
 			}
 			else
 			{
+//			chmod();
 			rename($move->getPath(), $currentFolder->getAbsolutePath().'/'.basename($move->getPath()));
 			$subList = $temp->listDirectory($currentFolder->getAbsolutePath().'/'.basename($move->getPath()));
 			}
 			$baseFolder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($move->getFileId());
 $baseFolder->setParentFolder($folderId);
-		
 
 		$tempId = $folderId;
 		$totalPath = "";
@@ -872,9 +872,14 @@ $baseFolder->setParentFolder($folderId);
 					$currentSub = $em 
 			-> getRepository('AcsilServerAppBundle:Document') 
 			-> findOneBy(array('path' => basename($sub)));
+			$currentSub -> setLastModifDate(new \DateTime());
 			}
 			//Update the path
+			$cS = $currentSub->getPath();
+		if ($cS[0] == 'd')
 		$tempId = $currentSub->getId();
+		else
+		$tempId = $currentSub->getFolder();
 		$totalPath = "";
 		$chosenPath = "";
 		$baseId = $baseFolder->getId();
@@ -895,12 +900,10 @@ $baseFolder->setParentFolder($folderId);
 		$currentFolder->setSize($currentFolder->getSize() + 1);
 		$em -> persist($currentFolder);
 		}
-		// The path's bug of the documents after "cut" is here
 		$totalPath = $baseFolder->getRealPath().'/'.$baseFolder->getPath().'/'.$totalPath;
 		$chosenPath = $baseFolder->getChosenPath().'/'.$baseFolder->getName().'/'.$chosenPath;		
 		$currentSub -> setRealPath($totalPath);
 		$currentSub -> setChosenPath($chosenPath);
-		//die(print_r($totalPath));
 		$em -> persist($currentSub);
 		$em->remove($move);
 			}
@@ -923,6 +926,119 @@ $baseFolder->setParentFolder($folderId);
 			$temp->recurse_copy($move->getPath(), $currentFolder->getAbsolutePath().'/'.basename($move->getPath()));
 			$subList = $temp->listDirectory($currentFolder->getAbsolutePath().'/'.basename($move->getPath()));
 			}
+			
+			
+						$baseFolder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($move->getFileId());
+						$clonedBaseFolder = clone $baseFolder;
+$clonedBaseFolder->setParentFolder($folderId);
+		$em -> persist($clonedBaseFolder);
+		$em -> flush();
+
+				$aclProvider = $this -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($clonedBaseFolder);
+		$acl = $aclProvider -> createAcl($objectIdentity);
+
+		$securityContext = $this -> get('security.context');
+		$user = $securityContext -> getToken() -> getUser();
+		$securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+		$aclProvider -> updateAcl($acl);
+
+		$tempId = $folderId;
+		$totalPath = "";
+		$chosenPath = "";
+		while ($tempId != 0) {
+		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
+		   if (!$parent) {
+        throw $this->createNotFoundException(
+            'No parent found for id : '.$id
+        );
+		}
+		$totalPath = $parent->getPath().'/'.$totalPath;
+		$chosenPath = $parent->getName().'/'.$chosenPath;
+		$tempId = $parent->getParentFolder();
+		}
+		if ($folderId != 0)
+		{
+		$currentFolder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($folderId);
+		$currentFolder->setSize($currentFolder->getSize() + 1);
+		$em -> persist($currentFolder);
+		}
+		$clonedBaseFolder -> setRealPath($totalPath);
+		$clonedBaseFolder -> setChosenPath($chosenPath);
+		$em -> persist($clonedBaseFolder);
+
+			foreach ($subList as $sub) {
+			$subname = basename($sub);
+			// check if it's a folder or a file
+			if ($subname[0] == 'd')
+			{
+					$currentSub = $em 
+			-> getRepository('AcsilServerAppBundle:Folder') 
+			-> findOneBy(array('path' => $subname));
+			}			
+			else
+			{
+					$currentSub = $em 
+			-> getRepository('AcsilServerAppBundle:Document') 
+			-> findOneBy(array('path' => basename($sub)));
+			$currentSub -> setLastModifDate(new \DateTime());
+			}
+			$clonedCurrentSub = clone $currentSub;
+			//Update the path
+		$cCS = $clonedCurrentSub->getPath();
+		if ($cCS[0] == 'd')
+		$tempId = $currentSub->getId();
+		else
+		$tempId = $currentSub->getFolder();
+		$totalPath = "";
+		$chosenPath = "";
+		$baseId = $baseFolder->getId();
+		while ($tempId != $baseId && $tempId != 0) {
+		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
+		   if (!$parent) {
+        throw $this->createNotFoundException(
+            'No parent found for id : '.$id
+        );
+		}
+		$totalPath = $parent->getPath().'/'.$totalPath;
+		$chosenPath = $parent->getName().'/'.$chosenPath;
+		$tempId = $parent->getParentFolder();
+		}
+		if ($folderId != 0)
+		{
+		$currentFolder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($folderId);
+		$currentFolder->setSize($currentFolder->getSize() + 1);
+		$em -> persist($currentFolder);
+		}
+		$totalPath = $clonedBaseFolder->getRealPath().'/'.$clonedBaseFolder->getPath().'/'.$totalPath;
+		$chosenPath = $clonedBaseFolder->getChosenPath().'/'.$clonedBaseFolder->getName().'/'.$chosenPath;		
+		$clonedCurrentSub -> setRealPath($totalPath);
+		$clonedCurrentSub -> setChosenPath($chosenPath);
+
+				if ($clonedCurrentSub->getPath() == 'd')
+				$clonedCurrentSub -> setParentFolder($clonedBaseFolder->getId());
+				else
+				$clonedCurrentSub -> setFolder($clonedBaseFolder->getId());
+		$clonedCurrentSub ->setPath = null;
+		$em -> persist($clonedCurrentSub);
+		$em -> flush();
+
+						$aclProvider = $this -> get('security.acl.provider');
+		$objectIdentity = ObjectIdentity::fromDomainObject($clonedCurrentSub);
+		$acl = $aclProvider -> createAcl($objectIdentity);
+
+		$securityContext = $this -> get('security.context');
+		$user = $securityContext -> getToken() -> getUser();
+		$securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+		$aclProvider -> updateAcl($acl);
+		$em->remove($move);
+			}
+			
+			
 			}
 			//die(print_r($subList));
 			
@@ -1295,7 +1411,6 @@ $file_list = $folder->listDirectory($folder->getAbsolutePath());
 				$em -> persist($folder);
 				$em -> flush();		
 			}
-		}
 		}
 		//last folder
 		$folder = $em 
