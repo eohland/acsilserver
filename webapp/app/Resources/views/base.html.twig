@@ -7,6 +7,7 @@
 		filter='cssrewrite'
         	'@AcsilServerAppBundle/Resources/public/css/*'
          %}
+            <link rel="stylesheet" href="{{ asset('public/css/font-awesome.min.css') }}" media="all" type="text/css"> {#font-awesome doesn't work on IE and FF so we have to use this one#}
 			<link rel="stylesheet" href="{{ asset('public/css/bootstrap.min.css') }}">
         	<link rel="stylesheet" href="{{ asset('public/css/bootstrap-responsive.min.css') }}">
         	<link rel="stylesheet" href="{{ asset('public/css/main.css') }}">

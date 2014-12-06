@@ -7,7 +7,6 @@
 	{{ parent() }}
 	{% stylesheets filter='cssrewrite' '@AcsilServerAppBundle/Resources/public/css/*' %}
 		<link href="{{ asset('public/css/bootstrap-fileupload.css') }}" rel="stylesheet" />
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css"> {#font-awesome doesn't work on IE and FF so we have to use this one#}
 		<link href="{{ asset('public/css/dropzone.css') }}" rel="stylesheet" />
 		<link href="{{ asset('public/css/style.css') }}" rel="stylesheet" />
 		<link href="{{ asset('public/css/style_responsive.css') }}" rel="stylesheet" />
