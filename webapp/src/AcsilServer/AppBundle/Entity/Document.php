@@ -42,11 +42,6 @@ class Document extends Data
      */
     private $folder;
 	
-	/**
-     * @ORM\Column(type="datetime")
-     */
-    protected $lastModifDate;
-	
 	     /* Set folder
      *
      * @param integer $folder

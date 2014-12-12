@@ -56,6 +56,11 @@ abstract class Data
      */
     protected $uploadDate;
 	
+		/**
+     * @ORM\Column(type="datetime")
+     */
+    protected $lastModifDate;
+	
 	    /**
      * Set owner
      *
@@ -228,6 +233,29 @@ abstract class Data
 	public function getChosenPath()
     {
 	return $this->chosenPath;
+    }
+	
+		/**
+     * Set lastModifDate
+     *
+     * @param \DateTime $lastModifDate
+     * @return Data
+     */
+    public function setLastModifDate(\DateTime $lastModifDate = NULL)
+    {
+        $this->lastModifDate = $lastModifDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastModifDate
+     *
+     * @return \DateTime 
+     */
+    public function getLastModifDate()
+    {
+        return $this->lastModifDate;
     }
 
 }

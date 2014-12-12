@@ -143,7 +143,7 @@
 				{% for folder in listfolders %}
 					<div class="userRow row-fluid">
 						<div class="fileInfos span9">
-							<div class="fileName span8">
+							<div class="fileName span5">
 							<div class="mini span2" style="width: 50px; height: 50px">
 								<img id="miniImg" src="{{asset('public/img/folder.png')}}" alt="lol"/>
 								{# Display an icon if the file is shared #}
@@ -154,13 +154,22 @@
 								&nbsp &nbsp
 								<a href="{{ path('_managefile', {'folderId': folder.info.id|default(0)}) }}">{{ folder.info.name|trans }}</b></a>
 							</div><!-- fileName -->
+														
 							<div class="fileSize span2">
+							 <div class="fileSize" >
+							 <b>	Size: </b>  
+							 </div>
 								{{ folder.info.size}} file(s)
 							</div>
 							<div class="fileUploadDate span2">
+								<b> Upload date: </b> 
 								{{ folder.info.uploaddate|date }}
 							</div><!-- file upload date -->
-						</div><!-- fileInfos -->
+							<div class="fileUploadDate span3">
+								<b> Last modifaction date: </b> 
+								{{ folder.info.lastmodifdate|date }}
+							</div><!-- file upload date -->
+						</div> <!-- file Infos -->
 						
 						<div class="fileOptions span3">
 							{% if is_granted('OWNER', folder.info) %}
@@ -235,7 +244,7 @@
 											{{ document.info.name|trans }}.{{ document.info.mimeType|trans }} </a>
 							</div><!-- fileName -->
 							<div class="fileSize span2">
-								<div class="fileSize" >
+									<div class="fileSize">
 									<b>	Size: </b>  
 								</div>
 								{{ document.info.formatedSize }}

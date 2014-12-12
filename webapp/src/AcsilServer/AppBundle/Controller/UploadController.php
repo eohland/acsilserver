@@ -323,6 +323,7 @@ class UploadController extends Controller {
 		{
 		$folder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($folderId);
 		$folder->setSize($folder->getSize() + 1);
+		$folder->setLastModifDate(new \DateTime());
 		$em -> persist($folder);
 		}
 		$document -> setRealPath($totalPath);
@@ -580,6 +581,7 @@ class UploadController extends Controller {
 			throw new AccessDeniedException();
 		}
 		$folderToRename->setName($name);
+		$folderToRename->setLastModifDate(new \DateTime());
 		$em -> persist($folderToRename);
 		$em -> flush();
 		return $this -> redirect($this -> generateUrl('_managefile', array(
@@ -607,6 +609,7 @@ class UploadController extends Controller {
 		$folder -> setName($foldername);
 		$folder -> setOwner($this -> getUser() -> getEmail());
 		$folder -> setuploadDate(new \DateTime());
+		$folder -> setLastModifDate(new \DateTime());
 		$folder -> setPseudoOwner($this -> getUser() -> getUsername());
 		$folder -> setParentFolder($folderId);
 		$folder -> setSize(0);
@@ -856,6 +859,7 @@ $baseFolder->setParentFolder($folderId);
 		}
 		$baseFolder -> setRealPath($totalPath);
 		$baseFolder -> setChosenPath($chosenPath);
+		$baseFolder -> setLastModifDate(new \DateTime());
 		$em -> persist($baseFolder);
 
 			foreach ($subList as $sub) {
@@ -872,8 +876,9 @@ $baseFolder->setParentFolder($folderId);
 					$currentSub = $em 
 			-> getRepository('AcsilServerAppBundle:Document') 
 			-> findOneBy(array('path' => basename($sub)));
-			$currentSub -> setLastModifDate(new \DateTime());
 			}
+			
+		$currentSub -> setLastModifDate(new \DateTime());	
 			//Update the path
 			$cS = $currentSub->getPath();
 		if ($cS[0] == 'd')
@@ -898,6 +903,7 @@ $baseFolder->setParentFolder($folderId);
 		{
 		$currentFolder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($folderId);
 		$currentFolder->setSize($currentFolder->getSize() + 1);
+		$currentFolder -> setLastModifDate(new \DateTime());
 		$em -> persist($currentFolder);
 		}
 		$totalPath = $baseFolder->getRealPath().'/'.$baseFolder->getPath().'/'.$totalPath;
@@ -931,6 +937,7 @@ $baseFolder->setParentFolder($folderId);
 						$baseFolder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($move->getFileId());
 						$clonedBaseFolder = clone $baseFolder;
 $clonedBaseFolder->setParentFolder($folderId);
+			$clonedBaseFolder -> setLastModifDate(new \DateTime());
 		$em -> persist($clonedBaseFolder);
 		$em -> flush();
 
@@ -963,10 +970,12 @@ $clonedBaseFolder->setParentFolder($folderId);
 		{
 		$currentFolder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($folderId);
 		$currentFolder->setSize($currentFolder->getSize() + 1);
+		$currentFolder -> setLastModifDate(new \DateTime());
 		$em -> persist($currentFolder);
 		}
 		$clonedBaseFolder -> setRealPath($totalPath);
 		$clonedBaseFolder -> setChosenPath($chosenPath);
+				$clonedBaseFolder -> setLastModifDate(new \DateTime());
 		$em -> persist($clonedBaseFolder);
 
 			foreach ($subList as $sub) {
@@ -1010,6 +1019,7 @@ $clonedBaseFolder->setParentFolder($folderId);
 		{
 		$currentFolder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($folderId);
 		$currentFolder->setSize($currentFolder->getSize() + 1);
+		$currentFolder -> setLastModifDate(new \DateTime());
 		$em -> persist($currentFolder);
 		}
 		$totalPath = $clonedBaseFolder->getRealPath().'/'.$clonedBaseFolder->getPath().'/'.$totalPath;
@@ -1022,6 +1032,7 @@ $clonedBaseFolder->setParentFolder($folderId);
 				else
 				$clonedCurrentSub -> setFolder($clonedBaseFolder->getId());
 		$clonedCurrentSub ->setPath = null;
+				$clonedCurrentSub -> setLastModifDate(new \DateTime());
 		$em -> persist($clonedCurrentSub);
 		$em -> flush();
 
