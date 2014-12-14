@@ -1,0 +1,25 @@
+get_plugins:
+  path: /plugins
+  method: GET
+  controller: Controllers\Plugins
+  action: list
+get_plugin:
+  path: /plugins/{id}
+  method: GET
+  controller: Controllers\Plugins
+  action: get(id)
+create_plugin:
+  path: /plugins
+  method: POST
+  controller: Controllers\Plugins
+  action: create
+update_plugin:
+  path: /plugin/{id}
+  method: PUT
+  controller: Controllers\Plugins
+  action: update(id)
+delete_plugin:
+  path: /plugin/{id}
+  method: DELETE
+  controller: Controllers\Plugins
+  action: delete(id)
