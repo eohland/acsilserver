@@ -21,6 +21,10 @@ class AppCore {
 
   public function loadRoute($route) {
     $this->controller = $this->loadController($route[0]);
+    if (404 === $this->controller) {
+      header('HTTP/1.1 404 Not Found');
+      return false; //TODO: Response:notFound
+    }
     $id = $route[1];
     $method = (is_null($id)) ? 'getAll' : strtolower($route[2]);
     $this->checkMethod($method);
