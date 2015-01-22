@@ -32,8 +32,36 @@ class ModuleController extends Controller {
 
  
 	public function manageModuleAction() {
-			return $this->render('AcsilServerAppBundle:Acsil:module.html.twig');
-	}
 	
+	
+			return $this->render('AcsilServerAppBundle:Acsil:module.html.twig');
+			
+	}
+
+
+		
+		public function createAccessToken($tokenString, IOAuth2Client $client, $data, $expires, $scope = null)
+    {
+        if (!$client instanceof ClientInterface) {
+            throw new \InvalidArgumentException('Client has to implement the ClientInterface');
+        }
+
+        $token = $this->accessTokenManager->createToken();
+        $token->setToken($tokenString);
+        $token->setClient($client);
+        $token->setExpiresAt($expires);
+        $token->setScope($scope);
+
+        if (null !== $data) {
+            $token->setUser($data);
+        }
+
+        $this->accessTokenManager->updateToken($token);
+
+     
+			return $this -> redirect($this -> generateUrl('_module', array(
+            'token' => $token,
+        )));
+    }
 	
 }
