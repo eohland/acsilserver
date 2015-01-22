@@ -13,6 +13,7 @@ use AcsilServer\AppBundle\Form\RenameFileType;
 use AcsilServer\AppBundle\Form\DocumentType;
 use AcsilServer\AppBundle\Form\FolderType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use FOS\OAuthServerBundle\Storage\OAuthStorage;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
@@ -31,37 +32,41 @@ use \RecursiveIteratorIterator;
 class ModuleController extends Controller {
 
  
-	public function manageModuleAction() {
-	
-	
-			return $this->render('AcsilServerAppBundle:Acsil:module.html.twig');
+  public function manageModuleAction() {
+    $clientManager = $this->get('fos_oauth_server.client_manager.default');
+    
+    $storage = $this->get('fos_oauth_server.storage');
+    
+    $clientManager = $this->get('fos_oauth_server.client_manager.default');
+    //var_dump($clientManager);
+    $client = $clientManager->findClientBy(array('id' => 1));
+    //$client = $storage->getClient(1);
+    //print_r('<pre>');
+    //var_dump($clientManager);
+    //print_r('</pre>');
+    $user = $this -> getUser();
+    
+    $token = $storage->createAccessToken($this->genAccessToken(), $client, $user, 1, 'foo bar');
+    return $this->render('AcsilServerAppBundle:Acsil:module.html.twig',
+			 array(
+			       'token' => $token->getToken(),
+			       ));
+    
 			
-	}
-
-
-		
-		public function createAccessToken($tokenString, IOAuth2Client $client, $data, $expires, $scope = null)
-    {
-        if (!$client instanceof ClientInterface) {
-            throw new \InvalidArgumentException('Client has to implement the ClientInterface');
-        }
-
-        $token = $this->accessTokenManager->createToken();
-        $token->setToken($tokenString);
-        $token->setClient($client);
-        $token->setExpiresAt($expires);
-        $token->setScope($scope);
-
-        if (null !== $data) {
-            $token->setUser($data);
-        }
-
-        $this->accessTokenManager->updateToken($token);
-
-     
-			return $this -> redirect($this -> generateUrl('_module', array(
-            'token' => $token,
-        )));
+  }
+  protected function genAccessToken() {
+    if (@file_exists('/dev/urandom')) { // Get 100 bytes of random data
+      $randomData = file_get_contents('/dev/urandom', false, null, 0, 100);
+    } elseif (function_exists('openssl_random_pseudo_bytes')) { // Get 100 bytes of pseudo-random data
+      $bytes = openssl_random_pseudo_bytes(100, $strong);
+      if (true === $strong && false !== $bytes) {
+        $randomData = $bytes;
+      }
     }
-	
+    // Last resort: mt_rand
+    if (empty($randomData)) { // Get 108 bytes of (pseudo-random, insecure) data
+      $randomData = mt_rand().mt_rand().mt_rand().uniqid(mt_rand(), true).microtime(true).uniqid(mt_rand(), true);
+    }
+    return rtrim(strtr(base64_encode(hash('sha256', $randomData)), '+/', '-_'), '=');
+  }
 }

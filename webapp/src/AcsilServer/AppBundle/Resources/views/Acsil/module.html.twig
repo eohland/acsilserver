@@ -1,7 +1,6 @@
 {% extends '::base.html.twig' %}
 {#BLOCK TITRE#}
 {% block title %}Modules Management{% endblock %}
-
 {% block stylesheets %}
 	{{ parent() }}
 	{% stylesheets filter='cssrewrite' '@AcsilServerAppBundle/Resources/public/css/*' %}
@@ -14,11 +13,12 @@
 		<link href="{{ asset('public/css/uniform.default.css') }}" rel="stylesheet" type="text/css"/> 
 	{% endstylesheets %} 
 {% endblock %}
-
 {# Page for modules #}
 
 {% block body %}
 
-
+<script>
+  var token = "{{token}}";
+</script>
 
 {% endblock %}
