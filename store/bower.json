@@ -1,0 +1,21 @@
+{
+  "name": "acsilserver-store",
+  "version": "0.1.0",
+  "homepage": "http://store.acsilserver.com/",
+  "authors": [
+    "Acsilserver Team <team@acsilserver.com>"
+  ],
+  "description": "Acsilerver Plugins Store",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.3"
+  }
+}
