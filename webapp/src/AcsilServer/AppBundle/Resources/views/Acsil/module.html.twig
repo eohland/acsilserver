@@ -1,6 +1,7 @@
 {% extends '::base.html.twig' %}
 {#BLOCK TITRE#}
 {% block title %}Modules Management{% endblock %}
+
 {% block stylesheets %}
 	{{ parent() }}
 	{% stylesheets filter='cssrewrite' '@AcsilServerAppBundle/Resources/public/css/*' %}
@@ -13,12 +14,59 @@
 		<link href="{{ asset('public/css/uniform.default.css') }}" rel="stylesheet" type="text/css"/> 
 	{% endstylesheets %} 
 {% endblock %}
+
 {# Page for modules #}
 
 {% block body %}
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+	
+	
+	<div id="ModuleList" class="row-fluid">
+			<div id="addModule" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<h2>{{ 'Upload new module'|trans }}</h2>
+			{% include 'AcsilServerAppBundle:Upload:uploadModule.html.twig' %}
+		</div><!-- addModule -->
+		
+		
+	
+</div>
+	
+				<div class="row-fluid">
+		
+				<ul class="nav nav-pills">
+					<li class="active"><a href="#addModule" data-toggle="modal"><i class="icon-plus"></i> {{ 'Add Module'|trans }} </a></li>
+				</ul>
+				
 
-<script>
-  var token = "{{token}}";
+					<div class="btn-group">			
+								{% for mod in listAllModules %}
+									<a class="btn btn-primary" href="#"><i class="icon-edit icon-white"></i> {{  mod.name|trans }}</a>
+								<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+								<ul class="dropdown-menu">
+										<li><a href="{{ path('_module', {'moduleId': mod.id|default(0)}) }}">
+											<i class="icon-download-alt"></i> {{ 'Launch'|trans }} </a>
+										</li>
+										<li><a href="{{ path('_delete_module', {'moduleId': mod.id|default(0)}) }}">
+											<i class="icon-trash"></i> {{ 'Delete'|trans }} </a>
+										</li>
+								</ul>
+								<br>
+								<br>
+							{% endfor %}
+			</div>
+
+</div>
+{% if currentCode != null %}
+<script type="text/javascript">
+
+{{ currentCode | raw }}
 </script>
+
+{% endif %}
+
+{# <script> #}
+{#  var token = "{{token}}"; #}
+{# </script> #}
 
 {% endblock %}
