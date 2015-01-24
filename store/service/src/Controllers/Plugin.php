@@ -65,8 +65,42 @@ class Plugin extends \Utils\BaseController {
     }
   }
 
-  public function create($plugin) {
-    
+  // Create
+  public function put($id, $plugin) {
+    //FIXME: Check user permissions
+    try {
+      $sth = $this->pdo->prepare('
+        INSERT INTO `plugins`(
+          `name`, `author_id`,
+          `description`, `keywords`, `version`,
+          `create_date`, `update_date`,
+          `picture`, `content`
+        ) VALUES(
+          :id, :name, :author_id,
+          :description, :keywords, :version,
+          :create_date, :update_date,
+          :picture, :content
+        );
+      ');
+      //FIXME: valdate data before
+      $sth->execute(array(
+        'name'        => $plugin->name,
+        'author_id'   => $plugin->author,
+        'description' => $plugin->description,
+        'keywords'    => $plugin->keywords,
+        'version'     => $plugin->version,
+        'create_date' => $plugin->create_date,
+        'update_date' => $plugin->update_date,
+        'picture'     => $plugin->picture,
+        'content'     => $plugin->content,
+      ));
+      //FIXME: Return 201 or 204
+    }
+    catch (Exception $e) {
+      error_log ('Plugin::create: ' . $e->getMessage());
+      //TODO: Return 400?
+    }
+  }
   }
 }
 ?>
