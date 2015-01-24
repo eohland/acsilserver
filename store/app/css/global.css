@@ -1,0 +1,77 @@
+﻿.background {
+    background-image: url("../image/body-bg.png");
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+md-toolbar.md-default-theme {
+    background-color: #43cee6;
+    color: #FFF;
+}
+
+md-tabs.md-default-theme.md-accent .md-header {
+    background-color: #5477EA;
+}
+
+md-tabs.md-default-theme.md-accent md-tab:not([disabled]) {
+    color: #43cee6;
+}
+
+.md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover,
+.md-button.md-default-theme.md-primary.md-raised:not([disabled]):focus,
+.md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover,
+.md-button.md-default-theme.md-primary.md-fab:not([disabled]):focus {
+    //background-color: #5477EA;
+}
+
+.md-button.md-default-theme.md-primary.md-raised:not([disabled]),
+.md-button.md-default-theme.md-primary.md-raised:not([disabled]),
+.md-button.md-default-theme.md-primary.md-fab:not([disabled]),
+.md-button.md-default-theme.md-primary.md-fab:not([disabled]) {
+    background-color: #5477EA;
+}
+
+
+.md-tile-right {
+    padding-right: 16px;
+}
+
+.padding-top {
+    margin-top: 16px;
+}
+
+md-card.md-default-theme {
+    background-color: white;
+}
+
+#header-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+}
+
+.main-view {
+    padding-top: 112px;
+    height: 100vh;
+}
+
+.md-dialog-container {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.md-button.md-default-theme.md-fab:not([disabled]):hover,
+.md-button.md-default-theme.md-fab:not([disabled]):focus {
+    background-color: rgba(200,200,200,1);
+}
+
+.md-button.md-default-theme.md-raised:not([disabled]):hover, .md-button.md-default-theme.md-raised:not([disabled]):focus {
+    background-color: rgba(200,200,200,1);
+}
+
+md-switch.md-default-theme.md-checked.md-primary .md-thumb {
+    background-color: #5477EA;
+}

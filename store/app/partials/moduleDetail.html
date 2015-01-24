@@ -1,0 +1,43 @@
+﻿<div layout="row" class="module  main-view">
+    <md-content class="padding-top" id="list">
+        <md-card class="md-default-theme">
+
+            <md-toolbar class="md-theme-indigo">
+                <div class="user" layout="row" layout-margin>
+                    <h2>{{plugin.name}}</h2>
+                    <span flex></span>
+                    <a ng-href="{{buildURL(plugin.content)}}" id="link" download="{{plugin.name}}.js" layout-margin>
+                        <md-button type="button" class="md-fab md-primary">
+                            <md-icon icon="image/icons/ic_file_download_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                        </md-button>
+                    </a>
+                </div>
+            </md-toolbar>
+
+            <md-card-content layout="column" layout-margin>
+                <div class="md-tile-content" layout="column" layout-margin>
+                    <div layout-margin>
+                        <p>
+                            {{plugin.description}}
+                        </p>
+                    </div>
+                    <md-divider></md-divider>
+                    <div class="" layout="row" layout-margin>
+                        <div flex><h4>Creation Date</h4><p>{{timeToReadable(plugin.create_date)}}</p></div>
+                        <div flex><h4>Update Date</h4><p>{{timeToReadable(plugin.update_date)}}</p></div>
+                        <div flex>
+                            <h4>Author</h4>
+                            <p>
+                                {{plugin.authorId}}
+                            </p>
+                        </div>
+                    </div>
+                    <md-divider></md-divider>
+                    <div class="" layout-margin>
+                        <img ng-src="{{plugin.picture}}" ng-alt="{{plugin.name}} picture" style="max-width:100%;height:auto;" />
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </md-content>
+</div>

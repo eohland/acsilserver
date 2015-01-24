@@ -1,0 +1,72 @@
+﻿<div layout="row" class="module  main-view" layout-margin>
+    <md-content class="md-default-theme home background" layout="row" layout-sm="column" layout-align="" layout-margin>
+        <div class="home-container md-whiteframe-z1" flex-gt-md="50" layout-margin>
+
+            <md-toolbar class="demo-toolbar md-default-theme">
+                <div class="md-toolbar-tools">
+                    <span>Most Popular</span>
+                    <span flex=""></span>
+                </div>
+            </md-toolbar>
+
+            <md-content class="md-default-theme">
+
+                <md-card class="md-default-theme" ng-repeat="plugin in PopularList">
+                    <a ng-href="#/module/{{plugin.id}}">
+                        <md-card-content layout="row" layout-margin>
+                            <div class="" flex="20">
+                                <img ng-src="{{plugin.picture}}" ng-alt="{{plugin.name}} picture" style="max-width:100%;height:auto;" />
+                            </div>
+                            <div class="md-tile-content" flex="70">
+                                <h2>{{plugin.name}}</h2>
+                                <p>
+                                    {{limitLength(plugin.description)}}
+                                </p>
+                            </div>
+                            <div class="" flex="10">
+                                <h4>{{timeToReadable(plugin.update_date)}}</h4>
+                                <p>
+                                    {{plugin.authorId}}
+                                </p>
+                            </div>
+                        </md-card-content>
+                    </a>
+                </md-card>
+
+            </md-content>
+        </div>
+        <div class="home-container md-whiteframe-z1" flex-gt-md="50" layout-margin>
+
+            <md-toolbar class="demo-toolbar md-default-theme">
+                <div class="md-toolbar-tools">
+                    <span>Most Recent</span>
+                    <span flex=""></span>
+                </div>
+            </md-toolbar>
+
+            <md-content class="md-default-theme">
+                <md-card class="md-default-theme" ng-repeat="plugin in RecentList">
+                    <a ng-href="#/module/{{plugin.id}}">
+                        <md-card-content layout="row" layout-margin>
+                            <div class="" flex="20">
+                                <img ng-src="{{plugin.picture}}" ng-alt="{{plugin.name}} picture" style="max-width:100%;height:auto;" />
+                            </div>
+                            <div class="md-tile-content" flex="70">
+                                <h2>{{plugin.name}}</h2>
+                                <p>
+                                    {{limitLength(plugin.description)}}
+                                </p>
+                            </div>
+                            <div class="" flex="10">
+                                <h4>{{timeToReadable(plugin.update_date)}}</h4>
+                                <p>
+                                    {{plugin.authorId}}
+                                </p>
+                            </div>
+                        </md-card-content>
+                    </a>
+                </md-card>
+            </md-content>
+        </div>
+    </md-content>
+</div>

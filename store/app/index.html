@@ -1,20 +1,74 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="storeApp">
-  <head>
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="acsilstoreApp">
+<head>
     <meta charset="utf-8">
     <meta name="description" content="Plugin store for Acsilserver">
-    <title>{{app.title | tr}}</title>
-  </head>
-  <body>
+    <title>Acsilstore</title>
+    <link rel="stylesheet" type="text/css" href="vendors/angular-material/angular-material.min.css">
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" href="css/module.css">
+    <link rel="stylesheet" type="text/css" href="css/user.css">
+</head>
+<body class="background" ng-controller="acsilstoreCtrl">
     <main>
-      <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong>
-          browser. Please <a href="http://browsehappy.com/">upgrade your
-          browser</a> to improve your experience.</p>
-      <![endif]-->
-      <div ng-view></div>
+        <!--[if lt IE 7]>
+          <p class="browsehappy">You are using an <strong>outdated</strong>
+            browser. Please <a href="http://browsehappy.com/">upgrade your
+            browser</a> to improve your experience.</p>background-color: #43cee6;
+        <![endif]-->
+        <div id="header-top">
+            <md-toolbar>
+                <h1 class="md-toolbar-tools">
+                    <span>Acsilstore</span>
+                    <span flex=""></span>
+                    <span class="md-toolbar-">
+                        <a ng-href="#/user/{{data.userId}}">
+                            <md-button class="md-fab md-primary">
+                                <md-icon icon="image/icons/ic_person_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                            </md-button>
+                        </a>
+                        <md-button ng-click="logout()" class="md-fab md-primary" ng-if="data.userId != 0">
+                            <md-icon icon="image/icons/ic_exit_to_app_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                        </md-button>
+                    </span>
+                </h1>
+            </md-toolbar>
+            <md-tabs class="md-accent" md-selected="data.selectedIndex">
+                <a ng-href="#/home">
+                    <md-tab id="tab1" aria-controls="tab1-content">
+                        Home
+                    </md-tab>
+                </a>
+                <a ng-href="#/module">
+                    <md-tab id="tab2" aria-controls="tab2-content">
+                        Plug-ins
+                    </md-tab>
+                </a>
+                <a ng-href="#/module">
+                    <md-tab id="tab2" aria-controls="tab2-content">
+                        Documentation
+                    </md-tab>
+                </a>
+                <a ng-href="#/user/{{data.userId}}" ng-if="data.userId != 0">
+                    <md-tab id="tab2" aria-controls="tab2-content">
+                        My account
+                    </md-tab>
+                </a>
+            </md-tabs>
+        </div>
+        <div ng-view class="background"></div>
     </main>
-    <script src="vendors/angular/angular.js.min"></script>
-    <script src="js/app.js"></script>
-  </body>
+    <script src="vendors/hammerjs/hammer.min.js"></script>
+    <script src="vendors/angular/angular.min.js"></script>
+    <script src="vendors/angular-route/angular-route.min.js"></script>
+    <script src="vendors/angular-animate/angular-animate.min.js"></script>
+    <script src="vendors/angular-aria/angular-aria.min.js"></script>
+    <script src="vendors/angular-material/angular-material.min.js"></script>
+    <script src="vendors/angular-cookies/angular-cookies.min.js"></script>
+    <script src="js/controller/home.js"></script>
+    <script src="js/controller/module.js"></script>
+    <script src="js/controller/user.js"></script>
+    <script src="js/acsilstore.app.js"></script>
+</body>
 </html>
