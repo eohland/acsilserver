@@ -1,0 +1,34 @@
+﻿La génération a démarré 24/01/2015 18:19:41.
+     1>Projet "C:\Users\Edouard\Documents\Visual Studio 2013\Projects\AcsilTest2\toto\toto.vcxproj" sur le nœud 2 (Rebuild cible(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (toto.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>CustomBuild:
+         Moc'ing Authentification.h...
+         Moc'ing Synchro.h...
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I. /IC:\Qt\5.4\msvc2013_opengl\include /I.\GeneratedFiles\Debug /IC:\Qt\5.4\msvc2013_opengl\include\QtCore /IC:\Qt\5.4\msvc2013_opengl\include\QtNetwork /IC:\Qt\5.4\msvc2013_opengl\include\QtWebKit /IC:\Qt\5.4\msvc2013_opengl\include\QtHelp /IC:\Qt\5.4\msvc2013_opengl\include\QtXml /IC:\Qt\5.4\msvc2013_opengl\include\QtScript /Zi /nologo /W1 /WX- /Od /Oy- /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_NETWORK_LIB /D QT_HELP_LIB /D QT_XML_LIB /D QT_SCRIPT_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Authentification.cpp File.cpp Folder.cpp GeneratedFiles\Debug\moc_Authentification.cpp GeneratedFiles\Debug\moc_Synchro.cpp main.cpp Parser.cpp Synchro.cpp User.cpp
+         Authentification.cpp
+         File.cpp
+         Folder.cpp
+         moc_Authentification.cpp
+         moc_Synchro.cpp
+         main.cpp
+         Parser.cpp
+         Synchro.cpp
+         User.cpp
+         Génération de code en cours...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Edouard\Documents\Visual Studio 2013\Projects\AcsilTest2\Win32\Debug\\SyncLib.exe" /NOLOGO /LIBPATH:C:\Qt\5.4\msvc2013_opengl\lib qtmaind.lib Qt5Cored.lib Qt5Networkd.lib Qt5WebKitd.lib Qt5Helpd.lib Qt5Xmld.lib Qt5Scriptd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Edouard\Documents\Visual Studio 2013\Projects\AcsilTest2\Win32\Debug\SyncLib.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Edouard\Documents\Visual Studio 2013\Projects\AcsilTest2\Win32\Debug\SyncLib.lib" /MACHINE:X86 /SAFESEH Debug\Authentification.obj
+         Debug\File.obj
+         Debug\Folder.obj
+         Debug\moc_Authentification.obj
+         Debug\moc_Synchro.obj
+         Debug\main.obj
+         Debug\Parser.obj
+         Debug\Synchro.obj
+         Debug\User.obj
+         toto.vcxproj -> C:\Users\Edouard\Documents\Visual Studio 2013\Projects\AcsilTest2\Win32\Debug\SyncLib.exe
+     1>Génération du projet "C:\Users\Edouard\Documents\Visual Studio 2013\Projects\AcsilTest2\toto\toto.vcxproj" terminée (Rebuild cible(s)).
+
+La génération a réussi.
+
+Temps écoulé 00:00:23.95
