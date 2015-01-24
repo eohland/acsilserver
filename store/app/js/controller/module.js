@@ -26,12 +26,13 @@ moduleControllers.controller('ModuleListCtrl', ['$scope', '$http', 'Module',
           }
       }
   }]);
-moduleControllers.controller('ModuleViewCtrl', ['$scope', '$http', '$routeParams', '$sce',
-  function ($scope, $http, $routeParams, $sce) {
+moduleControllers.controller('ModuleViewCtrl', [
+    '$scope', '$http', '$routeParams', '$sce', 'Module',
+  function ($scope, $http, $routeParams, $sce, Module) {
       $scope.data.selectedIndex = 1;
-      var currentPlugin = $routeParams.id - 1;
+      var currentPlugin = $routeParams.id;
       //get module by id
-      $scope.plugin = $scope.data.module[currentPlugin];
+      $scope.plugin = Module.get({id: currentPlugin});
 
       $scope.buildURL = function (content) {
           return $sce.trustAs($sce.RESOURCE_URL, "data:text/plain;charset=utf-8, " + content);
