@@ -76,7 +76,7 @@ class Plugin extends \Utils\BaseController {
           `create_date`, `update_date`,
           `picture`, `content`
         ) VALUES(
-          :id, :name, :author_id,
+          :name, :author_id,
           :description, :keywords, :version,
           :create_date, :update_date,
           :picture, :content
@@ -85,7 +85,7 @@ class Plugin extends \Utils\BaseController {
       //FIXME: valdate data before
       $sth->execute(array(
         'name'        => $plugin->name,
-        'author_id'   => $plugin->author,
+        'author_id'   => $plugin->author_id,
         'description' => $plugin->description,
         'keywords'    => $plugin->keywords,
         'version'     => $plugin->version,
