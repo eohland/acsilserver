@@ -11,11 +11,14 @@ class Plugin extends \Utils\BaseController {
         CREATE TABLE IF NOT EXISTS `plugins` (
           `id`            INTEGER PRIMARY KEY AUTOINCREMENT,
           `name`          TEXT NOT NULL,
-          `author`        INTEGER NOT NULL,
+          `author_id`     INTEGER NOT NULL,
           `description`   TEXT NOT NULL,
+          `keywords`      TEXT,
           `version`       TEXT NOT NULL,
           `create_date`   INTEGER,
-          `update_date`   INTEGER
+          `update_date`   INTEGER,
+          `picture`       TEXT,
+          `content`       TEXT NOT NULL
         );
       ');
       $sth->execute();
@@ -29,9 +32,10 @@ class Plugin extends \Utils\BaseController {
     try {
       $sth = $this->pdo->prepare('
         SELECT
-          `id`, `name`, `author`,
-          `description`, `version`
-          `create_date`, `update_date`
+          `id`, `name`, `author_id`,
+          `description`, `keywords`, `version`,
+          `create_date`, `update_date`,
+          `picture`, `content`
         FROM `plugins`;
       ');
       $sth->execute();
@@ -46,11 +50,12 @@ class Plugin extends \Utils\BaseController {
     try {
       $sth = $this->pdo->prepare('
         SELECT
-          `id`, `name`, `author`,
-          `description`, `version`
-          `create_date`, `update_date`
+          `id`, `name`, `author_id`,
+          `description`, `keywords`, `version`,
+          `create_date`, `update_date`,
+          `picture`, `content`
         FROM `plugins`
-        WHERE id = :id;
+        WHERE id LIKE :id;
       ');
       $sth->execute(array('id' => $id));
       return $sth->fetchAll(PDO::FETCH_COLUMN);
