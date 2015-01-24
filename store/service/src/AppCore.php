@@ -26,7 +26,9 @@ class AppCore {
       return false; //TODO: Response:notFound
     }
     $id = $route[1];
-    $method = (is_null($id)) ? 'getAll' : strtolower($route[2]);
+    $method = strtolower($route[2]);
+    if ('get' === $method && is_null($id))
+      $method = 'getAll';
     $this->checkMethod($method);
     echo $this->controller->$method($id); //TODO: Response::json
   }
