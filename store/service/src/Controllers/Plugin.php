@@ -137,6 +137,21 @@ class Plugin extends \Utils\BaseController {
       //TODO: Return 400?
     }
   }
+
+  public function delete($id) {
+    //FIXME: Check user permissions
+    try {
+      $sth = $this->pdo->prepare('
+        DELETE FROM `plugins` WHERE `id` LIKE :id
+      ');
+      $sth->execute(array(
+        'id'          => $id,
+      ));
+      //FIXME: Return 204
+    }
+    catch (Exception $e) {
+      error_log ('Plugin::delete: ' . $e->getMessage());
+    }
   }
 }
 ?>
