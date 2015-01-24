@@ -30,7 +30,13 @@ class AppCore {
     if ('get' === $method && is_null($id))
       $method = 'getAll';
     $this->checkMethod($method);
-    echo $this->controller->$method($id); //TODO: Response::json
+
+    //TODO: Response::json
+    echo json_encode($this->controller->$method($id, $this->getData()));
+  }
+
+  public function getData() {
+    return json_decode(file_get_contents('php://input'));
   }
 }
 ?>
