@@ -35,7 +35,7 @@ class Plugin extends \Utils\BaseController {
         FROM `plugins`;
       ');
       $sth->execute();
-      return $sth->fetchAll(PDO::FETCH_COLUMN);
+      return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
     catch (Exception $e) {
       error_log ('Plugin::getAll: ' . $e->getMessage());
