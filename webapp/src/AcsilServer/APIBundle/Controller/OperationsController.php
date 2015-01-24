@@ -5,6 +5,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
@@ -410,15 +413,23 @@ $list = array("files" => $listfiles, "folders" => $listfolders, "users" => $list
     /**
      * Create and fill a new document object
     */
+	$response = new Response();
 	$document = new Document();
-	$form = $this -> createForm(new DocumentType(), $document);
         //$form->bind($request);
-        $form -> handleRequest($this -> getRequest());
+	$request = $this->getRequest();
+	$name = $request->request->get('acsilserver_appbundle_documenttype');
+	$response->setContent("name".$name['name']);
 
-        if ($form -> isValid()) {
+	$name = "test";
+             if ($name['file'] != null && $name['name'] != null && $name['Content-Type'] != null) {
 		$em = $this -> getDoctrine() -> getManager();
-		$uploadedFile = $form -> get('file') -> getData();
-		$filename = $form -> get('name') -> getData();
+		$filename = $name['name'];
+		$tempFilePath = $document->getUploadDir().$filename;
+		$fp = fopen($tempFilePath, "wb");
+		fwrite($fp, $name['file']);
+		fclose($fp);
+		$uploadedFile = new UploadedFile($tempFilePath, $filename, $name['Content-Type']);
+	        $response -> setContent("toto");
 		$document -> setFile($uploadedFile);
 		$document -> setName($filename);
 		$document -> setIsProfilePicture(0);
@@ -472,12 +483,11 @@ $list = array("files" => $listfiles, "folders" => $listfolders, "users" => $list
 		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
 		$aclProvider -> updateAcl($acl);
 
-		$response = new Response();
+	       
         $response -> setContent($folderId);
         $response -> setStatusCode(201);
-        return $response; 
-	}
-		return View::create($form, 400);
+	} 
+       return $response; 
 	}
 	
 	/**

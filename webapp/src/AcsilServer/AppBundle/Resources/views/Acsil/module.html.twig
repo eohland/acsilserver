@@ -30,7 +30,7 @@
   
 </div>
 
-<div class="row">
+<div class="row-fluid">
   <div class="col-md-2">
     <ul class="nav nav-pills">
       <li class="active"><a href="#addModule" data-toggle="modal"><i class="icon-plus"></i> {{ 'Add Module'|trans }} </a></li>
@@ -55,19 +55,20 @@
   <div class="col-md-9">
 
     {% if currentCode != null %}
-    <script type="text/javascript">
-
-      {{ currentCode | raw }}
-    </script>
 
     <div id="plugin">
-      TOTOTOTO
     </div>
-    {% endif %}
 
-    {# <script> #}
-      {#  var token = "{{token}}"; #}
-      {# </script> #}
+    <script type="text/javascript">
+        var token = "{{token}}";
+	var serverUrl = window.location.href.toString();
+	serverUrl = serverUrl.substr(0, serverUrl.indexOf(".php") + 4);
+	serverUrl += "/service/1/op/";
+	var uploadUrl =  serverUrl.substr(0, serverUrl.indexOf("app_dev.php"));
+      	uploadUrl += "uploads/";
+	{{ currentCode | raw }}
+    </script>
+    {% endif %}
   </div>
 </div>
   {% endblock %}

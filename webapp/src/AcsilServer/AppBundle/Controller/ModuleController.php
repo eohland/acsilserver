@@ -50,8 +50,7 @@ class ModuleController extends Controller {
     //print_r('</pre>');
     $user = $this -> getUser();
     
-    $token = null; //$storage->createAccessToken($this->genAccessToken(), $client, $user, 1, 'foo bar');
-	
+    $token = $storage->createAccessToken($this->genAccessToken(), $client, $user, '1485278287', 'foo bar');
 	
 	
 	
@@ -79,7 +78,7 @@ $listAllModules = $em
 				'moduleId' => $moduleId,
 				'currentCode' => $currentCode,
 				'listAllModules' => $listAllModules,
-				//'token' => $token->getToken(),
+				'token' => $token->getToken(),
 			));
 			
 	}

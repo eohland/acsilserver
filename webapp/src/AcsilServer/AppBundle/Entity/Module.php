@@ -26,7 +26,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
      */
     private $name;
 	    /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      */
 	private $code;
 
