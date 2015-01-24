@@ -14,7 +14,7 @@
 store/app/vendors
 store/node_modules
 
-store/storedb.sqlite
+store/service/storedb.sqlite
 
 # Generated builds
 system/build-win
