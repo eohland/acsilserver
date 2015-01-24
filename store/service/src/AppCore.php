@@ -32,7 +32,10 @@ class AppCore {
     $this->checkMethod($method);
 
     //TODO: Response::json
-    echo json_encode($this->controller->$method($id, $this->getData()));
+    echo json_encode(
+      $this->controller->$method($id, $this->getData()),
+      JSON_NUMERIC_CHECK
+    );
   }
 
   public function getData() {
