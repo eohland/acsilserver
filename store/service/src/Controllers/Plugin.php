@@ -58,7 +58,7 @@ class Plugin extends \Utils\BaseController {
         WHERE id LIKE :id;
       ');
       $sth->execute(array('id' => $id));
-      return $sth->fetchAll(PDO::FETCH_COLUMN);
+      return $sth->fetch(PDO::FETCH_ASSOC);
     }
     catch (Exception $e) {
       error_log ('Plugin::get: ' . $e->getMessage());
