@@ -2,6 +2,7 @@
 namespace Controllers;
 
 use PDO;
+use Exception;
 
 class Plugin extends \Utils\BaseController {
   protected function createTable() {
