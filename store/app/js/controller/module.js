@@ -1,8 +1,10 @@
-﻿var moduleControllers = angular.module('moduleControllers', []);
+﻿var moduleControllers = angular.module('moduleControllers', ['acsilstore']);
 
-moduleControllers.controller('ModuleListCtrl', ['$scope', '$http',
-  function ($scope, $http) {
+moduleControllers.controller('ModuleListCtrl', ['$scope', '$http', 'Module',
+  function ($scope, $http, Module) {
       $scope.data.selectedIndex = 1;
+
+      $scope.plugins = Module.query();
 
       //get module List
       $scope.PluginList = angular.copy($scope.data.module);

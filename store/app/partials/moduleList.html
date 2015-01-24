@@ -63,7 +63,7 @@
             </md-list>        </md-content>
     </md-sidenav>
     <md-content class="padding-top" id="list">
-        <md-card class="md-default-theme" ng-repeat="plugin in PluginList">
+        <md-card class="md-default-theme" ng-repeat="plugin in plugins">
             <a ng-href="#/module/{{plugin.id}}">
                 <md-card-content layout="row" layout-margin>
                     <div class="" flex="20">
@@ -78,7 +78,7 @@
                     <div class="" flex="10">
                         <h4>{{timeToReadable(plugin.update_date)}}</h4>
                         <p>
-                            {{plugin.authorId}}
+                            {{plugin.author_id}}
                         </p>
                     </div>
                 </md-card-content>

@@ -1,7 +1,13 @@
-﻿var userControllers = angular.module('userControllers', ['ngMaterial']);
+﻿var userControllers = angular.module('userControllers', [
+    'ngMaterial', 'acsilstore']);
 
-userControllers.controller('UserCtrl', ['$scope', '$http', '$cookies', '$mdDialog', '$location', '$routeParams', '$route',
-    function ($scope, $http, $cookies, $mdDialog, $location, $routeParams, $route) {
+userControllers.controller('UserCtrl', [
+    '$scope', '$http', '$cookies', '$mdDialog',
+    '$location', '$routeParams', '$route',
+    'Module',
+    function ($scope, $http, $cookies, $mdDialog,
+      $location, $routeParams, $route,
+      Module) {
         //redirect if not loggged in
         if ($scope.data.userId == 0)
             $location.path('/user/subscribe');
@@ -68,12 +74,21 @@ userControllers.controller('UserCtrl', ['$scope', '$http', '$cookies', '$mdDialo
                     console.log(encodeURIComponent(pluginReader.result));
 
                     var path = $location.path();
+                    Module.create(new Module({
+                      name       : $scope.newModule.name,
+                      author_id  : $scope.data.userId,
+                      keywords   : $scope.newModule.keywords,
+                      version    : $scope.newModule.version,
+                      description: $scope.newModule.description,
+                      picture    : $scope.src,
+                      content    : encodeURIComponent(pluginReader.result),
+                      create_date: Date.now(),
+                      update_date: Date.now()
+                    }));
                     $route.reload();
                 }
                 $scope.$apply();
             };
-
-            
 
         };
 

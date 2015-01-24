@@ -4,7 +4,8 @@
   'ngCookies',
   'homeControllers',
   'moduleControllers',
-  'userControllers'
+  'userControllers',
+  'acsilstore'
 ]);
 
 acsilstoreApp.config(['$routeProvider', '$compileProvider',
@@ -136,7 +137,7 @@ acsilstoreApp.controller('acsilstoreCtrl', ['$scope', '$http', '$cookies', '$loc
       }
 
       $scope.timeToReadable = function (str) {
-          return str.toDateString();
+          return new Date(str).toDateString();
       }
 
   }]);
