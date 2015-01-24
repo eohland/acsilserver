@@ -97,7 +97,7 @@ class Plugin extends \Utils\BaseController {
       //FIXME: Return 201 or 204
     }
     catch (Exception $e) {
-      error_log ('Plugin::create: ' . $e->getMessage());
+      error_log ('Plugin::put: ' . $e->getMessage());
       //TODO: Return 400?
     }
   }
@@ -133,7 +133,7 @@ class Plugin extends \Utils\BaseController {
       ));
     }
     catch (Exception $e) {
-      error_log ('Plugin::create: ' . $e->getMessage());
+      error_log ('Plugin::post: ' . $e->getMessage());
       //TODO: Return 400?
     }
   }
