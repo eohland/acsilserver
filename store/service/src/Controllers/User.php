@@ -15,7 +15,7 @@ class User extends \Utils\BaseController {
           `display_name`  TEXT NOT NULL,
           `email`         TEXT NOT NULL,
           `create_date`   INTEGER,
-          `update_date`   INTEGER,
+          `update_date`   INTEGER
         );
       ');
       $sth->execute();
@@ -31,7 +31,7 @@ class User extends \Utils\BaseController {
         SELECT
           `id`, `login`, `password`,
           `display_name`, `email`,
-          `create_date`, `update_date`,
+          `create_date`, `update_date`
         FROM `users`;
       ');
       $sth->execute();
@@ -48,7 +48,7 @@ class User extends \Utils\BaseController {
         SELECT
           `id`, `login`, `password`,
           `display_name`, `email`,
-          `create_date`, `update_date`,
+          `create_date`, `update_date`
         FROM `users`
         WHERE id LIKE :id;
       ');
@@ -68,11 +68,11 @@ class User extends \Utils\BaseController {
         INSERT INTO `users`(
           `login`, `password`,
           `display_name`, `email`,
-          `create_date`, `update_date`,
+          `create_date`, `update_date`
         ) VALUES(
           :login, :password,
           :display_name, :email,
-          :create_date, :update_date,
+          :create_date, :update_date
         );
       ');
       //FIXME: valdate data before
@@ -100,11 +100,11 @@ class User extends \Utils\BaseController {
         INSERT OR REPLACE INTO `users`(
           `id`, `login`, `password`,
           `display_name`, `email`,
-          `create_date`, `update_date`,
+          `create_date`, `update_date`
         ) VALUES(
           :id, :login, :password,
           :display_name, :email,
-          :create_date, :update_date,
+          :create_date, :update_date
         );
       ');
       $sth->execute(array(
