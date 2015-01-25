@@ -1,7 +1,7 @@
 <?php
 namespace Utils;
 
-use PDO;
+use Utils\DBCtrl;
 
 class BaseController {
   protected $pdo;
@@ -27,9 +27,7 @@ class BaseController {
 
   //TODO: Move to a base entity
   public function getPDO() {
-    //TODO:Use a config service
-    $this->pdo = new PDO('sqlite:storedb.sqlite');
-    $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $this->pdo = DBCtrl::getDb();
     return $this->pdo;
   }
 }
