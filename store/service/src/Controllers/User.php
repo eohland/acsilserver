@@ -1,8 +1,4 @@
-<?
-/*
- * id, login, password, display_name, email
- *
- * */
+<?php
 namespace Controllers;
 
 use PDO;
