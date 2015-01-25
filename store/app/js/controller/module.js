@@ -1,4 +1,4 @@
-﻿var moduleControllers = angular.module('moduleControllers', ['acsilstore']);
+﻿var moduleControllers = angular.module('moduleControllers', ['acsilModule']);
 
 moduleControllers.controller('ModuleListCtrl', ['$scope', '$http', 'Module',
   function ($scope, $http, Module) {
@@ -7,19 +7,24 @@ moduleControllers.controller('ModuleListCtrl', ['$scope', '$http', 'Module',
       $scope.plugins = Module.query();
 
       //get module List
-      $scope.PluginList = angular.copy($scope.data.module);
-      $scope.saveFullList = angular.copy($scope.data.module);
+      var result = Module.query();
+      result.$promise.then(function (data) {
+          $scope.PluginList = angular.copy(data);
+          $scope.saveFullList = angular.copy(data);
+      });
+
       console.log($scope.saveFullList);
       $scope.search = function (keywords) {
           console.log($scope.saveFullList);
           if (keywords == null || keywords == "") {
-              $scope.PluginList = $scope.data.module;
+              $scope.PluginList = $scope.saveFullList;
               return;
           }
           $scope.PluginList = [];
           var j = 0;
           for (var i = 0; i < $scope.saveFullList.length; i++) {
-              if ($scope.saveFullList[i].keywords.toLowerCase().trim().indexOf(keywords.toLowerCase().trim()) != -1) {
+              if ($scope.saveFullList[i].keywords.toLowerCase().trim().indexOf(keywords.toLowerCase().trim()) != -1
+                  || keywords.toLowerCase().trim().indexOf($scope.saveFullList[i].keywords.toLowerCase().trim()) != -1) {
                   $scope.PluginList[j] = angular.copy($scope.saveFullList[i]);
                   j++;
               }

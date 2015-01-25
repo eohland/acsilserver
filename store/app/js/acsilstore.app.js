@@ -5,7 +5,8 @@
   'homeControllers',
   'moduleControllers',
   'userControllers',
-  'acsilstore'
+  'acsilModule',
+  'acsilUser'
 ]);
 
 acsilstoreApp.config(['$routeProvider', '$compileProvider',
@@ -38,8 +39,8 @@ acsilstoreApp.config(['$routeProvider', '$compileProvider',
         $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|data):/);
     }]);
 
-acsilstoreApp.controller('acsilstoreCtrl', ['$scope', '$http', '$cookies', '$location',
-  function ($scope, $http, $cookies, $location) {
+acsilstoreApp.controller('acsilstoreCtrl', ['$scope', '$http', '$cookieStore', '$location',
+  function ($scope, $http, $cookieStore, $location) {
       $scope.data = {};
 
       $scope.data.module = [
@@ -118,8 +119,8 @@ acsilstoreApp.controller('acsilstoreCtrl', ['$scope', '$http', '$cookies', '$loc
 
 
 
-      if ($cookies.token) {
-          console.log($cookies.token);
+      if ($cookieStore.get('token')) {
+          console.log($cookieStore.get('token'));
           //get user id
           $scope.data.userId = 1;
       }
@@ -127,13 +128,16 @@ acsilstoreApp.controller('acsilstoreCtrl', ['$scope', '$http', '$cookies', '$loc
           $scope.data.userId = 0;
 
       $scope.logout = function () {
-          $cookies.token = null;
+          $cookieStore.remove("token");
           $scope.data.userId = 0;
           $location.path('/');
       }
 
       $scope.limitLength = function (str) {
-          return str.substr(0, 200).replace(/(\r\n|\n|\r)/gm, "");
+          if (str.length > 199)
+              return str.substr(0, 200).replace(/(\r\n|\n|\r)/gm, "") + '...';
+          else
+              return str.substr(0, 200).replace(/(\r\n|\n|\r)/gm, "");
       }
 
       $scope.timeToReadable = function (str) {

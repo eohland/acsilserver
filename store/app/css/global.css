@@ -1,4 +1,8 @@
-﻿.background {
+﻿body {
+    word-wrap: break-word;
+}
+
+.background {
     background-image: url("../image/body-bg.png");
 }
 
@@ -57,6 +61,7 @@ md-card.md-default-theme {
 .main-view {
     padding-top: 112px;
     height: 100vh;
+    margin: 0;
 }
 
 .md-dialog-container {
@@ -74,4 +79,10 @@ md-card.md-default-theme {
 
 md-switch.md-default-theme.md-checked.md-primary .md-thumb {
     background-color: #5477EA;
+}
+
+@media (min-width: 960px) {
+    [layout=row] > [flex-gt-md="50"] {
+        max-width: 49%;
+    }
 }

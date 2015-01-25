@@ -22,6 +22,14 @@
                     <md-divider></md-divider>
                 </md-item>
                 <md-item>
+                <md-item-content ng-click="search('')">
+                    <div class="md-tile-content">
+                        <h3>All</h3>
+                    </div>
+                </md-item-content>
+                <md-divider></md-divider>
+                </md-item>
+                <md-item>
                     <md-item-content ng-click="search('Multimedia')">
                         <div class="md-tile-content">
                             <h3>Multimedia</h3>
@@ -63,7 +71,7 @@
             </md-list>        </md-content>
     </md-sidenav>
     <md-content class="padding-top" id="list">
-        <md-card class="md-default-theme" ng-repeat="plugin in plugins">
+        <md-card class="md-default-theme" ng-repeat="plugin in PluginList">
             <a ng-href="#/module/{{plugin.id}}">
                 <md-card-content layout="row" layout-margin>
                     <div class="" flex="20">

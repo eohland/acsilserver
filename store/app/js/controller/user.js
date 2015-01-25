@@ -1,21 +1,30 @@
 ﻿var userControllers = angular.module('userControllers', [
-    'ngMaterial', 'acsilstore']);
+    'ngMaterial', 'acsilModule', 'acsilUser']);
 
 userControllers.controller('UserCtrl', [
-    '$scope', '$http', '$cookies', '$mdDialog',
+    '$scope', '$http', '$mdDialog',
     '$location', '$routeParams', '$route',
-    'Module',
-    function ($scope, $http, $cookies, $mdDialog,
+    'User',
+    function ($scope, $http, $mdDialog,
       $location, $routeParams, $route,
-      Module) {
+      User) {
+        //set selected tab
+        $scope.data.selectedIndex = 3;
+
+        //get currendìt user id
+        var currentUserId = $routeParams.id;
+
         //redirect if not loggged in
-        if ($scope.data.userId == 0)
+        if (currentUserId == 0)
             $location.path('/user/subscribe');
 
-        //get user
-        var currentUser = $routeParams.id;
-        $scope.data.selectedIndex = 3;
-        $scope.user = $scope.data.user[currentUser - 1];
+        //get current user data
+        $scope.user = {};
+        var userPromise = User.get({ id: currentUserId });
+        userPromise.$promise.then(function (userData) {
+            $scope.user = userData;
+            //get user moduleList
+        })
 
         //get its plugin
         $scope.pluginList = $scope.data.module;
@@ -24,8 +33,30 @@ userControllers.controller('UserCtrl', [
         $scope.newModule = {};
 
         $scope.updateUser = function () {
-            if ($scope.userForm.$valid == true)
-                console.log($scope.user);
+            if ($scope.userForm.$valid != true)
+                return;
+            var update = User.update(new User({
+                id: $scope.user.id,
+                login: $scope.user.login,
+                password: $scope.user.password,
+                email: $scope.user.email,
+                display_name: $scope.user.display_name,
+                create_date: $scope.user.create_date,
+                update_date: Date.now(),
+            }));
+
+            update.$promise.then(function () {
+                $mdDialog.show(
+                    $mdDialog.alert()
+                      .title('Success')
+                      .content('Informations changed with success.')
+                      .ariaLabel('Informations success')
+                      .ok('OK')
+                      .targetEvent("mouse")
+                  ).then(function () {
+                      $route.reload();
+                  });
+            });
         };
 
         $scope.changePassword = function () {
@@ -34,8 +65,30 @@ userControllers.controller('UserCtrl', [
                 templateUrl: 'partials/password.html',
                 targetEvent: "mouse",
             })
-            .then(function (answer) {
-                $scope.alert = 'You said the information was "' + answer + '".';
+            .then(function (newPassword) {
+                //update user
+                var update = User.update(new User({
+                    id: $scope.user.id,
+                    login: $scope.user.login,
+                    password: CryptoJS.SHA512(newPassword).toString(CryptoJS.enc.Hex),
+                    email: $scope.user.email,
+                    display_name: $scope.user.display_name,
+                    create_date: $scope.user.create_date,
+                    update_date: Date.now(),
+                }));
+
+                update.$promise.then(function () {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                          .title('Success')
+                          .content('Password changed with success.')
+                          .ariaLabel('Password success')
+                          .ok('OK')
+                          .targetEvent("mouse")
+                      ).then(function () {
+                          $route.reload();
+                      });
+                });
             }, function () {
                 $scope.alert = 'You cancelled the dialog.';
             });
@@ -51,7 +104,21 @@ userControllers.controller('UserCtrl', [
               .targetEvent("mouse");
             $mdDialog.show(confirm).then(function () {
                 //delete
-                $scope.logout();
+                var deletePromise = User.delete({id: $scope.user.id});
+
+                deletePromise.$promise.then(function () {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                          .title('Success')
+                          .content('Your account was deleted with success.')
+                          .ariaLabel('delet success')
+                          .ok('OK')
+                          .targetEvent("mouse")
+                      ).then(function () {
+                          $scope.logout();
+                      });
+                });
+                
             }, function () {
                 //do nothing
             });
@@ -75,15 +142,15 @@ userControllers.controller('UserCtrl', [
 
                     var path = $location.path();
                     Module.create(new Module({
-                      name       : $scope.newModule.name,
-                      author_id  : $scope.data.userId,
-                      keywords   : $scope.newModule.keywords,
-                      version    : $scope.newModule.version,
-                      description: $scope.newModule.description,
-                      picture    : $scope.src,
-                      content    : encodeURIComponent(pluginReader.result),
-                      create_date: Date.now(),
-                      update_date: Date.now()
+                        name: $scope.newModule.name,
+                        author_id: $scope.data.userId,
+                        keywords: $scope.newModule.keywords,
+                        version: $scope.newModule.version,
+                        description: $scope.newModule.description,
+                        picture: $scope.src,
+                        content: encodeURIComponent(pluginReader.result),
+                        create_date: Date.now(),
+                        update_date: Date.now()
                     }));
                     $route.reload();
                 }
@@ -109,13 +176,22 @@ userControllers.controller('UserCtrl', [
 
     }]);
 
-userControllers.controller('PasswordCtrl', ['$scope', '$http', '$mdDialog',
-  function ($scope, $http, $mdDialog) {
+userControllers.controller('PasswordCtrl', ['$scope', '$http', '$mdDialog', '$routeParams', 'User',
+    function ($scope, $http, $mdDialog, $routeParams, User) {
       $scope.password = {
           'old': '',
           'new': '',
           'repeat': ''
       };
+
+      var currentUserId = $routeParams.id;
+      $scope.user = User.get({ id: currentUserId });
+
+      $scope.$watch("password.old", function () {
+          $scope.passwordForm.repeat.$valid = CryptoJS.SHA512($scope.password.old).toString(CryptoJS.enc.Hex) == $scope.user.password;
+          $scope.passwordForm.repeat.$setValidity("required", CryptoJS.SHA512($scope.password.old).toString(CryptoJS.enc.Hex) == $scope.user.password);
+          console.log(CryptoJS.SHA512($scope.password.old).toString(CryptoJS.enc.Hex) == $scope.user.password);
+      });
 
       $scope.$watch("password.repeat", function () {
           $scope.passwordForm.repeat.$valid = $scope.password.new == $scope.password.repeat;
@@ -135,19 +211,67 @@ userControllers.controller('PasswordCtrl', ['$scope', '$http', '$mdDialog',
       };
   }]);
 
-userControllers.controller('SubscribeCtrl', ['$scope', '$http', '$location', '$cookies',
-  function ($scope, $http, $location, $cookies) {
-      $scope.data.selectedIndex = 0;
-      if ($scope.data.userId != 0)
-          $location.path('/');
-      $scope.login = function () {
-          //set authentification
-          $scope.data.userId = 1;
-          $cookies.token = "toto";
-          $location.path('/');
-      };
-      $scope.register = function () {
-          //register user
-          $scope.data.userId = 1;
-      };
-  }]);
+userControllers.controller('SubscribeCtrl', ['$scope', '$http', '$location', '$cookieStore', 'User', '$mdDialog', '$route',
+    function ($scope, $http, $location, $cookieStore, User, $mdDialog, $route) {
+
+        $scope.newUser = {
+            'login': '',
+            'password': '',
+            'repeat': '',
+            'email': '',
+            'display_name': ''
+        };
+
+        $scope.data.selectedIndex = 0;
+        $scope.register = false;
+
+        console.log($scope.data.userId);
+        if ($scope.data.userId != 0 && $scope.data.userId != null)
+            $location.path('/');
+
+
+        $scope.login = function () {
+            //set authentification
+            $scope.data.userId = 1;
+            $cookieStore.put("token", "toto");
+            $location.path('/');
+        };
+
+
+        $scope.subscribe = function () {
+            //register user
+
+            $scope.data.userId = 1;
+            console.log($scope.subscribeForm);
+            if ($scope.subscribeForm.$valid == true) { //make request here
+                var subscribe = User.create(new User({
+                    login: $scope.newUser.login,
+                    password: CryptoJS.SHA512($scope.newUser.password).toString(CryptoJS.enc.Hex),
+                    email: $scope.newUser.email,
+                    display_name: $scope.newUser.display_name,
+                    create_date: Date.now(),
+                    update_date: Date.now()
+                }));
+
+                subscribe.$promise.then(function () {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                          .title('Success')
+                          .content('Register success. You can now log in.')
+                          .ariaLabel('Register success')
+                          .ok('OK')
+                          .targetEvent("mouse")
+                      ).then(function () { $route.reload(); });
+                });
+            }
+
+        };
+
+        $scope.$watch("newUser.repeat", function () {
+            if ($scope.register) {
+                $scope.subscribeForm.repeat.$valid = $scope.newUser.password == $scope.newUser.repeat;
+                $scope.subscribeForm.repeat.$setValidity("required", $scope.newUser.password == $scope.newUser.repeat);
+            }
+            console.log($scope.newUser.password == $scope.newUser.repeat);
+        });
+    }]);

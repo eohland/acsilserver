@@ -3,7 +3,7 @@
         <md-card class="md-default-theme">
             <md-card-content>
                 <div layout="column" layout-margin>
-                    <form>
+                    <form name="subscribeForm">
                         <div layout="row">
                             <h2>Login</h2>
                             <div flex=""></div>
@@ -15,8 +15,8 @@
                         </div>
                         <div layout="row">
                             <md-input-container flex>
-                                <label>Email</label>
-                                <input type="email" name="email" ng-model="newUser.email" required>
+                                <label>Login</label>
+                                <input type="text" name="email" ng-model="newUser.login" required>
                             </md-input-container>
                         </div>
                         <div layout="row">
@@ -39,19 +39,19 @@
                             </div>
                             <div layout="row">
                                 <md-input-container flex>
-                                    <label>Login</label>
-                                    <input type="text" name="name" ng-model="newUser.name" required>
+                                    <label>Email</label>
+                                    <input type="email" name="name" ng-model="newUser.email" required>
                                 </md-input-container>
                             </div>
                             <div layout="row">
                                 <md-input-container flex>
                                     <label>Display name</label>
-                                    <input type="text" name="displayName" ng-model="newUser.displayName" required>
+                                    <input type="text" name="displayName" ng-model="newUser.display_name" required>
                                 </md-input-container>
                             </div>
                             <div layout="row" ng-if="register">
                                 <div flex=""></div>
-                                <md-button class="md-raised md-primary" ng-click="register()">Register</md-button>
+                                <md-button class="md-raised md-primary" ng-click="subscribe()">Register</md-button>
                             </div>
                         </div>
                     </form>
