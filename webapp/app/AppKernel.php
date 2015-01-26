@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
+            new Oneup\UploaderBundle\OneupUploaderBundle(),
             new AcsilServer\AppBundle\AcsilServerAppBundle(),
             new AcsilServer\APIBundle\APIBundle(),
         );

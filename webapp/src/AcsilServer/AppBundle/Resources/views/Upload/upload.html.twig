@@ -1,3 +1,71 @@
+<div id="errorbox">
+	<div class="alert alert-warning">
+		<a href="#" class="close" data-dismiss="alert">&times;</a>
+		<strong>Warning:</strong> Your browser doesn't have Flash,
+		Silverlight or HTML5 support.
+	</div>
+</div>
+<div id="filelist">
+	<div id="upload-container">
+		<a id="pickfiles" href="#">[Select files]</a> 
+		<a id="uploadfiles" href="#" onclick="uploader.start()">[Upload files]</a>
+	</div>
+</div>
+<script src="{{ asset('public/js/jquery-2.1.3.min.js') }}"></script>
+<script src="{{ asset('public/js/plupload.full.min.js') }}"></script>
+<script type="text/javascript">
+	var uploader = new plupload.Uploader({
+		browse_button: 'pickfiles',
+		container: document.getElementById('upload-container'),
+		runtimes : 'html5,flash,silverlight,html4',
+		flash_swf_url : '{{ asset('public/moxie/Moxie.swf') }}',
+		silverlight_xap_url : '{{ asset('public/moxie/Moxie.xap') }}',
+		url: '{{ oneup_uploader_endpoint('file_upload') }}',
+		init: {
+			PostInit: function() {
+				document.getElementById('errorbox').innerHTML = '';
+				document.getElementById('uploadfiles').addEventListener(
+					'click', function() {
+						console.log('upload');
+						uploader.start();
+					}
+				);
+			},
+			FilesAdded: function(up, files) {
+				plupload.each(files, function(file) {
+					document.getElementById('filelist').innerHTML += 
+						'<div id="' + file.id + '">\
+							 <input type="text" value="' + file.name + '" />' +
+							 file.name + ' (' + plupload.formatSize(file.size) + ')\
+							<b></b>\
+						</div>';
+				});
+			},
+			BeforeUpload: function (up, file) {
+				var file_elem = document.getElementById(file.id),
+						rename_elem = file_elem.getElementsByTagName('input')[0];
+				file.name = rename_elem.value;
+				uploader.settings.multipart_params = {
+					'renamedFileName': rename_elem.value
+				}
+			},
+			UploadProgress: function(up, file) {
+				var file_elem = document.getElementById(file.id),
+						prog_elem = file_elem.getElementsByTagName('b')[0];
+				prog_elem.innerHTML = '<span>' + file.percent + "%</span>";
+			},
+			Error: function(up, err) {
+				var error_div = document.createElement('div');
+				error_div.classList.add('alert', 'alert-error');
+				error_div.innerHTML = '\
+					<a href="#" class="close" data-dismiss="alert">&times;</a>\
+					<strong>Error #' + err.code + ': </strong>' + err.message;
+				document.getElementById('errorbox').appendChild(error_div);
+			}
+		}
+	});
+	uploader.init();
+</script>
 <form action="{{ path('_upload', {'folderId': folderId|default(0)}) }}" method="post" {{ form_enctype(form) }}>
     {# {{ form_widget(form) }} #}
 {# Page for files' sharing #}
@@ -6,24 +74,23 @@
 				
 	<div class="row-fluid">
 		<div class="control-group span6">
-		    {#{{ form_label(form.name, form.name.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}#}
-		    Document name
-		    <div class="controls">
-			    {{ form_errors(form.name) }}
-				  {{ form_widget(form.name,  {'id': 'filename'}, {'attr': {'class': 'span12 typeaheadUserMail', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }}
+				{#{{ form_label(form.name, form.name.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}#}
+				Document name
+				<div class="controls">
+					{{ form_errors(form.name) }}
+					{{ form_widget(form.name,  {'id': 'filename'}, {'attr': {'class': 'span12 typeaheadUserMail', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }}
 			</div><!-- controls -->
 		</div><!-- control group -->
 		
 		<div class="control-group span6">
-		    {#{{ form_label(form.file, form.file.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}#}
-		    File
-		    <div class="controls">
-			    {{ form_errors(form.file) }}
-			     {{ form_widget(form.file,  {'id': 'upload'}, {'attr': {'class': 'span12 typeaheadUserMail', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }}
+				{#{{ form_label(form.file, form.file.vars.id|replace({'_':'.'}), {'label_attr': {'class': 'control-label'}}) }}#}
+				File
+				<div class="controls">
+					{{ form_errors(form.file) }}
+					 {{ form_widget(form.file,  {'id': 'upload'}, {'attr': {'class': 'span12 typeaheadUserMail', 'autocomplete': 'off', 'data-provide': 'typeahead' }}) }}
 			</div><!-- controls -->
 		</div><!-- control group -->
 	</div><!-- row fluid -->
-	
     <input class="btn btn-primary" type="submit" value="{{ 'Upload'|trans }}" />
 	<a class="noconfirm btn btn-danger" href="{{ path('_managefile', {'folderId': folderId|default(0)}) }}">{{ 'Cancel'|trans }}</a>
 </form>

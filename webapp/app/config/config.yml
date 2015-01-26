@@ -115,3 +115,10 @@ nelmio_cors:
             #allow_headers: ['X-Custom-Auth']
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
             max_age: 3600
+
+# OneupUploaderBundle
+oneup_uploader:
+    mappings:
+        file_upload:
+            frontend: plupload
+            enable_progress: true
