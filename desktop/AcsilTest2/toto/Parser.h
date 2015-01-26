@@ -23,6 +23,7 @@ public:
 	void					fillFolder(std::string&);
 	void					fillUser(std::string&);
 	void					findData(std::string&, unsigned int, char);
+	std::string				getJSON();
 
 private:
 	std::map<int, File *>	_fileMap;
@@ -30,4 +31,5 @@ private:
 	std::map<int, User *>	_userMap;
 	std::string				_cutData;
 	unsigned int			_pos;
+	std::string				_json;
 };
