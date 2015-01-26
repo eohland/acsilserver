@@ -33,8 +33,8 @@ list:
         _method: POST
 
 upload:
-    pattern: /service/1/op/upload
-    defaults: { _controller: APIBundle:Operations:upload, folderId: '' }
+    pattern: /service/1/op/upload/{folderId}
+    defaults: { _controller: APIBundle:Operations:upload, folderId: 0 }
     requirements:
         _method: POST
 

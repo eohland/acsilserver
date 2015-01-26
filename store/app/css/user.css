@@ -1,0 +1,55 @@
+﻿md-content#list {
+    background-color: inherit;
+    width: 100%;
+}
+
+.user {
+}
+
+    .user img {
+        max-height: 80px;
+        max-width: 180px;
+        margin: 20px;
+    }
+
+    .user .top-row {
+        max-height: 500px;
+        height: 500px;
+        min-height: 500px;
+    }
+
+        .user .top-row md-content {
+            max-height: 500px;
+            height: 500px;
+        }
+
+    .user .md-button.md-default-theme.md-primary.md-raised:not([disabled]),
+    .user .md-button.md-default-theme.md-primary.md-raised:not([disabled]),
+    .user .md-button.md-default-theme.md-primary.md-fab:not([disabled]),
+    .user .md-button.md-default-theme.md-primary.md-fab:not([disabled]) {
+        background-color: #FFA046;
+    }
+
+        .user .md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover,
+        .user .md-button.md-default-theme.md-primary.md-raised:not([disabled]):focus,
+        .user .md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover,
+        .user .md-button.md-default-theme.md-primary.md-fab:not([disabled]):focus {
+            background-color: #FF7C00;
+        }
+
+@media screen and (max-width: 960px) {
+    .user .top-row {
+        max-height: 1000px;
+        height: 1000px;
+        min-height: 1000px;
+    }
+}
+
+
+.subscribe {
+    width: 100vw;
+}
+
+.updateDate {
+    margin-right: 20px;
+}

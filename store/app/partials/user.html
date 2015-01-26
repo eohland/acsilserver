@@ -1,0 +1,147 @@
+﻿<div layout="row" class="user  main-view">
+    <md-content class="md-default-theme home background" layout="column" layout-align="" layout-margin flex>
+        <div class="top-row" layout="row" layout-sm="column" layout-align="" layout-margin>
+
+            <div class="home-container md-whiteframe-z1" flex>
+
+                <md-content class="md-default-theme">
+                    <form name="userForm">
+                        <md-toolbar class="demo-toolbar md-default-theme">
+                            <div class="md-toolbar-tools">
+                                <span>My account</span>
+                                <span flex=""></span>
+                                <md-button type="submit" ng-click="updateUser()" class="md-fab md-primary">
+                                    <md-icon icon="image/icons/ic_save_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                                </md-button>
+                            </div>
+                        </md-toolbar>
+                        <div layout="column" layout-margin>
+                            <div layout="row" layout-margin>
+                                <md-input-container flex>
+                                    <label>Login</label>
+                                    <input type="text" ng-model="user.login" required>
+                                </md-input-container>
+                            </div>
+                            <div layout="row" layout-margin>
+                                <md-input-container flex>
+                                    <label>Display name</label>
+                                    <input type="text" ng-model="user.display_name" required>
+                                </md-input-container>
+                            </div>
+                            <div layout="row" layout-margin>
+                                <md-input-container flex>
+                                    <label>Email</label>
+                                    <input type="email" ng-model="user.email" required>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="md-actions" layout="column" layout-align="center" layout-margin flex>
+                        <md-button class="md-raised md-primary" ng-click="changePassword()">Change password</md-button>
+                    </div>
+                    <div class="md-actions" layout="column" layout-align="center" layout-margin flex>
+                        <md-button class="md-raised md-primary" ng-click="deleteAccount()">Delete Account</md-button>
+                    </div>
+
+                </md-content>
+
+
+            </div>
+            <div class="home-container md-whiteframe-z1" flex>
+
+                <md-content class="md-default-theme">
+                    <form>
+                        <md-toolbar class="demo-toolbar md-default-theme">
+                            <div class="md-toolbar-tools">
+                                <span>Add a plugin</span>
+                                <span flex=""></span>
+                                <md-button type="submit" ng-click="saveModule()" class="md-fab md-primary">
+                                    <md-icon icon="image/icons/ic_save_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                                </md-button>
+                            </div>
+                        </md-toolbar>
+
+                        <div layout="column" layout-margin>
+                            <div layout="row" layout-margin>
+                                <md-input-container flex>
+                                    <label>Name</label>
+                                    <input type="text" ng-model="newModule.name" ng-required="true">
+                                </md-input-container>
+                                <div layout="column" flex>
+                                    <div layout="row">
+                                        <label flex="20">Plugin</label>
+                                        <input flex="80" type="file" accept=".js" id="plugin">
+                                    </div>
+                                    <div layout="row">
+                                        <label flex="20">Picture</label>
+                                        <input flex="80" type="file" accept="image/*" id="picture">
+                                    </div>
+                                </div>
+                            </div>
+                            <div layout="row" layout-margin>
+                                <md-input-container flex>
+                                    <label>Keywords</label>
+                                    <input type="text" ng-model="newModule.keywords">
+                                </md-input-container>
+                                <md-input-container flex>
+                                    <label>Version</label>
+                                    <input type="text" ng-model="newModule.version" ng-required="true">
+                                </md-input-container>
+                            </div>
+                            <div layout="row" layout-margin>
+                                <md-input-container flex>
+                                    <label>Description</label>
+                                    <textarea ng-model="newModule.description" columns="1" md-maxlength="4000" ng-required="true"></textarea>
+                                </md-input-container>
+                            </div>
+                            <img src="{{src}}" />
+                        </div>
+                    </form>
+                </md-content>
+
+            </div>
+        </div>
+        <div layout="row" layout-align="" layout-margin>
+
+            <div class="home-container md-whiteframe-z1" flex>
+
+                <md-toolbar class="demo-toolbar md-default-theme">
+                    <div class="md-toolbar-tools">
+                        <span>My plugins</span>
+                        <span flex=""></span>
+                    </div>
+                </md-toolbar>
+
+                <md-content class="md-default-theme">
+                    <md-list>
+                        <md-item ng-repeat="plugin in pluginList">
+                            <md-item-content>
+
+                                <div class="md-tile-left">
+                                    <img ng-src="{{plugin.picture}}" class="" alt="{{plugin.picture}} picture">
+                                </div>
+                                <div class="md-tile-content">
+                                    <h3>{{plugin.name}}</h3>
+                                    <h4>{{limitLength(plugin.description)}}</h4>
+
+                                </div>
+                                <div class="updateDate" layout="row" layout-sm="column" layout-margin >
+                                    <a ng-href="#/module/{{plugin.id}}" layout="row" layout-margin>
+                                        <md-button type="button" class="md-fab md-primary">
+                                            <md-icon icon="image/icons/ic_more_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                                        </md-button>
+                                    </a>
+                                    <div layout-margin>
+                                        <md-button type="button" ng-click="deleteModule(plugin.id, plugin.name)" class="md-fab md-primary">
+                                            <md-icon icon="image/icons/ic_delete_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </md-item-content>
+                            <md-divider></md-divider>
+                        </md-item>
+                </md-content>
+            </div>
+        </div>
+    </md-content>
+</div>

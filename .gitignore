@@ -10,6 +10,16 @@
 /webapp/web/uploads/*
 /webapp/web/bundles/
 
+# Store vendors
+store/app/vendors
+store/node_modules
+
+store/service/storedb.sqlite
+
+# Generated builds
+system/build-win
+system/pkg
+
 # Backup files
 *.orig
 *.bak

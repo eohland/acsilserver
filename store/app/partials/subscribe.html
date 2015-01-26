@@ -1,0 +1,63 @@
+﻿<div layout="row" class="module  main-view">
+    <md-content class="md-default-theme subscribe background" layout="column" layout-align="start center">
+        <md-card class="md-default-theme">
+            <md-card-content>
+                <div layout="column" layout-margin>
+                    <form name="subscribeForm">
+                        <div layout="row">
+                            <h2>Login</h2>
+                            <div flex=""></div>
+                            <div layout="row">
+                                <md-switch class="md-primary" md-no-ink aria-label="Switch No Ink" ng-model="register">
+                                    <h4>register </h4>
+                                </md-switch>
+                            </div>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Login</label>
+                                <input type="text" name="email" ng-model="newUser.login" required>
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Password</label>
+                                <input type="password" name="password" ng-model="newUser.password" required>
+                            </md-input-container>
+                        </div>
+                        <div layout="row" ng-if="!register">
+                            <div flex=""></div>
+                            <md-button class="md-raised md-primary" ng-click="login()">Login</md-button>
+                        </div>
+
+                        <div ng-if="register">
+                            <div layout="row">
+                                <md-input-container flex>
+                                    <label>Repeat password</label>
+                                    <input type="password" name="repeat" ng-model="newUser.repeat" required>
+                                </md-input-container>
+                            </div>
+                            <div layout="row">
+                                <md-input-container flex>
+                                    <label>Email</label>
+                                    <input type="email" name="name" ng-model="newUser.email" required>
+                                </md-input-container>
+                            </div>
+                            <div layout="row">
+                                <md-input-container flex>
+                                    <label>Display name</label>
+                                    <input type="text" name="displayName" ng-model="newUser.display_name" required>
+                                </md-input-container>
+                            </div>
+                            <div layout="row" ng-if="register">
+                                <div flex=""></div>
+                                <md-button class="md-raised md-primary" ng-click="subscribe()">Register</md-button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </md-card-content>
+        </md-card>
+    </md-content>
+
+</div>

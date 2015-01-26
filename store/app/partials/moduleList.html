@@ -1,0 +1,96 @@
+﻿<div layout="row" class="module  main-view">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-sm')">
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Categories</h1>
+        </md-toolbar>
+        <md-content class="">
+            <md-list>
+                <md-item>
+                    <md-item-content>
+                        <div class="md-tile-content">
+                            <md-input-container>
+                                <label>Search</label>
+                                <input ng-model="searchInput">
+                            </md-input-container>
+                        </div>
+                        <div class="md-tile-right">
+                            <md-button ng-click="search(searchInput)" class="md-fab md-primary">
+                                <md-icon icon="image/icons/ic_search_24px.svg" style="width: 24px; height: 24px;"></md-icon>
+                            </md-button>
+                        </div>
+                    </md-item-content>
+                    <md-divider></md-divider>
+                </md-item>
+                <md-item>
+                <md-item-content ng-click="search('')">
+                    <div class="md-tile-content">
+                        <h3>All</h3>
+                    </div>
+                </md-item-content>
+                <md-divider></md-divider>
+                </md-item>
+                <md-item>
+                    <md-item-content ng-click="search('Multimedia')">
+                        <div class="md-tile-content">
+                            <h3>Multimedia</h3>
+                        </div>
+                    </md-item-content>
+                    <md-divider></md-divider>
+                </md-item>
+                <md-item>
+                    <md-item-content ng-click="search('Productivity')">
+                        <div class="md-tile-content">
+                            <h3>Productivity</h3>
+                        </div>
+                    </md-item-content>
+                    <md-divider></md-divider>
+                </md-item>
+                <md-item>
+                    <md-item-content ng-click="search('Games')">
+                        <div class="md-tile-content">
+                            <h3>Games</h3>
+                        </div>
+                    </md-item-content>
+                    <md-divider></md-divider>
+                </md-item>
+                <md-item>
+                    <md-item-content>
+                        <div class="md-tile-content" ng-click="search('Tools')">
+                            <h3>Tools</h3>
+                        </div>
+                    </md-item-content>
+                    <md-divider></md-divider>
+                </md-item>
+                <md-item>
+                    <md-item-content>
+                        <div class="md-tile-content" ng-click="search('Other')">
+                            <h3>Other</h3>
+                        </div>
+                    </md-item-content>
+                </md-item>
+            </md-list>        </md-content>
+    </md-sidenav>
+    <md-content class="padding-top" id="list">
+        <md-card class="md-default-theme" ng-repeat="plugin in PluginList">
+            <a ng-href="#/module/{{plugin.id}}">
+                <md-card-content layout="row" layout-margin>
+                    <div class="" flex="20">
+                        <img ng-src="{{plugin.picture}}" ng-alt="{{plugin.name}} picture" style="max-width:100%;height:auto;" />
+                    </div>
+                    <div class="md-tile-content" flex="70">
+                        <h2>{{plugin.name}}</h2>
+                        <p>
+                            {{limitLength(plugin.description)}}
+                        </p>
+                    </div>
+                    <div class="" flex="10">
+                        <h4>{{timeToReadable(plugin.update_date)}}</h4>
+                        <p>
+                            {{plugin.author_id}}
+                        </p>
+                    </div>
+                </md-card-content>
+            </a>
+        </md-card>
+    </md-content>
+</div>

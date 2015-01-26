@@ -160,5 +160,13 @@ overview:
 #####################################################################################
 
 _module:
-    pattern:  /acsil/module
-    defaults: { _controller: AcsilServerAppBundle:Module:manageModule }
+    pattern:  /acsil/module/{moduleId}
+    defaults: { _controller: AcsilServerAppBundle:Module:manageModule, moduleId:0 }
+
+_upload_module:
+    pattern:  /acsil/mod/upload
+    defaults: { _controller: AcsilServerAppBundle:Module:uploadModule }
+
+_delete_module:
+    pattern:  /acsil/mod/delete{moduleId}
+    defaults: { _controller: AcsilServerAppBundle:Module:deleteModule, moduleId:0 }

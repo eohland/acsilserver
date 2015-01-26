@@ -1,0 +1,33 @@
+﻿La génération a démarré 26/01/2015 16:46:03.
+     1>Projet "C:\Users\Edouard\Documents\GitHub\acsilserver\desktop\AcsilTest2\toto\toto.vcxproj" sur le nœud 2 (Build cible(s)).
+     1>CustomBuild:
+         Moc'ing Authentification.h...
+         Moc'ing Synchro.h...
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I. /IC:\Qt\5.4\msvc2013_opengl\include /I.\GeneratedFiles\Release /IC:\Qt\5.4\msvc2013_opengl\include\QtCore /IC:\Qt\5.4\msvc2013_opengl\include\QtNetwork /IC:\Qt\5.4\msvc2013_opengl\include\QtWebKit /IC:\Qt\5.4\msvc2013_opengl\include\QtHelp /IC:\Qt\5.4\msvc2013_opengl\include\QtXml /IC:\Qt\5.4\msvc2013_opengl\include\QtScript /nologo /W1 /WX- /O2 /Oy- /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_NETWORK_LIB /D QT_HELP_LIB /D QT_XML_LIB /D QT_SCRIPT_LIB /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Authentification.cpp File.cpp Folder.cpp GeneratedFiles\Release\moc_Authentification.cpp GeneratedFiles\Release\moc_Synchro.cpp main.cpp Parser.cpp Synchro.cpp User.cpp
+         Authentification.cpp
+         File.cpp
+         Folder.cpp
+         moc_Authentification.cpp
+         moc_Synchro.cpp
+         main.cpp
+         Parser.cpp
+         Synchro.cpp
+         User.cpp
+         Génération de code en cours...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Edouard\Documents\GitHub\acsilserver\desktop\AcsilTest2\Win32\Release\\SyncLib.exe" /NOLOGO /LIBPATH:C:\Qt\5.4\msvc2013_opengl\lib qtmain.lib Qt5Core.lib Qt5Network.lib Qt5WebKit.lib Qt5Help.lib Qt5Xml.lib Qt5Script.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:\Users\Edouard\Documents\GitHub\acsilserver\desktop\AcsilTest2\Win32\Release\SyncLib.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Edouard\Documents\GitHub\acsilserver\desktop\AcsilTest2\Win32\Release\SyncLib.lib" /MACHINE:X86 /SAFESEH Release\Authentification.obj
+         Release\File.obj
+         Release\Folder.obj
+         Release\moc_Authentification.obj
+         Release\moc_Synchro.obj
+         Release\main.obj
+         Release\Parser.obj
+         Release\Synchro.obj
+         Release\User.obj
+         toto.vcxproj -> C:\Users\Edouard\Documents\GitHub\acsilserver\desktop\AcsilTest2\Win32\Release\SyncLib.exe
+     1>Génération du projet "C:\Users\Edouard\Documents\GitHub\acsilserver\desktop\AcsilTest2\toto\toto.vcxproj" terminée (Build cible(s)).
+
+La génération a réussi.
+
+Temps écoulé 00:00:11.86
