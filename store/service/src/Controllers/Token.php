@@ -63,7 +63,7 @@ class Token extends \Utils\BaseController {
         'ip_address'  => $_SERVER['REMOTE_ADDR'], //TODO:Do better
         'create_date' => time()
       ));
-      return $token;
+      return array('token' => $token);
       //FIXME: Return 201 or 204
     }
     catch (Exception $e) {
