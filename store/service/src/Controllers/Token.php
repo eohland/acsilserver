@@ -42,6 +42,10 @@ class Token extends \Utils\BaseController {
 
   // Create
   public function put($token, $userData) {
+    $user_id = Authenticate::auth($userData->login, $userData->password);
+    if (false === $user_id) {
+      return 401; //TODO: Return Response object
+    }
     $token = self::genToken();
     try {
       $sth = $this->pdo->prepare('
@@ -69,6 +73,7 @@ class Token extends \Utils\BaseController {
   }
 
   public function delete($id) {
+    //FIXME: Check user permissions
     if (false === Authenticate::isAuth()) {
       //TODO: Use a Response class
       header('HTTP/1.0 401 Unauthorized');
