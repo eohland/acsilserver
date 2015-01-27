@@ -31,10 +31,15 @@ list:
     defaults: { _controller: APIBundle:Operations:listFiles, folderId: 0 }
     requirements:
         _method: POST
+listAll:
+    pattern: /service/1/op/listAll
+    defaults: { _controller: APIBundle:Operations:listAllFiles}
+    requirements:
+        _method: POST
 
 upload:
-    pattern: /service/1/op/upload/{folderId}
-    defaults: { _controller: APIBundle:Operations:upload, folderId: 0 }
+    pattern: /service/1/op/upload/{folderId}/{mobile}
+    defaults: { _controller: APIBundle:Operations:upload, folderId: 0, mobile: 0 }
     requirements:
         _method: POST
 
@@ -45,8 +50,20 @@ download:
         _method: POST
 
 folder:
-    pattern: /service/1/op/folder
-    defaults: { _controller: APIBundle:Operations:folder, folderId: '' }
+    pattern: /service/1/op/folder/{folderId}
+    defaults: { _controller: APIBundle:Operations:folder, folderId: 0 }
+    requirements:
+        _method: POST
+
+folderDelete:
+    pattern: /service/1/op/folderDelete/{folderId}
+    defaults: { _controller: APIBundle:Operations:deleteFolder, folderId: 0 }
+    requirements:
+        _method: POST
+
+folderRename:
+    pattern: /service/1/op/folderRename
+    defaults: { _controller: APIBundle:Operations:renameFolder }
     requirements:
         _method: POST
 

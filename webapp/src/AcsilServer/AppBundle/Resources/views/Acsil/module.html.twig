@@ -37,18 +37,18 @@
     </ul>
     <div class="btn-group">			
       {% for mod in listAllModules %}
-      <a class="btn btn-primary" href="#"><i class="icon-edit icon-white"></i> {{  mod.name|trans }}</a>
-      <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-      <ul class="dropdown-menu">
-	<li><a href="{{ path('_module', {'moduleId': mod.id|default(0)}) }}">
-	    <i class="icon-download-alt"></i> {{ 'Launch'|trans }} </a>
-	</li>
-	<li><a href="{{ path('_delete_module', {'moduleId': mod.id|default(0)}) }}">
-	    <i class="icon-trash"></i> {{ 'Delete'|trans }} </a>
-	</li>
-      </ul>
-      <br>
-      <br>
+
+      <div class="dropdown">
+	<a class="btn btn-primary"  href="{{ path('_module', {'moduleId': mod.id|default(0)}) }}"><i class="icon-edit icon-white"></i> {{  mod.name|trans }}</a>
+	<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+	  <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+	  <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('_module', {'moduleId': mod.id|default(0)}) }}">{{ 'Launch'|trans }}</a></li>
+	  <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('_delete_module', {'moduleId': mod.id|default(0)}) }}">{{ 'Delete'|trans }}</a></li>
+	</ul>
+      </div>
+      <br/>
       {% endfor %}
     </div>
   </div>
