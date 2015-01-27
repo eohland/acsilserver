@@ -20,9 +20,10 @@ class FolderType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AcsilServer\AppBundle\Entity\Folder'
-        ));
+      $resolver->setDefaults(array(
+				   'data_class' => 'AcsilServer\AppBundle\Entity\Folder',
+				               'csrf_protection'   => false,  
+				   ));
     }
 
     public function getName()
