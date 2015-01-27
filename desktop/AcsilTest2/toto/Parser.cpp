@@ -24,8 +24,14 @@ std::map<int, User *>	&Parser::getUserMap()
 	return(this->_userMap);
 }
 
+std::string Parser::getJSON()
+{
+	return this->_json;
+}
+
 void	Parser::parse(std::string &data)
 {
+	this->_json = data;
 	fillFile(data);
 	fillFolder(data);
 	fillUser(data);
