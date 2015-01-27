@@ -4,6 +4,8 @@ namespace Controllers;
 use PDO;
 use Exception;
 
+use Utils\Authenticate;
+
 class Plugin extends \Utils\BaseController {
   protected function createTable() {
     try {
@@ -67,7 +69,11 @@ class Plugin extends \Utils\BaseController {
 
   // Create
   public function put($id, $plugin) {
-    //FIXME: Check user permissions
+    if (false === Authenticate::isAuth()) {
+      //TODO: Use a Response class
+      header('HTTP/1.0 401 Unauthorized');
+      return array('errorCode'=> 401, 'errorMessage' => 'Not Authorized');
+    }
     try {
       $sth = $this->pdo->prepare('
         INSERT INTO `plugins`(
@@ -104,7 +110,11 @@ class Plugin extends \Utils\BaseController {
 
   // Update
   public function post($id, $plugin) {
-    //FIXME: Check user permissions
+    if (false === Authenticate::isAuth()) {
+      //TODO: Use a Response class
+      header('HTTP/1.0 401 Unauthorized');
+      return array('errorCode'=> 401, 'errorMessage' => 'Not Authorized');
+    }
     try {
       $sth = $this->pdo->prepare('
         INSERT OR REPLACE INTO `plugins`(
@@ -139,7 +149,11 @@ class Plugin extends \Utils\BaseController {
   }
 
   public function delete($id) {
-    //FIXME: Check user permissions
+    if (false === Authenticate::isAuth()) {
+      //TODO: Use a Response class
+      header('HTTP/1.0 401 Unauthorized');
+      return array('errorCode'=> 401, 'errorMessage' => 'Not Authorized');
+    }
     try {
       $sth = $this->pdo->prepare('
         DELETE FROM `plugins` WHERE `id` LIKE :id

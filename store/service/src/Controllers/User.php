@@ -4,6 +4,8 @@ namespace Controllers;
 use PDO;
 use Exception;
 
+use Utils\Authenticate;
+
 class User extends \Utils\BaseController {
   protected function createTable() {
     try {
@@ -26,6 +28,11 @@ class User extends \Utils\BaseController {
   }
 
   public function getAll() {
+    if (false === Authenticate::isAuth()) {
+      //TODO: Use a Response class
+      header('HTTP/1.0 401 Unauthorized');
+      return array('errorCode'=> 401, 'errorMessage' => 'Not Authorized');
+    }
     try {
       $sth = $this->pdo->prepare('
         SELECT
@@ -43,6 +50,11 @@ class User extends \Utils\BaseController {
   }
 
   public function get($id) {
+    if (false === Authenticate::isAuth()) {
+      //TODO: Use a Response class
+      header('HTTP/1.0 401 Unauthorized');
+      return array('errorCode'=> 401, 'errorMessage' => 'Not Authorized');
+    }
     try {
       $sth = $this->pdo->prepare('
         SELECT
@@ -62,7 +74,6 @@ class User extends \Utils\BaseController {
 
   // Create
   public function put($id, $user) {
-    //FIXME: Check user permissions
     try {
       $sth = $this->pdo->prepare('
         INSERT INTO `users`(
@@ -94,7 +105,11 @@ class User extends \Utils\BaseController {
 
   // Update
   public function post($id, $user) {
-    //FIXME: Check user permissions
+    if ($id === Authenticate::isAuth()) {
+      //TODO: Use a Response class
+      header('HTTP/1.0 401 Unauthorized');
+      return array('errorCode'=> 401, 'errorMessage' => 'Not Authorized');
+    }
     try {
       $sth = $this->pdo->prepare('
         INSERT OR REPLACE INTO `users`(
@@ -124,7 +139,11 @@ class User extends \Utils\BaseController {
   }
 
   public function delete($id) {
-    //FIXME: Check user permissions
+    if ($id !== Authenticate::isAuth()) {
+      //TODO: Use a Response class
+      header('HTTP/1.0 401 Unauthorized');
+      return array('errorCode'=> 401, 'errorMessage' => 'Not Authorized');
+    }
     try {
       $sth = $this->pdo->prepare('
         DELETE FROM `users` WHERE `id` LIKE :id
