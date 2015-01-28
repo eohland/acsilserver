@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=Acsliserver
-Exec=./cordova-ubuntu www/
-Terminal=false
-Type=Application
-X-Ubuntu-Touch=true
-Icon=www/res/icon_128.png

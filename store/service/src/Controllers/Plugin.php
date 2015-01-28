@@ -4,6 +4,8 @@ namespace Controllers;
 use PDO;
 use Exception;
 
+use Utils\Authenticate;
+
 class Plugin extends \Utils\BaseController {
   protected function createTable() {
     try {
@@ -24,7 +26,8 @@ class Plugin extends \Utils\BaseController {
       $sth->execute();
     }
     catch (Exception $e) {
-      error_log ('Plugin::createTable: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -42,7 +45,8 @@ class Plugin extends \Utils\BaseController {
       return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
     catch (Exception $e) {
-      error_log ('Plugin::getAll: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -58,16 +62,27 @@ class Plugin extends \Utils\BaseController {
         WHERE id LIKE :id;
       ');
       $sth->execute(array('id' => $id));
-      return $sth->fetch(PDO::FETCH_ASSOC);
+      $resource = $sth->fetch(PDO::FETCH_ASSOC);
+      if (false === $resource) {
+        //TODO: Return a Response object
+        header('HTTP/1.0 404 Not Found');
+        return array('errorCode' => 404, 'errorMessage' => 'Not Found');
+      }
+      return $resource;
     }
     catch (Exception $e) {
-      error_log ('Plugin::get: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
   // Create
   public function put($id, $plugin) {
-    //FIXME: Check user permissions
+    if (false === Authenticate::isAuth()) {
+      //TODO: Use a Response class
+      header('HTTP/1.0 401 Unauthorized');
+      return array('errorCode'=> 401, 'errorMessage' => 'Not Authorized');
+    }
     try {
       $sth = $this->pdo->prepare('
         INSERT INTO `plugins`(
@@ -95,16 +110,21 @@ class Plugin extends \Utils\BaseController {
         'content'     => $plugin->content,
       ));
       //FIXME: Return 201 or 204
+      header('HTTP/1.0 201 Created');
     }
     catch (Exception $e) {
-      error_log ('Plugin::put: ' . $e->getMessage());
-      //TODO: Return 400?
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
   // Update
   public function post($id, $plugin) {
-    //FIXME: Check user permissions
+    if (false === Authenticate::isAuth()) {
+      //TODO: Use a Response class
+      header('HTTP/1.0 401 Unauthorized');
+      return array('errorCode'=> 401, 'errorMessage' => 'Not Authorized');
+    }
     try {
       $sth = $this->pdo->prepare('
         INSERT OR REPLACE INTO `plugins`(
@@ -131,15 +151,20 @@ class Plugin extends \Utils\BaseController {
         'picture'     => $plugin->picture,
         'content'     => $plugin->content,
       ));
+      header('HTTP/1.0 204 No Content');
     }
     catch (Exception $e) {
-      error_log ('Plugin::post: ' . $e->getMessage());
-      //TODO: Return 400?
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
   public function delete($id) {
-    //FIXME: Check user permissions
+    if (false === Authenticate::isAuth()) {
+      //TODO: Use a Response class
+      header('HTTP/1.0 401 Unauthorized');
+      return array('errorCode'=> 401, 'errorMessage' => 'Not Authorized');
+    }
     try {
       $sth = $this->pdo->prepare('
         DELETE FROM `plugins` WHERE `id` LIKE :id
@@ -147,10 +172,12 @@ class Plugin extends \Utils\BaseController {
       $sth->execute(array(
         'id'          => $id,
       ));
-      //FIXME: Return 204
+      //FIXME: Return Response object
+      header('HTTP/1.0 204 No Content');
     }
     catch (Exception $e) {
-      error_log ('Plugin::delete: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 }

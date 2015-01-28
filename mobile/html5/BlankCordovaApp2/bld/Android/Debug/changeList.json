@@ -1,0 +1,14 @@
+{
+  "changedFilesIos": [
+    "js\\controllers.js",
+    "partials\\upload.html",
+    "css\\signin.css"
+  ],
+  "deletedFilesIos": [],
+  "addedPluginsIos": [],
+  "deletedPluginsIos": [],
+  "changedFiles": [],
+  "deletedFiles": [],
+  "addedPlugins": [],
+  "deletedPlugins": []
+}

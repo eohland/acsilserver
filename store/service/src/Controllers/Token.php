@@ -19,7 +19,8 @@ class Token extends \Utils\BaseController {
       $sth->execute();
     }
     catch (Exception $e) {
-      error_log ('Token::createTable: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -33,10 +34,17 @@ class Token extends \Utils\BaseController {
         WHERE token LIKE :token;
       ');
       $sth->execute(array('token' => $token));
-      return $sth->fetch(PDO::FETCH_ASSOC);
+      $resource = $sth->fetch(PDO::FETCH_ASSOC);
+      if (false === $resource) {
+        //TODO: Return a Response object
+        header('HTTP/1.0 404 Not Found');
+        return array('errorCode' => 404, 'errorMessage' => 'Not Found');
+      }
+      return $resource;
     }
     catch (Exception $e) {
-      error_log ('Token::get: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -44,7 +52,9 @@ class Token extends \Utils\BaseController {
   public function put($token, $userData) {
     $user_id = Authenticate::auth($userData->login, $userData->password);
     if (false === $user_id) {
-      return 401; //TODO: Return Response object
+      //TODO: Use a Response class
+      header('HTTP/1.0 401 Unauthorized');
+      return array('errorCode'=> 401, 'errorMessage' => 'Not Authorized');
     }
     $token = self::genToken();
     try {
@@ -63,17 +73,23 @@ class Token extends \Utils\BaseController {
         'ip_address'  => $_SERVER['REMOTE_ADDR'], //TODO:Do better
         'create_date' => time()
       ));
-      return $token;
+      return array('token' => $token);
       //FIXME: Return 201 or 204
+      header('HTTP/1.0 201 Created');
     }
     catch (Exception $e) {
-      error_log ('Token::put: ' . $e->getMessage());
-      //TODO: Return 400?
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
   public function delete($id) {
     //FIXME: Check user permissions
+    if (false === Authenticate::isAuth()) {
+      //TODO: Use a Response class
+      header('HTTP/1.0 401 Unauthorized');
+      return array('errorCode'=> 401, 'errorMessage' => 'Not Authorized');
+    }
     try {
       $sth = $this->pdo->prepare('
         DELETE FROM `tokens` WHERE `id` LIKE :id
@@ -84,7 +100,8 @@ class Token extends \Utils\BaseController {
       //FIXME: Return 204
     }
     catch (Exception $e) {
-      error_log ('Token::delete: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 

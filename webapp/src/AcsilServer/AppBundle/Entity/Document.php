@@ -177,7 +177,11 @@ class Document extends Data
     {
         if (null !== $this->file) {
             $tempPath = sha1(uniqid(mt_rand(), true));
+	    $ext = null;
+	    if ($this->file)
 			$ext = $this->file->guessExtension();
+			if ($this->mimeType)
+			  $ext = $this->mimeType;
 		if ($ext)
 		{
 		if ($this->getIsProfilePicture() == 0)
@@ -188,6 +192,7 @@ class Document extends Data
 		{
 			$this->setPath($this->getName().'.'.$ext);		
 		}
+		if (!$this->mimeType)
 		$this->setMimeType($ext);
 		}
 		else
@@ -202,11 +207,17 @@ class Document extends Data
 
 		}
 			$this->setMimeType(".unknown");
-			}		
+			}
+		$size = 0;
+		if(!$this->size)
 		$size = $this->file->getClientSize();
+		if ($size)
 		$this->setSize($size);
+		if (!$this->getFormatedSize())
+		  {
 		$formatedSize = $this->formatSizeUnits(strval($size));
 		$this->setFormatedSize($formatedSize);
+		  }
 		}
 	}
 
@@ -219,12 +230,15 @@ class Document extends Data
         if (null === $this->file) {
             return;
         }
+	if ($this->file)
+	  {
 		if ($this->realPath)
 			$this->file->move($this->getUploadRootDir().'/'.$this->realPath, $this->getPath());
 		else
-			$this->file->move($this->getUploadRootDir(), $this->getPath());
-        unset($this->file);
-    }
+		  $this->file->move($this->getUploadRootDir(), $this->getPath());
+		//unset($this->file);
+	  }
+}
 
     /**
      * @ORM\PostRemove()

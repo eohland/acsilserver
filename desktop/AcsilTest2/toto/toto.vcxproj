@@ -80,12 +80,8 @@
     <ClCompile Include="Authentification.cpp" />
     <ClCompile Include="File.cpp" />
     <ClCompile Include="Folder.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_Authentification.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_Synchro.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Authentification.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_Synchro.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_Authentification.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>

@@ -4246,3 +4246,7 @@ borderBlue
     margin-left: 0%;
   }
 }
+
+.dropdown-menu li>a {
+    font-size: 15px;
+}

@@ -1,0 +1,73 @@
+<!--<form id="upload_form" enctype="multipart/form-data" method="post">
+  <input type="file" name="file1" id="uploadFile"><br>
+  <input type="button" value="Upload File" ng-click="uploadFile()">
+  <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
+  <h3 id="status"></h3>
+  <p id="loaded_n_total"></p>
+</form>
+
+<input type="file" file-model="myFile" />
+<button ng-click="uploadFile()">upload me</button>-->
+<div class="list">
+    <div class="item item-divider">
+        Add a file
+    </div>
+    <div class="item item-divider" style="text-align:center;">
+        <input id="file" type="file" style="visibility:hidden" multiple />
+        <div class="row">
+            <div class="col">
+                <button class="button icon-left ion-ios7-folder button-calm" ng-click="clickInput()">
+                    Upload
+                </button>
+            </div>
+        </div>
+        <div id="progress"></div>
+    </div>
+    <div class="item item-divider">
+        Create a folder
+    </div>
+    <div class="item item-divider" style="text-align:center;">
+        <input id="fileUpload" type="file" style="visibility:hidden" multiple />
+        <div class="row">
+            <div class="col">
+                <form>
+                    <button type="submit" class="button icon-left ion-ios7-cloud-upload button-calm" ng-click="showCreate()">
+                        Add
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script id="modal-create.html" type="text/ng-template">
+    <div class="modal">
+        <ion-header-bar class="bar-dark">
+            <h3 class="title">Create a folder</h3>
+        </ion-header-bar>
+        <ion-content>
+            <ion-list>
+                <ion-item class="item-input">
+                    <span class="input-label">Name</span>
+                    <input type="text" ng-model="folder.name" style="text-align:right">
+                </ion-item>
+            </ion-list>
+        </ion-content>
+        <ion-footer-bar class="bar-calm">
+            <div class="button-bar">
+                <a class="button button-dark"
+                   ng-click="closeModal()">
+                    Close
+                </a>
+                <a class="button button-stable"
+                   style="color:black;"
+                   ng-click="saveNewFolder(folder)">
+                    Create
+                </a>
+            </div>
+        </ion-footer-bar>
+    </div>
+</script>
+<ng-include src="'partials/loading.html'"></ng-include>

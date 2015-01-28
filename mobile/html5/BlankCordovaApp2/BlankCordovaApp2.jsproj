@@ -1,0 +1,1154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Android">
+      <Configuration>Debug</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|iOS">
+      <Configuration>Debug</Configuration>
+      <Platform>iOS</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Windows-AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>Windows-AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Windows-x64">
+      <Configuration>Debug</Configuration>
+      <Platform>Windows-x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Windows-x86">
+      <Configuration>Debug</Configuration>
+      <Platform>Windows-x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Windows-ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>Windows-ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Windows Phone 8">
+      <Configuration>Debug</Configuration>
+      <Platform>Windows Phone 8</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Windows Phone (Universal)">
+      <Configuration>Debug</Configuration>
+      <Platform>Windows Phone (Universal)</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Android">
+      <Configuration>Release</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|iOS">
+      <Configuration>Release</Configuration>
+      <Platform>iOS</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Windows-AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>Windows-AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Windows-x64">
+      <Configuration>Release</Configuration>
+      <Platform>Windows-x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Windows-x86">
+      <Configuration>Release</Configuration>
+      <Platform>Windows-x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Windows-ARM">
+      <Configuration>Release</Configuration>
+      <Platform>Windows-ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Windows Phone 8">
+      <Configuration>Release</Configuration>
+      <Platform>Windows Phone 8</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Windows Phone (Universal)">
+      <Configuration>Release</Configuration>
+      <Platform>Windows Phone (Universal)</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Distribution|Android">
+      <Configuration>Distribution</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Distribution|iOS">
+      <Configuration>Distribution</Configuration>
+      <Platform>iOS</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Distribution|Windows-AnyCPU">
+      <Configuration>Distribution</Configuration>
+      <Platform>Windows-AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Distribution|Windows-x64">
+      <Configuration>Distribution</Configuration>
+      <Platform>Windows-x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Distribution|Windows-x86">
+      <Configuration>Distribution</Configuration>
+      <Platform>Windows-x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Distribution|Windows-ARM">
+      <Configuration>Distribution</Configuration>
+      <Platform>Windows-ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Distribution|Windows Phone 8">
+      <Configuration>Distribution</Configuration>
+      <Platform>Windows Phone 8</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Distribution|Windows Phone (Universal)">
+      <Configuration>Distribution</Configuration>
+      <Platform>Windows Phone (Universal)</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>7c4a6045-2b09-487b-9889-9aba84e2dc5b</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DefaultReferenceGroup>Implicit (Multi-Device Apps)</DefaultReferenceGroup>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0'">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\signin.css" />
+    <Content Include="css\style.css" />
+    <Content Include="data\signIn.json" />
+    <Content Include="img\icone\alert-circled.png" />
+    <Content Include="img\icone\alert.png" />
+    <Content Include="img\icone\android-add-contact.png" />
+    <Content Include="img\icone\android-add.png" />
+    <Content Include="img\icone\android-alarm.png" />
+    <Content Include="img\icone\android-archive.png" />
+    <Content Include="img\icone\android-arrow-back.png" />
+    <Content Include="img\icone\android-arrow-down-left.png" />
+    <Content Include="img\icone\android-arrow-down-right.png" />
+    <Content Include="img\icone\android-arrow-up-left.png" />
+    <Content Include="img\icone\android-arrow-up-right.png" />
+    <Content Include="img\icone\android-battery.png" />
+    <Content Include="img\icone\android-book.png" />
+    <Content Include="img\icone\android-calendar.png" />
+    <Content Include="img\icone\android-call.png" />
+    <Content Include="img\icone\android-camera.png" />
+    <Content Include="img\icone\android-chat.png" />
+    <Content Include="img\icone\android-checkmark.png" />
+    <Content Include="img\icone\android-clock.png" />
+    <Content Include="img\icone\android-close.png" />
+    <Content Include="img\icone\android-contact.png" />
+    <Content Include="img\icone\android-contacts.png" />
+    <Content Include="img\icone\android-data.png" />
+    <Content Include="img\icone\android-developer.png" />
+    <Content Include="img\icone\android-display.png" />
+    <Content Include="img\icone\android-download.png" />
+    <Content Include="img\icone\android-dropdown.png" />
+    <Content Include="img\icone\android-earth.png" />
+    <Content Include="img\icone\android-folder.png" />
+    <Content Include="img\icone\android-forums.png" />
+    <Content Include="img\icone\android-friends.png" />
+    <Content Include="img\icone\android-hand.png" />
+    <Content Include="img\icone\android-image.png" />
+    <Content Include="img\icone\android-inbox.png" />
+    <Content Include="img\icone\android-information.png" />
+    <Content Include="img\icone\android-keypad.png" />
+    <Content Include="img\icone\android-lightbulb.png" />
+    <Content Include="img\icone\android-locate.png" />
+    <Content Include="img\icone\android-location.png" />
+    <Content Include="img\icone\android-mail.png" />
+    <Content Include="img\icone\android-microphone.png" />
+    <Content Include="img\icone\android-mixer.png" />
+    <Content Include="img\icone\android-more.png" />
+    <Content Include="img\icone\android-note.png" />
+    <Content Include="img\icone\android-playstore.png" />
+    <Content Include="img\icone\android-printer.png" />
+    <Content Include="img\icone\android-promotion.png" />
+    <Content Include="img\icone\android-reminder.png" />
+    <Content Include="img\icone\android-remove.png" />
+    <Content Include="img\icone\android-search.png" />
+    <Content Include="img\icone\android-send.png" />
+    <Content Include="img\icone\android-settings.png" />
+    <Content Include="img\icone\android-share.png" />
+    <Content Include="img\icone\android-social-user.png" />
+    <Content Include="img\icone\android-social.png" />
+    <Content Include="img\icone\android-sort.png" />
+    <Content Include="img\icone\android-star.png" />
+    <Content Include="img\icone\android-stopwatch.png" />
+    <Content Include="img\icone\android-storage.png" />
+    <Content Include="img\icone\android-system-back.png" />
+    <Content Include="img\icone\android-system-home.png" />
+    <Content Include="img\icone\android-system-windows.png" />
+    <Content Include="img\icone\android-timer.png" />
+    <Content Include="img\icone\android-trash.png" />
+    <Content Include="img\icone\android-volume.png" />
+    <Content Include="img\icone\android-wifi.png" />
+    <Content Include="img\icone\archive.png" />
+    <Content Include="img\icone\arrow-down-a.png" />
+    <Content Include="img\icone\arrow-down-b.png" />
+    <Content Include="img\icone\arrow-down-c.png" />
+    <Content Include="img\icone\arrow-expand.png" />
+    <Content Include="img\icone\arrow-graph-down-left.png" />
+    <Content Include="img\icone\arrow-graph-down-right.png" />
+    <Content Include="img\icone\arrow-graph-up-left.png" />
+    <Content Include="img\icone\arrow-graph-up-right.png" />
+    <Content Include="img\icone\arrow-left-a.png" />
+    <Content Include="img\icone\arrow-left-b.png" />
+    <Content Include="img\icone\arrow-left-c.png" />
+    <Content Include="img\icone\arrow-move.png" />
+    <Content Include="img\icone\arrow-resize.png" />
+    <Content Include="img\icone\arrow-return-left.png" />
+    <Content Include="img\icone\arrow-return-right.png" />
+    <Content Include="img\icone\arrow-right-a.png" />
+    <Content Include="img\icone\arrow-right-b.png" />
+    <Content Include="img\icone\arrow-right-c.png" />
+    <Content Include="img\icone\arrow-shrink.png" />
+    <Content Include="img\icone\arrow-swap.png" />
+    <Content Include="img\icone\arrow-up-a.png" />
+    <Content Include="img\icone\arrow-up-b.png" />
+    <Content Include="img\icone\arrow-up-c.png" />
+    <Content Include="img\icone\at.png" />
+    <Content Include="img\icone\bag.png" />
+    <Content Include="img\icone\battery-charging.png" />
+    <Content Include="img\icone\battery-empty.png" />
+    <Content Include="img\icone\battery-full.png" />
+    <Content Include="img\icone\battery-half.png" />
+    <Content Include="img\icone\battery-low.png" />
+    <Content Include="img\icone\beaker.png" />
+    <Content Include="img\icone\beer.png" />
+    <Content Include="img\icone\bluetooth.png" />
+    <Content Include="img\icone\bookmark.png" />
+    <Content Include="img\icone\briefcase.png" />
+    <Content Include="img\icone\bug.png" />
+    <Content Include="img\icone\calculator.png" />
+    <Content Include="img\icone\calendar.png" />
+    <Content Include="img\icone\camera.png" />
+    <Content Include="img\icone\card.png" />
+    <Content Include="img\icone\chatbox-working.png" />
+    <Content Include="img\icone\chatbox.png" />
+    <Content Include="img\icone\chatboxes.png" />
+    <Content Include="img\icone\chatbubble-working.png" />
+    <Content Include="img\icone\chatbubble.png" />
+    <Content Include="img\icone\chatbubbles.png" />
+    <Content Include="img\icone\checkmark-circled.png" />
+    <Content Include="img\icone\checkmark-round.png" />
+    <Content Include="img\icone\checkmark.png" />
+    <Content Include="img\icone\chevron-down.png" />
+    <Content Include="img\icone\chevron-left.png" />
+    <Content Include="img\icone\chevron-right.png" />
+    <Content Include="img\icone\chevron-up.png" />
+    <Content Include="img\icone\clipboard.png" />
+    <Content Include="img\icone\clock.png" />
+    <Content Include="img\icone\close-circled.png" />
+    <Content Include="img\icone\close-round.png" />
+    <Content Include="img\icone\close.png" />
+    <Content Include="img\icone\cloud.png" />
+    <Content Include="img\icone\code-download.png" />
+    <Content Include="img\icone\code-working.png" />
+    <Content Include="img\icone\code.png" />
+    <Content Include="img\icone\coffee.png" />
+    <Content Include="img\icone\compass.png" />
+    <Content Include="img\icone\compose.png" />
+    <Content Include="img\icone\connection-bars.png" />
+    <Content Include="img\icone\contrast.png" />
+    <Content Include="img\icone\disc.png" />
+    <Content Include="img\icone\document-text.png" />
+    <Content Include="img\icone\document.png" />
+    <Content Include="img\icone\drag.png" />
+    <Content Include="img\icone\earth.png" />
+    <Content Include="img\icone\edit.png" />
+    <Content Include="img\icone\egg.png" />
+    <Content Include="img\icone\eject.png" />
+    <Content Include="img\icone\email.png" />
+    <Content Include="img\icone\eye-disabled.png" />
+    <Content Include="img\icone\eye.png" />
+    <Content Include="img\icone\female.png" />
+    <Content Include="img\icone\filing.png" />
+    <Content Include="img\icone\film-marker.png" />
+    <Content Include="img\icone\flag.png" />
+    <Content Include="img\icone\flash-off.png" />
+    <Content Include="img\icone\flash.png" />
+    <Content Include="img\icone\flask.png" />
+    <Content Include="img\icone\folder.png" />
+    <Content Include="img\icone\fork-repo.png" />
+    <Content Include="img\icone\fork.png" />
+    <Content Include="img\icone\forward.png" />
+    <Content Include="img\icone\game-controller-a.png" />
+    <Content Include="img\icone\game-controller-b.png" />
+    <Content Include="img\icone\gear-a.png" />
+    <Content Include="img\icone\gear-b.png" />
+    <Content Include="img\icone\grid.png" />
+    <Content Include="img\icone\hammer.png" />
+    <Content Include="img\icone\headphone.png" />
+    <Content Include="img\icone\heart.png" />
+    <Content Include="img\icone\help-buoy.png" />
+    <Content Include="img\icone\help-circled.png" />
+    <Content Include="img\icone\help.png" />
+    <Content Include="img\icone\home.png" />
+    <Content Include="img\icone\icecream.png" />
+    <Content Include="img\icone\icon-social-google-plus-outline.png" />
+    <Content Include="img\icone\icon-social-google-plus.png" />
+    <Content Include="img\icone\image.png" />
+    <Content Include="img\icone\images.png" />
+    <Content Include="img\icone\information-circled.png" />
+    <Content Include="img\icone\information.png" />
+    <Content Include="img\icone\ionic.png" />
+    <Content Include="img\icone\ios7-alarm-outline.png" />
+    <Content Include="img\icone\ios7-alarm.png" />
+    <Content Include="img\icone\ios7-albums-outline.png" />
+    <Content Include="img\icone\ios7-albums.png" />
+    <Content Include="img\icone\ios7-arrow-back.png" />
+    <Content Include="img\icone\ios7-arrow-down.png" />
+    <Content Include="img\icone\ios7-arrow-forward.png" />
+    <Content Include="img\icone\ios7-arrow-left.png" />
+    <Content Include="img\icone\ios7-arrow-right.png" />
+    <Content Include="img\icone\ios7-arrow-thin-down.png" />
+    <Content Include="img\icone\ios7-arrow-thin-left.png" />
+    <Content Include="img\icone\ios7-arrow-thin-right.png" />
+    <Content Include="img\icone\ios7-arrow-thin-up.png" />
+    <Content Include="img\icone\ios7-arrow-up.png" />
+    <Content Include="img\icone\ios7-at-outline.png" />
+    <Content Include="img\icone\ios7-at.png" />
+    <Content Include="img\icone\ios7-bell-outline.png" />
+    <Content Include="img\icone\ios7-bell.png" />
+    <Content Include="img\icone\ios7-bolt-outline.png" />
+    <Content Include="img\icone\ios7-bolt.png" />
+    <Content Include="img\icone\ios7-bookmarks-outline.png" />
+    <Content Include="img\icone\ios7-bookmarks.png" />
+    <Content Include="img\icone\ios7-box-outline.png" />
+    <Content Include="img\icone\ios7-box.png" />
+    <Content Include="img\icone\ios7-briefcase-outline.png" />
+    <Content Include="img\icone\ios7-briefcase.png" />
+    <Content Include="img\icone\ios7-browsers-outline.png" />
+    <Content Include="img\icone\ios7-browsers.png" />
+    <Content Include="img\icone\ios7-calculator-outline.png" />
+    <Content Include="img\icone\ios7-calculator.png" />
+    <Content Include="img\icone\ios7-calendar-outline.png" />
+    <Content Include="img\icone\ios7-calendar.png" />
+    <Content Include="img\icone\ios7-camera-outline.png" />
+    <Content Include="img\icone\ios7-camera.png" />
+    <Content Include="img\icone\ios7-cart-outline.png" />
+    <Content Include="img\icone\ios7-cart.png" />
+    <Content Include="img\icone\ios7-chatboxes-outline.png" />
+    <Content Include="img\icone\ios7-chatboxes.png" />
+    <Content Include="img\icone\ios7-chatbubble-outline.png" />
+    <Content Include="img\icone\ios7-chatbubble.png" />
+    <Content Include="img\icone\ios7-checkmark-empty.png" />
+    <Content Include="img\icone\ios7-checkmark-outline.png" />
+    <Content Include="img\icone\ios7-checkmark.png" />
+    <Content Include="img\icone\ios7-circle-filled.png" />
+    <Content Include="img\icone\ios7-circle-outline.png" />
+    <Content Include="img\icone\ios7-clock-outline.png" />
+    <Content Include="img\icone\ios7-clock.png" />
+    <Content Include="img\icone\ios7-close-empty.png" />
+    <Content Include="img\icone\ios7-close-outline.png" />
+    <Content Include="img\icone\ios7-close.png" />
+    <Content Include="img\icone\ios7-cloud-download-outline.png" />
+    <Content Include="img\icone\ios7-cloud-download.png" />
+    <Content Include="img\icone\ios7-cloud-outline.png" />
+    <Content Include="img\icone\ios7-cloud-upload-outline.png" />
+    <Content Include="img\icone\ios7-cloud-upload.png" />
+    <Content Include="img\icone\ios7-cloud.png" />
+    <Content Include="img\icone\ios7-cloudy-night-outline.png" />
+    <Content Include="img\icone\ios7-cloudy-night.png" />
+    <Content Include="img\icone\ios7-cloudy-outline.png" />
+    <Content Include="img\icone\ios7-cloudy.png" />
+    <Content Include="img\icone\ios7-cog-outline.png" />
+    <Content Include="img\icone\ios7-cog.png" />
+    <Content Include="img\icone\ios7-compose-outline.png" />
+    <Content Include="img\icone\ios7-compose.png" />
+    <Content Include="img\icone\ios7-contact-outline.png" />
+    <Content Include="img\icone\ios7-contact.png" />
+    <Content Include="img\icone\ios7-copy-outline.png" />
+    <Content Include="img\icone\ios7-copy.png" />
+    <Content Include="img\icone\ios7-download-outline.png" />
+    <Content Include="img\icone\ios7-download.png" />
+    <Content Include="img\icone\ios7-drag.png" />
+    <Content Include="img\icone\ios7-email-outline.png" />
+    <Content Include="img\icone\ios7-email.png" />
+    <Content Include="img\icone\ios7-eye-outline.png" />
+    <Content Include="img\icone\ios7-eye.png" />
+    <Content Include="img\icone\ios7-fastforward-outline.png" />
+    <Content Include="img\icone\ios7-fastforward.png" />
+    <Content Include="img\icone\ios7-filing-outline.png" />
+    <Content Include="img\icone\ios7-filing.png" />
+    <Content Include="img\icone\ios7-film-outline.png" />
+    <Content Include="img\icone\ios7-film.png" />
+    <Content Include="img\icone\ios7-flag-outline.png" />
+    <Content Include="img\icone\ios7-flag.png" />
+    <Content Include="img\icone\ios7-folder-outline.png" />
+    <Content Include="img\icone\ios7-folder.png" />
+    <Content Include="img\icone\ios7-gear-outline.png" />
+    <Content Include="img\icone\ios7-gear.png" />
+    <Content Include="img\icone\ios7-glasses-outline.png" />
+    <Content Include="img\icone\ios7-glasses.png" />
+    <Content Include="img\icone\ios7-heart-outline.png" />
+    <Content Include="img\icone\ios7-heart.png" />
+    <Content Include="img\icone\ios7-help-empty.png" />
+    <Content Include="img\icone\ios7-help-outline.png" />
+    <Content Include="img\icone\ios7-help.png" />
+    <Content Include="img\icone\ios7-infinite-outline.png" />
+    <Content Include="img\icone\ios7-infinite.png" />
+    <Content Include="img\icone\ios7-information-empty.png" />
+    <Content Include="img\icone\ios7-information-outline.png" />
+    <Content Include="img\icone\ios7-information.png" />
+    <Content Include="img\icone\ios7-ionic-outline.png" />
+    <Content Include="img\icone\ios7-keypad-outline.png" />
+    <Content Include="img\icone\ios7-keypad.png" />
+    <Content Include="img\icone\ios7-lightbulb-outline.png" />
+    <Content Include="img\icone\ios7-lightbulb.png" />
+    <Content Include="img\icone\ios7-location-outline.png" />
+    <Content Include="img\icone\ios7-location.png" />
+    <Content Include="img\icone\ios7-locked-outline.png" />
+    <Content Include="img\icone\ios7-locked.png" />
+    <Content Include="img\icone\ios7-medkit-outline.png" />
+    <Content Include="img\icone\ios7-medkit.png" />
+    <Content Include="img\icone\ios7-mic-off.png" />
+    <Content Include="img\icone\ios7-mic-outline.png" />
+    <Content Include="img\icone\ios7-mic.png" />
+    <Content Include="img\icone\ios7-minus-empty.png" />
+    <Content Include="img\icone\ios7-minus-outline.png" />
+    <Content Include="img\icone\ios7-minus.png" />
+    <Content Include="img\icone\ios7-monitor-outline.png" />
+    <Content Include="img\icone\ios7-monitor.png" />
+    <Content Include="img\icone\ios7-moon-outline.png" />
+    <Content Include="img\icone\ios7-moon.png" />
+    <Content Include="img\icone\ios7-more-outline.png" />
+    <Content Include="img\icone\ios7-more.png" />
+    <Content Include="img\icone\ios7-musical-note.png" />
+    <Content Include="img\icone\ios7-musical-notes.png" />
+    <Content Include="img\icone\ios7-navigate-outline.png" />
+    <Content Include="img\icone\ios7-navigate.png" />
+    <Content Include="img\icone\ios7-paperplane-outline.png" />
+    <Content Include="img\icone\ios7-paperplane.png" />
+    <Content Include="img\icone\ios7-partlysunny-outline.png" />
+    <Content Include="img\icone\ios7-partlysunny.png" />
+    <Content Include="img\icone\ios7-pause-outline.png" />
+    <Content Include="img\icone\ios7-pause.png" />
+    <Content Include="img\icone\ios7-people-outline.png" />
+    <Content Include="img\icone\ios7-people.png" />
+    <Content Include="img\icone\ios7-person-outline.png" />
+    <Content Include="img\icone\ios7-person.png" />
+    <Content Include="img\icone\ios7-personadd-outline.png" />
+    <Content Include="img\icone\ios7-personadd.png" />
+    <Content Include="img\icone\ios7-photos-outline.png" />
+    <Content Include="img\icone\ios7-photos.png" />
+    <Content Include="img\icone\ios7-pie-outline.png" />
+    <Content Include="img\icone\ios7-pie.png" />
+    <Content Include="img\icone\ios7-play-outline.png" />
+    <Content Include="img\icone\ios7-play.png" />
+    <Content Include="img\icone\ios7-plus-empty.png" />
+    <Content Include="img\icone\ios7-plus-outline.png" />
+    <Content Include="img\icone\ios7-plus.png" />
+    <Content Include="img\icone\ios7-pricetag-outline.png" />
+    <Content Include="img\icone\ios7-pricetag.png" />
+    <Content Include="img\icone\ios7-printer-outline.png" />
+    <Content Include="img\icone\ios7-printer.png" />
+    <Content Include="img\icone\ios7-rainy-outline.png" />
+    <Content Include="img\icone\ios7-rainy.png" />
+    <Content Include="img\icone\ios7-recording-outline.png" />
+    <Content Include="img\icone\ios7-recording.png" />
+    <Content Include="img\icone\ios7-redo-outline.png" />
+    <Content Include="img\icone\ios7-redo.png" />
+    <Content Include="img\icone\ios7-refresh-empty.png" />
+    <Content Include="img\icone\ios7-refresh-outline.png" />
+    <Content Include="img\icone\ios7-refresh.png" />
+    <Content Include="img\icone\ios7-reload.png" />
+    <Content Include="img\icone\ios7-rewind-outline.png" />
+    <Content Include="img\icone\ios7-rewind.png" />
+    <Content Include="img\icone\ios7-search-strong.png" />
+    <Content Include="img\icone\ios7-search.png" />
+    <Content Include="img\icone\ios7-skipbackward-outline.png" />
+    <Content Include="img\icone\ios7-skipbackward.png" />
+    <Content Include="img\icone\ios7-skipforward-outline.png" />
+    <Content Include="img\icone\ios7-skipforward.png" />
+    <Content Include="img\icone\ios7-snowy.png" />
+    <Content Include="img\icone\ios7-speedometer-outline.png" />
+    <Content Include="img\icone\ios7-speedometer.png" />
+    <Content Include="img\icone\ios7-star-outline.png" />
+    <Content Include="img\icone\ios7-star.png" />
+    <Content Include="img\icone\ios7-stopwatch-outline.png" />
+    <Content Include="img\icone\ios7-stopwatch.png" />
+    <Content Include="img\icone\ios7-sunny-outline.png" />
+    <Content Include="img\icone\ios7-sunny.png" />
+    <Content Include="img\icone\ios7-telephone-outline.png" />
+    <Content Include="img\icone\ios7-telephone.png" />
+    <Content Include="img\icone\ios7-thunderstorm-outline.png" />
+    <Content Include="img\icone\ios7-thunderstorm.png" />
+    <Content Include="img\icone\ios7-time-outline.png" />
+    <Content Include="img\icone\ios7-time.png" />
+    <Content Include="img\icone\ios7-timer-outline.png" />
+    <Content Include="img\icone\ios7-timer.png" />
+    <Content Include="img\icone\ios7-trash-outline.png" />
+    <Content Include="img\icone\ios7-trash.png" />
+    <Content Include="img\icone\ios7-undo-outline.png" />
+    <Content Include="img\icone\ios7-undo.png" />
+    <Content Include="img\icone\ios7-unlocked-outline.png" />
+    <Content Include="img\icone\ios7-unlocked.png" />
+    <Content Include="img\icone\ios7-upload-outline.png" />
+    <Content Include="img\icone\ios7-upload.png" />
+    <Content Include="img\icone\ios7-videocam-outline.png" />
+    <Content Include="img\icone\ios7-videocam.png" />
+    <Content Include="img\icone\ios7-volume-high.png" />
+    <Content Include="img\icone\ios7-volume-low.png" />
+    <Content Include="img\icone\ios7-wineglass-outline.png" />
+    <Content Include="img\icone\ios7-wineglass.png" />
+    <Content Include="img\icone\ios7-world-outline.png" />
+    <Content Include="img\icone\ios7-world.png" />
+    <Content Include="img\icone\ipad.png" />
+    <Content Include="img\icone\iphone.png" />
+    <Content Include="img\icone\ipod.png" />
+    <Content Include="img\icone\jet.png" />
+    <Content Include="img\icone\key.png" />
+    <Content Include="img\icone\knife.png" />
+    <Content Include="img\icone\laptop.png" />
+    <Content Include="img\icone\leaf.png" />
+    <Content Include="img\icone\levels.png" />
+    <Content Include="img\icone\lightbulb.png" />
+    <Content Include="img\icone\link.png" />
+    <Content Include="img\icone\load-a.png" />
+    <Content Include="img\icone\load-b.png" />
+    <Content Include="img\icone\load-c.png" />
+    <Content Include="img\icone\load-d.png" />
+    <Content Include="img\icone\location.png" />
+    <Content Include="img\icone\locked.png" />
+    <Content Include="img\icone\log-in.png" />
+    <Content Include="img\icone\log-out.png" />
+    <Content Include="img\icone\loop.png" />
+    <Content Include="img\icone\magnet.png" />
+    <Content Include="img\icone\male.png" />
+    <Content Include="img\icone\man.png" />
+    <Content Include="img\icone\map.png" />
+    <Content Include="img\icone\medkit.png" />
+    <Content Include="img\icone\mic-a.png" />
+    <Content Include="img\icone\mic-b.png" />
+    <Content Include="img\icone\mic-c.png" />
+    <Content Include="img\icone\minus-circled.png" />
+    <Content Include="img\icone\minus-round.png" />
+    <Content Include="img\icone\minus.png" />
+    <Content Include="img\icone\model-s.png" />
+    <Content Include="img\icone\monitor.png" />
+    <Content Include="img\icone\more.png" />
+    <Content Include="img\icone\music-note.png" />
+    <Content Include="img\icone\navicon-round.png" />
+    <Content Include="img\icone\navicon.png" />
+    <Content Include="img\icone\navigate.png" />
+    <Content Include="img\icone\no-smoking.png" />
+    <Content Include="img\icone\nuclear.png" />
+    <Content Include="img\icone\paper-airplane.png" />
+    <Content Include="img\icone\paperclip.png" />
+    <Content Include="img\icone\pause.png" />
+    <Content Include="img\icone\person-add.png" />
+    <Content Include="img\icone\person-stalker.png" />
+    <Content Include="img\icone\person.png" />
+    <Content Include="img\icone\pie-graph.png" />
+    <Content Include="img\icone\pin.png" />
+    <Content Include="img\icone\pinpoint.png" />
+    <Content Include="img\icone\pizza.png" />
+    <Content Include="img\icone\plane.png" />
+    <Content Include="img\icone\play.png" />
+    <Content Include="img\icone\playstation.png" />
+    <Content Include="img\icone\plus-circled.png" />
+    <Content Include="img\icone\plus-round.png" />
+    <Content Include="img\icone\plus.png" />
+    <Content Include="img\icone\pound.png" />
+    <Content Include="img\icone\power.png" />
+    <Content Include="img\icone\pricetag.png" />
+    <Content Include="img\icone\pricetags.png" />
+    <Content Include="img\icone\printer.png" />
+    <Content Include="img\icone\radio-waves.png" />
+    <Content Include="img\icone\record.png" />
+    <Content Include="img\icone\refresh.png" />
+    <Content Include="img\icone\reply-all.png" />
+    <Content Include="img\icone\reply.png" />
+    <Content Include="img\icone\search.png" />
+    <Content Include="img\icone\settings.png" />
+    <Content Include="img\icone\share.png" />
+    <Content Include="img\icone\shuffle.png" />
+    <Content Include="img\icone\skip-backward.png" />
+    <Content Include="img\icone\skip-forward.png" />
+    <Content Include="img\icone\social-android-outline.png" />
+    <Content Include="img\icone\social-android.png" />
+    <Content Include="img\icone\social-apple-outline.png" />
+    <Content Include="img\icone\social-apple.png" />
+    <Content Include="img\icone\social-bitcoin-outline.png" />
+    <Content Include="img\icone\social-bitcoin.png" />
+    <Content Include="img\icone\social-buffer-outline.png" />
+    <Content Include="img\icone\social-buffer.png" />
+    <Content Include="img\icone\social-designernews-outline.png" />
+    <Content Include="img\icone\social-designernews.png" />
+    <Content Include="img\icone\social-dribbble-outline.png" />
+    <Content Include="img\icone\social-dribbble.png" />
+    <Content Include="img\icone\social-dropbox-outline.png" />
+    <Content Include="img\icone\social-dropbox.png" />
+    <Content Include="img\icone\social-facebook-outline.png" />
+    <Content Include="img\icone\social-facebook.png" />
+    <Content Include="img\icone\social-freebsd-devil.png" />
+    <Content Include="img\icone\social-github-outline.png" />
+    <Content Include="img\icone\social-github.png" />
+    <Content Include="img\icone\social-googleplus-outline.png" />
+    <Content Include="img\icone\social-googleplus.png" />
+    <Content Include="img\icone\social-hackernews-outline.png" />
+    <Content Include="img\icone\social-hackernews.png" />
+    <Content Include="img\icone\social-linkedin-outline.png" />
+    <Content Include="img\icone\social-linkedin.png" />
+    <Content Include="img\icone\social-pinterest-outline.png" />
+    <Content Include="img\icone\social-pinterest.png" />
+    <Content Include="img\icone\social-reddit-outline.png" />
+    <Content Include="img\icone\social-reddit.png" />
+    <Content Include="img\icone\social-rss-outline.png" />
+    <Content Include="img\icone\social-rss.png" />
+    <Content Include="img\icone\social-skype-outline.png" />
+    <Content Include="img\icone\social-skype.png" />
+    <Content Include="img\icone\social-tumblr-outline.png" />
+    <Content Include="img\icone\social-tumblr.png" />
+    <Content Include="img\icone\social-tux.png" />
+    <Content Include="img\icone\social-twitter-outline.png" />
+    <Content Include="img\icone\social-twitter.png" />
+    <Content Include="img\icone\social-vimeo-outline.png" />
+    <Content Include="img\icone\social-vimeo.png" />
+    <Content Include="img\icone\social-windows-outline.png" />
+    <Content Include="img\icone\social-windows.png" />
+    <Content Include="img\icone\social-wordpress-outline.png" />
+    <Content Include="img\icone\social-wordpress.png" />
+    <Content Include="img\icone\social-yahoo-outline.png" />
+    <Content Include="img\icone\social-yahoo.png" />
+    <Content Include="img\icone\social-youtube-outline.png" />
+    <Content Include="img\icone\social-youtube.png" />
+    <Content Include="img\icone\speakerphone.png" />
+    <Content Include="img\icone\speedometer.png" />
+    <Content Include="img\icone\spoon.png" />
+    <Content Include="img\icone\star.png" />
+    <Content Include="img\icone\stats-bars.png" />
+    <Content Include="img\icone\steam.png" />
+    <Content Include="img\icone\stop.png" />
+    <Content Include="img\icone\thermometer.png" />
+    <Content Include="img\icone\Thumbs.db" />
+    <Content Include="img\icone\thumbsdown.png" />
+    <Content Include="img\icone\thumbsup.png" />
+    <Content Include="img\icone\trash-a.png" />
+    <Content Include="img\icone\trash-b.png" />
+    <Content Include="img\icone\umbrella.png" />
+    <Content Include="img\icone\unlocked.png" />
+    <Content Include="img\icone\upload.png" />
+    <Content Include="img\icone\usb.png" />
+    <Content Include="img\icone\videocamera.png" />
+    <Content Include="img\icone\volume-high.png" />
+    <Content Include="img\icone\volume-low.png" />
+    <Content Include="img\icone\volume-medium.png" />
+    <Content Include="img\icone\volume-mute.png" />
+    <Content Include="img\icone\waterdrop.png" />
+    <Content Include="img\icone\wifi.png" />
+    <Content Include="img\icone\wineglass.png" />
+    <Content Include="img\icone\woman.png" />
+    <Content Include="img\icone\wrench.png" />
+    <Content Include="img\icone\xbox.png" />
+    <Content Include="img\ic_launcher.png" />
+    <Content Include="img\ic_launcher.png.back" />
+    <Content Include="img\ic_launcher_128.png" />
+    <Content Include="img\ic_launcher_128.png.back" />
+    <Content Include="img\ionic.png" />
+    <Content Include="img\Thumbs.db" />
+    <Content Include="js\angular-media-player.js" />
+    <Content Include="js\app.js" />
+    <Content Include="js\controllers.js" />
+    <Content Include="js\jquery.gdocviewer.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="js\mimetype.js" />
+    <Content Include="js\ui-bootstrap-tpls.js" />
+    <Content Include="js\ui-bootstrap.js" />
+    <Content Include="lib\angular-animate\.bower.json" />
+    <Content Include="lib\angular-animate\angular-animate.js" />
+    <Content Include="lib\angular-animate\angular-animate.min.js" />
+    <Content Include="lib\angular-animate\angular-animate.min.js.map" />
+    <Content Include="lib\angular-animate\bower.json" />
+    <Content Include="lib\angular-animate\README.md" />
+    <Content Include="lib\angular-resource\.bower.json" />
+    <Content Include="lib\angular-resource\angular-resource.js" />
+    <Content Include="lib\angular-resource\angular-resource.min.js" />
+    <Content Include="lib\angular-resource\angular-resource.min.js.map" />
+    <Content Include="lib\angular-resource\bower.json" />
+    <Content Include="lib\angular-resource\README.md" />
+    <Content Include="lib\angular-route\.bower.json" />
+    <Content Include="lib\angular-route\angular-route.js" />
+    <Content Include="lib\angular-route\angular-route.min.js" />
+    <Content Include="lib\angular-route\angular-route.min.js.map" />
+    <Content Include="lib\angular-route\bower.json" />
+    <Content Include="lib\angular-route\README.md" />
+    <Content Include="lib\angular-sanitize\.bower.json" />
+    <Content Include="lib\angular-sanitize\angular-sanitize.js" />
+    <Content Include="lib\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="lib\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="lib\angular-sanitize\bower.json" />
+    <Content Include="lib\angular-sanitize\README.md" />
+    <Content Include="lib\angular-touch\.bower.json" />
+    <Content Include="lib\angular-touch\angular-touch.js" />
+    <Content Include="lib\angular-touch\angular-touch.min.js" />
+    <Content Include="lib\angular-touch\angular-touch.min.js.map" />
+    <Content Include="lib\angular-touch\bower.json" />
+    <Content Include="lib\angular-touch\README.md" />
+    <Content Include="lib\angular-ui-router\.bower.json" />
+    <Content Include="lib\angular-ui-router\bower.json" />
+    <Content Include="lib\angular-ui-router\CHANGELOG.md" />
+    <Content Include="lib\angular-ui-router\LICENSE" />
+    <Content Include="lib\angular-ui-router\README.md" />
+    <Content Include="lib\angular-ui-router\release\angular-ui-router.js" />
+    <Content Include="lib\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="lib\angular-ui-router\src\common.js" />
+    <Content Include="lib\angular-ui-router\src\compat.js" />
+    <Content Include="lib\angular-ui-router\src\resolve.js" />
+    <Content Include="lib\angular-ui-router\src\state.js" />
+    <Content Include="lib\angular-ui-router\src\stateDirectives.js" />
+    <Content Include="lib\angular-ui-router\src\stateFilters.js" />
+    <Content Include="lib\angular-ui-router\src\templateFactory.js" />
+    <Content Include="lib\angular-ui-router\src\urlMatcherFactory.js" />
+    <Content Include="lib\angular-ui-router\src\urlRouter.js" />
+    <Content Include="lib\angular-ui-router\src\view.js" />
+    <Content Include="lib\angular-ui-router\src\viewDirective.js" />
+    <Content Include="lib\angular-ui-router\src\viewScroll.js" />
+    <Content Include="lib\angular\.bower.json" />
+    <Content Include="lib\angular\angular-csp.css" />
+    <Content Include="lib\angular\angular.js" />
+    <Content Include="lib\angular\angular.min.js" />
+    <Content Include="lib\angular\angular.min.js.gzip" />
+    <Content Include="lib\angular\angular.min.js.map" />
+    <Content Include="lib\angular\bower.json" />
+    <Content Include="lib\angular\README.md" />
+    <Content Include="lib\ionic\.bower.json" />
+    <Content Include="lib\ionic\bower.json" />
+    <Content Include="lib\ionic\css\#ionic.css#" />
+    <Content Include="lib\ionic\css\ionic.css" />
+    <Content Include="lib\ionic\css\ionic.min.css" />
+    <Content Include="lib\ionic\fonts\ionicons.eot" />
+    <Content Include="lib\ionic\fonts\ionicons.svg" />
+    <Content Include="lib\ionic\fonts\ionicons.ttf" />
+    <Content Include="lib\ionic\fonts\ionicons.woff" />
+    <Content Include="lib\ionic\js\ionic-angular.js" />
+    <Content Include="lib\ionic\js\ionic-angular.min.js" />
+    <Content Include="lib\ionic\js\ionic.bundle.js" />
+    <Content Include="lib\ionic\js\ionic.bundle.min.js" />
+    <Content Include="lib\ionic\js\ionic.js" />
+    <Content Include="lib\ionic\js\ionic.min.js" />
+    <Content Include="lib\ionic\README.md" />
+    <Content Include="lib\ionic\scss\ionic.scss" />
+    <Content Include="lib\ionic\scss\ionicons\ionicons.scss" />
+    <Content Include="lib\ionic\scss\ionicons\_ionicons-animation.scss" />
+    <Content Include="lib\ionic\scss\ionicons\_ionicons-font.scss" />
+    <Content Include="lib\ionic\scss\ionicons\_ionicons-icons.scss" />
+    <Content Include="lib\ionic\scss\ionicons\_ionicons-variables.scss" />
+    <Content Include="lib\ionic\scss\_action-sheet.scss" />
+    <Content Include="lib\ionic\scss\_animations.scss" />
+    <Content Include="lib\ionic\scss\_backdrop.scss" />
+    <Content Include="lib\ionic\scss\_badge.scss" />
+    <Content Include="lib\ionic\scss\_bar.scss" />
+    <Content Include="lib\ionic\scss\_button-bar.scss" />
+    <Content Include="lib\ionic\scss\_button.scss" />
+    <Content Include="lib\ionic\scss\_checkbox.scss" />
+    <Content Include="lib\ionic\scss\_form.scss" />
+    <Content Include="lib\ionic\scss\_grid.scss" />
+    <Content Include="lib\ionic\scss\_items.scss" />
+    <Content Include="lib\ionic\scss\_list.scss" />
+    <Content Include="lib\ionic\scss\_loading.scss" />
+    <Content Include="lib\ionic\scss\_menu.scss" />
+    <Content Include="lib\ionic\scss\_mixins.scss" />
+    <Content Include="lib\ionic\scss\_modal.scss" />
+    <Content Include="lib\ionic\scss\_platform.scss" />
+    <Content Include="lib\ionic\scss\_popup.scss" />
+    <Content Include="lib\ionic\scss\_progress.scss" />
+    <Content Include="lib\ionic\scss\_radio.scss" />
+    <Content Include="lib\ionic\scss\_range.scss" />
+    <Content Include="lib\ionic\scss\_reset.scss" />
+    <Content Include="lib\ionic\scss\_scaffolding.scss" />
+    <Content Include="lib\ionic\scss\_select.scss" />
+    <Content Include="lib\ionic\scss\_slide-box.scss" />
+    <Content Include="lib\ionic\scss\_split-pane.scss" />
+    <Content Include="lib\ionic\scss\_tabs.scss" />
+    <Content Include="lib\ionic\scss\_toggle.scss" />
+    <Content Include="lib\ionic\scss\_type.scss" />
+    <Content Include="lib\ionic\scss\_util.scss" />
+    <Content Include="lib\ionic\scss\_variables.scss" />
+    <Content Include="lib\ng-file-upload-shim\.bower.json" />
+    <Content Include="lib\ng-file-upload-shim\angular-file-upload-html5-shim.js" />
+    <Content Include="lib\ng-file-upload-shim\angular-file-upload-html5-shim.min.js" />
+    <Content Include="lib\ng-file-upload-shim\angular-file-upload-shim.js" />
+    <Content Include="lib\ng-file-upload-shim\angular-file-upload-shim.min.js" />
+    <Content Include="lib\ng-file-upload-shim\angular-file-upload.js" />
+    <Content Include="lib\ng-file-upload-shim\angular-file-upload.min.js" />
+    <Content Include="lib\ng-file-upload-shim\bower.json" />
+    <Content Include="lib\ng-file-upload-shim\FileAPI.flash.swf" />
+    <Content Include="lib\ng-file-upload-shim\FileAPI.min.js" />
+    <Content Include="lib\ng-file-upload-shim\README.md" />
+    <Content Include="lib\ng-file-upload\.bower.json" />
+    <Content Include="lib\ng-file-upload\angular-file-upload-html5-shim.js" />
+    <Content Include="lib\ng-file-upload\angular-file-upload-html5-shim.min.js" />
+    <Content Include="lib\ng-file-upload\angular-file-upload-shim.js" />
+    <Content Include="lib\ng-file-upload\angular-file-upload-shim.min.js" />
+    <Content Include="lib\ng-file-upload\angular-file-upload.js" />
+    <Content Include="lib\ng-file-upload\angular-file-upload.min.js" />
+    <Content Include="lib\ng-file-upload\bower.json" />
+    <Content Include="lib\ng-file-upload\FileAPI.flash.swf" />
+    <Content Include="lib\ng-file-upload\FileAPI.min.js" />
+    <Content Include="lib\ng-file-upload\LICENSE" />
+    <Content Include="lib\ng-file-upload\README.md" />
+    <Content Include="lib\videogular-buffering\.bower.json" />
+    <Content Include="lib\videogular-buffering\.gitignore" />
+    <Content Include="lib\videogular-buffering\bower.json" />
+    <Content Include="lib\videogular-buffering\buffering.js" />
+    <Content Include="lib\videogular-buffering\buffering.min.js" />
+    <Content Include="lib\videogular-buffering\CHANGELOG.md" />
+    <Content Include="lib\videogular-buffering\Gruntfile.js" />
+    <Content Include="lib\videogular-buffering\LICENSE" />
+    <Content Include="lib\videogular-buffering\package.json" />
+    <Content Include="lib\videogular-buffering\README.md" />
+    <Content Include="lib\videogular-controls\.bower.json" />
+    <Content Include="lib\videogular-controls\.gitignore" />
+    <Content Include="lib\videogular-controls\bower.json" />
+    <Content Include="lib\videogular-controls\CHANGELOG.md" />
+    <Content Include="lib\videogular-controls\controls.js" />
+    <Content Include="lib\videogular-controls\controls.min.js" />
+    <Content Include="lib\videogular-controls\Gruntfile.js" />
+    <Content Include="lib\videogular-controls\LICENSE" />
+    <Content Include="lib\videogular-controls\package.json" />
+    <Content Include="lib\videogular-controls\README.md" />
+    <Content Include="lib\videogular-overlay-play\.bower.json" />
+    <Content Include="lib\videogular-overlay-play\.gitignore" />
+    <Content Include="lib\videogular-overlay-play\bower.json" />
+    <Content Include="lib\videogular-overlay-play\CHANGELOG.md" />
+    <Content Include="lib\videogular-overlay-play\Gruntfile.js" />
+    <Content Include="lib\videogular-overlay-play\LICENSE" />
+    <Content Include="lib\videogular-overlay-play\overlay-play.js" />
+    <Content Include="lib\videogular-overlay-play\overlay-play.min.js" />
+    <Content Include="lib\videogular-overlay-play\package.json" />
+    <Content Include="lib\videogular-overlay-play\README.md" />
+    <Content Include="lib\videogular-poster\.bower.json" />
+    <Content Include="lib\videogular-poster\.gitignore" />
+    <Content Include="lib\videogular-poster\bower.json" />
+    <Content Include="lib\videogular-poster\CHANGELOG.md" />
+    <Content Include="lib\videogular-poster\Gruntfile.js" />
+    <Content Include="lib\videogular-poster\LICENSE" />
+    <Content Include="lib\videogular-poster\package.json" />
+    <Content Include="lib\videogular-poster\poster.js" />
+    <Content Include="lib\videogular-poster\poster.min.js" />
+    <Content Include="lib\videogular-poster\README.md" />
+    <Content Include="lib\videogular-themes-default\.bower.json" />
+    <Content Include="lib\videogular-themes-default\.gitignore" />
+    <Content Include="lib\videogular-themes-default\bower.json" />
+    <Content Include="lib\videogular-themes-default\CHANGELOG.md" />
+    <Content Include="lib\videogular-themes-default\fonts\icomoon.dev.svg" />
+    <Content Include="lib\videogular-themes-default\fonts\icomoon.eot" />
+    <Content Include="lib\videogular-themes-default\fonts\icomoon.svg" />
+    <Content Include="lib\videogular-themes-default\fonts\icomoon.ttf" />
+    <Content Include="lib\videogular-themes-default\fonts\icomoon.woff" />
+    <Content Include="lib\videogular-themes-default\Gruntfile.js" />
+    <Content Include="lib\videogular-themes-default\LICENSE" />
+    <Content Include="lib\videogular-themes-default\package.json" />
+    <Content Include="lib\videogular-themes-default\README.md" />
+    <Content Include="lib\videogular-themes-default\videogular.css" />
+    <Content Include="lib\videogular-themes-default\videogular.min.css" />
+    <Content Include="lib\videogular\.bower.json" />
+    <Content Include="lib\videogular\.gitignore" />
+    <Content Include="lib\videogular\bower.json" />
+    <Content Include="lib\videogular\CHANGELOG.md" />
+    <Content Include="lib\videogular\Gruntfile.js" />
+    <Content Include="lib\videogular\LICENSE" />
+    <Content Include="lib\videogular\package.json" />
+    <Content Include="lib\videogular\README.md" />
+    <Content Include="lib\videogular\videogular.js" />
+    <Content Include="lib\videogular\videogular.min.js" />
+    <Content Include="merges\android\scripts\android2.3-jscompat.js" />
+    <Content Include="merges\android\scripts\platformOverrides.js" />
+    <Folder Include="merges\ios\" />
+    <Content Include="merges\windows\scripts\platformOverrides.js" />
+    <Content Include="merges\windows\scripts\winstore-jscompat.js" />
+    <Folder Include="merges\wp8\" />
+    <Folder Include="res\icons\android\" />
+    <Folder Include="res\icons\ios\" />
+    <Folder Include="res\icons\wp8\" />
+    <Folder Include="res\icons\windows\" />
+    <Folder Include="res\screens\android\" />
+    <Folder Include="res\screens\ios\" />
+    <Folder Include="res\screens\windows\" />
+    <Folder Include="res\screens\wp8\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="index.html" />
+    <Content Include="partials\documentViewer.html" />
+    <Content Include="partials\imagePlayer.html" />
+    <Content Include="partials\list.html" />
+    <Content Include="partials\loading.html" />
+    <Content Include="partials\musicPlayer.html" />
+    <Content Include="partials\properties.html" />
+    <Content Include="partials\signIn.html" />
+    <Content Include="partials\upload.html" />
+    <Content Include="partials\videoPlayer.html" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\.fetch.json" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\CONTRIBUTING.md" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\doc\de\index.md" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\doc\es\index.md" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\doc\fr\index.md" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\doc\index.md" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\doc\it\index.md" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\doc\ja\index.md" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\doc\ko\index.md" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\doc\pl\index.md" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\doc\ru\index.md" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\doc\zh\index.md" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\LICENSE" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\NOTICE" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\package.json" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\plugin.xml" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\README.md" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\RELEASENOTES.md" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\src\amazon\FileTransfer.java" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\src\android\FileProgressResult.java" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\src\android\FileTransfer.java" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\src\android\FileUploadResult.java" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\src\ios\CDVFileTransfer.h" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\src\ios\CDVFileTransfer.m" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\src\ubuntu\file-transfer.cpp" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\src\ubuntu\file-transfer.h" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\src\windows\FileTransferProxy.js" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\src\wp\FileTransfer.cs" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\tests\plugin.xml" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\tests\tests.js" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\www\blackberry10\FileTransfer.js" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\www\blackberry10\FileTransferProxy.js" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\www\blackberry10\xhrFileTransfer.js" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\www\FileTransfer.js" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\www\FileTransferError.js" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\www\firefoxos\FileTransferProxy.js" />
+    <Content Include="plugins\org.apache.cordova.file-transfer\www\wp7\base64.js" />
+    <Content Include="plugins\org.apache.cordova.file\.fetch.json" />
+    <Content Include="plugins\org.apache.cordova.file\CONTRIBUTING.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\de\index.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\de\plugins.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\es\index.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\es\plugins.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\fr\index.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\fr\plugins.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\index.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\it\index.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\it\plugins.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\ja\index.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\ja\plugins.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\ko\index.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\ko\plugins.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\plugins.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\pl\index.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\pl\plugins.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\ru\index.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\ru\plugins.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\zh\index.md" />
+    <Content Include="plugins\org.apache.cordova.file\doc\zh\plugins.md" />
+    <Content Include="plugins\org.apache.cordova.file\LICENSE" />
+    <Content Include="plugins\org.apache.cordova.file\NOTICE" />
+    <Content Include="plugins\org.apache.cordova.file\package.json" />
+    <Content Include="plugins\org.apache.cordova.file\plugin.xml" />
+    <Content Include="plugins\org.apache.cordova.file\README.md" />
+    <Content Include="plugins\org.apache.cordova.file\RELEASENOTES.md" />
+    <Content Include="plugins\org.apache.cordova.file\src\android\ContentFilesystem.java" />
+    <Content Include="plugins\org.apache.cordova.file\src\android\DirectoryManager.java" />
+    <Content Include="plugins\org.apache.cordova.file\src\android\EncodingException.java" />
+    <Content Include="plugins\org.apache.cordova.file\src\android\FileExistsException.java" />
+    <Content Include="plugins\org.apache.cordova.file\src\android\FileHelper.java" />
+    <Content Include="plugins\org.apache.cordova.file\src\android\Filesystem.java" />
+    <Content Include="plugins\org.apache.cordova.file\src\android\FileUtils.java" />
+    <Content Include="plugins\org.apache.cordova.file\src\android\InvalidModificationException.java" />
+    <Content Include="plugins\org.apache.cordova.file\src\android\LocalFilesystem.java" />
+    <Content Include="plugins\org.apache.cordova.file\src\android\LocalFilesystemURL.java" />
+    <Content Include="plugins\org.apache.cordova.file\src\android\NoModificationAllowedException.java" />
+    <Content Include="plugins\org.apache.cordova.file\src\android\TypeMismatchException.java" />
+    <Content Include="plugins\org.apache.cordova.file\src\blackberry10\index.js" />
+    <Content Include="plugins\org.apache.cordova.file\src\firefoxos\FileProxy.js" />
+    <Content Include="plugins\org.apache.cordova.file\src\ios\CDVAssetLibraryFilesystem.h" />
+    <Content Include="plugins\org.apache.cordova.file\src\ios\CDVAssetLibraryFilesystem.m" />
+    <Content Include="plugins\org.apache.cordova.file\src\ios\CDVFile.h" />
+    <Content Include="plugins\org.apache.cordova.file\src\ios\CDVFile.m" />
+    <Content Include="plugins\org.apache.cordova.file\src\ios\CDVLocalFilesystem.h" />
+    <Content Include="plugins\org.apache.cordova.file\src\ios\CDVLocalFilesystem.m" />
+    <Content Include="plugins\org.apache.cordova.file\src\ubuntu\file.cpp" />
+    <Content Include="plugins\org.apache.cordova.file\src\ubuntu\file.h" />
+    <Content Include="plugins\org.apache.cordova.file\src\windows8\FileProxy.js" />
+    <Content Include="plugins\org.apache.cordova.file\src\windows\FileProxy.js" />
+    <Content Include="plugins\org.apache.cordova.file\src\wp\File.cs" />
+    <Content Include="plugins\org.apache.cordova.file\tests\plugin.xml" />
+    <Content Include="plugins\org.apache.cordova.file\tests\tests.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\android\FileSystem.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\copyTo.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\createEntryFromNative.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\FileProxy.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\FileSystem.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\getDirectory.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\getFile.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\getFileMetadata.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\getMetadata.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\getParent.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\info.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\moveTo.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\readAsArrayBuffer.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\readAsBinaryString.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\readAsDataURL.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\readAsText.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\readEntries.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\remove.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\removeRecursively.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\requestAllFileSystems.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\requestAnimationFrame.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\requestFileSystem.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\resolveLocalFileSystemURI.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\setMetadata.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\truncate.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\blackberry10\write.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\DirectoryEntry.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\DirectoryReader.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\Entry.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\File.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\FileEntry.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\FileError.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\FileReader.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\FileSystem.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\fileSystemPaths.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\fileSystems-roots.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\fileSystems.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\FileUploadOptions.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\FileUploadResult.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\FileWriter.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\firefoxos\FileSystem.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\Flags.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\ios\FileSystem.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\LocalFileSystem.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\Metadata.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\ProgressEvent.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\requestFileSystem.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\resolveLocalFileSystemURI.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\ubuntu\FileSystem.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\ubuntu\fileSystems-roots.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\ubuntu\FileWriter.js" />
+    <Content Include="plugins\org.apache.cordova.file\www\wp\FileUploadOptions.js" />
+    <Content Include="plugins\org.apache.cordova.network-information\.fetch.json" />
+    <Content Include="plugins\org.apache.cordova.network-information\CONTRIBUTING.md" />
+    <Content Include="plugins\org.apache.cordova.network-information\doc\de\index.md" />
+    <Content Include="plugins\org.apache.cordova.network-information\doc\es\index.md" />
+    <Content Include="plugins\org.apache.cordova.network-information\doc\fr\index.md" />
+    <Content Include="plugins\org.apache.cordova.network-information\doc\index.md" />
+    <Content Include="plugins\org.apache.cordova.network-information\doc\it\index.md" />
+    <Content Include="plugins\org.apache.cordova.network-information\doc\ja\index.md" />
+    <Content Include="plugins\org.apache.cordova.network-information\doc\ko\index.md" />
+    <Content Include="plugins\org.apache.cordova.network-information\doc\pl\index.md" />
+    <Content Include="plugins\org.apache.cordova.network-information\doc\ru\index.md" />
+    <Content Include="plugins\org.apache.cordova.network-information\doc\zh\index.md" />
+    <Content Include="plugins\org.apache.cordova.network-information\LICENSE" />
+    <Content Include="plugins\org.apache.cordova.network-information\NOTICE" />
+    <Content Include="plugins\org.apache.cordova.network-information\package.json" />
+    <Content Include="plugins\org.apache.cordova.network-information\plugin.xml" />
+    <Content Include="plugins\org.apache.cordova.network-information\README.md" />
+    <Content Include="plugins\org.apache.cordova.network-information\RELEASENOTES.md" />
+    <Content Include="plugins\org.apache.cordova.network-information\src\android\NetworkManager.java" />
+    <Content Include="plugins\org.apache.cordova.network-information\src\blackberry10\index.js" />
+    <Content Include="plugins\org.apache.cordova.network-information\src\browser\NetworkProxy.js" />
+    <Content Include="plugins\org.apache.cordova.network-information\src\firefoxos\NetworkProxy.js" />
+    <Content Include="plugins\org.apache.cordova.network-information\src\ios\CDVConnection.h" />
+    <Content Include="plugins\org.apache.cordova.network-information\src\ios\CDVConnection.m" />
+    <Content Include="plugins\org.apache.cordova.network-information\src\ios\CDVReachability.h" />
+    <Content Include="plugins\org.apache.cordova.network-information\src\ios\CDVReachability.m" />
+    <Content Include="plugins\org.apache.cordova.network-information\src\tizen\NetworkProxy.js" />
+    <Content Include="plugins\org.apache.cordova.network-information\src\ubuntu\network_information.cpp" />
+    <Content Include="plugins\org.apache.cordova.network-information\src\ubuntu\network_information.h" />
+    <Content Include="plugins\org.apache.cordova.network-information\src\windows8\NetworkInfoProxy.js" />
+    <Content Include="plugins\org.apache.cordova.network-information\src\wp\NetworkStatus.cs" />
+    <Content Include="plugins\org.apache.cordova.network-information\tests\plugin.xml" />
+    <Content Include="plugins\org.apache.cordova.network-information\tests\tests.js" />
+    <Content Include="plugins\org.apache.cordova.network-information\www\Connection.js" />
+    <Content Include="plugins\org.apache.cordova.network-information\www\network.js" />
+    <Content Include="scripts\index.js" />
+    <Content Include="scripts\platformOverrides.js" />
+    <Content Include="css\index.css" />
+    <Content Include="res\icons\android\icon-36-ldpi.png" />
+    <Content Include="res\icons\android\icon-48-mdpi.png" />
+    <Content Include="res\icons\android\icon-72-hdpi.png" />
+    <Content Include="res\icons\android\icon-96-xhdpi.png" />
+    <Content Include="res\icons\ios\icon-40.png" />
+    <Content Include="res\icons\ios\icon-40-2x.png" />
+    <Content Include="res\icons\ios\icon-50.png" />
+    <Content Include="res\icons\ios\icon-50-2x.png" />
+    <Content Include="res\icons\ios\icon-57.png" />
+    <Content Include="res\icons\ios\icon-57-2x.png" />
+    <Content Include="res\icons\ios\icon-60.png" />
+    <Content Include="res\icons\ios\icon-60-2x.png" />
+    <Content Include="res\icons\ios\icon-72.png" />
+    <Content Include="res\icons\ios\icon-72-2x.png" />
+    <Content Include="res\icons\ios\icon-76.png" />
+    <Content Include="res\icons\ios\icon-76-2x.png" />
+    <Content Include="res\icons\ios\icon-small.png" />
+    <Content Include="res\icons\ios\icon-small-2x.png" />
+    <Content Include="res\icons\windows\logo.png" />
+    <Content Include="res\icons\windows\smalllogo.png" />
+    <Content Include="res\icons\windows\Square150x150Logo.scale-240.png" />
+    <Content Include="res\icons\windows\Square44x44Logo.scale-240.png" />
+    <Content Include="res\icons\windows\Square71x71Logo.scale-240.png" />
+    <Content Include="res\icons\windows\storelogo.png" />
+    <Content Include="res\icons\windows\StoreLogo.scale-240.png" />
+    <Content Include="res\icons\windows\Wide310x150Logo.scale-240.png" />
+    <Content Include="res\icons\wp8\icon-62-tile.png" />
+    <Content Include="res\icons\wp8\icon-173-tile.png" />
+    <Content Include="res\native\android\ant.properties" />
+    <Content Include="res\screens\android\screen-hdpi-landscape.png" />
+    <Content Include="res\screens\android\screen-hdpi-portrait.png" />
+    <Content Include="res\screens\android\screen-ldpi-landscape.png" />
+    <Content Include="res\screens\android\screen-ldpi-portrait.png" />
+    <Content Include="res\screens\android\screen-mdpi-landscape.png" />
+    <Content Include="res\screens\android\screen-mdpi-portrait.png" />
+    <Content Include="res\screens\android\screen-xhdpi-landscape.png" />
+    <Content Include="res\screens\android\screen-xhdpi-portrait.png" />
+    <Content Include="res\screens\ios\screen-ipad-landscape.png" />
+    <Content Include="res\screens\ios\screen-ipad-landscape-2x.png" />
+    <Content Include="res\screens\ios\screen-ipad-portrait.png" />
+    <Content Include="res\screens\ios\screen-ipad-portrait-2x.png" />
+    <Content Include="res\screens\ios\screen-iphone-568h-2x.png" />
+    <Content Include="res\screens\ios\screen-iphone-portrait.png" />
+    <Content Include="res\screens\ios\screen-iphone-portrait-2x.png" />
+    <Content Include="res\screens\windows\splashscreen.png" />
+    <Content Include="res\screens\windows\SplashScreen.scale-240.png" />
+    <Content Include="res\screens\wp8\screen-portrait.jpg" />
+  </ItemGroup>
+  <PropertyGroup>
+    <TypeScriptToolsVersion>1.1</TypeScriptToolsVersion>
+    <DefaultReferenceGroup>Implicit (Multi-Device Apps)</DefaultReferenceGroup>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptCompileOnSaveEnabled>false</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptCompileOnSaveEnabled>false</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Distribution'">
+    <TypeScriptCompileOnSaveEnabled>false</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CordovaTools\vs-mda-targets\Microsoft.MDA.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CordovaTools\vs-mda-targets\Microsoft.TypeScript.MDA.targets" />
+  <PropertyGroup>
+    <ProjectUISubcaption>Tools for Apache Cordova</ProjectUISubcaption>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetPlatformIdentifier>MDD</TargetPlatformIdentifier>
+  </PropertyGroup>
+  <Target Name="EnsureBuildPrerequisites">
+    <!-- These errors will trigger if building from inside Visual Studio and requirements could not be determined -->
+    <Error Condition="$(MDAPropertiesEvaluated) == 'true' And $(NodeJsDir) == ''" Text="Path to NodeJs could not be determined. Please check that NodeJs has been installed." />
+    <Error Condition="$(MDAPropertiesEvaluated) == 'true' And $(MDAVsixDir) == ''" Text="Path to the Visual Studio Extension for Tools for Apache Cordova could not be determined. Please check that the extension has been installed." />
+    <!-- These errors will trigger if building from outside Visual Studio (e.g. command line) and environment variables have not been set -->
+    <Error Condition="$(MDAPropertiesEvaluated) == '' And $(NodeJsDir) == ''" Text="Path to NodeJs has not been specified. Please check that NodeJs has been installed and set the NodeJsDir environment variable before building." />
+    <Error Condition="$(MDAPropertiesEvaluated) == '' And $(MDAVsixDir) == ''" Text="Path to Visual Studio Extension for Tools for Apache Cordova has not been specified. Please install it and set the MDAVsixDir environment variable before building." />
+    <!-- Sanity check that things exist in the specified places. These are more likely to fail if building outside Visual Studio and the required environment variables have not been set, or set incorrectly. -->
+    <Error Condition="!Exists('$(NodeJsDir)') Or !Exists('$(NodeJsDir)\node.exe')" Text="The specified NodeJs directory $(NodeJsDir) either does not exist, or does not contain node.exe. Please check that NodeJs has been installed, and set the NodeJsDir variable to the correct directory." />
+    <Error Condition="!Exists('$(MDAVsixDir)') Or !Exists('$(MDAVsixDir)\packages\vs-mda')" Text="The specified directory to the Visual Studio extension $(MDAVsixDir)\node.exe either does not exist, or does not contain a packages\vs-mda sub-directory. Please check that the extension directory exists and set the MDAVsixDir variable to the correct directory." />
+    <!-- Installs (if necessary) the supporting Nodejs module -->
+    <Exec Command="&quot;$(MDAVsixDir)&quot;\packages\vs-mda\install &quot;$(NodeJsDir)&quot; &quot;$(MDAVsixDir)&quot;\packages\vs-mda" />
+  </Target>
+</Project>
