@@ -14,7 +14,7 @@ class Router {
 
   public function loadRoutes($configFile) {
     if (!is_readable($configFile)) {
-      throw new Exception(__FUNCTION__ . ': ' . $configFile . ' not readable');
+      throw new Exception(__METHOD__ . ': ' . $configFile . ' not readable');
       return false;
     }
     $this->routes = yaml_parse_file($configFile);
@@ -22,7 +22,7 @@ class Router {
 
   public function resolve($searchRoute) {
     if (is_null($this->routes)) {
-      throw new Exception(__FUNCTION__ . ': no routes defined' );
+      throw new Exception(__METHOD__ . ': no routes defined' );
       return false;
     }
     foreach ($this->routes as $route) {

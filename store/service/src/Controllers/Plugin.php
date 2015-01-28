@@ -26,7 +26,8 @@ class Plugin extends \Utils\BaseController {
       $sth->execute();
     }
     catch (Exception $e) {
-      error_log ('Plugin::createTable: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -44,7 +45,8 @@ class Plugin extends \Utils\BaseController {
       return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
     catch (Exception $e) {
-      error_log ('Plugin::getAll: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -69,7 +71,8 @@ class Plugin extends \Utils\BaseController {
       return $resource;
     }
     catch (Exception $e) {
-      error_log ('Plugin::get: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -110,8 +113,8 @@ class Plugin extends \Utils\BaseController {
       header('HTTP/1.0 201 Created');
     }
     catch (Exception $e) {
-      error_log ('Plugin::put: ' . $e->getMessage());
-      //TODO: Return 400?
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -151,9 +154,8 @@ class Plugin extends \Utils\BaseController {
       header('HTTP/1.0 204 No Content');
     }
     catch (Exception $e) {
-      error_log ('Plugin::post: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
       header('HTTP/1.0 503 Service Unavailable');
-      //TODO: Return 400?
     }
   }
 
@@ -174,7 +176,7 @@ class Plugin extends \Utils\BaseController {
       header('HTTP/1.0 204 No Content');
     }
     catch (Exception $e) {
-      error_log ('Plugin::delete: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
       header('HTTP/1.0 503 Service Unavailable');
     }
   }

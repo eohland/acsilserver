@@ -19,7 +19,8 @@ class Token extends \Utils\BaseController {
       $sth->execute();
     }
     catch (Exception $e) {
-      error_log ('Token::createTable: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -42,7 +43,8 @@ class Token extends \Utils\BaseController {
       return $resource;
     }
     catch (Exception $e) {
-      error_log ('Token::get: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -76,8 +78,8 @@ class Token extends \Utils\BaseController {
       header('HTTP/1.0 201 Created');
     }
     catch (Exception $e) {
-      error_log ('Token::put: ' . $e->getMessage());
-      //TODO: Return 400?
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -98,7 +100,8 @@ class Token extends \Utils\BaseController {
       //FIXME: Return 204
     }
     catch (Exception $e) {
-      error_log ('Token::delete: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 

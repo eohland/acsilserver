@@ -23,7 +23,8 @@ class User extends \Utils\BaseController {
       $sth->execute();
     }
     catch (Exception $e) {
-      error_log ('User::createTable: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -45,7 +46,8 @@ class User extends \Utils\BaseController {
       return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
     catch (Exception $e) {
-      error_log ('User::getAll: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -74,7 +76,8 @@ class User extends \Utils\BaseController {
       return $resource;
     }
     catch (Exception $e) {
-      error_log ('User::get: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -105,8 +108,8 @@ class User extends \Utils\BaseController {
       header('HTTP/1.0 201 Created');
     }
     catch (Exception $e) {
-      error_log ('User::put: ' . $e->getMessage());
-      //TODO: Return 400?
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -141,8 +144,8 @@ class User extends \Utils\BaseController {
       header('HTTP/1.0 204 No Content');
     }
     catch (Exception $e) {
-      error_log ('User::post: ' . $e->getMessage());
-      //TODO: Return 400?
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -162,7 +165,8 @@ class User extends \Utils\BaseController {
       //FIXME: Return 204
     }
     catch (Exception $e) {
-      error_log ('User::delete: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 }
