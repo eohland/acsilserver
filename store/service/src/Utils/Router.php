@@ -33,11 +33,11 @@ class Router {
   }
 
   public function autoResolve($path) {
-    if (1 !== preg_match('#^/(\w+)(/*[\w+]*)$#', $path, $matches))
+    if (1 !== preg_match('#^/(\w+)(/\w+)*#', $path, $matches))
       return 404;
     $controller = ucfirst($matches[1]);
     $id = NULL;
-    if (1 < strlen($matches[2]))
+    if (isset($matches[2]) && 1 < strlen($matches[2]))
       $id = substr($matches[2], 1);
     return array($controller, $id, strtolower($this->getMethod()));
   }

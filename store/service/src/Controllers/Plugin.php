@@ -32,6 +32,12 @@ class Plugin extends \Utils\BaseController {
   }
 
   public function getAll() {
+    $filterSQL = null;
+    $params = null;
+    if (isset($_GET['author_id'])) {
+      $filterSQL = 'WHERE `author_id` LIKE :author_id';
+      $params = array('author_id' => $_GET['author_id']);
+    }
     try {
       $sth = $this->pdo->prepare('
         SELECT
@@ -39,9 +45,10 @@ class Plugin extends \Utils\BaseController {
           `description`, `keywords`, `version`,
           `create_date`, `update_date`,
           `picture`, `content`
-        FROM `plugins`;
+        FROM `plugins`
+        ' . $filterSQL . ';
       ');
-      $sth->execute();
+      $sth->execute($params);
       return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
     catch (Exception $e) {
