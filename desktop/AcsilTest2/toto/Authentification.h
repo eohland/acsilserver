@@ -1,17 +1,13 @@
 #ifndef AUTHENTIFICATION_H
 #define AUTHENTIFICATION_H
 
-#include <QtCore/QUrl>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
-#include <QtNetwork/QNetworkProxy>
 #include <QtXml/QDomDocument>
 #include <QJsonDocument>
 #include <QJsonObject>
 
-class QNetworkAccessManager;
-class QNetworkReply;
 
 class Authentification : public QObject
 {
@@ -25,12 +21,11 @@ public:
 		else
 			return "";
 	}
-	Authentification();
+	Authentification(char *, char *USER, char *PASSWORD);
 	~Authentification();
 
 private:
 	std::string token;
-
 	QNetworkAccessManager *m_network;
 
 };

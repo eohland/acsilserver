@@ -31,6 +31,7 @@ std::string Parser::getJSON()
 
 void	Parser::parse(std::string &data)
 {
+	this->_userMap.clear(); this->_fileMap.clear(); this->_userMap.clear();
 	this->_json = data;
 	fillFile(data);
 	fillFolder(data);

@@ -19,7 +19,8 @@ class Token extends \Utils\BaseController {
       $sth->execute();
     }
     catch (Exception $e) {
-      error_log ('Token::createTable: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -33,10 +34,17 @@ class Token extends \Utils\BaseController {
         WHERE token LIKE :token;
       ');
       $sth->execute(array('token' => $token));
-      return $sth->fetch(PDO::FETCH_ASSOC);
+      $resource = $sth->fetch(PDO::FETCH_ASSOC);
+      if (false === $resource) {
+        //TODO: Return a Response object
+        header('HTTP/1.0 404 Not Found');
+        return array('errorCode' => 404, 'errorMessage' => 'Not Found');
+      }
+      return $resource;
     }
     catch (Exception $e) {
-      error_log ('Token::get: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -67,10 +75,11 @@ class Token extends \Utils\BaseController {
       ));
       return array('token' => $token);
       //FIXME: Return 201 or 204
+      header('HTTP/1.0 201 Created');
     }
     catch (Exception $e) {
-      error_log ('Token::put: ' . $e->getMessage());
-      //TODO: Return 400?
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 
@@ -91,7 +100,8 @@ class Token extends \Utils\BaseController {
       //FIXME: Return 204
     }
     catch (Exception $e) {
-      error_log ('Token::delete: ' . $e->getMessage());
+      error_log (__METHOD__ . ': ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 

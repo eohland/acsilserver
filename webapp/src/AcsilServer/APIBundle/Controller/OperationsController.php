@@ -519,15 +519,15 @@ class OperationsController extends Controller {
     $part_name = pathinfo($name['name']);
     $fileToDelete = $em -> getRepository('AcsilServerAppBundle:Document') -> findOneBy(array('folder' => $folderId, 'name' => $part_name['filename'] ));
     error_log( $name['name']);
-    error_log($folderId);
-    error_log( $fileToDelete->getName());
-    $aclProvider = $this -> get('security.acl.provider');	//!< the file's acl rights.
-    $objectIdentity = ObjectIdentity::fromDomainObject($fileToDelete);
-    $aclProvider -> deleteAcl($objectIdentity);
-    $em -> remove($fileToDelete);
-    $em -> flush();
+    if ($fileToDelete != null) {
+      //error_log( $fileToDelete->getName());
+      $aclProvider = $this -> get('security.acl.provider');	//!< the file's acl rights.
+      $objectIdentity = ObjectIdentity::fromDomainObject($fileToDelete);
+      $aclProvider -> deleteAcl($objectIdentity);
+      $em -> remove($fileToDelete);
+      $em -> flush();
 
-
+    }
 
     $securityContext = $this -> get('security.context');
     $user = $securityContext -> getToken() -> getUser();
