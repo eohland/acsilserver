@@ -9,7 +9,8 @@
 int main(int argc, char *argv[]) 
 {
 	QCoreApplication a(argc, argv);
-	Authentification oauth =  Authentification();
+	/////////// NE PAS OUBLIER DE LOADER LES INFORMATIONS COMME URL ET LOGIN/MDP DANS LA CLASSE OAUTH ///////////////
+	Authentification oauth =  Authentification("http://galan.im/", "guillaume.galan@gmail.com", "admin");
 
 	
 	
@@ -19,14 +20,8 @@ int main(int argc, char *argv[])
 	char *URL = "http://galan.im/";
 	Synchro sync = Synchro(token, fold, URL);
 	//sync.FirstSynchro();
-	sync.Sync((std::string)"2015:01:25 11:34:00");
+	sync.Sync((std::string)"2015:01:28 00:52:00");
 
 
-
-	/*QTimer *timer = new QTimer();
-	timer->connect(timer, SIGNAL(timeout(std::string)), SLOT(sync.Sync((std::string))));
-	timer->start(10000);
-
-	*/
 	return a.exec();
 }
