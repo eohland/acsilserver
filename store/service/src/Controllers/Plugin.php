@@ -60,7 +60,13 @@ class Plugin extends \Utils\BaseController {
         WHERE id LIKE :id;
       ');
       $sth->execute(array('id' => $id));
-      return $sth->fetch(PDO::FETCH_ASSOC);
+      $resource = $sth->fetch(PDO::FETCH_ASSOC);
+      if (false === $resource) {
+        //TODO: Return a Response object
+        header('HTTP/1.0 404 Not Found');
+        return array('errorCode' => 404, 'errorMessage' => 'Not Found');
+      }
+      return $resource;
     }
     catch (Exception $e) {
       error_log ('Plugin::get: ' . $e->getMessage());
@@ -101,6 +107,7 @@ class Plugin extends \Utils\BaseController {
         'content'     => $plugin->content,
       ));
       //FIXME: Return 201 or 204
+      header('HTTP/1.0 201 Created');
     }
     catch (Exception $e) {
       error_log ('Plugin::put: ' . $e->getMessage());
@@ -141,9 +148,11 @@ class Plugin extends \Utils\BaseController {
         'picture'     => $plugin->picture,
         'content'     => $plugin->content,
       ));
+      header('HTTP/1.0 204 No Content');
     }
     catch (Exception $e) {
       error_log ('Plugin::post: ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
       //TODO: Return 400?
     }
   }
@@ -161,10 +170,12 @@ class Plugin extends \Utils\BaseController {
       $sth->execute(array(
         'id'          => $id,
       ));
-      //FIXME: Return 204
+      //FIXME: Return Response object
+      header('HTTP/1.0 204 No Content');
     }
     catch (Exception $e) {
       error_log ('Plugin::delete: ' . $e->getMessage());
+      header('HTTP/1.0 503 Service Unavailable');
     }
   }
 }

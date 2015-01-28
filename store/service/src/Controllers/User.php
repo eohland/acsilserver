@@ -65,7 +65,13 @@ class User extends \Utils\BaseController {
         WHERE id LIKE :id;
       ');
       $sth->execute(array('id' => $id));
-      return $sth->fetch(PDO::FETCH_ASSOC);
+      $resource = $sth->fetch(PDO::FETCH_ASSOC);
+      if (false === $resource) {
+        //TODO: Return a Response object
+        header('HTTP/1.0 404 Not Found');
+        return array('errorCode' => 404, 'errorMessage' => 'Not Found');
+      }
+      return $resource;
     }
     catch (Exception $e) {
       error_log ('User::get: ' . $e->getMessage());
@@ -96,6 +102,7 @@ class User extends \Utils\BaseController {
         'update_date'  => $user->update_date,
       ));
       //FIXME: Return 201 or 204
+      header('HTTP/1.0 201 Created');
     }
     catch (Exception $e) {
       error_log ('User::put: ' . $e->getMessage());
@@ -131,6 +138,7 @@ class User extends \Utils\BaseController {
         'create_date'  => $user->create_date,
         'update_date'  => $user->update_date,
       ));
+      header('HTTP/1.0 204 No Content');
     }
     catch (Exception $e) {
       error_log ('User::post: ' . $e->getMessage());
