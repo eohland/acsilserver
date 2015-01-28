@@ -18,6 +18,10 @@ desktop/AcsilTest2/toto/Debug
 desktop/AcsilTest2/LibAcsync/Release
 desktop/AcsilTest2/LibAcsync/Debug
 
+# Mobile webapp
+mobile/html5/node_modules
+mobile/html5/platforms
+
 # Store vendors
 store/app/vendors
 store/node_modules
