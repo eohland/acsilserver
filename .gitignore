@@ -1,14 +1,22 @@
 # Symfony dirs
-/webapp/app/acsilserver.db
-/webapp/app/bootstrap.php.cache
-/webapp/app/cache/*
-/webapp/app/logs/*
-/webapp/bin/
-/webapp/build/
-/webapp/vendor/
-/webapp/composer.phar
-/webapp/web/uploads/*
-/webapp/web/bundles/
+webapp/app/acsilserver.db
+webapp/app/bootstrap.php.cache
+webapp/app/cache
+webapp/app/logs
+webapp/bin
+webapp/build
+webapp/vendor
+webapp/composer.phar
+webapp/web/bundles
+webapp/web/css
+webapp/web/monitoring
+webapp/web/uploads
+
+# Desktop client
+desktop/AcsilTest2/toto/Release
+desktop/AcsilTest2/toto/Debug
+desktop/AcsilTest2/LibAcsync/Release
+desktop/AcsilTest2/LibAcsync/Debug
 
 # Store vendors
 store/app/vendors
