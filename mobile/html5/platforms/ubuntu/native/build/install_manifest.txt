@@ -1,9 +1,0 @@
-/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/prefix/cordova-ubuntu
-/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/prefix/www/libcoreplugins.so
-/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/prefix/www/cordova.js
-/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/prefix/qml/main.qml
-/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/prefix/CordovaUbuntu.3.6/libcordovaubuntuplugin.so
-/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/prefix/CordovaUbuntu.3.6/qmldir
-/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/prefix/CordovaUbuntu.3.6/cordova_wrapper.js
-/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/prefix/CordovaUbuntu.3.6/CordovaView.qml
-/home/galan_g/Development/acsilserver/mobile/html5/platforms/ubuntu/native/prefix/CordovaUbuntu.3.6/CordovaViewInternal.qml

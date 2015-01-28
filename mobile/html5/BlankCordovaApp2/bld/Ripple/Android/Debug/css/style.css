@@ -1,0 +1,7 @@
+/* Empty. Add your own CSS if you like */
+progress::-webkit-progress-value {
+background: blue;
+}
+progress::-webkit-progress-bar {
+background: #43cee6;
+}
