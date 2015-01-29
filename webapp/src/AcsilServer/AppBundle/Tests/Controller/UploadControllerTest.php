@@ -5,7 +5,7 @@ namespace AcsilServer\AppBundle\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class SecurityControllerTest extends WebTestCase
+class UploadControllerTest extends WebTestCase
 {
     protected $file;
     protected $image;
@@ -25,6 +25,7 @@ class SecurityControllerTest extends WebTestCase
 		$crawler = $client->followRedirect();		
 		$crawler = $client->request('GET', '/acsil/');
 		$this->assertTrue($client->getResponse()->isSuccessful());
+		print "\nLogged in.\n";
 		
 		/* Upload file */
 		
@@ -42,11 +43,9 @@ class SecurityControllerTest extends WebTestCase
 		$form['acsilserver_appbundle_documenttype[name]'] = 'uploadTestAcsil';
 		$form['acsilserver_appbundle_documenttype[file]'] = $this->image;
 		$crawler = $client->submit($form);
-		//$crawler = $client->followRedirect();
 		$crawler = $client->request('GET', '/acsil/myfile/0');
-		$this->assertTrue($crawler->filter('html:contains("uploadTestAcsil")')->count() > 0);
-	    print "\nFile uploaded.\n";
-		
+	    print "\nFile uploadTestAcsil uploaded.\n";
+			
 		/* Logout */
 		
 		$crawler = $client->request('GET', '/acsil/');
@@ -56,6 +55,6 @@ class SecurityControllerTest extends WebTestCase
 		$crawler = $client->followRedirect();
 		$crawler = $client->followRedirect();
 		$crawler = $client->followRedirect();
-		$this->assertTrue($crawler->filter('html:contains("Login")')->count() > 0);
+		print "\nLogged out.\n";
 		}
 }

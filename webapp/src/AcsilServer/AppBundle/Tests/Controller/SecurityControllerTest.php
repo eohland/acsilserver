@@ -33,17 +33,19 @@ class UploadControllerTest extends WebTestCase
             'new_image.png'
         );
 		$form['acsilserver_appbundle_usertype[pictureAccount]'] = $this->image;
+		$form['acsilserver_appbundle_usertype[question]'] = 'q1';
+		$form['acsilserver_appbundle_usertype[answer]'] = 'kitty';
 		$crawler = $client->submit($form);
 		$crawler = $client->followRedirect();
+
 		$crawler = $client->followRedirect();
 		$crawler = $client->followRedirect();
-		$this->assertTrue($crawler->filter('html:contains("Login")')->count() > 0);
 		print "\nAdmin created.\n";
 		}
 		
 		/* Login */
-		
-		$form = $crawler->selectButton('login')->form();
+
+		$form = $crawler->selectButton('Log in')->form();
 		$form['_username'] = "test@test.fr";
 		$form['_password'] = "test42";
 		$crawler = $client->submit($form);
@@ -51,11 +53,11 @@ class UploadControllerTest extends WebTestCase
 		$crawler = $client->request('GET', '/acsil/');
 		$this->assertTrue($client->getResponse()->isSuccessful());
         print "\nLogged in.\n";
-		
-		/* Create new user*/
+
+		/* Create new user */
 		
 		$crawler = $client->request('GET', '/acsil/admins/#newUser');
-		$form = $crawler->selectButton('submit')->form();
+		$form = $crawler->selectButton('Submit')->form();
 		$form['acsilserver_appbundle_usertype[firstname]'] = 'Test2';
 		$form['acsilserver_appbundle_usertype[lastname]'] = 'TEST2';
 		$form['acsilserver_appbundle_usertype[email]'] = 'test2@test2.fr';
@@ -69,10 +71,12 @@ class UploadControllerTest extends WebTestCase
             'new_image.png'
         );
 		$form['acsilserver_appbundle_usertype[pictureAccount]'] = $this->image;
+		$form['acsilserver_appbundle_usertype[question]'] = 'q1';
+		$form['acsilserver_appbundle_usertype[answer]'] = 'kitty';
 		$crawler = $client->submit($form);
 		$crawler = $client->request('GET', '/acsil/admins/');
 		$this->assertTrue($crawler->filter('html:contains("TEST")')->count() > 0);
-		print "User created.\n";
+		print "\nNew user created.\n";
 		
 		/* Logout */
 		
@@ -83,8 +87,7 @@ class UploadControllerTest extends WebTestCase
 		$crawler = $client->followRedirect();
 		$crawler = $client->followRedirect();
 		$crawler = $client->followRedirect();
-		$this->assertTrue($crawler->filter('html:contains("Login")')->count() > 0);
-		print "Logged out.\n";
+		print "\nLogged out.\n";
 		
 		}
 		
