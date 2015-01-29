@@ -34,7 +34,7 @@ class Authenticate {
   public static function isAuth() {
     $token = self::getHeader('Authorization');
     $user_id = self::authByToken($token);
-    if ($user_id > 1)
+    if ($user_id >= 1)
       return $user_id;
     return false;
   }
