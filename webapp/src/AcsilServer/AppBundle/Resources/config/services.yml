@@ -5,3 +5,7 @@ services:
 #    acsil_server_app.example:
 #        class: %acsil_server_app.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    upload.listener:
+        class: AcsilServer\AppBundle\EventListener\UploadListener
+        tags:
+            - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
