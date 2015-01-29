@@ -598,7 +598,7 @@ uploadCtrl.controller('uploadCtrl', ['$scope', '$routeParams', '$http', '$window
                 var file = fileInput.files[i];
 
                 zone = document.querySelector('#progress');
-                zone.innerHTML += "<div class='row'><div class='col'>" + file.name + "</div><div class='col col-75'><progress id='file" + i + "'></progress></div></div>";
+                zone.innerHTML += "<div class='row item-divider'><div class='col'>" + file.name + "</div><div class='col col-33'><progress id='file" + i + "'></progress></div></div>";
 
                 console.log(file);
                 console.log(i);
@@ -615,7 +615,7 @@ uploadCtrl.controller('uploadCtrl', ['$scope', '$routeParams', '$http', '$window
             var file = fileInput.files[i];
 
             var fileObj = new FileReader();
-            fileObj.addEventListener("load", function (event) {
+            fileObj.onloadend = function (event) {
                 progress = document.querySelector('#file' + i);
 
                 xhr = new XMLHttpRequest();
@@ -632,7 +632,7 @@ uploadCtrl.controller('uploadCtrl', ['$scope', '$routeParams', '$http', '$window
                 var form = new FormData();
                 //form.append('file', fileInput.files[0]);
                 form.append('acsilserver_appbundle_documenttype[file]', fileObj.result.match(/,(.*)$/)[1]);
-                form.append('acsilserver_appbundle_documenttype[name]', "'" + file.name + "'");
+                form.append('acsilserver_appbundle_documenttype[name]',file.name);
                 form.append('acsilserver_appbundle_documenttype[Content-Type]', file.type);
                 form.append('acsilserver_appbundle_documenttype[Size]', file.size);
 
@@ -650,7 +650,7 @@ uploadCtrl.controller('uploadCtrl', ['$scope', '$routeParams', '$http', '$window
                         return;
                 }, false);
                 xhr.send(form);
-            });
+            };
             console.log(file);
             console.log(i);
             console.log(fileInput.files.length);

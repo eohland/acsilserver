@@ -110,10 +110,12 @@
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="acsilserver.webapp" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\signin.css" />
     <Content Include="css\style.css" />
     <Content Include="data\signIn.json" />
+    <Content Include="img\icon-128-xxhdpi.png" />
     <Content Include="img\icone\alert-circled.png" />
     <Content Include="img\icone\alert.png" />
     <Content Include="img\icone\android-add-contact.png" />
