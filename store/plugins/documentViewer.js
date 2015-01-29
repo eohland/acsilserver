@@ -11,7 +11,7 @@ function main() {
                 <iframe id='iframe' src='' width='100%' height='100%' style='border: none;margin : 0 auto; display : block;'></iframe>\
                 </div></div>";
     pluginDiv.innerHTML = content;
-    xdr(serverUrl + "list/0", "POST", null, displayData, displayData);
+    xdr(APIUrl + "list/0", "POST", null, displayData, displayData);
 };
 
 main()
@@ -62,7 +62,7 @@ function displayData(data) {
     if (data.folders != null) {
         console.log(data.folders);
         for (i = 0; i < data.folders.length; i++) {
-            xdr(serverUrl + "list/" + data.folders[i].id, "POST", null, displayData, displayData);
+            xdr(APIUrl + "list/" + data.folders[i].id, "POST", null, displayData, displayData);
         }
     }
 

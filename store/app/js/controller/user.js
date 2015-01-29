@@ -4,10 +4,10 @@
 userControllers.controller('UserCtrl', [
     '$scope', '$http', '$mdDialog',
     '$location', '$routeParams', '$route',
-    'User',
+    'User', 'Module',
     function ($scope, $http, $mdDialog,
       $location, $routeParams, $route,
-      User) {
+      User, Module) {
         //set selected tab
         $scope.data.selectedIndex = 3;
 
@@ -31,10 +31,22 @@ userControllers.controller('UserCtrl', [
                     $location.path('/');
                 //get user moduleList
             })
-        }
 
-        //get its plugin
-        $scope.pluginList = $scope.data.module;
+            var moduleListPromise = Module.query({ author_id: currentUserId });
+            moduleListPromise.$promise.then(function (moduleList) {
+                $scope.pluginList = moduleList;
+                //get user moduleList
+            }, function (error) {
+                $mdDialog.show(
+                    $mdDialog.alert()
+                      .title('Error')
+                      .content('An error occured. Please try again later')
+                      .ariaLabel('module list error')
+                      .ok('OK')
+                      .targetEvent("mouse")
+                  )
+            })
+        }
 
         //init new module to null
         $scope.newModule = {};
@@ -169,13 +181,50 @@ userControllers.controller('UserCtrl', [
         $scope.deleteModule = function (id, name) {
             var confirm = $mdDialog.confirm()
              .title('Are you sure you want to delete this module?')
-             .content(name + ': will no longer be deleted from the store')
+             .content(name + ': will no longer be available from the store')
              .ariaLabel('Delete module')
              .ok('Yes')
              .cancel('No')
              .targetEvent("mouse");
             $mdDialog.show(confirm).then(function () {
                 //delete
+                var deletePromise = Module.delete({ id: id });
+
+                deletePromise.$promise.then(function () {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                          .title('Success')
+                          .content('Your plugin was deleted with success.')
+                          .ariaLabel('delet success')
+                          .ok('OK')
+                          .targetEvent("mouse")
+                      ).then(function () {
+                          $route.reload();
+                      }, function () {
+                          $mdDialog.show(
+                            $mdDialog.alert()
+                              .title('Error')
+                              .content('An error occured. Please try again later')
+                              .ariaLabel('module list error')
+                              .ok('OK')
+                              .targetEvent("mouse")
+                          );
+                      });
+                });
+
+            }, function () {
+                //do nothing
+            });
+
+            var confirm = $mdDialog.confirm()
+             .title('Are you sure you want to delete this module?')
+             .content(name + ': will no longer be deleted from the store')
+             .ariaLabel('Delete module')
+             .ok('Yes')
+             .cancel('No')
+             .targetEvent("mouse");
+            confirm.then(function () {
+                $route.reload();
             }, function () {
                 //do nothing
             });
