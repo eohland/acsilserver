@@ -59,6 +59,9 @@ case "$1" in
 		chown -R www-data /usr/share/acsilserver/app/logs
 		mkdir -p /usr/share/acsilserver/web/uploads
 		chown -R www-data /usr/share/acsilserver/web/uploads
+
+		# Add mobile app token
+		php $sconsole acsilserver:api:client:populate
 	;;
 
 	abort-upgrade|abort-remove|abort-deconfigure)

@@ -1,3 +1,5 @@
-php app/console doctrine:database:drop --force
-php app/console doctrine:database:create
-php app/console doctrine:schema:update --force
+cmd='php app/console'
+$cmd doctrine:database:drop --force
+$cmd doctrine:database:create
+$cmd doctrine:schema:update --force
+$cmd acsilserver:api:client:populate
