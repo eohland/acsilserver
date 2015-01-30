@@ -46,7 +46,8 @@
 						rename_elem = file_elem.getElementsByTagName('input')[0];
 				file.name = rename_elem.value;
 				uploader.settings.multipart_params = {
-					'renamedFileName': rename_elem.value
+					'renamedFileName': rename_elem.value,
+					'folderId': {{ folderId | default(0) }}
 				}
 			},
 			UploadProgress: function(up, file) {

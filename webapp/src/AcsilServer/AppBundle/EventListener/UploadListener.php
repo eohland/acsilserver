@@ -29,70 +29,70 @@ class UploadListener {
 	}
 
 	public function onUpload(PostPersistEvent $event) {
-	$folderId = 0; // Ou recup le folderId?
-	
-	$request = $event->getRequest();
-	  $uploadedFile = $event->getFile();
-			$document = new Document();
-		$document -> setFile($uploadedFile);
-		$filename = $request->get('name');
-	$document -> setName($filename);
-		$document -> setIsProfilePicture(0);
-		$document -> setIsShared(0);
-		if ($document -> getFile() == null) {
-		return $this -> redirect($this -> generateUrl('_managefile', array(
-            'folderId' => $folderId,
-        )));
-		}
-		if ($document -> getName() == null) {
-			$document -> setName($document -> getFile() -> getClientOriginalName());
-		}
-		//$document -> setOwner($this -> getUser() -> getEmail());
-		$document -> setuploadDate(new \DateTime());
-		$document -> setLastModifDate(new \DateTime());
-		//$document -> setPseudoOwner($this -> getUser() -> getUsername());
-		$document -> setFolder($folderId);
 		
-		
+		$request      = $event->getRequest();
+		$filename     = $request->get('renamedFileName');
+		$folderId     = $request->get('folderId');
+		echo 'Folder ID:' . $folderId;
+		$uploadedFile = $event->getFile();
+
+		$document     = new Document();
+		$document->setFile($uploadedFile);
+		$document->setName($filename);
+		$document->setIsProfilePicture(0);
+		$document->setIsShared(0);
+		if ($document->getFile() == null) {
+			return $this->redirect($this->generateUrl('_managefile', array(
+				'folderId' => $folderId,
+			)));
+		}
+		if ($document->getName() == null) {
+			$document->setName($document->getFile()->getClientOriginalName());
+		}
+		//$document->setOwner($this->getUser()->getEmail());
+		$document->setuploadDate(new \DateTime());
+		$document->setLastModifDate(new \DateTime());
+		//$document->setPseudoOwner($this->getUser()->getUsername());
+		$document->setFolder($folderId);
+
 		$tempId = $folderId;
 		$totalPath = "";
 		$chosenPath = "";
 		while ($tempId != 0) {
-		$parent = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($tempId);
-		   if (!$parent) {
-        throw $this->createNotFoundException(
-            'No parent found for id : '.$id
-        );
+			$parent = $em->getRepository('AcsilServerAppBundle:Folder')->findOneById($tempId);
+			if (!$parent) {
+				throw $this->createNotFoundException(
+					'No parent found for id : '.$id
+				);
+			}
+			$totalPath = $parent->getPath().'/'.$totalPath;
+			$chosenPath = $parent->getName().'/'.$chosenPath;
+			$tempId = $parent->getParentFolder();
 		}
-		$totalPath = $parent->getPath().'/'.$totalPath;
-		$chosenPath = $parent->getName().'/'.$chosenPath;
-		$tempId = $parent->getParentFolder();
+		if ($folderId != 0) {
+			$folder = $em->getRepository('AcsilServerAppBundle:Folder')->findOneById($folderId);
+			$folder->setSize($folder->getSize() + 1);
+			$folder->setLastModifDate(new \DateTime());
+			$em->persist($folder);
 		}
-		if ($folderId != 0)
-		{
-		$folder = $em -> getRepository('AcsilServerAppBundle:Folder') -> findOneById($folderId);
-		$folder->setSize($folder->getSize() + 1);
-		$folder->setLastModifDate(new \DateTime());
-		$em -> persist($folder);
-		}
-		$document -> setRealPath($totalPath);
-		$document -> setChosenPath($chosenPath);		
-		/*$em -> persist($document);
-		$em -> flush();
-    /**
-    * Set the rights
-    */
-	/*$aclProvider = $this -> get('security.acl.provider');
+		$document->setRealPath($totalPath);
+		$document->setChosenPath($chosenPath);		
+		/*$em->persist($document);
+		$em->flush();
+		/**
+		* Set the rights
+		*/
+		/*$aclProvider = $this->get('security.acl.provider');
 		$objectIdentity = ObjectIdentity::fromDomainObject($document);
-		$acl = $aclProvider -> createAcl($objectIdentity);
+		$acl = $aclProvider->createAcl($objectIdentity);
 
-		$securityContext = $this -> get('security.context');
-		$user = $securityContext -> getToken() -> getUser();
+		$securityContext = $this->get('security.context');
+		$user = $securityContext->getToken()->getUser();
 		$securityIdentity = UserSecurityIdentity::fromAccount($user);
 
-		$acl -> insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
-		$aclProvider -> updateAcl($acl);*/
+		$acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+		$aclProvider->updateAcl($acl);*/
 
-	  }
+	}
 }
 ?>
